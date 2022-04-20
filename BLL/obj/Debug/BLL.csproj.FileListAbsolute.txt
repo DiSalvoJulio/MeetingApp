@@ -1,0 +1,11 @@
+C:\PracticaSupervisada\BLL\bin\Debug\BLL.dll
+C:\PracticaSupervisada\BLL\bin\Debug\BLL.pdb
+C:\PracticaSupervisada\BLL\bin\Debug\DAL.dll
+C:\PracticaSupervisada\BLL\bin\Debug\Entidades.dll
+C:\PracticaSupervisada\BLL\bin\Debug\DAL.pdb
+C:\PracticaSupervisada\BLL\bin\Debug\Entidades.pdb
+C:\PracticaSupervisada\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+C:\PracticaSupervisada\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\PracticaSupervisada\BLL\obj\Debug\BLL.csproj.CopyComplete
+C:\PracticaSupervisada\BLL\obj\Debug\BLL.dll
+C:\PracticaSupervisada\BLL\obj\Debug\BLL.pdb

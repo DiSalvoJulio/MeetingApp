@@ -1,0 +1,12 @@
+﻿.content {
+    background-color: #D5F5E3;
+}
+
+.modal-header{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;   
+    border: none;   
+}
+
+

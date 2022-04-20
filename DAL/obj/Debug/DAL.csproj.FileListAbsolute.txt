@@ -1,0 +1,9 @@
+C:\PracticaSupervisada\DAL\bin\Debug\DAL.dll
+C:\PracticaSupervisada\DAL\bin\Debug\DAL.pdb
+C:\PracticaSupervisada\DAL\bin\Debug\Entidades.dll
+C:\PracticaSupervisada\DAL\bin\Debug\Entidades.pdb
+C:\PracticaSupervisada\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\PracticaSupervisada\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\PracticaSupervisada\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\PracticaSupervisada\DAL\obj\Debug\DAL.dll
+C:\PracticaSupervisada\DAL\obj\Debug\DAL.pdb
