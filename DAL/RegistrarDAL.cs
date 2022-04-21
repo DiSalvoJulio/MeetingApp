@@ -20,29 +20,38 @@ namespace DAL
         {
             try
             {
-                string procedure = "sp_InsertarUsuario";
-                comando.Connection = Conexion.AbrirConexion();
-                comando.CommandType = CommandType.StoredProcedure;
-                comando.CommandText = procedure;
-                comando.Parameters.Clear();
+                string procedure = "";
+
+                if (usuario.idRol==2) //esPaciente
+                {
+                    procedure = "sp_InsertarPaciente";
+                    comando.Connection = Conexion.AbrirConexion();
+                    comando.CommandType = CommandType.StoredProcedure;
+                    comando.CommandText = procedure;
+                    comando.Parameters.Clear();
+                }
+                else
+                {
+                    procedure = "sp_InsertarProfesional";
+                    comando.Connection = Conexion.AbrirConexion();
+                    comando.CommandType = CommandType.StoredProcedure;
+                    comando.CommandText = procedure;
+                    comando.Parameters.Clear();
+                    comando.Parameters.AddWithValue("@matricula", usuario.matricula);
+                    comando.Parameters.AddWithValue("@idEspecialidad", usuario.idEspecialidad);
+                }
+                
                 comando.Parameters.AddWithValue("@apellido", usuario.apellido);
                 comando.Parameters.AddWithValue("@nombre", usuario.nombre);
                 comando.Parameters.AddWithValue("@dni", usuario.dni);
                 comando.Parameters.AddWithValue("@email", usuario.email);
                 comando.Parameters.AddWithValue("@pass", usuario.pass);
-                //comando.Parameters.AddWithValue("@pass", EncryptKeys.EncriptarPassword(usuario.pass, "Keys"));                
-                //comando.Parameters.AddWithValue("@direccion", usuario.direccion);
-                //comando.Parameters.AddWithValue("@telefono", usuario.telefono);
-                //comando.Parameters.AddWithValue("@ocupacion", usuario.ocupacion);
+                //comando.Parameters.AddWithValue("@pass", EncryptKeys.EncriptarPassword(usuario.pass, "Keys"));                                      
                 comando.Parameters.AddWithValue("@fechaIngreso", usuario.fechaIngreso);
-                comando.Parameters.AddWithValue("@fechaNacimiento", usuario.fechaNacimiento);
-                //comando.Parameters.AddWithValue("@matricula", usuario.matricula);
+                comando.Parameters.AddWithValue("@fechaNacimiento", usuario.fechaNacimiento);             
                 //comando.Parameters.AddWithValue("@esAdmin", usuario.esAdmin);
                 //comando.Parameters.AddWithValue("@cuentaConfirmada", usuario.cuentaConfirmada);
-                comando.Parameters.AddWithValue("@idRol", usuario.idRol);
-                //comando.Parameters.AddWithValue("@idReferencia", usuario.idReferencia);
-                //comando.Parameters.AddWithValue("@idObraSocial", usuario.idObraSocial);
-                //comando.Parameters.AddWithValue("@idEspecialidad", usuario.idEspecialidad);
+                comando.Parameters.AddWithValue("@idRol", usuario.idRol);              
                 comando.ExecuteNonQuery();
 
             }
@@ -118,17 +127,20 @@ namespace DAL
             }
             if (!dread.IsDBNull(14))
             {
-                usuario.idRol = dread.GetInt32(14);
-            }
-            if (!dread.IsDBNull(14))
-            {
-                usuario.idReferencia = dread.GetInt32(14);
+                usuario.idRol = dread.GetInt32(14); //rol
             }
             if (!dread.IsDBNull(15))
             {
-                usuario.idObraSocial = dread.GetInt32(15);
+                usuario.idReferencia = dread.GetInt32(15);
             }
-
+            if (!dread.IsDBNull(16))
+            {
+                usuario.idObraSocial = dread.GetInt32(16);
+            }
+            if (!dread.IsDBNull(17))
+            {
+                usuario.idEspecialidad = dread.GetInt32(17);
+            }
             return usuario;
         }
 

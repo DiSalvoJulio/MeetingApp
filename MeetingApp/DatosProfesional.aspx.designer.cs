@@ -168,13 +168,13 @@ namespace MeetingApp
         protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// Control txtEspecialidad.
+        /// Control cmbProfesion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEspecialidad;
+        protected global::System.Web.UI.WebControls.DropDownList cmbProfesion;
 
         /// <summary>
         /// Control Label2.

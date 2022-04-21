@@ -15,10 +15,11 @@ namespace MeetingApp
         {
             if (!IsPostBack)
             {
+                BLL.EspecialidadBLL.CargarComboEspecialidades(cmbProfesion);
                 cmbProfesion.Enabled = false;
                 txtMatricula.Enabled = false;
             }
-            
+
         }
 
         //INSERTAR
@@ -31,11 +32,11 @@ namespace MeetingApp
             DateTime fecha = DateTime.Parse(txtFecNac.Text);
             u.fechaNacimiento = fecha.Date;
             u.fechaIngreso = DateTime.Now;
-            //u.telefono = txtTelefono.Text;
-            //u.direccion = txtDireccion.Text;
             u.email = txtEmail.Text;
             u.pass = txtPass.Text;
             u.idRol = chkProfesional.Checked ? 3 : 2;//true profesional sino paciente
+            u.matricula = txtMatricula.Text;
+            u.idEspecialidad = cmbProfesion.SelectedIndex;
             BLL.RegistrarBLL.InsertarUsuario(u);
             //CargarUsuario();
         }
@@ -144,12 +145,6 @@ namespace MeetingApp
                 txtFecNac.Focus();
                 return true;
             }
-            //if (txtMatricula.Text.Equals(""))
-            //{
-            //    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar Matricula')", true);
-            //    txtFecNac.Focus();
-            //    return;
-            //}
             if (txtEmail.Text.Equals(""))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar Email')", true);
@@ -174,29 +169,61 @@ namespace MeetingApp
                 txtPass.Focus();
                 return true;
             }
-            //if (txtDireccion.Text.Equals(""))
-            //{
-            //    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar direccion')", true);
-            //    txtDireccion.Focus();
-            //    return true;
-            //}
-            //if (txtTelefono.Text.Equals(""))
-            //{
-            //    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar Telefono')", true);
-            //    txtTelefono.Focus();
-            //    return true;
-            //}
+            if (cmbProfesion.SelectedIndex == 0)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe seleccionar una Especialidad')", true);
+                cmbProfesion.Focus();
+                return true;
+            }
+            if (txtMatricula.Text.Equals(""))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar la Matricula)", true);
+                cmbProfesion.Focus();
+                return true;
+            }
             else
             {
                 return false;
             }
         }
 
-        
-        
 
-        
+        //CARGAR ESPECIALIDADES
+        //public void CargarComboEspecialidades()
+        //{
 
-       
+        //    try
+        //    {
+        //        List<Especialidad> listaEspecialidad = new List<Especialidad>();
+        //        listaEspecialidad = BLL.EspecialidadBLL.ObtenerEspecialidades();              
+        //        cmbProfesion.Items.Clear();
+
+        //        int indice = 0;
+        //        if (listaEspecialidad.Count > 0)
+        //        {
+        //            //cmbRubros es el ID del ASP
+        //            cmbProfesion.DataSource = listaEspecialidad;
+        //            cmbProfesion.DataTextField = "descripcion";
+        //            cmbProfesion.DataValueField = "idEspecialidad";
+        //            cmbProfesion.DataBind();
+        //            cmbProfesion.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0"));
+        //            //cmbProfesion.Items[0].Attributes = false;
+        //        }
+        //        else
+        //        {
+        //            cmbProfesion.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0"));
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        throw new Exception("Error en cargar combo especialidad " + ex.Message);
+        //    }
+        //}
+
+
+
+
     }
 }

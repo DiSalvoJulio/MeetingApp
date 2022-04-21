@@ -19,9 +19,11 @@ namespace MeetingApp
                 CargarCamposProfesional(user);
                 btnCancelar.Enabled = false;
                 btnAceptar.Enabled = false;
+                BLL.EspecialidadBLL.CargarComboEspecialidades(cmbProfesion);
             }
         }
-
+        //ver campos vacios
+        //(Usuario) Session["Usuario"]
         private void CargarCamposProfesional(Usuario user)
         {
             txtApellido.Text = user.apellido;
@@ -31,7 +33,9 @@ namespace MeetingApp
             txtEmail.Text = user.email;
             txtTelefono.Text = user.telefono;
             txtDireccion.Text = user.direccion;
-            txtEspecialidad.Text = user.idEspecialidad.ToString();
+            int p = int.Parse(user.idEspecialidad.ToString());
+            cmbProfesion.SelectedIndex = p - 1;
+            //cmbProfesion.SelectedIndex = 2;
             txtMatricula.Text = user.matricula;
             txtIngreso.Text = user.fechaIngreso.ToShortDateString();
             txtEdad.Text = user.edad.ToString();
@@ -58,7 +62,7 @@ namespace MeetingApp
             txtEmail.Enabled = false;
             txtTelefono.Enabled = false;
             txtDireccion.Enabled = false;
-            txtEspecialidad.Enabled = false;
+            cmbProfesion.Enabled = false;
             txtMatricula.Enabled = false;
             txtIngreso.Enabled = false;
             txtEdad.Enabled = false;
@@ -74,7 +78,7 @@ namespace MeetingApp
             txtEmail.Enabled = true;
             txtTelefono.Enabled = true;
             txtDireccion.Enabled = true;
-            txtEspecialidad.Enabled = true;
+            cmbProfesion.Enabled = true;
             txtMatricula.Enabled = true;
             txtIngreso.Enabled = true;
             txtEdad.Enabled = true;
@@ -90,7 +94,7 @@ namespace MeetingApp
             user.telefono = txtTelefono.Text;
             user.direccion = txtDireccion.Text;
             //user.pass = txtPass.Text;
-            user.idEspecialidad = int.Parse(txtEspecialidad.Text);
+            user.idEspecialidad = int.Parse(cmbProfesion.Text);
             user.matricula = txtMatricula.Text;
             if (!CamposVaciosModificar())
             {
@@ -184,7 +188,7 @@ namespace MeetingApp
                 txtTelefono.Focus();
                 return true;
             }
-            if (txtEspecialidad.Text.Equals(""))
+            if (cmbProfesion.SelectedIndex == 0)
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar Especialidad')", true);
                 txtTelefono.Focus();

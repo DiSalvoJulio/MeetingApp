@@ -90,10 +90,8 @@
                     <asp:Label ID="Label1" runat="server" Text="Profesion"></asp:Label>
                     <br />
                     <asp:DropDownList ID="cmbProfesion" runat="server" CssClass="btn btn-outline-info dropdown-toggle col-12" onClientClick="verDrop()">
-                        <asp:ListItem Value="">Seleccionar...</asp:ListItem>
-                        <asp:ListItem Value="">S!nar...</asp:ListItem>
-                    </asp:DropDownList>
-                    <%--<asp:TextBox ID="txtProfesion" name="txtProfesion" runat="server" placeholder="Profesion" CssClass="form-control" OnkeyDown="Letras()" MaxLength="40"></asp:TextBox>--%>
+                        <%--<asp:ListItem Selected="True"> </asp:ListItem>   --%>                
+                    </asp:DropDownList>              
                 </div>
                 <div class="form-group col-md-6 mt-3">
                     <%--MATRICULA--%>

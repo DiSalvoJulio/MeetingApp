@@ -53,45 +53,20 @@
     </div>
 
     <!-- Modal HORARIOS -->
-    <asp:Panel runat="server" ID="pnlModalHorarios" Visible="false">
+    <asp:Panel runat="server" ID="panelHorarios" Visible="false">
         <div class="modal fade show" tabindex="-1" aria-hidden="true" style="display: block;">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Condiciones del Requerimiento</h5>
+                        <h3 class="modal-title" style="margin-left: auto">Horarios</h3>
                         <hr id="hrContent">
-                        <button runat="server" class="btn-secondary" data-bs-dismiss="modal" aria-label="Close" onserverclick="CerrarModalHorarios">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <button runat="server" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onserverclick="CerrarModalHorarios">                       
+                        </button>                                          
                     </div>
-                    <div class="modal-body">                     
-                        <div class="row">
-                            <%--CONDICONES PUBLICAS--%>
-                            <div class="form-group col-md-6" style="margin-bottom: -1rem!important;">
-                                <label class="card-header" style="font-size: 1rem;">Condiciones Públicas</label>
-                                <ul style="list-style: none; padding: 0;">
-                                    <li class="mt-4">
-                                        <label>Moneda</label></li>
-                                    <li>
-                                        <label>Cond Publica</label></li>
-                                    <li>
-                                        <label>Minimo: 250 Maximo: 600</label></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="row">
-                            <div class="form-group col-md-6 mt-2">
-                                <ul style="list-style: none; padding: 0;">
-                                    <li>
-                                        <label>Moneda</label></li>
-                                    <li>
-                                        <label>Cond Publica</label></li>
-                                    <li>
-                                        <label>Minimo: 250 Maximo: 600</label></li>
-                                </ul>
-                            </div>
-                        </div>
+                    <div class="modal-body">
+                        
+                    <%--CODIGO CUERPO MODAL--%>  
+                        
                     </div>
                     <!--Fin Body Modal-->
                     <div class="modal-footer">
@@ -102,6 +77,94 @@
             </div>
         </div>
         <div class="modal-backdrop fade show"></div>
-
     </asp:Panel>
+    <%--FIN MODAL HORARIOS-----------------------------------------------------------------------%>
+
+
+    <!-- MODAL PROFESIONES -->
+    <asp:Panel runat="server" ID="panelProfesiones" Visible="false">
+        <div class="modal fade show" tabindex="-1" aria-hidden="true" style="display: block;">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" style="margin-left: auto">Profesiones</h3>
+                        <hr id="hrContent">
+                        <button runat="server" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onserverclick="CerrarModalProfesiones">                       
+                        </button>                                          
+                    </div>
+                    <div class="modal-body">
+                        
+                    <%--CODIGO CUERPO MODAL--%>  
+                        
+                    </div>
+                    <!--Fin Body Modal-->
+                    <div class="modal-footer">
+                        <asp:Button ID="btnCancelarProfesiones" Text="Cancelar" runat="server" type="button" class="btn btn-danger" />
+                        <asp:Button ID="btnConfirmarProfesiones" Text="Confirmar" runat="server" type="button" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-backdrop fade show"></div>
+    </asp:Panel>
+    <%--FIN MODAL PROFESIONES--------------------------------------------------------------------%>
+
+
+    <!-- MODAL OBRAS SOCIALES -->
+     <asp:Panel runat="server" ID="panelObrasSociales" Visible="false">
+        <div class="modal fade show" tabindex="-1" aria-hidden="true" style="display: block;">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" style="margin-left: auto">Obras Sociales</h3>
+                        <hr id="hrContent">
+                        <button runat="server" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onserverclick="CerrarModalObrasSociales">                       
+                        </button>                                          
+                    </div>
+                    <div class="modal-body">
+                        
+                    <%--CODIGO CUERPO MODAL--%>  
+                        
+                    </div>
+                    <!--Fin Body Modal-->
+                    <div class="modal-footer">
+                        <asp:Button ID="btnCancelarObrasSociales" Text="Cancelar" runat="server" type="button" class="btn btn-danger" />
+                        <asp:Button ID="btnConfirmarObrasSociales" Text="Confirmar" runat="server" type="button" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-backdrop fade show"></div>
+    </asp:Panel>
+    <%--FIN MODAL OBRAS SOCIALES-----------------------------------------------------------------%>
+
+
+    <!-- MODAL PACIENTES -->
+     <asp:Panel runat="server" ID="panelPacientes" Visible="false">
+        <div class="modal fade show" tabindex="-1" aria-hidden="true" style="display: block;">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" style="margin-left: auto">Pacientes</h3>
+                        <hr id="hrContent">
+                        <button runat="server" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onserverclick="CerrarModalPacientes">                       
+                        </button>                                          
+                    </div>
+                    <div class="modal-body">
+                        
+                    <%--CODIGO CUERPO MODAL--%>  
+                        
+                    </div>
+                    <!--Fin Body Modal-->
+                    <div class="modal-footer">
+                        <asp:Button ID="btnCancelarPacientes" Text="Cancelar" runat="server" type="button" class="btn btn-danger" />
+                        <asp:Button ID="btnConfirmarPacientes" Text="Confirmar" runat="server" type="button" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-backdrop fade show"></div>
+    </asp:Panel>
+    <%--FIN MODAL PACIENTES----------------------------------------------------------------------%>
+    
 </asp:Content>

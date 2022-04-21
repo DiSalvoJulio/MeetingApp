@@ -138,6 +138,8 @@
     <Content Include="css\.DS_Store" />
     <Content Include="css\bootstrap\.DS_Store" />
     <Content Include="css\bootstrap\mixins\.DS_Store" />
+    <Content Include="HomePaciente.aspx" />
+    <Content Include="HomeProfesional.aspx" />
     <Content Include="InicioSesion.css" />
     <Content Include="js\.DS_Store" />
     <Content Include="images\.DS_Store" />
@@ -316,6 +318,20 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HomePaciente.aspx.cs">
+      <DependentUpon>HomePaciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HomePaciente.aspx.designer.cs">
+      <DependentUpon>HomePaciente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HomeProfesional.aspx.cs">
+      <DependentUpon>HomeProfesional.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HomeProfesional.aspx.designer.cs">
+      <DependentUpon>HomeProfesional.aspx</DependentUpon>
     </Compile>
     <Compile Include="InicioSesion.aspx.cs">
       <DependentUpon>InicioSesion.aspx</DependentUpon>

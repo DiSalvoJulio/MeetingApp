@@ -24,31 +24,31 @@ namespace MeetingApp
             {               
                 if (usu.idRol == 2)
                 {//paciente
-                    Session["Usuario"] = usu;
-                    Response.Redirect("DatosPaciente.aspx");
                     //Session["Usuario"] = usu;
-                    //if (usu.ocupacion == null)
-                    //{
-                    //    Response.Redirect("DatosPaciente.aspx");
-                    //}
-                    //else
-                    //{   //FALTA HACER EL HOME DE PACIENTE
-                    //    Response.Redirect("HomePaciente.aspx");
-                    //}
+                    //Response.Redirect("DatosPaciente.aspx");
+                    Session["Usuario"] = usu;
+                    if (usu.telefono == null || usu.telefono.Equals("") || usu.direccion == null || usu.direccion.Equals("") || usu.ocupacion == null || usu.ocupacion.Equals("") || usu.idReferencia == 0 || usu.idReferencia.Equals(""))
+                    {
+                        Response.Redirect("DatosPaciente.aspx");
+                    }
+                    else
+                    {   //FALTA HACER EL HOME DE PACIENTE
+                        Response.Redirect("HomePaciente.aspx");
+                    }
 
                 }
                 else
                 {//profesional
                     Session["Usuario"] = usu;
-                    Response.Redirect("DatosProfesional.aspx");
-                    //if (usu.matricula == null)
-                    //{
-                    //    Response.Redirect("DatosProfesional.aspx");
-                    //}
-                    //else
-                    //{   //FALTA HACER EL HOME DE PROFESIONAL
-                    //    Response.Redirect("HomeProfesional.aspx");
-                    //}
+                    //Response.Redirect("DatosProfesional.aspx");
+                    if (usu.telefono == null || usu.telefono.Equals("") || usu.direccion == null || usu.direccion.Equals(""))
+                    {
+                        Response.Redirect("DatosProfesional.aspx");                        
+                    }
+                    else
+                    {   //FALTA HACER EL HOME DE PROFESIONAL                       
+                        Response.Redirect("HomeProfesional.aspx");
+                    }
 
                 }               
             }
