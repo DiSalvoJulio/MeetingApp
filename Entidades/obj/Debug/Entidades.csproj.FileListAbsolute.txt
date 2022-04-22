@@ -1,6 +1,5 @@
 C:\PracticaSupervisada\Entidades\bin\Debug\Entidades.dll
 C:\PracticaSupervisada\Entidades\bin\Debug\Entidades.pdb
-C:\PracticaSupervisada\Entidades\obj\Debug\Entidades.csproj.AssemblyReference.cache
 C:\PracticaSupervisada\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
 C:\PracticaSupervisada\Entidades\obj\Debug\Entidades.dll
 C:\PracticaSupervisada\Entidades\obj\Debug\Entidades.pdb

@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Gestiones.aspx.cs" Inherits="MeetingApp.Gestiones" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="MeetingApp.Gestiones.Default" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -51,6 +50,7 @@
         </div>
         <hr />
     </div>
+            <asp:Panel ID="panelPrueba" runat="server"></asp:Panel>
 
     <!-- Modal HORARIOS -->
     <asp:Panel runat="server" ID="panelHorarios" Visible="false">
@@ -60,13 +60,12 @@
                     <div class="modal-header">
                         <h3 class="modal-title" style="margin-left: auto">Horarios</h3>
                         <hr id="hrContent">
-                        <button runat="server" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onserverclick="CerrarModalHorarios">                       
-                        </button>                                          
+                        <button runat="server" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onserverclick="CerrarModalHorarios">
+                        </button>
                     </div>
                     <div class="modal-body">
-                        
-                    <%--CODIGO CUERPO MODAL--%>  
-                        
+
+                        <%--CODIGO CUERPO MODAL--%>
                     </div>
                     <!--Fin Body Modal-->
                     <div class="modal-footer">
@@ -85,17 +84,25 @@
     <asp:Panel runat="server" ID="panelProfesiones" Visible="false">
         <div class="modal fade show" tabindex="-1" aria-hidden="true" style="display: block;">
             <div class="modal-dialog modal-lg">
-                <div class="modal-content">
+                <div class="modal-content w-75" style="margin-left: 12.5%">
                     <div class="modal-header">
                         <h3 class="modal-title" style="margin-left: auto">Profesiones</h3>
                         <hr id="hrContent">
-                        <button runat="server" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onserverclick="CerrarModalProfesiones">                       
-                        </button>                                          
+                        <button runat="server" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onserverclick="CerrarModalProfesiones">
+                        </button>
                     </div>
-                    <div class="modal-body">
-                        
-                    <%--CODIGO CUERPO MODAL--%>  
-                        
+                    <div class="modal-body col-md-10">
+                        <%--CODIGO CUERPO MODAL--%>
+                        <div class="row">
+                            <asp:Label CssClass="col-6" ID="Label3" runat="server" Text="Profesion"></asp:Label>
+                    <%--    </div>--%>
+                        <%--                            <br />--%>
+                       <%-- <div class="row">--%>
+                            <asp:DropDownList ID="cmbProfesion" runat="server" CssClass="btn btn-outline-info dropdown-toggle col-6" onClientClick="verDrop()" AutoPostBack="true">
+                            </asp:DropDownList>
+                        </div>
+
+                        <%--CIERRE CUERPO MODAL--%>
                     </div>
                     <!--Fin Body Modal-->
                     <div class="modal-footer">
@@ -107,24 +114,23 @@
         </div>
         <div class="modal-backdrop fade show"></div>
     </asp:Panel>
-    <%--FIN MODAL PROFESIONES--------------------------------------------------------------------%>
+    <%--FIN MODAL PROFESIONES---------------------------------------------------%>
 
 
     <!-- MODAL OBRAS SOCIALES -->
-     <asp:Panel runat="server" ID="panelObrasSociales" Visible="false">
+    <asp:Panel runat="server" ID="panelObrasSociales" Visible="false">
         <div class="modal fade show" tabindex="-1" aria-hidden="true" style="display: block;">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h3 class="modal-title" style="margin-left: auto">Obras Sociales</h3>
                         <hr id="hrContent">
-                        <button runat="server" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onserverclick="CerrarModalObrasSociales">                       
-                        </button>                                          
+                        <button runat="server" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onserverclick="CerrarModalObrasSociales">
+                        </button>
                     </div>
                     <div class="modal-body">
-                        
-                    <%--CODIGO CUERPO MODAL--%>  
-                        
+
+                        <%--CODIGO CUERPO MODAL--%>
                     </div>
                     <!--Fin Body Modal-->
                     <div class="modal-footer">
@@ -140,20 +146,19 @@
 
 
     <!-- MODAL PACIENTES -->
-     <asp:Panel runat="server" ID="panelPacientes" Visible="false">
+    <asp:Panel runat="server" ID="panelPacientes" Visible="false">
         <div class="modal fade show" tabindex="-1" aria-hidden="true" style="display: block;">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h3 class="modal-title" style="margin-left: auto">Pacientes</h3>
                         <hr id="hrContent">
-                        <button runat="server" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onserverclick="CerrarModalPacientes">                       
-                        </button>                                          
+                        <button runat="server" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onserverclick="CerrarModalPacientes">
+                        </button>
                     </div>
                     <div class="modal-body">
-                        
-                    <%--CODIGO CUERPO MODAL--%>  
-                        
+
+                        <%--CODIGO CUERPO MODAL--%>
                     </div>
                     <!--Fin Body Modal-->
                     <div class="modal-footer">
@@ -166,5 +171,4 @@
         <div class="modal-backdrop fade show"></div>
     </asp:Panel>
     <%--FIN MODAL PACIENTES----------------------------------------------------------------------%>
-    
 </asp:Content>

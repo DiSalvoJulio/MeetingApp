@@ -11,6 +11,7 @@ namespace MeetingApp
 {
     public partial class Login : System.Web.UI.Page
     {
+        RegistrarBLL _registrarBLL = new RegistrarBLL();
         protected void Page_Load(object sender, EventArgs e)
         {
             //Session.Remove("Login");
@@ -18,7 +19,7 @@ namespace MeetingApp
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {           
-            Usuario usu = RegistrarBLL.UsuarioSesion(txtUsuario.Text, txtPass.Text);
+            Usuario usu = _registrarBLL.UsuarioSesion(txtUsuario.Text, txtPass.Text);
 
             if (usu != null)
             {               
@@ -37,7 +38,7 @@ namespace MeetingApp
                     }
 
                 }
-                else
+                else if(usu.idRol ==3)
                 {//profesional
                     Session["Usuario"] = usu;
                     //Response.Redirect("DatosProfesional.aspx");
@@ -49,8 +50,11 @@ namespace MeetingApp
                     {   //FALTA HACER EL HOME DE PROFESIONAL                       
                         Response.Redirect("HomeProfesional.aspx");
                     }
-
-                }               
+                }
+                else if(usu.idRol == 1)
+                {
+                    Response.Redirect("Gestiones.aspx");
+                }
             }
             else
             {

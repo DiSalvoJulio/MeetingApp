@@ -124,8 +124,10 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Gestiones.aspx" />
-    <Content Include="Gestiones.css" />
+    <Content Include="Gestiones\Default.aspx" />
+    <Content Include="Gestiones\Gestiones.css" />
+    <Content Include="Gestiones\GestionEspecialidad.aspx" />
+    <Content Include="Gestiones\GestionEspecialidad.css" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -309,12 +311,19 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Gestiones.aspx.cs">
-      <DependentUpon>Gestiones.aspx</DependentUpon>
+    <Compile Include="Gestiones\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Gestiones.aspx.designer.cs">
-      <DependentUpon>Gestiones.aspx</DependentUpon>
+    <Compile Include="Gestiones\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gestiones\GestionEspecialidad.aspx.cs">
+      <DependentUpon>GestionEspecialidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gestiones\GestionEspecialidad.aspx.designer.cs">
+      <DependentUpon>GestionEspecialidad.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

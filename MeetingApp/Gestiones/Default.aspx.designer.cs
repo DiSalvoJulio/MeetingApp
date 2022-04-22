@@ -7,11 +7,11 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace MeetingApp
+namespace MeetingApp.Gestiones
 {
 
 
-    public partial class Gestiones
+    public partial class Default
     {
 
         /// <summary>
@@ -51,6 +51,15 @@ namespace MeetingApp
         protected global::System.Web.UI.WebControls.Button btnModificarPacientes;
 
         /// <summary>
+        /// Control panelPrueba.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panelPrueba;
+
+        /// <summary>
         /// Control panelHorarios.
         /// </summary>
         /// <remarks>
@@ -85,6 +94,24 @@ namespace MeetingApp
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel panelProfesiones;
+
+        /// <summary>
+        /// Control Label3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
+
+        /// <summary>
+        /// Control cmbProfesion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cmbProfesion;
 
         /// <summary>
         /// Control btnCancelarProfesiones.

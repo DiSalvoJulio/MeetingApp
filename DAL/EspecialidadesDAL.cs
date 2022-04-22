@@ -9,14 +9,14 @@ using System.Data.SqlClient;
 
 namespace DAL
 {
-    public static class EspecialidadesDAL
+    public class EspecialidadesDAL
     {
 
         private static SqlDataReader dr = null;
         private static DataTable dt = new DataTable();
         private static SqlCommand comando = new SqlCommand();
 
-        public static List<Especialidad> ObtenerEspecialidades()
+        public List<Especialidad> ObtenerEspecialidades()
         {
             try
             {
@@ -34,7 +34,7 @@ namespace DAL
                     {
                         Especialidad espe = new Especialidad();
                         espe.idEspecialidad = int.Parse(dr["idEspecialidad"].ToString());
-                        espe.descripcion = dr["descripcion"].ToString();                        
+                        espe.descripcion = dr["descripcion"].ToString();
                         listaEspecialidad.Add(espe);
                     }
                     return listaEspecialidad;

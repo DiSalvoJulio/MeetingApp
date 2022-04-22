@@ -11,15 +11,16 @@ namespace MeetingApp
 {
     public partial class Registrar : System.Web.UI.Page
     {
+        RegistrarBLL registrarBLL = new RegistrarBLL();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                BLL.EspecialidadBLL.CargarComboEspecialidades(cmbProfesion);
+                CargarComboEspecialidades();
                 cmbProfesion.Enabled = false;
                 txtMatricula.Enabled = false;
             }
-
         }
 
         //INSERTAR
@@ -37,7 +38,7 @@ namespace MeetingApp
             u.idRol = chkProfesional.Checked ? 3 : 2;//true profesional sino paciente
             u.matricula = txtMatricula.Text;
             u.idEspecialidad = cmbProfesion.SelectedIndex;
-            BLL.RegistrarBLL.InsertarUsuario(u);
+            registrarBLL.InsertarUsuario(u);
             //CargarUsuario();
         }
 
@@ -47,7 +48,7 @@ namespace MeetingApp
             bool existe = false;
             try
             {
-                List<Usuario> listaUsuario = BLL.RegistrarBLL.ConsultarUsuarios();
+                List<Usuario> listaUsuario = registrarBLL.ConsultarUsuarios();
 
                 foreach (Usuario usu in listaUsuario)
                 {//for para validar mail y dni
@@ -189,38 +190,37 @@ namespace MeetingApp
 
 
         //CARGAR ESPECIALIDADES
-        //public void CargarComboEspecialidades()
-        //{
+        public void CargarComboEspecialidades()
+        {
+            try
+            {
+                List<Especialidad> listaEspecialidad = new List<Especialidad>();
+                listaEspecialidad = registrarBLL.ObtenerEspecialidades();
+                cmbProfesion.Items.Clear();
 
-        //    try
-        //    {
-        //        List<Especialidad> listaEspecialidad = new List<Especialidad>();
-        //        listaEspecialidad = BLL.EspecialidadBLL.ObtenerEspecialidades();              
-        //        cmbProfesion.Items.Clear();
+                int indice = 0;
+                if (listaEspecialidad.Count > 0)
+                {
+                    //cmbRubros es el ID del ASP
+                    cmbProfesion.DataSource = listaEspecialidad;
+                    cmbProfesion.DataTextField = "descripcion";
+                    cmbProfesion.DataValueField = "idEspecialidad";
+                    cmbProfesion.DataBind();
+                    cmbProfesion.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0"));
+                    //cmbProfesion.Items[0].Attributes = false;
+                }
+                else
+                {
+                    cmbProfesion.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0"));
+                }
 
-        //        int indice = 0;
-        //        if (listaEspecialidad.Count > 0)
-        //        {
-        //            //cmbRubros es el ID del ASP
-        //            cmbProfesion.DataSource = listaEspecialidad;
-        //            cmbProfesion.DataTextField = "descripcion";
-        //            cmbProfesion.DataValueField = "idEspecialidad";
-        //            cmbProfesion.DataBind();
-        //            cmbProfesion.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0"));
-        //            //cmbProfesion.Items[0].Attributes = false;
-        //        }
-        //        else
-        //        {
-        //            cmbProfesion.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0"));
-        //        }
+            }
+            catch (Exception ex)
+            {
 
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        throw new Exception("Error en cargar combo especialidad " + ex.Message);
-        //    }
-        //}
+                throw new Exception("Error en cargar combo especialidad " + ex.Message);
+            }
+        }
 
 
 

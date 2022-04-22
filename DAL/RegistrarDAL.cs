@@ -9,14 +9,13 @@ using System.Data.SqlClient;
 
 namespace DAL
 {
-    public static class RegistrarDAL
+    public class RegistrarDAL
     {
-        private static SqlDataReader dr = null;
-        private static DataTable dt = new DataTable();
-        private static SqlCommand comando = new SqlCommand();
+        private SqlDataReader dr = null;
+        private DataTable dt = new DataTable();
+        private SqlCommand comando = new SqlCommand();
 
-
-        public static void InsertarUsuario(Usuario usuario)
+        public void InsertarUsuario(Usuario usuario)
         {
             try
             {
@@ -66,7 +65,7 @@ namespace DAL
         }
 
         //BUSCAR USUARIO ANTES DE INICIAR SESION
-        public static Usuario BuscarUsuario(SqlDataReader dread)
+        public Usuario BuscarUsuario(SqlDataReader dread)
         {
             var usuario = new Usuario();
             if (!dread.IsDBNull(0)) //asigna el primer campo de la tabla a lo que se obteiene por GET
@@ -145,7 +144,7 @@ namespace DAL
         }
 
         //INICIAR SESION
-        public static Usuario UsuarioSesion(string usuario, string pass)
+        public Usuario UsuarioSesion(string usuario, string pass)
         {
             Usuario u = null;
             //string passEncriptada = DAL.EncryptKeys.EncriptarPassword(pass, "Keys");
@@ -174,7 +173,7 @@ namespace DAL
             }
         }
 
-        public static List<Usuario> ConsultarUsuarios()
+        public List<Usuario> ConsultarUsuarios()
         {
             try
             {
@@ -244,7 +243,7 @@ namespace DAL
         //    }
         //}
 
-        public static Usuario ObtenerUsuarioId(int id) // al pasarle el nomnbre de la tabla suscriptor va a devolver lista dinamica cargada con los suscruptores
+        public Usuario ObtenerUsuarioId(int id) // al pasarle el nomnbre de la tabla suscriptor va a devolver lista dinamica cargada con los suscruptores
         {
             try
             {
@@ -339,7 +338,37 @@ namespace DAL
             }
         }
 
-
+        //CARGAR COMBO ESPECIALIDADES
+        public List<Especialidad> ObtenerEspecialidades()
+        {
+            //Especialidad especialidad = new Especialidad();
+            List<Especialidad> listaEspecialidad = new List<Especialidad>();
+            try
+            {
+                string procedure = "sp_ObtenerEspecialidades";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = procedure;
+                comando.Parameters.Clear();
+                comando.CommandType = CommandType.StoredProcedure;
+            
+                using (SqlDataReader dr = comando.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        Especialidad espe = new Especialidad();
+                        espe.idEspecialidad = int.Parse(dr["idEspecialidad"].ToString());
+                        espe.descripcion = dr["descripcion"].ToString();
+                        listaEspecialidad.Add(espe);
+                    }
+                    return listaEspecialidad;
+                }
+                //return listaEspecialidad;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en obtener especialidades " + ex.Message);
+            }            
+        }
 
 
     }

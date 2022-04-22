@@ -11,36 +11,46 @@ namespace MeetingApp
 {
     public partial class DatosProfesional : System.Web.UI.Page
     {
+        RegistrarBLL _registrarBLL = new RegistrarBLL();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                Usuario user = (Usuario)Session["Usuario"];
-                CargarCamposProfesional(user);
+                Usuario user = (Usuario)Session["Usuario"];               
+                CargarCamposProfesional(user);                     
                 btnCancelar.Enabled = false;
                 btnAceptar.Enabled = false;
-                BLL.EspecialidadBLL.CargarComboEspecialidades(cmbProfesion);
+                CargarComboEspecialidades();
             }
         }
         //ver campos vacios
         //(Usuario) Session["Usuario"]
         private void CargarCamposProfesional(Usuario user)
         {
-            txtApellido.Text = user.apellido;
-            txtNombre.Text = user.nombre;
-            txtDni.Text = user.dni;
-            txtFecNac.Text = user.fechaNacimiento.ToString("yyyy-MM-dd");//mostrar fecha desde la bd en front. Esta conversion se hace pq la bd tiene ese formato. año/mes/dia                       
-            txtEmail.Text = user.email;
-            txtTelefono.Text = user.telefono;
-            txtDireccion.Text = user.direccion;
-            int p = int.Parse(user.idEspecialidad.ToString());
-            cmbProfesion.SelectedIndex = p - 1;
-            //cmbProfesion.SelectedIndex = 2;
-            txtMatricula.Text = user.matricula;
-            txtIngreso.Text = user.fechaIngreso.ToShortDateString();
-            txtEdad.Text = user.edad.ToString();
-            DesahabilitarCampos();
-            CamposNoModificables();
+            if (user != null)
+            {
+                txtApellido.Text = user.apellido;
+                txtNombre.Text = user.nombre;
+                txtDni.Text = user.dni;
+                txtFecNac.Text = user.fechaNacimiento.ToString("yyyy-MM-dd");
+                //mostrar fecha desde la bd en front. Esta conversion se hace pq la bd tiene ese formato. año/mes/dia                       
+                txtEmail.Text = user.email;
+                txtTelefono.Text = user.telefono;
+                txtDireccion.Text = user.direccion;
+                int p = int.Parse(user.idEspecialidad.ToString());
+                cmbProfesion.SelectedIndex = p - 1;
+                //cmbProfesion.SelectedIndex = 2;
+                txtMatricula.Text = user.matricula;
+                txtIngreso.Text = user.fechaIngreso.ToShortDateString();
+                txtEdad.Text = user.edad.ToString();
+                DesahabilitarCampos();
+                CamposNoModificables();
+            }
+            else
+            {
+                Response.Redirect("InicioSesion.aspx");
+            }
+
         }
 
         //Datos que no se deben modificar
@@ -48,7 +58,7 @@ namespace MeetingApp
         {
             txtDni.Enabled = false;
             txtEmail.Enabled = false;
-            txtEdad.Enabled = false;          
+            txtEdad.Enabled = false;
             txtIngreso.Enabled = false;
         }
 
@@ -127,6 +137,39 @@ namespace MeetingApp
                 btnCancelar.Enabled = false;
                 btnAceptar.Enabled = false;
                 btnModificar.Enabled = true;
+            }
+        }
+
+        //CARGAR COMBO ESPECIALIDADES
+        public void CargarComboEspecialidades()
+        {
+            try
+            {
+                List<Especialidad> listaEspecialidad = new List<Especialidad>();
+                listaEspecialidad = _registrarBLL.ObtenerEspecialidades();
+                cmbProfesion.Items.Clear();
+
+                int indice = 0;
+                if (listaEspecialidad.Count > 0)
+                {
+                    //cmbRubros es el ID del ASP
+                    cmbProfesion.DataSource = listaEspecialidad;
+                    cmbProfesion.DataTextField = "descripcion";
+                    cmbProfesion.DataValueField = "idEspecialidad";
+                    cmbProfesion.DataBind();
+                    //cmbProfesion.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0"));
+                    //cmbProfesion.Items[0].Attributes = false;
+                }
+                else
+                {
+                    cmbProfesion.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0"));
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error en cargar combo especialidad " + ex.Message);
             }
         }
 

@@ -8,26 +8,34 @@ using System.Data.SqlClient;
 using DAL;
 using Entidades;
 
+
 namespace BLL
 {
-    public static class RegistrarBLL
+    public class RegistrarBLL
     {
-        public static void InsertarUsuario(Usuario usuario)
+        private RegistrarDAL registrarDAL = new RegistrarDAL();
+        public void InsertarUsuario(Usuario usuario)
         {
-            DAL.RegistrarDAL.InsertarUsuario(usuario);
+            registrarDAL.InsertarUsuario(usuario);
         }
 
-        public static List<Usuario> ConsultarUsuarios()
+        public List<Usuario> ConsultarUsuarios()
         {
-            return DAL.RegistrarDAL.ConsultarUsuarios();
+            return registrarDAL.ConsultarUsuarios();
         }
-
 
         //inicio sesion
-        public static Usuario UsuarioSesion(string usuario, string pass)
+        public Usuario UsuarioSesion(string usuario, string pass)
         {
-            return DAL.RegistrarDAL.UsuarioSesion(usuario, pass);
+            return registrarDAL.UsuarioSesion(usuario, pass);
         }
+
+        //COMBO ESPECIALIDADES
+        public List<Especialidad> ObtenerEspecialidades()
+        {
+            return registrarDAL.ObtenerEspecialidades();
+        }
+
 
     }
 }
