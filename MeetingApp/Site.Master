@@ -190,11 +190,11 @@
         }
 
         //Esta funcion inhabilita el click derecho del mouse
-        $(document).ready(function () {
-            $(document).bind("contextmenu", function (e) {
-                return false;
-            });
-        });
+        //$(document).ready(function () {
+        //    $(document).bind("contextmenu", function (e) {
+        //        return false;
+        //    });
+        //});
 
         function Letras() {
             if ((event.keyCode != 32 && event.keyCode != 8) && (event.keyCode < 65) || (event.keyCode > 90) && (event.keyCode < 97) || (event.keyCode > 122))

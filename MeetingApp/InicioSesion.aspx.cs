@@ -53,7 +53,8 @@ namespace MeetingApp
                 }
                 else if(usu.idRol == 1)
                 {
-                    Response.Redirect("Gestiones.aspx");
+                    //Response.Redirect("Gestiones/Default.aspx");
+                    Response.Redirect("Gestiones/Especialidades.aspx");
                 }
             }
             else

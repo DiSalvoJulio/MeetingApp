@@ -16,6 +16,28 @@ namespace DAL
         private static DataTable dt = new DataTable();
         private static SqlCommand comando = new SqlCommand();
 
+        public void InsertarEspecialidad(Especialidad especialidad)
+        {
+            try
+            {
+                string procedure = "sp_InsertarEspecialidad";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.CommandText = procedure;
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@descripcion", especialidad.descripcion);
+                comando.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Error en Insertar Especialidad " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
         public List<Especialidad> ObtenerEspecialidades()
         {
             try
@@ -49,7 +71,118 @@ namespace DAL
             {
                 Conexion.CerrarConexion();
             }
-
         }
+
+
+        public Especialidad BuscarEspecialidad(SqlDataReader dr)
+        {
+            var espe = new Especialidad();
+            if (!dr.IsDBNull(0))
+            {
+                espe.idEspecialidad = dr.GetInt32(0);
+            }
+            if (!dr.IsDBNull(1))
+            {
+                espe.descripcion = dr.GetString(1);
+            }           
+            return espe;
+        }
+
+        public Especialidad SeleccionarIdEspecialidad(int espe)
+        {
+            Especialidad especialidad = new Especialidad();
+            try
+            {
+                string procedure = "sp_ObetenerIdEspecialidad";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = procedure;
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@idEspecialidad", espe);
+                comando.ExecuteNonQuery();
+                SqlDataReader dread = comando.ExecuteReader();
+
+                if (dread.Read())
+                {
+                    especialidad = BuscarEspecialidad(dread);
+                }
+                Conexion.CerrarConexion();
+                return especialidad;
+
+            }
+            catch (Exception ex)
+            {              
+                throw new Exception("Error en obtener id especialidad " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
+        //VALIDAR NOMBRE ESPECIALIDAD
+        public bool ValidarNombreEspecialidad(Especialidad espe)
+        {
+            try
+            {
+                string procedure = "sp_ValidarNombreEspecialidad";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = procedure;
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@descripcion", espe.descripcion);
+
+                using (SqlDataReader dr = comando.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception("Error en validar nombre especialidad " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
+        //MODIFICAR ESPECIALIDAD
+        public void ActualizarEspecialidad(Especialidad especialidad)
+        {
+            try
+            {
+                string procedure = "sp_ActualizarEspecialidad";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = procedure;
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@idEspecialidad", especialidad.idEspecialidad);
+                comando.Parameters.AddWithValue("@descripcion", especialidad.descripcion);
+                //comando.Parameters.AddWithValue("@activo", rubro.activo);
+                comando.ExecuteNonQuery();
+                //ExecuteNonQuery: consultar estructura o crear objetos.
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en actualizar especialidad " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
+
+
     }
 }

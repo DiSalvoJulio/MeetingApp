@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <link href="Gestiones.css" rel="stylesheet" />
+    <link href="Default.css" rel="stylesheet" />
     <%-- SECCION 1--%>
     <section class="content-header">
         <h1 style="color: red; text-align: center">Gestiones</h1>

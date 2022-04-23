@@ -55,7 +55,7 @@ namespace MeetingApp
         //Metodo para cancelar campos
         private void DesahabilitarCampos()
         {
-            txtApellido.Enabled = false; ;
+            txtApellido.Enabled = false;
             txtNombre.Enabled = false;
             txtDni.Enabled = false;
             txtFecNac.Enabled = false;

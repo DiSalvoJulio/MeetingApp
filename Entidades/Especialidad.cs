@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace Entidades
 {
     public class Especialidad
-    {     
+    {
+        //[Serializable]
         public int idEspecialidad { get; set; }
         public string descripcion { get; set; }
     }

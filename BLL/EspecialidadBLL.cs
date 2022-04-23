@@ -16,39 +16,28 @@ namespace BLL
         EspecialidadesDAL _especialidadesDAL = new EspecialidadesDAL();
         public List<Especialidad> ObtenerEspecialidades()
         {
-           return _especialidadesDAL.ObtenerEspecialidades();
+            return _especialidadesDAL.ObtenerEspecialidades();
         }
 
-        //public static void CargarComboEspecialidades()
-        //{
-        //    try
-        //    {
-        //        List<Especialidad> listaEspecialidad = new List<Especialidad>();
-        //        listaEspecialidad = _especialidadesDAL.ObtenerEspecialidades();
-        //        cmbProfesion.Items.Clear();
+        public Especialidad SeleccionarIdEspecialidad(int espe)
+        {
+            return _especialidadesDAL.SeleccionarIdEspecialidad(espe);
+        }
 
-        //        int indice = 0;
-        //        if (listaEspecialidad.Count > 0)
-        //        {
-        //            //cmbRubros es el ID del ASP
-        //            cmbProfesion.DataSource = listaEspecialidad;
-        //            cmbProfesion.DataTextField = "descripcion";
-        //            cmbProfesion.DataValueField = "idEspecialidad";
-        //            cmbProfesion.DataBind();
-        //            cmbProfesion.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0"));
-        //            //cmbProfesion.Items[0].Attributes = false;
-        //        }
-        //        else
-        //        {
-        //            cmbProfesion.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0"));
-        //        }
+        public void InsertarEspecialidad(Especialidad especialidad)
+        {
+            _especialidadesDAL.InsertarEspecialidad(especialidad);
+        }
 
-        //    }
-        //    catch (Exception ex)
-        //    {
+        public bool ValidarNombreEspecialidad(Especialidad espe)
+        {
+            return _especialidadesDAL.ValidarNombreEspecialidad(espe);
+        }
 
-        //        throw new Exception("Error en cargar combo especialidad " + ex.Message);
-        //    }
-        //}
+        public void ActualizarEspecialidad(Especialidad especialidad)
+        {
+            _especialidadesDAL.ActualizarEspecialidad(especialidad);
+        }
+
     }
 }

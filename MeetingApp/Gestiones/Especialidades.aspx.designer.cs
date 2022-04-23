@@ -11,26 +11,44 @@ namespace MeetingApp.Gestiones
 {
 
 
-    public partial class GestionEspecialidad
+    public partial class Especialidades
     {
 
         /// <summary>
-        /// Control btnModificarProfesiones.
+        /// Control txtEspecialidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModificarProfesiones;
+        protected global::System.Web.UI.WebControls.TextBox txtEspecialidad;
 
         /// <summary>
-        /// Control panelProfesiones.
+        /// Control btnConfirmar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel panelProfesiones;
+        protected global::System.Web.UI.WebControls.Button btnConfirmar;
+
+        /// <summary>
+        /// Control GVEspecialidades.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GVEspecialidades;
+
+        /// <summary>
+        /// Control modificar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel modificar;
 
         /// <summary>
         /// Control Label3.
@@ -42,13 +60,13 @@ namespace MeetingApp.Gestiones
         protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// Control cmbProfesion.
+        /// Control txtActualizarEspecialidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbProfesion;
+        protected global::System.Web.UI.WebControls.TextBox txtActualizarEspecialidad;
 
         /// <summary>
         /// Control btnCancelarProfesiones.
