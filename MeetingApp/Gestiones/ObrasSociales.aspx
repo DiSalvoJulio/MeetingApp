@@ -1,31 +1,31 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Especialidades.aspx.cs" Inherits="MeetingApp.Gestiones.Especialidades" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ObrasSociales.aspx.cs" Inherits="MeetingApp.Gestiones.ObrasSociales" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <link href="Especialidades.css" rel="stylesheet" />
+    <link href="ObrasSociales.css" rel="stylesheet" />
 
     <div class="container w-75">
         <%-- SECCION 1--%>
         <section class="content-header">
-            <h1 style="color: red; text-align: center">Especialidades</h1>
+            <h1 style="color: red; text-align: center">Obras Sociales</h1>
         </section>
         <hr />
 
         <div class="form-group col-md-6 mt-5">
-            <asp:Button ID="btnAgregar" Text="Agregar Nueva Especialidad" runat="server" class="btn-primary" CssClass="btn btn-primary" OnClick="btnAgregar_Click" />
+            <asp:Button ID="btnAgregar" Text="Agregar Nueva Obra Social" runat="server" class="btn-primary" CssClass="btn btn-primary" OnClick="btnAgregar_Click" />
         </div>
         <%-- SECCION 2--%>
         <section class="content">
-            <div class="row" runat="server" visible="false" id="divAgregarEspecialidad">
+            <div class="row" runat="server" visible="false" id="divAgregarObraSocial">
                 <div class="form-group col-md-6 mt-3">
-                    <asp:Label Text="Escribir la nueva Especialidad a agregar" runat="server" />
-                    <asp:TextBox ID="txtEspecialidad" runat="server" Text="" CssClass="form-control mt-2" placeholder="Nueva Especialidad..." OnkeyDown="Letras()" MaxLength="40" oninput="maxlengthNumber(this);" />
+                    <asp:Label Text="Escribir la nueva Obra Social a agregar" runat="server" />
+                    <asp:TextBox ID="txtObraSocial" runat="server" Text="" CssClass="form-control mt-2" placeholder="Nueva Obra Social..." OnkeyDown="Letras()" MaxLength="40" oninput="maxlengthNumber(this);" />
                 </div>
                 <div class="form-group col-md-6 mt-5">
                     <asp:Button ID="btnConfirmar" Text="Confirmar" runat="server" CssClass="btn btn-primary" OnClick="btnConfirmar_Click" />
                 </div>
-                <div class="form-group col-md-6 mt-5">
+                 <div class="form-group col-md-6 mt-5">
                     <asp:Button ID="btnFinalizar" Text="Finalizar" runat="server" CssClass="btn btn-info" OnClick="btnFinalizar_Click" />
                 </div>
             </div>
@@ -33,18 +33,18 @@
         <%-- SECCION 3 GRILLA--%>
         <div class="row">
             <div class="table col-md-auto mt-3">
-                <asp:GridView runat="server" ID="GVEspecialidades" AutoGenerateColumns="false" CssClass="table text-center table-hover" OnRowCommand="GVEspecialidades_RowCommand">
+                <asp:GridView runat="server" ID="GVObrasSociales" AutoGenerateColumns="false" CssClass="table text-center table-hover" OnRowCommand="GVObrasSociales_RowCommand">
                     <HeaderStyle BackColor="#3E64FF" ForeColor="White" />
                     <RowStyle BackColor="#D6DBDF" ForeColor="#333333" />
                     <Columns>
                         <%-- <asp:BoundField DataField="idEspecialidad" HeaderText="ID Espe" />--%>
-                        <asp:BoundField DataField="descripcion" HeaderText="ESPECIALIDAD" />
+                        <asp:BoundField DataField="descripcion" HeaderText="OBRA SOCIAL" />
                         <asp:TemplateField HeaderText="ACCIONES">
                             <ItemTemplate>
 
-                                <asp:Button runat="server" ID="btnModificar" CommandName="Modificar" CommandArgument='<%#Eval("idEspecialidad") %>' Text="Modificar" CssClass="btn btn-info" OnClick="btnModificar_Click" />
+                                 <asp:Button runat="server" ID="btnModificar" CommandName="Modificar" CommandArgument='<%# Eval("idObraSocial") %>' Text="Modificar" CssClass="btn btn-info" OnClick="btnModificar_Click" />
 
-                                <asp:Button runat="server" ID="btnEliminar" CommandName="DarBaja" CommandArgument='<%# Eval("idEspecialidad") %>' Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" />
+                                        <asp:Button runat="server" ID="btnEliminar" CommandName="Eliminar" CommandArgument='<%# Eval("idObraSocial") %>' Text="Eliminar" CssClass="btn btn-danger"  OnClick="btnEliminar_Click"/>
 
                             </ItemTemplate>
                         </asp:TemplateField>
@@ -52,25 +52,25 @@
                 </asp:GridView>
             </div>
         </div>
-        <%-- SECCION 4--%>
-
-        <!-- MODAL ESPECIALIDADES -->
+        <%-- SECCION 4--%>  
+        
+        <!-- MODAL OBRA SOCIAL -->
         <asp:Panel runat="server" ID="panelModificar" Visible="false">
             <div class="modal fade show" tabindex="-1" aria-hidden="true" style="display: block;">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content w-75" style="margin-left: 12.5%">
                         <div class="modal-header">
-                            <h3 class="modal-title" style="margin-left: auto">Especialidad</h3>
+                            <h3 class="modal-title" style="margin-left: auto">Profesiones</h3>
                             <hr id="hrContent">
                             <button runat="server" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                                onserverclick="CerrarModalEspecialidad">
+                                onserverclick="CerrarModalObraSocial">
                             </button>
                         </div>
                         <div class="modal-body col-md-10">
                             <%--CODIGO CUERPO MODAL--%>
                             <div class="row">
                                 <asp:Label CssClass="col-6" ID="Label3" runat="server" Text="Especialidad"></asp:Label>
-                                <asp:TextBox runat="server" ID="txtActualizarEspecialidad" CssClass="form-control col-6" placeholder=""></asp:TextBox>
+                                <asp:TextBox runat="server" ID="txtActualizarObraSocial" CssClass="form-control " placeholder=""></asp:TextBox>
                                 <%--<asp:DropDownList ID="cmbProfesion" runat="server" CssClass="btn btn-outline-info dropdown-toggle col-6" onClientClick="verDrop()" AutoPostBack="true">
                             </asp:DropDownList>--%>
                             </div>
@@ -79,14 +79,14 @@
                         </div>
                         <!--Fin Body Modal-->
                         <div class="modal-footer">
-                            <asp:Button ID="btnCancelarEspecialidad" Text="Cancelar" runat="server" type="button" class="btn btn-danger" OnClick="btnCancelarEspecialidad_Click" />
-                            <asp:Button ID="btnConfirmarEspecialidad" Text="Confirmar" runat="server" type="button" class="btn btn-primary" OnClick="btnConfirmarEspecialidad_Click" />
+                            <asp:Button ID="btnCancelarObraSocial" Text="Cancelar" runat="server" type="button" class="btn btn-danger" OnClick="btnCancelarObraSocial_Click"/>
+                            <asp:Button ID="btnConfirmarObraSocial" Text="Confirmar" runat="server" type="button" class="btn btn-primary" OnClick="btnConfirmarObraSocial_Click"/>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-backdrop fade show"></div>
         </asp:Panel>
+        <%--FIN MODAL OBRAS SOCIALES---------------------------------------------------%>
     </div>
-    <%--FIN MODAL PROFESIONES---------------------------------------------------%>
 </asp:Content>

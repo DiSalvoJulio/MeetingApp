@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Conexion.cs" />
     <Compile Include="EspecialidadesDAL.cs" />
+    <Compile Include="ObraSocialDAL.cs" />
     <Compile Include="PacienteDAL.cs" />
     <Compile Include="ProfesionalDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

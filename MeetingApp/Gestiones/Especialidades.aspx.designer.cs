@@ -15,6 +15,24 @@ namespace MeetingApp.Gestiones
     {
 
         /// <summary>
+        /// Control btnAgregar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAgregar;
+
+        /// <summary>
+        /// Control divAgregarEspecialidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAgregarEspecialidad;
+
+        /// <summary>
         /// Control txtEspecialidad.
         /// </summary>
         /// <remarks>
@@ -33,6 +51,15 @@ namespace MeetingApp.Gestiones
         protected global::System.Web.UI.WebControls.Button btnConfirmar;
 
         /// <summary>
+        /// Control btnFinalizar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnFinalizar;
+
+        /// <summary>
         /// Control GVEspecialidades.
         /// </summary>
         /// <remarks>
@@ -42,13 +69,13 @@ namespace MeetingApp.Gestiones
         protected global::System.Web.UI.WebControls.GridView GVEspecialidades;
 
         /// <summary>
-        /// Control modificar.
+        /// Control panelModificar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel modificar;
+        protected global::System.Web.UI.WebControls.Panel panelModificar;
 
         /// <summary>
         /// Control Label3.
@@ -69,21 +96,21 @@ namespace MeetingApp.Gestiones
         protected global::System.Web.UI.WebControls.TextBox txtActualizarEspecialidad;
 
         /// <summary>
-        /// Control btnCancelarProfesiones.
+        /// Control btnCancelarEspecialidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelarProfesiones;
+        protected global::System.Web.UI.WebControls.Button btnCancelarEspecialidad;
 
         /// <summary>
-        /// Control btnConfirmarProfesiones.
+        /// Control btnConfirmarEspecialidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConfirmarProfesiones;
+        protected global::System.Web.UI.WebControls.Button btnConfirmarEspecialidad;
     }
 }

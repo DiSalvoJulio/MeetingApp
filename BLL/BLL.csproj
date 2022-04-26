@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EspecialidadBLL.cs" />
+    <Compile Include="ObraSocialBLL.cs" />
     <Compile Include="PacienteBLL.cs" />
     <Compile Include="ProfesionalBLL.cs" />
     <Compile Include="RegistrarBLL.cs" />

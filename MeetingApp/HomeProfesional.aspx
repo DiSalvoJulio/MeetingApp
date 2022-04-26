@@ -3,4 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h1>HOME PROFESIONAL</h1>
+   <%-- <div id="homeprofesional" runat>
+    </div>--%>
+   
 </asp:Content>

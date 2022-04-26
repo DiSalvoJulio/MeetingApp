@@ -93,9 +93,9 @@ namespace MeetingApp.Gestiones
             else
             {
                 _especialidadBLL.ActualizarEspecialidad(espe);
-                ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "<script> swal('Exito!', 'Se Modifico la Especialidad!', 'success') </script>");
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Se Modifico la Especialidad!')", true);
-                return true;
+                ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "<script> swal('Exito!', 'Se Modifico la Especialidad!', 'success') </script>");               
+                return true;               
+
             }
 
         }
@@ -118,6 +118,51 @@ namespace MeetingApp.Gestiones
             }
         }
 
+        //BOTON MODIFICAR EN LA GRILLA
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            panelModificar.Visible = true;
+        }
 
+        //BOTON CERRAR MODAL
+        protected void btnCancelarEspecialidad_Click(object sender, EventArgs e)
+        {
+            panelModificar.Visible = false;
+        }
+
+        //cerrar modal con cruz
+        public void CerrarModalEspecialidad(object sender, EventArgs e)
+        {
+            //ID DEL PANEL DE LA MODAL
+            panelModificar.Visible = false;
+        }
+
+        //BOTON PARA ACTUALIZAR LA ESPECIALIDAD
+        protected void btnConfirmarEspecialidad_Click(object sender, EventArgs e)
+        {
+            if (ActualizarEspecialidad())
+            {
+                panelModificar.Visible = false;
+            }            
+
+        }
+
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            divAgregarEspecialidad.Visible = true;
+            btnAgregar.Visible = false;
+        }
+
+        protected void btnFinalizar_Click(object sender, EventArgs e)
+        {
+            divAgregarEspecialidad.Visible = false;
+            btnAgregar.Visible = true;
+        }
+
+        //ELIMINAR ESPECIALIDAD
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
