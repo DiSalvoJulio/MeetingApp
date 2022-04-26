@@ -6,8 +6,11 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <%--   css link a referencia bootstrap local--%>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/JavaScript.js"></script>
     <link href="Registrar.css" rel="stylesheet" />
@@ -15,8 +18,14 @@
 </head>
 <body class="content">
     <form id="form1" runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <asp:ScriptReference Path="~/js/jquery-3.3.1.min.js" />
+                <asp:ScriptReference Path="~/Scripts/bootstrap.min.js" />
+            </Scripts>
+        </asp:ScriptManager>
         <%-- SECCION 1--%>
-        <section class="content-header mt-5">
+        <section class="content-header mt-2">
             <h1 style="color: red; text-align: center">Registrarme!</h1>
         </section>
         <%-- SECCION 2--%>
@@ -71,27 +80,32 @@
             </div>
             <%--cierre del row--%>
 
-            <div class="row">
-                <%--<asp:UpdatePanel runat="server"> </asp:UpdatePanel>--%>
+            <div class="row">        
 
-                <div class="form-group col-md-12 mt-5">
-                    <div class="custom-control custom-switch">
-                        <%--<input type="checkbox" class="custom-control-input" id="customSwitch1">--%>
-                        <asp:CheckBox ID="chkProfesional" runat="server" OnCheckedChanged="chkProfesional_CheckedChanged" AutoPostBack="true" />
-                        <label class="custom-control-label" for="customSwitch1">Soy Profesional.</label>
+              <%--  <div class="custom-control custom-switch">
+                    <asp:CheckBox ID="chkProfesional" runat="server" OnCheckedChanged="chkProfesional_CheckedChanged" AutoPostBack="true" CssClass="custom-control-input" />
+                    <label class="custom-control-label" for="chkProfesional">Soy Profesional.</label>
+                </div>--%>
+
+                <div class="form-group col-md-12 mt-3">
+                    <div class="form-check">
+                        <asp:CheckBox ID="chkProfesional" runat="server" OnCheckedChanged="chkProfesional_CheckedChanged" AutoPostBack="true" CssClass="form-check-input" />
+                        <label class="form-check-label" for="chkProfesional">Soy Profesional.</label>
                     </div>
+
                     <%--<asp:RadioButton ID="Profesional" runat="server" Checked="false" Text="Si" GroupName="rol" />--%>
                     <%--<asp:Label ID="Label2" runat="server" Text="Soy Profesional."></asp:Label>--%>
                     <%-- <asp:RadioButton ID="Mozo" runat="server" Text="No" GroupName="rol" />--%>
                 </div>
+
                 <%--<div id="divEsProfesional" runat="server" visible="true">--%>
                 <div class="form-group col-6 mt-3">
                     <%--PROFESION--%>
                     <asp:Label ID="Label1" runat="server" Text="Profesion"></asp:Label>
                     <br />
                     <asp:DropDownList ID="cmbProfesion" runat="server" CssClass="btn btn-outline-info dropdown-toggle col-12" onClientClick="verDrop()">
-                        <%--<asp:ListItem Selected="True"> </asp:ListItem>   --%>                
-                    </asp:DropDownList>              
+                        <%--<asp:ListItem Selected="True"> </asp:ListItem>   --%>
+                    </asp:DropDownList>
                 </div>
                 <div class="form-group col-md-6 mt-3">
                     <%--MATRICULA--%>
@@ -122,8 +136,8 @@
         <%--SECCION 3 GRILLA--%>
     </form>
     <script src="js/jquery.min.js"></script>
-    <script src="js/popper.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <%-- <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>--%>
     <script src="js/main.js"></script>
 </body>
 </html>

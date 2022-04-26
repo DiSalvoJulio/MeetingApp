@@ -9,3 +9,14 @@ C:\PracticaSupervisada\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
 C:\PracticaSupervisada\BLL\obj\Debug\BLL.csproj.CopyComplete
 C:\PracticaSupervisada\BLL\obj\Debug\BLL.dll
 C:\PracticaSupervisada\BLL\obj\Debug\BLL.pdb
+C:\PS_UTN\MeetingApp\BLL\bin\Debug\BLL.dll
+C:\PS_UTN\MeetingApp\BLL\bin\Debug\BLL.pdb
+C:\PS_UTN\MeetingApp\BLL\bin\Debug\DAL.dll
+C:\PS_UTN\MeetingApp\BLL\bin\Debug\Entidades.dll
+C:\PS_UTN\MeetingApp\BLL\bin\Debug\DAL.pdb
+C:\PS_UTN\MeetingApp\BLL\bin\Debug\Entidades.pdb
+C:\PS_UTN\MeetingApp\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+C:\PS_UTN\MeetingApp\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\PS_UTN\MeetingApp\BLL\obj\Debug\BLL.csproj.CopyComplete
+C:\PS_UTN\MeetingApp\BLL\obj\Debug\BLL.dll
+C:\PS_UTN\MeetingApp\BLL\obj\Debug\BLL.pdb

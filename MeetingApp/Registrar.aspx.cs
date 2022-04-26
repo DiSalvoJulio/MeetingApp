@@ -94,6 +94,23 @@ namespace MeetingApp
             //Limpiar
         }
 
+
+        //protected void checkedChng()
+        //{
+        //    if (chkProfesional.Value == "")
+        //    {
+        //        cmbProfesion.Enabled = false;
+        //        txtMatricula.Enabled = false;
+        //        cmbProfesion.SelectedIndex = 0;
+        //        txtMatricula.Text = "";
+        //    }
+        //    else
+        //    {
+        //        cmbProfesion.Enabled = true;
+        //        txtMatricula.Enabled = true;
+        //        chkProfesional.Checked = true;
+        //    }
+        //}
         //VALIDAR SI ES PROFESIONAL
         protected void chkProfesional_CheckedChanged(object sender, EventArgs e)
         {
@@ -108,6 +125,8 @@ namespace MeetingApp
             {
                 cmbProfesion.Enabled = true;
                 txtMatricula.Enabled = true;
+                chkProfesional.Checked = true;
+                chkProfesional.CssClass = "checked";
             }
             //if (chkProfesional.Checked)
             //{

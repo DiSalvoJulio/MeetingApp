@@ -93,7 +93,8 @@ namespace MeetingApp.Gestiones
             else
             {
                 _especialidadBLL.ActualizarEspecialidad(espe);
-                ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "<script> swal('Exito!', 'Se Modifico la Especialidad!', 'success') </script>");
+                //ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "<script> swal('Exito!', 'Se Modifico la Especialidad!', 'success') </script>");
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Se Modifico la Especialidad!', 'success')", true);
                 return true;
 
             }
@@ -108,21 +109,22 @@ namespace MeetingApp.Gestiones
 
             if (e.CommandName.Equals("Modificar"))
             {
+                //BOTON MODIFICAR EN LA GRILLA
+                panelModificar.Visible = true;
                 //solo cargamos campos de la modal
                 Especialidad espe = _especialidadBLL.SeleccionarIdEspecialidad(int.Parse(ViewState["idEspecialidad"].ToString()));
                 txtActualizarEspecialidad.Text = espe.descripcion.ToString();
             }
             if (e.CommandName.Equals("Eliminar"))
             {
+                panelEliminar.Visible = true;
                 Especialidad espe = _especialidadBLL.SeleccionarIdEspecialidad(int.Parse(ViewState["idEspecialidad"].ToString()));
+                txtEliminar.Text = espe.descripcion.ToString();
+                txtEliminar.Enabled = false;
+
             }
         }
 
-        //BOTON MODIFICAR EN LA GRILLA
-        protected void btnModificar_Click(object sender, EventArgs e)
-        {
-            panelModificar.Visible = true;
-        }
 
         //BOTON CERRAR MODAL
         protected void btnCancelarEspecialidad_Click(object sender, EventArgs e)
@@ -140,9 +142,11 @@ namespace MeetingApp.Gestiones
         //BOTON PARA ACTUALIZAR LA ESPECIALIDAD
         protected void btnConfirmarEspecialidad_Click(object sender, EventArgs e)
         {
+
             if (ActualizarEspecialidad())
             {
                 panelModificar.Visible = false;
+
             }
         }
 
@@ -158,7 +162,7 @@ namespace MeetingApp.Gestiones
             btnAgregar.Visible = true;
         }
 
-        //MODIFICAR ESPECIALIDAD
+        //ELIMINAR ESPECIALIDAD
         public bool EliminarEspecialidad()
         {
             Especialidad espe = new Especialidad();
@@ -166,7 +170,7 @@ namespace MeetingApp.Gestiones
 
             _especialidadBLL.EliminarEspecialidad(espe);
 
-            ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "<script> swal('Exito!', 'Se Modifico la Especialidad!', 'success') </script>");
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Se elimino la Especialidad!', 'success')", true);
 
             return true;
 
@@ -175,8 +179,33 @@ namespace MeetingApp.Gestiones
         //ELIMINAR ESPECIALIDAD
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            EliminarEspecialidad();
+            panelEliminar.Visible = true;
         }
+
+        //cerrar modal con cruz
+        public void CerrarModalEliminar(object sender, EventArgs e)
+        {
+            //ID DEL PANEL DE LA MODAL
+            panelEliminar.Visible = false;
+        }
+
+        protected void btnCancelarEliminar_Click(object sender, EventArgs e)
+        {
+            panelEliminar.Visible = false;
+        }
+
+        //ELIMINAR ESPECIALIDAD
+        protected void btnConfirmarEliminar_Click(object sender, EventArgs e)
+        {
+            if (EliminarEspecialidad())
+            {
+                panelEliminar.Visible = false;           
+            }
+        }
+
+
+
+
 
 
     }

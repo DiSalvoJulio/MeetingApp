@@ -7,3 +7,12 @@ C:\PracticaSupervisada\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
 C:\PracticaSupervisada\DAL\obj\Debug\DAL.csproj.CopyComplete
 C:\PracticaSupervisada\DAL\obj\Debug\DAL.dll
 C:\PracticaSupervisada\DAL\obj\Debug\DAL.pdb
+C:\PS_UTN\MeetingApp\DAL\bin\Debug\DAL.dll
+C:\PS_UTN\MeetingApp\DAL\bin\Debug\DAL.pdb
+C:\PS_UTN\MeetingApp\DAL\bin\Debug\Entidades.dll
+C:\PS_UTN\MeetingApp\DAL\bin\Debug\Entidades.pdb
+C:\PS_UTN\MeetingApp\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\PS_UTN\MeetingApp\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\PS_UTN\MeetingApp\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\PS_UTN\MeetingApp\DAL\obj\Debug\DAL.dll
+C:\PS_UTN\MeetingApp\DAL\obj\Debug\DAL.pdb
