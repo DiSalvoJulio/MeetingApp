@@ -39,5 +39,10 @@ namespace BLL
             _especialidadesDAL.ActualizarEspecialidad(especialidad);
         }
 
+        public void EliminarEspecialidad(Especialidad especialidad)
+        {
+            _especialidadesDAL.EliminarEspecialidad(especialidad);
+        }
+
     }
 }

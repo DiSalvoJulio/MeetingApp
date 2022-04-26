@@ -182,6 +182,29 @@ namespace DAL
             }
         }
 
+        //ELIMINAR ESPECIALIDAD
+        public void EliminarEspecialidad(Especialidad especialidad)
+        {
+            try
+            {
+                string procedure = "sp_EliminarEspecialidad";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = procedure;
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@idEspecialidad", especialidad.idEspecialidad);                             
+                comando.ExecuteNonQuery();                
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en eliminar especialidad " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
 
 
     }

@@ -93,8 +93,8 @@ namespace MeetingApp.Gestiones
             else
             {
                 _especialidadBLL.ActualizarEspecialidad(espe);
-                ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "<script> swal('Exito!', 'Se Modifico la Especialidad!', 'success') </script>");               
-                return true;               
+                ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "<script> swal('Exito!', 'Se Modifico la Especialidad!', 'success') </script>");
+                return true;
 
             }
 
@@ -114,7 +114,7 @@ namespace MeetingApp.Gestiones
             }
             if (e.CommandName.Equals("Eliminar"))
             {
-                //eliminar
+                Especialidad espe = _especialidadBLL.SeleccionarIdEspecialidad(int.Parse(ViewState["idEspecialidad"].ToString()));
             }
         }
 
@@ -143,8 +143,7 @@ namespace MeetingApp.Gestiones
             if (ActualizarEspecialidad())
             {
                 panelModificar.Visible = false;
-            }            
-
+            }
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
@@ -159,10 +158,26 @@ namespace MeetingApp.Gestiones
             btnAgregar.Visible = true;
         }
 
+        //MODIFICAR ESPECIALIDAD
+        public bool EliminarEspecialidad()
+        {
+            Especialidad espe = new Especialidad();
+            espe.idEspecialidad = (int)ViewState["idEspecialidad"];
+
+            _especialidadBLL.EliminarEspecialidad(espe);
+
+            ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "<script> swal('Exito!', 'Se Modifico la Especialidad!', 'success') </script>");
+
+            return true;
+
+        }
+
         //ELIMINAR ESPECIALIDAD
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-
+            EliminarEspecialidad();
         }
+
+
     }
 }

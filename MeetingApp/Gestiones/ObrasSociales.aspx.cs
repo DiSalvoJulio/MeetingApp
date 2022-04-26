@@ -131,13 +131,7 @@ namespace MeetingApp.Gestiones
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             panelModificar.Visible = true;
-        }
-
-        //ELIMINAR OBRA SOCIAL
-        protected void btnEliminar_Click(object sender, EventArgs e)
-        {
-
-        }
+        }        
 
         //cerrar modal con cruz
         public void CerrarModalObraSocial(object sender, EventArgs e)
@@ -166,6 +160,13 @@ namespace MeetingApp.Gestiones
         {
             divAgregarObraSocial.Visible = true;
             btnAgregar.Visible = false;
+        }
+
+
+        //ELIMINAR OBRA SOCIAL
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
