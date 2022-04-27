@@ -36,5 +36,12 @@ namespace BLL
         {
             _obraSocialDAL.ActualizarObraSocial(obraS);
         }
+
+        public void EliminarObraSocial(ObraSocial obraSocial)
+        {
+            _obraSocialDAL.EliminarObraSocial(obraSocial);
+        }
+
+
     }
 }

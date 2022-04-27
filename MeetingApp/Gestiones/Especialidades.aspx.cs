@@ -24,16 +24,7 @@ namespace MeetingApp.Gestiones
 
         //METODO INSERTAR
         public void InsertarEspecialidad()
-        {
-            Especialidad especialidad = new Especialidad();
-            especialidad.descripcion = txtEspecialidad.Text;
-            _especialidadBLL.InsertarEspecialidad(especialidad);
-            CargarEspecialidades();//actualiza la grilla
-        }
-
-        //CONFIRMA ESPECIALIDAD
-        protected void btnConfirmar_Click(object sender, EventArgs e)
-        {
+        {          
             Especialidad espe = new Especialidad();
             espe.descripcion = txtEspecialidad.Text;
 
@@ -41,20 +32,39 @@ namespace MeetingApp.Gestiones
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar campo especialidad')", true);
                 txtEspecialidad.Focus();
+                return;
             }
             else
             {
                 if (_especialidadBLL.ValidarNombreEspecialidad(espe))
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Esta Especialidad ya existe!')", true);
+                    //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Esta Especialidad ya existe!')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Cuidado!', 'El nombre de especialidad ya existe!', 'warning')", true);
+                    return;
+
                 }
                 else
                 {
-                    InsertarEspecialidad();
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Especialidad Agregada con Exito')", true);
+                    _especialidadBLL.InsertarEspecialidad(espe);                    
                     txtEspecialidad.Text = "";
                 }
             }
+        }
+
+        //CONFIRMA ESPECIALIDAD
+        protected void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                InsertarEspecialidad();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Se Inserto la Especialidad!', 'success')", true);
+            }
+            catch (Exception)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo insertar la Especialidad', 'error')", true);
+            }
+
+            CargarEspecialidades();           
         }
 
         //CARGAR GRILLA ESPECIALIDAD
@@ -79,24 +89,20 @@ namespace MeetingApp.Gestiones
         }
 
         //MODIFICAR ESPECIALIDAD
-        public bool ActualizarEspecialidad()
+        public void ActualizarEspecialidad()
         {
             Especialidad espe = new Especialidad();
             espe.descripcion = txtActualizarEspecialidad.Text;
             espe.idEspecialidad = (int)ViewState["idEspecialidad"];
 
             if (_especialidadBLL.ValidarNombreEspecialidad(espe))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Este nombre de especialidad ya existe!')", true);
-                return false;
+            {               
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Cuidado!', 'Este nombre de especialidad ya existe!', 'warning')", true);
+                return;
             }
             else
             {
-                _especialidadBLL.ActualizarEspecialidad(espe);
-                //ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "<script> swal('Exito!', 'Se Modifico la Especialidad!', 'success') </script>");
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Se Modifico la Especialidad!', 'success')", true);
-                return true;
-
+                _especialidadBLL.ActualizarEspecialidad(espe);                                         
             }
 
         }
@@ -142,20 +148,28 @@ namespace MeetingApp.Gestiones
         //BOTON PARA ACTUALIZAR LA ESPECIALIDAD
         protected void btnConfirmarEspecialidad_Click(object sender, EventArgs e)
         {
-
-            if (ActualizarEspecialidad())
+            try
             {
+                ActualizarEspecialidad();            
                 panelModificar.Visible = false;
-
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Se Actualizo la Especialidad!', 'success')", true);
             }
+            catch (Exception)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo actualizar la Especialidad', 'error')", true);
+            }
+
+            CargarEspecialidades();
         }
 
+        //BOTON AGREGAR NUEVA ESPECIALIDAD
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
             divAgregarEspecialidad.Visible = true;
             btnAgregar.Visible = false;
         }
 
+        //Finaliza el agregar la especialidad
         protected void btnFinalizar_Click(object sender, EventArgs e)
         {
             divAgregarEspecialidad.Visible = false;
@@ -163,16 +177,12 @@ namespace MeetingApp.Gestiones
         }
 
         //ELIMINAR ESPECIALIDAD
-        public bool EliminarEspecialidad()
+        public void EliminarEspecialidad()
         {
             Especialidad espe = new Especialidad();
             espe.idEspecialidad = (int)ViewState["idEspecialidad"];
 
-            _especialidadBLL.EliminarEspecialidad(espe);
-
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Se elimino la Especialidad!', 'success')", true);
-
-            return true;
+            _especialidadBLL.EliminarEspecialidad(espe);                     
 
         }
 
@@ -197,10 +207,18 @@ namespace MeetingApp.Gestiones
         //ELIMINAR ESPECIALIDAD
         protected void btnConfirmarEliminar_Click(object sender, EventArgs e)
         {
-            if (EliminarEspecialidad())
+            try
             {
-                panelEliminar.Visible = false;           
+                EliminarEspecialidad();                
+                panelEliminar.Visible = false;
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Se elimino la Especialidad!', 'success')", true);
             }
+            catch (Exception)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo eliminar la Especialidad!', 'error')", true);                
+            }
+
+            CargarEspecialidades();
         }
 
 

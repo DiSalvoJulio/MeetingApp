@@ -181,7 +181,28 @@ namespace DAL
             }
         }
 
-
+        //ELIMINAR OBRA SOCIAL
+        public void EliminarObraSocial(ObraSocial obraSocial)
+        {
+            try
+            {
+                string procedure = "sp_EliminarObraSocial";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = procedure;
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@idObraSocial", obraSocial.idObraSocial);
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en eliminar obra social " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
 
     }
 }

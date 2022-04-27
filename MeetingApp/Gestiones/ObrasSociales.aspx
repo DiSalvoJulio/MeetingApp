@@ -25,7 +25,7 @@
                 <div class="form-group col-md-6 mt-5">
                     <asp:Button ID="btnConfirmar" Text="Confirmar" runat="server" CssClass="btn btn-primary" OnClick="btnConfirmar_Click" />
                 </div>
-                 <div class="form-group col-md-6 mt-5">
+                <div class="form-group col-md-6 mt-5">
                     <asp:Button ID="btnFinalizar" Text="Finalizar" runat="server" CssClass="btn btn-info" OnClick="btnFinalizar_Click" />
                 </div>
             </div>
@@ -42,9 +42,9 @@
                         <asp:TemplateField HeaderText="ACCIONES">
                             <ItemTemplate>
 
-                                 <asp:Button runat="server" ID="btnModificar" CommandName="Modificar" CommandArgument='<%# Eval("idObraSocial") %>' Text="Modificar" CssClass="btn btn-info" OnClick="btnModificar_Click" />
+                                <asp:Button runat="server" ID="btnModificar" CommandName="Modificar" CommandArgument='<%# Eval("idObraSocial") %>' Text="Modificar" CssClass="btn btn-info" />
 
-                                        <asp:Button runat="server" ID="btnEliminar" CommandName="Eliminar" CommandArgument='<%# Eval("idObraSocial") %>' Text="Eliminar" CssClass="btn btn-danger"  OnClick="btnEliminar_Click"/>
+                                <asp:Button runat="server" ID="btnEliminar" CommandName="Eliminar" CommandArgument='<%# Eval("idObraSocial") %>' Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" />
 
                             </ItemTemplate>
                         </asp:TemplateField>
@@ -52,25 +52,25 @@
                 </asp:GridView>
             </div>
         </div>
-        <%-- SECCION 4--%>  
-        
+        <%-- SECCION 4--%>
+
         <!-- MODAL OBRA SOCIAL -->
         <asp:Panel runat="server" ID="panelModificar" Visible="false">
             <div class="modal fade show" tabindex="-1" aria-hidden="true" style="display: block;">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content w-75" style="margin-left: 12.5%">
                         <div class="modal-header">
-                            <h3 class="modal-title" style="margin-left: auto">Profesiones</h3>
+                            <h3 class="modal-title" style="margin-left: auto">Obras Sociales</h3>
                             <hr id="hrContent">
-                            <button runat="server" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            <button runat="server" class="close" data-bs-dismiss="modal" aria-label="Close"
                                 onserverclick="CerrarModalObraSocial">
-                            </button>
+                                x</button>
                         </div>
                         <div class="modal-body col-md-10">
                             <%--CODIGO CUERPO MODAL--%>
                             <div class="row">
-                                <asp:Label CssClass="col-6" ID="Label3" runat="server" Text="Especialidad"></asp:Label>
-                                <asp:TextBox runat="server" ID="txtActualizarObraSocial" CssClass="form-control " placeholder=""></asp:TextBox>
+                                <asp:Label CssClass="col-6" ID="Label3" runat="server" Text="Obra Social"></asp:Label>
+                                <asp:TextBox runat="server" ID="txtActualizarObraSocial" CssClass="form-control col-6" placeholder=""></asp:TextBox>
                                 <%--<asp:DropDownList ID="cmbProfesion" runat="server" CssClass="btn btn-outline-info dropdown-toggle col-6" onClientClick="verDrop()" AutoPostBack="true">
                             </asp:DropDownList>--%>
                             </div>
@@ -79,14 +79,46 @@
                         </div>
                         <!--Fin Body Modal-->
                         <div class="modal-footer">
-                            <asp:Button ID="btnCancelarObraSocial" Text="Cancelar" runat="server" type="button" class="btn btn-danger" OnClick="btnCancelarObraSocial_Click"/>
-                            <asp:Button ID="btnConfirmarObraSocial" Text="Confirmar" runat="server" type="button" class="btn btn-primary" OnClick="btnConfirmarObraSocial_Click"/>
+                            <asp:Button ID="btnCancelarObraSocial" Text="Cancelar" runat="server" type="button" class="btn btn-danger" OnClick="btnCancelarObraSocial_Click" />
+                            <asp:Button ID="btnConfirmarObraSocial" Text="Confirmar" runat="server" type="button" class="btn btn-primary" OnClick="btnConfirmarObraSocial_Click" />
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-backdrop fade show"></div>
         </asp:Panel>
-        <%--FIN MODAL OBRAS SOCIALES---------------------------------------------------%>
+
+        <!-- MODAL OBRAS SOCIALES ELIMINAR-->
+        <asp:Panel runat="server" ID="panelEliminar" Visible="false">
+            <div class="modal fade show" tabindex="-1" aria-hidden="true" style="display: block;">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content w-75" style="margin-left: 12.5%">
+                        <div class="modal-header">
+                            <h3 class="modal-title" style="margin-left: auto">¿Esta seguro de eliminar la obra social?</h3>
+                            <hr id="hrContent">
+                            <button runat="server" class="close" data-bs-dismiss="modal" aria-label="Close"
+                                onserverclick="CerrarModalEliminar">
+                                x</button>
+                        </div>
+                        <div class="modal-body col-md-8">
+                            <%--CODIGO CUERPO MODAL--%>
+                            <div class="row">
+                                <asp:Label CssClass="col-6" ID="Label1" runat="server" Text="Obra Social"></asp:Label>
+                                <asp:TextBox runat="server" ID="txtEliminar" CssClass="form-control col-6" placeholder=""></asp:TextBox>
+                            </div>
+                            <%--CIERRE CUERPO MODAL--%>
+                        </div>
+                        <!--Fin Body Modal-->
+                        <div class="modal-footer">
+                            <asp:Button ID="btnCancelarEliminar" Text="Cancelar" runat="server" type="button" class="btn btn-danger" OnClick="btnCancelarEliminar_Click" />
+                            <asp:Button ID="btnConfirmarEliminar" Text="Confirmar" runat="server" type="button" class="btn btn-primary" OnClick="btnConfirmarEliminar_Click" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-backdrop fade show"></div>
+        </asp:Panel>
     </div>
+
+    <%--FIN MODAL OBRAS SOCIALES---------------------------------------------------%>
 </asp:Content>

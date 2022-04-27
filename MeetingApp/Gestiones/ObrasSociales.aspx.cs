@@ -26,35 +26,45 @@ namespace MeetingApp.Gestiones
         public void InsertarObraSocial()
         {
             ObraSocial obraSocial = new ObraSocial();
-            obraSocial.descripcion = txtObraSocial.Text;
-            _obraSocialBLL.InsertarObraSocial(obraSocial);
-            CargarObrasSociales();//actualiza la grilla
-        }
-
-        //CONFIRMA OBRA SOCIAL
-        protected void btnConfirmar_Click(object sender, EventArgs e)
-        {
-            ObraSocial obraS = new ObraSocial();
-            obraS.descripcion = txtObraSocial.Text;
+            obraSocial.descripcion = txtObraSocial.Text;            
 
             if (txtObraSocial.Text.Equals(""))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar campo obra social')", true);
                 txtObraSocial.Focus();
+                return;
             }
             else
             {
-                if (_obraSocialBLL.ValidarNombreObraSocial(obraS))
+                if (_obraSocialBLL.ValidarNombreObraSocial(obraSocial))
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Esta Obra Social ya existe!')", true);
+                    //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Esta Especialidad ya existe!')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Cuidado!', 'El nombre de obra social ya existe!', 'warning')", true);
+                    return;
+
                 }
                 else
                 {
-                    InsertarObraSocial();
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Obra Social Agregada con Exito')", true);
+                    _obraSocialBLL.InsertarObraSocial(obraSocial);
                     txtObraSocial.Text = "";
                 }
             }
+        }
+
+        //CONFIRMA OBRA SOCIAL
+        protected void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                InsertarObraSocial();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Se Inserto la Obra Social!', 'success')", true);
+            }
+            catch (Exception)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo insertar la Obra Social', 'error')", true);
+            }
+
+            CargarObrasSociales();
         }
 
         //CARGAR GRILLA OBRA SOCIAL
@@ -79,7 +89,7 @@ namespace MeetingApp.Gestiones
         }
 
         //MODIFICAR OBRA SOCIAL
-        public bool ActualizarObraSocial()
+        public void ActualizarObraSocial()
         {
             ObraSocial obraS = new ObraSocial();
             obraS.descripcion = txtActualizarObraSocial.Text;
@@ -87,16 +97,12 @@ namespace MeetingApp.Gestiones
 
             if (_obraSocialBLL.ValidarNombreObraSocial(obraS))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Este nombre de Obra Social ya existe!')", true);
-                return false;
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Cuidado!', 'Este nombre de Obra Social ya existe!', 'warning')", true);
+                //return;
             }
             else
             {
                 _obraSocialBLL.ActualizarObraSocial(obraS);
-                ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "<script> swal('Exito!', 'Se Modifico la Obra Social!', 'success') </script>");
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Se Modifico la Obra Social!')", true);
-                return true;
-                CargarObrasSociales();
             }
 
         }
@@ -110,14 +116,55 @@ namespace MeetingApp.Gestiones
 
             if (e.CommandName.Equals("Modificar"))
             {
+                panelModificar.Visible = true;
                 //solo cargamos campos de la modal
-                ObraSocial espe = _obraSocialBLL.SeleccionarIdObraSocial(int.Parse(ViewState["idObraSocial"].ToString()));
-                txtActualizarObraSocial.Text = espe.descripcion.ToString();
+                ObraSocial obraS = _obraSocialBLL.SeleccionarIdObraSocial(int.Parse(ViewState["idObraSocial"].ToString()));
+                txtActualizarObraSocial.Text = obraS.descripcion.ToString();
             }
             if (e.CommandName.Equals("Eliminar"))
             {
-                //eliminar
+                panelEliminar.Visible = true;
+                ObraSocial obraS = _obraSocialBLL.SeleccionarIdObraSocial(int.Parse(ViewState["idObraSocial"].ToString()));
+                txtEliminar.Text = obraS.descripcion.ToString();
+                txtEliminar.Enabled = false;
             }
+        }
+
+        //BOTON CERRAR MODAL
+        protected void btnCancelarObraSocial_Click(object sender, EventArgs e)
+        {
+            panelModificar.Visible = false;
+        }
+
+        //cerrar modal con cruz
+        public void CerrarModalObraSocial(object sender, EventArgs e)
+        {
+            //ID DEL PANEL DE LA MODAL
+            panelModificar.Visible = false;
+        }
+
+        //BOTON PARA ACTUALIZAR LA OBRA SOCIAL
+        protected void btnConfirmarObraSocial_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ActualizarObraSocial();
+                panelModificar.Visible = false;
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Se Actualizo la Obra Social!', 'success')", true);
+            }
+            catch (Exception)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo actualizar la Obra Social', 'error')", true);
+            }
+
+            CargarObrasSociales();
+        }
+
+        //BOTON AGREGAR NUEVA OBRA SOCIAL
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            divAgregarObraSocial.Visible = true;
+            btnAgregar.Visible = false;
         }
 
         //Finaliza el agregar la obra social
@@ -127,46 +174,50 @@ namespace MeetingApp.Gestiones
             btnAgregar.Visible = true;
         }
 
-        //BOTON MODIFICAR EN LA GRILLA
-        protected void btnModificar_Click(object sender, EventArgs e)
+        //ELIMINAR ESPECIALIDAD
+        public void EliminarObraSocial()
         {
-            panelModificar.Visible = true;
-        }        
+            ObraSocial obraS = new ObraSocial();
+            obraS.idObraSocial = (int)ViewState["idObraSocial"];
 
-        //cerrar modal con cruz
-        public void CerrarModalObraSocial(object sender, EventArgs e)
-        {
-            //ID DEL PANEL DE LA MODAL
-            panelModificar.Visible = false;
+            _obraSocialBLL.EliminarObraSocial(obraS);
+
         }
-
-        //BOTON CERRAR MODAL
-        protected void btnCancelarObraSocial_Click(object sender, EventArgs e)
-        {
-            panelModificar.Visible = false;
-        }
-
-        //BOTON PARA ACTUALIZAR LA OBRA SOCIAL
-        protected void btnConfirmarObraSocial_Click(object sender, EventArgs e)
-        {
-            if (ActualizarObraSocial())
-            {
-                panelModificar.Visible = false;
-               
-            }
-        }
-
-        protected void btnAgregar_Click(object sender, EventArgs e)
-        {
-            divAgregarObraSocial.Visible = true;
-            btnAgregar.Visible = false;
-        }
-
 
         //ELIMINAR OBRA SOCIAL
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-
+            panelEliminar.Visible = true;
         }
+
+        //cerrar modal eliminar con cruz
+        public void CerrarModalEliminar(object sender, EventArgs e)
+        {
+            //ID DEL PANEL DE LA MODAL
+            panelEliminar.Visible = false;
+        }
+
+        protected void btnCancelarEliminar_Click(object sender, EventArgs e)
+        {
+            panelEliminar.Visible = false;
+        }
+
+        protected void btnConfirmarEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                EliminarObraSocial();
+                panelEliminar.Visible = false;
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Se elimino la Obra Social!', 'success')", true);
+            }
+            catch (Exception)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo eliminar la Obra Social!', 'error')", true);
+            }
+
+            CargarObrasSociales();
+        }    
+
+
     }
 }

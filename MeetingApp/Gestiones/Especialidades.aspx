@@ -31,28 +31,27 @@
             </div>
         </section>
         <%-- SECCION 3 GRILLA--%>
+        <div class="row">
+            <div class="table col-md-auto mt-3">
+                <asp:GridView runat="server" ID="GVEspecialidades" AutoGenerateColumns="false" CssClass="table text-center table-hover" OnRowCommand="GVEspecialidades_RowCommand">
+                    <HeaderStyle BackColor="#3E64FF" ForeColor="White" />
+                    <RowStyle BackColor="#D6DBDF" ForeColor="#333333" />
+                    <Columns>
+                        <%-- <asp:BoundField DataField="idEspecialidad" HeaderText="ID Espe" />--%>
+                        <asp:BoundField DataField="descripcion" HeaderText="ESPECIALIDAD" />
+                        <asp:TemplateField HeaderText="ACCIONES">
+                            <ItemTemplate>
 
-                <div class="row">
-                    <div class="table col-md-auto mt-3">
-                        <asp:GridView runat="server" ID="GVEspecialidades" AutoGenerateColumns="false" CssClass="table text-center table-hover" OnRowCommand="GVEspecialidades_RowCommand">
-                            <HeaderStyle BackColor="#3E64FF" ForeColor="White" />
-                            <RowStyle BackColor="#D6DBDF" ForeColor="#333333" />
-                            <Columns>
-                                <%-- <asp:BoundField DataField="idEspecialidad" HeaderText="ID Espe" />--%>
-                                <asp:BoundField DataField="descripcion" HeaderText="ESPECIALIDAD" />
-                                <asp:TemplateField HeaderText="ACCIONES">
-                                    <ItemTemplate>
+                                <asp:Button runat="server" ID="btnModificar" CommandName="Modificar" CommandArgument='<%#Eval("idEspecialidad") %>' Text="Modificar" CssClass="btn btn-info" />
 
-                                        <asp:Button runat="server" ID="btnModificar" CommandName="Modificar" CommandArgument='<%#Eval("idEspecialidad") %>' Text="Modificar" CssClass="btn btn-info" />
+                                <asp:Button runat="server" ID="btnEliminar" CommandName="Eliminar" CommandArgument='<%# Eval("idEspecialidad") %>' Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" />
 
-                                        <asp:Button runat="server" ID="btnEliminar" CommandName="Eliminar" CommandArgument='<%# Eval("idEspecialidad") %>' Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" />
-
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                            </Columns>
-                        </asp:GridView>
-                    </div>
-                </div>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+            </div>
+        </div>
 
         <%-- SECCION 4--%>
 
@@ -64,9 +63,9 @@
                         <div class="modal-header">
                             <h3 class="modal-title" style="margin-left: auto">Especialidad</h3>
                             <hr id="hrContent">
-                            <button runat="server" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            <button runat="server" class="close" data-bs-dismiss="modal" aria-label="Close"
                                 onserverclick="CerrarModalEspecialidad">
-                            </button>
+                                x</button>
                         </div>
                         <div class="modal-body col-md-10">
                             <%--CODIGO CUERPO MODAL--%>
@@ -90,23 +89,23 @@
             <div class="modal-backdrop fade show"></div>
         </asp:Panel>
 
-         <!-- MODAL ESPECIALIDADES ELIMINAR-->
+        <!-- MODAL ESPECIALIDADES ELIMINAR-->
         <asp:Panel runat="server" ID="panelEliminar" Visible="false">
             <div class="modal fade show" tabindex="-1" aria-hidden="true" style="display: block;">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content w-75" style="margin-left: 12.5%">
                         <div class="modal-header">
-                            <h3 class="modal-title" style="margin-left: auto">Especialidad</h3>
+                            <h3 class="modal-title" style="margin-left: auto">¿Esta seguro de eliminar la especialidad?</h3>
                             <hr id="hrContent">
-                            <button runat="server" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            <button runat="server" class="close" data-bs-dismiss="modal" aria-label="Close"
                                 onserverclick="CerrarModalEliminar">
-                            </button>
+                                x</button>
                         </div>
-                        <div class="modal-body col-md-10">
+                        <div class="modal-body col-md-8">
                             <%--CODIGO CUERPO MODAL--%>
                             <div class="row">
                                 <asp:Label CssClass="col-6" ID="Label1" runat="server" Text="Especialidad"></asp:Label>
-                                <asp:TextBox runat="server" ID="txtEliminar" CssClass="form-control col-6" placeholder=""></asp:TextBox>                           
+                                <asp:TextBox runat="server" ID="txtEliminar" CssClass="form-control col-6" placeholder=""></asp:TextBox>
                             </div>
                             <%--CIERRE CUERPO MODAL--%>
                         </div>
