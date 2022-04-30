@@ -10,13 +10,19 @@ using Entidades;
 
 namespace BLL
 {
-    public static class PacienteBLL
+    public class PacienteBLL
     {
-        public static void ActualizarDatosPaciente(Usuario user)
+        PacienteDAL _pacienteDAL = new PacienteDAL();
+
+        public void ActualizarDatosPaciente(Usuario user)
         {
-            DAL.PacienteDAL.ActualizarDatosPaciente(user);
+            _pacienteDAL.ActualizarDatosPaciente(user);
         }
 
+        public Usuario BuscarPacienteDni(string dni)
+        {
+            return _pacienteDAL.BuscarPacienteDni(dni);
+        }
 
 
 

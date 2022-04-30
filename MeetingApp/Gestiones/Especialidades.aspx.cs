@@ -12,6 +12,7 @@ namespace MeetingApp.Gestiones
     public partial class Especialidades : System.Web.UI.Page
     {
         EspecialidadBLL _especialidadBLL = new EspecialidadBLL();
+        CaracterEspecial caracter = new CaracterEspecial();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,7 +27,7 @@ namespace MeetingApp.Gestiones
         public void InsertarEspecialidad()
         {          
             Especialidad espe = new Especialidad();
-            espe.descripcion = txtEspecialidad.Text;
+            espe.descripcion = caracter.SacarTilde(txtEspecialidad.Text);
 
             if (txtEspecialidad.Text.Equals(""))
             {
@@ -89,7 +90,7 @@ namespace MeetingApp.Gestiones
         }
 
         //MODIFICAR ESPECIALIDAD
-        public void ActualizarEspecialidad()
+        public bool ActualizarEspecialidad()
         {
             Especialidad espe = new Especialidad();
             espe.descripcion = txtActualizarEspecialidad.Text;
@@ -98,11 +99,12 @@ namespace MeetingApp.Gestiones
             if (_especialidadBLL.ValidarNombreEspecialidad(espe))
             {               
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Cuidado!', 'Este nombre de especialidad ya existe!', 'warning')", true);
-                return;
+                return false;
             }
             else
             {
-                _especialidadBLL.ActualizarEspecialidad(espe);                                         
+                _especialidadBLL.ActualizarEspecialidad(espe);
+                return true;
             }
 
         }
@@ -150,13 +152,21 @@ namespace MeetingApp.Gestiones
         {
             try
             {
-                ActualizarEspecialidad();            
-                panelModificar.Visible = false;
+                if (ActualizarEspecialidad())
+                {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Se Actualizo la Especialidad!', 'success')", true);
+                    panelModificar.Visible = false;
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo actualizar la Especialidad', 'error')", true);
+                }                            
+                
             }
             catch (Exception)
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo actualizar la Especialidad', 'error')", true);
+                panelModificar.Visible = false;
             }
 
             CargarEspecialidades();
@@ -174,6 +184,7 @@ namespace MeetingApp.Gestiones
         {
             divAgregarEspecialidad.Visible = false;
             btnAgregar.Visible = true;
+            txtEspecialidad.Text = "";
         }
 
         //ELIMINAR ESPECIALIDAD
@@ -221,10 +232,6 @@ namespace MeetingApp.Gestiones
             CargarEspecialidades();
         }
 
-
-
-
-
-
+      
     }
 }

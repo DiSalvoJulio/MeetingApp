@@ -29,6 +29,8 @@ namespace MeetingApp
                 tabEspecialidades.Visible = true; //son los id que estan en la sidebar en los li
                 tabObrasSociales.Visible = true;
                 tabCerrarSesion.Visible = true;
+                tabPaciente.Visible = true;
+                tabProfesional.Visible = true;
 
                 tabHomePaciente.Visible = false;
                 tabHomeProfesional.Visible = false;
@@ -45,6 +47,8 @@ namespace MeetingApp
                 tabMisTurno.Visible = true;
                 tabCerrarSesion.Visible = true;
                 tabDatosPaciente.Visible = true;
+                tabPaciente.Visible = false;
+                tabProfesional.Visible = false;
 
                 tabEspecialidades.Visible = false;
                 tabObrasSociales.Visible = false;
@@ -60,6 +64,8 @@ namespace MeetingApp
                 tabCerrarSesion.Visible = true;
                 tabDatosProfesional.Visible = true;
                 tabReportes.Visible = true;
+                tabPaciente.Visible = false;
+                tabProfesional.Visible = false;
 
                 tabEspecialidades.Visible = false;
                 tabObrasSociales.Visible = false;

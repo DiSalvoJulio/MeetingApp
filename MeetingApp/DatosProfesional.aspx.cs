@@ -95,7 +95,7 @@ namespace MeetingApp
             CamposNoModificables();
         }
 
-        public void ActualizarDatosProfesional()
+        public bool ActualizarDatosProfesional()
         {
             Usuario user = (Usuario)Session["Usuario"];
             user.apellido = txtApellido.Text;
@@ -106,11 +106,17 @@ namespace MeetingApp
             //user.pass = txtPass.Text;
             user.idEspecialidad = int.Parse(cmbProfesion.Text);
             user.matricula = txtMatricula.Text;
+           
             if (!CamposVaciosModificar())
             {
                 ProfesionalBLL.ActualizarDatosProfesional(user);
                 DesahabilitarCampos();
+                return true;
                 //CamposNoModificables();
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -124,8 +130,30 @@ namespace MeetingApp
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            ActualizarDatosProfesional();
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Datos Actualizados')", true);
+            try
+            {
+                if (ActualizarDatosProfesional())
+                {                    
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Datos Actualizados!', 'success')", true);
+                    btnCancelar.Enabled = false;
+                    btnAceptar.Enabled = false;
+                    btnModificar.Enabled = true;
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo actualizar datos', 'error')", true);
+                    btnCancelar.Enabled = false;
+                    btnAceptar.Enabled = false;
+                    btnModificar.Enabled = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en Actualizar Datos " + ex.Message);
+            }
+            
+            
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -231,7 +259,7 @@ namespace MeetingApp
                 txtTelefono.Focus();
                 return true;
             }
-            if (cmbProfesion.SelectedIndex == 0)
+            if (cmbProfesion.SelectedIndex == -1)
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar Especialidad')", true);
                 txtTelefono.Focus();

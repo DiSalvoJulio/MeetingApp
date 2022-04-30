@@ -80,6 +80,8 @@ C:\PracticaSupervisada\MeetingApp\obj\Debug\MeetingApp.csproj.CoreCompileInputs.
 C:\PracticaSupervisada\MeetingApp\obj\Debug\MeetingApp.csproj.CopyComplete
 C:\PracticaSupervisada\MeetingApp\obj\Debug\MeetingApp.dll
 C:\PracticaSupervisada\MeetingApp\obj\Debug\MeetingApp.pdb
+C:\PS_UTN\MeetingApp\MeetingApp\obj\Debug\MeetingApp.csproj.AssemblyReference.cache
+C:\PS_UTN\MeetingApp\MeetingApp\obj\Debug\MeetingApp.csproj.CoreCompileInputs.cache
 C:\PS_UTN\MeetingApp\MeetingApp\bin\MeetingApp.dll.config
 C:\PS_UTN\MeetingApp\MeetingApp\bin\MeetingApp.dll
 C:\PS_UTN\MeetingApp\MeetingApp\bin\MeetingApp.pdb
@@ -157,8 +159,6 @@ C:\PS_UTN\MeetingApp\MeetingApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPl
 C:\PS_UTN\MeetingApp\MeetingApp\bin\DAL.pdb
 C:\PS_UTN\MeetingApp\MeetingApp\bin\es\System.Web.Optimization.resources.dll
 C:\PS_UTN\MeetingApp\MeetingApp\bin\es\Microsoft.AspNet.FriendlyUrls.resources.dll
-C:\PS_UTN\MeetingApp\MeetingApp\obj\Debug\MeetingApp.csproj.AssemblyReference.cache
-C:\PS_UTN\MeetingApp\MeetingApp\obj\Debug\MeetingApp.csproj.CoreCompileInputs.cache
 C:\PS_UTN\MeetingApp\MeetingApp\obj\Debug\MeetingApp.csproj.CopyComplete
 C:\PS_UTN\MeetingApp\MeetingApp\obj\Debug\MeetingApp.dll
 C:\PS_UTN\MeetingApp\MeetingApp\obj\Debug\MeetingApp.pdb

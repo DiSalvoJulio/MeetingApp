@@ -1,97 +1,92 @@
-﻿using BLL;
-using Entidades;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using BLL;
+using Entidades;
 
-namespace MeetingApp
+namespace MeetingApp.Gestiones
 {
-    public partial class DatosPaciente : System.Web.UI.Page
+    public partial class Paciente : System.Web.UI.Page
     {
         PacienteBLL _pacienteBLL = new PacienteBLL();
-        //Usuario user = (Usuario)Session["Usuario"];
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!IsPostBack)
             {
-                Usuario user = (Usuario)Session["Usuario"];
-                CargarCamposPaciente(user);
-                btnCancelar.Enabled = false;
+                DesahabilitarCampos();
                 btnAceptar.Enabled = false;
+                btnCancelar.Enabled = false;
+                btnModificar.Enabled = false;
             }
+        }
 
-        }       
-
-        private void CargarCamposPaciente(Usuario user)
+        public bool BuscarPaciente()
         {
-            txtApellido.Text = user.apellido;
-            txtNombre.Text = user.nombre;
-            txtDni.Text = user.dni;            
-            txtFecNac.Text = user.fechaNacimiento.ToString("yyyy-MM-dd");//mostrar fecha desde la bd en front. Esta conversion se hace pq la bd tiene ese formato. año/mes/dia                       
-            txtEmail.Text = user.email;
-            txtTelefono.Text = user.telefono;
-            txtDireccion.Text = user.direccion;
-            txtOcupacion.Text = user.ocupacion;
-            //List<Referencia> LR =new List<Referencia>();
-            //Referencia r = LR.Where(r => r.idReferencia == Convert.ToInt32( user.idReferencia));
-            //txtReferencia.Text = r.descripcion;
-            txtReferencia.Text = user.idReferencia.ToString();
-            txtIngreso.Text = user.fechaIngreso.ToShortDateString();
-            txtEdad.Text = user.edad.ToString();
+            string dni = txtDniBuscar.Text;
+            Usuario user = _pacienteBLL.BuscarPacienteDni(dni);
+
+            if (user != null)
+            {
+                Session["idUsuario"] = user.idUsuario;//usuario almacenado en session
+                CargarCamposPaciente(user);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+
+        protected void btnBuscarPaciente_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (BuscarPaciente())
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Se encontro un Paciente!', 'success')", true);
+                    btnModificar.Enabled = true;
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo encontrar un paciente', 'error')", true);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en Buscar Paciente " + ex.Message);
+            }          
+            
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
             DesahabilitarCampos();
-            CamposNoModificables();
+            txtDniBuscar.Enabled = true;
+            btnBuscarPaciente.Enabled = true;
+            btnAceptar.Enabled = false;
+            btnCancelar.Enabled = false;
         }
 
-        //Datos que no se deben modificar
-        private void CamposNoModificables()
+        protected void btnModificar_Click(object sender, EventArgs e)
         {
-            txtDni.Enabled = false;
-            txtEmail.Enabled = false;
-            txtEdad.Enabled = false;
-            txtReferencia.Enabled = false;
-            txtIngreso.Enabled = false;
-        }
-
-        //Metodo para cancelar campos
-        private void DesahabilitarCampos()
-        {
-            txtApellido.Enabled = false;
-            txtNombre.Enabled = false;
-            txtDni.Enabled = false;
-            txtFecNac.Enabled = false;
-            txtEmail.Enabled = false;
-            txtTelefono.Enabled = false;
-            txtDireccion.Enabled = false;
-            txtOcupacion.Enabled = false;
-            txtReferencia.Enabled = false;
-            txtIngreso.Enabled = false;
-            txtEdad.Enabled = false;
-        }
-
-        //Metodo para habilitar campos 
-        private void HabilitarCampos()
-        {
-            txtApellido.Enabled = true; ;
-            txtNombre.Enabled = true;
-            txtDni.Enabled = true;
-            txtFecNac.Enabled = true;
-            txtEmail.Enabled = true;
-            txtTelefono.Enabled = true;
-            txtDireccion.Enabled = true;
-            txtOcupacion.Enabled = true;            
-            txtIngreso.Enabled = true;
-            txtEdad.Enabled = true;
-            CamposNoModificables();
+            HabilitarCampos();
+            btnAceptar.Enabled = true;
+            btnCancelar.Enabled = true;
+            btnModificar.Enabled = false;
+            txtDniBuscar.Enabled = false;
+            btnBuscarPaciente.Enabled = false;
         }
 
         public bool ActualizarDatosPaciente()
         {
-            Usuario user = (Usuario)Session["Usuario"];
+            int idUser = (int)Session["idUsuario"];
+            Usuario user = new Usuario();
+            user.idUsuario = idUser;
             user.apellido = txtApellido.Text;
             user.nombre = txtNombre.Text;
             user.fechaNacimiento = DateTime.Parse(txtFecNac.Text);
@@ -99,11 +94,11 @@ namespace MeetingApp
             user.direccion = txtDireccion.Text;
             //user.pass = txtPass.Text;
             user.ocupacion = txtOcupacion.Text;
-            user.idReferencia = int.Parse(txtReferencia.Text);         
+            user.idReferencia = 2;/*int.Parse(txtReferencia.Text);*/
 
             if (!CamposVaciosModificar())
             {
-                _pacienteBLL.ActualizarDatosPaciente(user);
+                _pacienteBLL.ActualizarDatosPaciente(user);                
                 DesahabilitarCampos();
                 //CamposNoModificables();
                 return true;
@@ -113,23 +108,12 @@ namespace MeetingApp
                 return false;
             }
         }
-
-
-        protected void btnModificar_Click(object sender, EventArgs e)
-        {
-            HabilitarCampos();
-            btnAceptar.Enabled = true;
-            btnCancelar.Enabled = true;
-            btnModificar.Enabled = false;
-        }
-
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            Usuario user = (Usuario)Session["Usuario"];
             try
             {
                 if (ActualizarDatosPaciente())
-                {                                     
+                {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Datos Actualizados!', 'success')", true);
                     btnCancelar.Enabled = false;
                     btnAceptar.Enabled = false;
@@ -147,26 +131,70 @@ namespace MeetingApp
             {
                 throw new Exception("Error en Actualizar Datos " + ex.Message);
             }
-            //paciente por ID HACER METODO EN LA DAL
-            //_pacienteBLL.ActualizarDatosPaciente();
-            //CargarCamposPaciente(user);
-
         }
-        
 
-        protected void btnCancelar_Click(object sender, EventArgs e)
+        private void CargarCamposPaciente(Usuario user)
         {
-            if (!CamposVaciosModificar())
-            {
-                DesahabilitarCampos();
-                CamposNoModificables();
-                btnCancelar.Enabled = false;
-                btnAceptar.Enabled = false;
-                btnModificar.Enabled = true;
-            }
+            txtApellido.Text = user.apellido;
+            txtNombre.Text = user.nombre;
+            txtDni.Text = user.dni;
+            txtFecNac.Text = user.fechaNacimiento.ToString("yyyy-MM-dd");//mostrar fecha desde la bd en front. Esta conversion se hace pq la bd tiene ese formato. año/mes/dia                       
+            txtEmail.Text = user.email;
+            txtTelefono.Text = user.telefono;
+            txtDireccion.Text = user.direccion;
+            txtOcupacion.Text = user.ocupacion;
+
+            txtReferencia.Text = user.idReferencia.ToString();
+            txtIngreso.Text = user.fechaIngreso.ToShortDateString();
+            txtEdad.Text = user.edad.ToString();            
         }
 
-        //VALIDACIONES  
+        private void HabilitarCampos()
+        {
+            txtApellido.Enabled = true; ;
+            txtNombre.Enabled = true;
+            txtDni.Enabled = true;
+            txtFecNac.Enabled = true;
+            txtEmail.Enabled = true;
+            txtTelefono.Enabled = true;
+            txtDireccion.Enabled = true;
+            txtOcupacion.Enabled = true;
+            txtIngreso.Enabled = false;
+            txtEdad.Enabled = false;
+            
+        }
+
+        private void DesahabilitarCampos()
+        {
+            txtApellido.Enabled = false;
+            txtNombre.Enabled = false;
+            txtDni.Enabled = false;
+            txtFecNac.Enabled = false;
+            txtEmail.Enabled = false;
+            txtTelefono.Enabled = false;
+            txtDireccion.Enabled = false;
+            txtOcupacion.Enabled = false;
+            txtReferencia.Enabled = false;
+            txtIngreso.Enabled = false;
+            txtEdad.Enabled = false;
+        }
+
+        private void LimpiarCampos()
+        {
+            txtDniBuscar.Text = "";
+            txtApellido.Text = "";
+            txtNombre.Text = "";
+            txtDni.Text = "";
+            txtFecNac.Text = "";
+            txtEmail.Text = "";
+            txtTelefono.Text = "";
+            txtDireccion.Text = "";
+            txtOcupacion.Text = "";
+            txtReferencia.Text = "";
+            txtIngreso.Text = "";
+            txtEdad.Text = "";
+        }
+
         public bool CamposVaciosModificar()
         {
             if (txtApellido.Text.Equals(""))
@@ -228,5 +256,8 @@ namespace MeetingApp
                 return false;
             }
         }
+
+
+
     }
 }

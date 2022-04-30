@@ -87,6 +87,24 @@ namespace MeetingApp
         protected global::System.Web.UI.HtmlControls.HtmlAnchor tabObrasSociales;
 
         /// <summary>
+        /// Control tabPaciente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor tabPaciente;
+
+        /// <summary>
+        /// Control tabProfesional.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor tabProfesional;
+
+        /// <summary>
         /// Control tabMisTurno.
         /// </summary>
         /// <remarks>

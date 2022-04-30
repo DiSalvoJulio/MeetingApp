@@ -11,10 +11,10 @@ namespace MeetingApp
 {
     public partial class Login : System.Web.UI.Page
     {
-        RegistrarBLL _registrarBLL = new RegistrarBLL();
+        RegistrarBLL _registrarBLL = new RegistrarBLL();        
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Session.Remove("Login");
+            //Session.Remove("Login");            
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)

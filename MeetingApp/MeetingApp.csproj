@@ -133,6 +133,10 @@
     <Content Include="Gestiones\Especialidades.css" />
     <Content Include="Gestiones\ObrasSociales.aspx" />
     <Content Include="Gestiones\ObrasSociales.css" />
+    <Content Include="Gestiones\Paciente.aspx" />
+    <Content Include="Gestiones\Paciente.css" />
+    <Content Include="Gestiones\Profesional.aspx" />
+    <Content Include="Gestiones\Profesional.css" />
     <Content Include="Global.asax" />
     <Content Include="css\.DS_Store" />
     <Content Include="css\bootstrap\.DS_Store" />
@@ -420,6 +424,20 @@
     </Compile>
     <Compile Include="Gestiones\ObrasSociales.aspx.designer.cs">
       <DependentUpon>ObrasSociales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gestiones\Paciente.aspx.cs">
+      <DependentUpon>Paciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gestiones\Paciente.aspx.designer.cs">
+      <DependentUpon>Paciente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gestiones\Profesional.aspx.cs">
+      <DependentUpon>Profesional.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gestiones\Profesional.aspx.designer.cs">
+      <DependentUpon>Profesional.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

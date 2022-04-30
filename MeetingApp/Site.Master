@@ -37,7 +37,7 @@
 
         <%-- SIDEBAR--%>
         <div class="wrapper d-flex align-items-stretch">
-			<nav id="sidebar" class="active">
+			<nav id="sidebar" style="height:100vh;">
 				<h1><a href="index.html" class="logo">MA</a></h1>
         <ul class="list-unstyled components mb-5">
           <li class="active">
@@ -54,6 +54,12 @@
           </li>
             <li>
               <a href="Gestiones/ObrasSociales.aspx" runat="server" id="tabObrasSociales"><span class="fa fa-medkit"></span> Obras Sociales</a>
+          </li>
+            <li>
+              <a href="Gestiones/Paciente.aspx" runat="server" id="tabPaciente"><span class="fa fa-user"></span> Paciente</a>
+          </li>
+            <li>
+              <a href="Gestiones/Profesional.aspx" runat="server" id="tabProfesional"><span class="fa fa-user-plus"></span> Profesional</a>
           </li>
           <li>
             <a href="#" runat="server" id="tabMisTurno"><span class="fa fa-sticky-note"></span> Mis turnos</a>
@@ -78,7 +84,7 @@
         </div>
     	</nav>
 
-        <!-- Page Content  -->
+    <%--    <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5">
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -109,7 +115,7 @@
               </ul>
             </div>
           </div>
-        </nav>
+        </nav>--%>
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                    
                 </asp:ContentPlaceHolder>

@@ -25,6 +25,8 @@ namespace Entidades
         public bool cuentaConfirmada { get; set; }
         public int idRol { get; set; } 
         public int idEspecialidad { get; set; } // public Especialidad Especialidad { get set}
+
+        //public Referencia referencia { get; set; }
         public int idReferencia { get; set; }
         public int idObraSocial { get; set; }        
 

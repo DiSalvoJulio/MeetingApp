@@ -3,12 +3,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="container">
     <%-- SECCION 1--%>
     <section class="content-header">
         <h1 style="color: red; text-align: center">Mis Datos - Profesional</h1>
     </section>
     <%-- SECCION 2--%>
-    <div class="container">
         <hr class="color: red;" />
         <div class="form-row">
             <div class="form-group col-md-6">

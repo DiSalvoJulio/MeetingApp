@@ -89,7 +89,7 @@ namespace MeetingApp.Gestiones
         }
 
         //MODIFICAR OBRA SOCIAL
-        public void ActualizarObraSocial()
+        public bool ActualizarObraSocial()
         {
             ObraSocial obraS = new ObraSocial();
             obraS.descripcion = txtActualizarObraSocial.Text;
@@ -98,11 +98,12 @@ namespace MeetingApp.Gestiones
             if (_obraSocialBLL.ValidarNombreObraSocial(obraS))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Cuidado!', 'Este nombre de Obra Social ya existe!', 'warning')", true);
-                //return;
+                return false;
             }
             else
             {
                 _obraSocialBLL.ActualizarObraSocial(obraS);
+                return true;
             }
 
         }
@@ -148,15 +149,22 @@ namespace MeetingApp.Gestiones
         {
             try
             {
-                ActualizarObraSocial();
-                panelModificar.Visible = false;
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Se Actualizo la Obra Social!', 'success')", true);
+                if (ActualizarObraSocial())
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Se Actualizo la Obra Social!', 'success')", true);
+                    panelModificar.Visible = false;
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo actualizar la Obra Social', 'error')", true);
+                }                
             }
             catch (Exception)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo actualizar la Obra Social', 'error')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'Error de sistema, no se pudo actualizar!', 'error')", true);
+                panelModificar.Visible = false;
             }
-
+            
             CargarObrasSociales();
         }
 
@@ -172,6 +180,7 @@ namespace MeetingApp.Gestiones
         {
             divAgregarObraSocial.Visible = false;
             btnAgregar.Visible = true;
+            txtObraSocial.Text = "";
         }
 
         //ELIMINAR ESPECIALIDAD
