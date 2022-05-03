@@ -31,6 +31,7 @@ namespace MeetingApp.Gestiones
             if (user != null)
             {
                 Session["idUsuario"] = user.idUsuario;//usuario almacenado en session
+                Session["User"] = user;
                 CargarCamposPaciente(user);
                 return true;
             }
@@ -58,8 +59,7 @@ namespace MeetingApp.Gestiones
             catch (Exception ex)
             {
                 throw new Exception("Error en Buscar Paciente " + ex.Message);
-            }          
-            
+            }                     
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -85,7 +85,7 @@ namespace MeetingApp.Gestiones
         public bool ActualizarDatosPaciente()
         {
             int idUser = (int)Session["idUsuario"];
-            Usuario user = new Usuario();
+            Usuario user = (Usuario)Session["User"];
             user.idUsuario = idUser;
             user.apellido = txtApellido.Text;
             user.nombre = txtNombre.Text;
@@ -93,8 +93,8 @@ namespace MeetingApp.Gestiones
             user.telefono = txtTelefono.Text;
             user.direccion = txtDireccion.Text;
             //user.pass = txtPass.Text;
-            user.ocupacion = txtOcupacion.Text;
-            user.idReferencia = 2;/*int.Parse(txtReferencia.Text);*/
+            user.ocupacion = txtOcupacion.Text;                     
+            //user.idReferencia; Este queda por defecto el que trae la session user cargado.
 
             if (!CamposVaciosModificar())
             {
@@ -143,8 +143,17 @@ namespace MeetingApp.Gestiones
             txtTelefono.Text = user.telefono;
             txtDireccion.Text = user.direccion;
             txtOcupacion.Text = user.ocupacion;
-
-            txtReferencia.Text = user.idReferencia.ToString();
+            List<Referencia> listR = _pacienteBLL.ObtenerReferencias();
+            var descripcion = "";
+            foreach (Referencia r in listR)
+            {
+                if (r.idReferencia == user.idReferencia)
+                {
+                    descripcion = r.descripcion;
+                }
+            }
+            txtReferencia.Text = descripcion;
+            //txtReferencia.Text = user.idReferencia.ToString();
             txtIngreso.Text = user.fechaIngreso.ToShortDateString();
             txtEdad.Text = user.edad.ToString();            
         }
@@ -160,8 +169,7 @@ namespace MeetingApp.Gestiones
             txtDireccion.Enabled = true;
             txtOcupacion.Enabled = true;
             txtIngreso.Enabled = false;
-            txtEdad.Enabled = false;
-            
+            txtEdad.Enabled = false;            
         }
 
         private void DesahabilitarCampos()

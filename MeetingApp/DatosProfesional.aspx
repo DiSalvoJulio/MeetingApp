@@ -55,10 +55,10 @@
                 <ContentTemplate> --%>  
             <div class="form-group col-md-4">
                 <%--ESPECIALIDAD--%>
-                <asp:Label ID="Label3" runat="server" Text="Profesion"></asp:Label>
+                <asp:Label ID="Label3" runat="server" Text="Especialidad"></asp:Label>
                 <br />
-                <asp:DropDownList ID="cmbProfesion" runat="server" CssClass="btn btn-outline-info dropdown-toggle col-12" onClientClick="verDrop()" AutoPostBack="true">               
-                </asp:DropDownList>
+                <asp:DropDownList ID="cmbEspecialidad" runat="server" CssClass="btn btn-outline-info dropdown-toggle col-12" onClientClick="verDrop()" AutoPostBack="true">               
+                </asp:DropDownList>                
                 <%--<asp:Label ID="Label3" runat="server" Text="Especialidad"></asp:Label>
                 <asp:TextBox ID="txtEspecialidad" name="txtEspecialidad" runat="server" placeholder="Especialidad" CssClass="form-control" OnkeyDown="Letras()" MaxLength="40"></asp:TextBox>--%>
             </div>

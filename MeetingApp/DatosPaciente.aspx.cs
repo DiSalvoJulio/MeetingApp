@@ -13,6 +13,7 @@ namespace MeetingApp
     public partial class DatosPaciente : System.Web.UI.Page
     {
         PacienteBLL _pacienteBLL = new PacienteBLL();
+        
         //Usuario user = (Usuario)Session["Usuario"];
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -36,15 +37,27 @@ namespace MeetingApp
             txtEmail.Text = user.email;
             txtTelefono.Text = user.telefono;
             txtDireccion.Text = user.direccion;
-            txtOcupacion.Text = user.ocupacion;
-            //List<Referencia> LR =new List<Referencia>();
-            //Referencia r = LR.Where(r => r.idReferencia == Convert.ToInt32( user.idReferencia));
-            //txtReferencia.Text = r.descripcion;
-            txtReferencia.Text = user.idReferencia.ToString();
+            txtOcupacion.Text = user.ocupacion;            
+            List<Referencia> listR = _pacienteBLL.ObtenerReferencias();
+            var descripcion = "";
+            foreach (Referencia r in listR)
+            {
+                if (r.idReferencia == user.idReferencia)
+                {
+                    descripcion = r.descripcion;
+                }
+            }            
+            txtReferencia.Text = descripcion;
             txtIngreso.Text = user.fechaIngreso.ToShortDateString();
             txtEdad.Text = user.edad.ToString();
             DesahabilitarCampos();
             CamposNoModificables();
+
+            //PARA MOSTRAR UNA LISTA
+            //var lista = new List<Referencia>();
+            //lista = lista.Where(r => r.idReferencia == user.idReferencia).ToList();
+            //txtReferencia.Text = Convert.ToString(lista);
+            
         }
 
         //Datos que no se deben modificar

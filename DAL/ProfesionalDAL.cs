@@ -9,14 +9,13 @@ using Entidades;
 
 namespace DAL
 {
-    public static class ProfesionalDAL
+    public class ProfesionalDAL
     {
         private static SqlDataReader dr = null;
         private static DataTable dt = new DataTable();
         private static SqlCommand comando = new SqlCommand();
 
-
-        public static void ActualizarDatosProfesional(Usuario user)
+        public void ActualizarDatosProfesional(Usuario user)
         {
             try
             {

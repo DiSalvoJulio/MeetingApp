@@ -10,14 +10,15 @@ using Entidades;
 
 namespace BLL
 {
-    public static class ProfesionalBLL
+    public class ProfesionalBLL
     {
-        public static void ActualizarDatosProfesional(Usuario user)
+        ProfesionalDAL _profesionalDAL = new ProfesionalDAL();
+
+        public void ActualizarDatosProfesional(Usuario user)
         {
-            DAL.ProfesionalDAL.ActualizarDatosProfesional(user);
+            _profesionalDAL.ActualizarDatosProfesional(user);
         }
-
-
+     
 
 
     }

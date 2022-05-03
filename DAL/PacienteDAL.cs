@@ -17,35 +17,36 @@ namespace DAL
 
         public List<Referencia> ObtenerReferencias()
         {
-            List < Referencia > LR = new List<Referencia>();
+            List <Referencia> listaReferencia = new List<Referencia>();
             try
             {
-                string procedure = "ObtenerReferencias";
+                string procedure = "sp_ObtenerReferencias";
                 comando.Connection = Conexion.AbrirConexion();
                 comando.CommandText = procedure;
                 comando.CommandType = CommandType.StoredProcedure;
-                
+                comando.Parameters.Clear();
                 using (SqlDataReader dr = comando.ExecuteReader())
                 {
                     while (dr.Read())
                     {
-                        Referencia r = new Referencia();
+                        Referencia rerefencia = new Referencia();
                         //usuario.idUsuario = int.Parse(dr["idUsuario"].ToString());
-                        r.idReferencia =  Convert.ToInt32( dr["idReferencia"]);
-                        r.descripcion = dr["descripcion"].ToString();
+                        rerefencia.idReferencia =  Convert.ToInt32( dr["idReferencia"]);
+                        rerefencia.descripcion = dr["descripcion"].ToString();
                         
-                        LR.Add(r);
+                        listaReferencia.Add(rerefencia);
                     }
-                    return LR;
+                    return listaReferencia;
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Error en Obtener referencia DAL " + ex.Message);
             }
         }
+
+
         public void ActualizarDatosPaciente(Usuario user)
         {
             try

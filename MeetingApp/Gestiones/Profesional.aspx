@@ -8,10 +8,25 @@
     <div class="container">
     <section class="content-header">
         <h1 style="color: red; text-align: center">Profesional</h1>
-        <hr />
     </section>
-    <%-- SECCION 2--%>    
-        <hr class="color: red;" />
+        <hr />
+        <div class="row">
+            <div class="form-group col-md-6">
+                <%--DNI--%>
+                <asp:Label ID="Label4" runat="server" Text="Ingrese el D.N.I. del Profesional"></asp:Label>
+                <asp:TextBox ID="txtDniBuscar" name="txtDniBuscar" runat="server" placeholder="D.N.I." CssClass="form-control" MaxLength="40"></asp:TextBox>
+            </div>
+            <div class="form-group col-md-6 mt-4">
+                <%--APELLIDO--%>
+                <asp:Button ID="btnBuscarProfesional" runat="server" Text="Buscar Profesional" OnClick="btnBuscarProfesional_Click" CssClass="btn btn-primary" />
+                <%--<asp:Label ID="Label5" runat="server" Text="Apellido y Nombre"></asp:Label>--%>
+                <%--<asp:TextBox ID="TextBox2" name="txtApellido" runat="server" placeholder="Apellido y Nombre" CssClass="form-control" OnkeyDown="Letras()" MaxLength="40"></asp:TextBox>
+            </div>--%>
+            </div>
+        </div> 
+        <%--cierre row--%>
+        <hr />
+        <%-- SECCION 2--%>            
         <div class="form-row">
             <div class="form-group col-md-6">
                 <%--APELLIDO--%>
@@ -57,9 +72,10 @@
                 <ContentTemplate> --%>  
             <div class="form-group col-md-4">
                 <%--ESPECIALIDAD--%>
-                <asp:Label ID="Label3" runat="server" Text="Profesion"></asp:Label>
+                <asp:Label ID="Label3" runat="server" Text="Especialidad"></asp:Label>
                 <br />
-                <asp:DropDownList ID="cmbProfesion" runat="server" CssClass="btn btn-outline-info dropdown-toggle col-12" onClientClick="verDrop()" AutoPostBack="true">               
+                <asp:DropDownList ID="cmbEspecialidad" runat="server" CssClass="btn btn-outline-info dropdown-toggle col-12" onClientClick="verDrop()" AutoPostBack="true">  
+                    <asp:ListItem Selected="True" Value="">Seleccione Especialidad...</asp:ListItem>
                 </asp:DropDownList>
                 <%--<asp:Label ID="Label3" runat="server" Text="Especialidad"></asp:Label>
                 <asp:TextBox ID="txtEspecialidad" name="txtEspecialidad" runat="server" placeholder="Especialidad" CssClass="form-control" OnkeyDown="Letras()" MaxLength="40"></asp:TextBox>--%>

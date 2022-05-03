@@ -12,15 +12,16 @@ namespace MeetingApp
     public partial class DatosProfesional : System.Web.UI.Page
     {
         RegistrarBLL _registrarBLL = new RegistrarBLL();
+        ProfesionalBLL _profesionalBLL = new ProfesionalBLL();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 Usuario user = (Usuario)Session["Usuario"];               
+                CargarComboEspecialidades();
                 CargarCamposProfesional(user);                     
                 btnCancelar.Enabled = false;
                 btnAceptar.Enabled = false;
-                CargarComboEspecialidades();
             }
         }
         //ver campos vacios
@@ -37,9 +38,9 @@ namespace MeetingApp
                 txtEmail.Text = user.email;
                 txtTelefono.Text = user.telefono;
                 txtDireccion.Text = user.direccion;
-                int p = int.Parse(user.idEspecialidad.ToString());
-                cmbProfesion.SelectedIndex = p - 1;
-                //cmbProfesion.SelectedIndex = 2;
+                //int p = int.Parse(user.idEspecialidad.ToString());
+                //cmbEspecialidad.SelectedIndex = p - 1;
+                cmbEspecialidad.SelectedValue = user.idEspecialidad.ToString();
                 txtMatricula.Text = user.matricula;
                 txtIngreso.Text = user.fechaIngreso.ToShortDateString();
                 txtEdad.Text = user.edad.ToString();
@@ -72,7 +73,7 @@ namespace MeetingApp
             txtEmail.Enabled = false;
             txtTelefono.Enabled = false;
             txtDireccion.Enabled = false;
-            cmbProfesion.Enabled = false;
+            cmbEspecialidad.Enabled = false;
             txtMatricula.Enabled = false;
             txtIngreso.Enabled = false;
             txtEdad.Enabled = false;
@@ -88,7 +89,7 @@ namespace MeetingApp
             txtEmail.Enabled = true;
             txtTelefono.Enabled = true;
             txtDireccion.Enabled = true;
-            cmbProfesion.Enabled = true;
+            cmbEspecialidad.Enabled = true;
             txtMatricula.Enabled = true;
             txtIngreso.Enabled = true;
             txtEdad.Enabled = true;
@@ -104,12 +105,12 @@ namespace MeetingApp
             user.telefono = txtTelefono.Text;
             user.direccion = txtDireccion.Text;
             //user.pass = txtPass.Text;
-            user.idEspecialidad = int.Parse(cmbProfesion.Text);
+            user.idEspecialidad = int.Parse(cmbEspecialidad.Text);
             user.matricula = txtMatricula.Text;
            
             if (!CamposVaciosModificar())
             {
-                ProfesionalBLL.ActualizarDatosProfesional(user);
+                _profesionalBLL.ActualizarDatosProfesional(user);
                 DesahabilitarCampos();
                 return true;
                 //CamposNoModificables();
@@ -151,8 +152,7 @@ namespace MeetingApp
             catch (Exception ex)
             {
                 throw new Exception("Error en Actualizar Datos " + ex.Message);
-            }
-            
+            }           
             
         }
 
@@ -175,22 +175,21 @@ namespace MeetingApp
             {
                 List<Especialidad> listaEspecialidad = new List<Especialidad>();
                 listaEspecialidad = _registrarBLL.ObtenerEspecialidades();
-                cmbProfesion.Items.Clear();
+                cmbEspecialidad.Items.Clear();
 
                 int indice = 0;
                 if (listaEspecialidad.Count > 0)
-                {
-                    //cmbRubros es el ID del ASP
-                    cmbProfesion.DataSource = listaEspecialidad;
-                    cmbProfesion.DataTextField = "descripcion";
-                    cmbProfesion.DataValueField = "idEspecialidad";
-                    cmbProfesion.DataBind();
-                    //cmbProfesion.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0"));
-                    //cmbProfesion.Items[0].Attributes = false;
+                {                  
+                    cmbEspecialidad.DataSource = listaEspecialidad;
+                    cmbEspecialidad.DataTextField = "descripcion";
+                    cmbEspecialidad.DataValueField = "idEspecialidad";
+                    cmbEspecialidad.DataBind();
+                    //cmbEspecialidad.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0"));
+                    //cmbEspecialidad.Items[0].Attributes = false;
                 }
                 else
                 {
-                    cmbProfesion.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0"));
+                    cmbEspecialidad.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0"));
                 }
 
             }
@@ -256,13 +255,13 @@ namespace MeetingApp
             if (txtMatricula.Text.Equals(""))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar Matricula')", true);
-                txtTelefono.Focus();
+                txtMatricula.Focus();
                 return true;
             }
-            if (cmbProfesion.SelectedIndex == -1)
+            if (cmbEspecialidad.SelectedIndex == -1)
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar Especialidad')", true);
-                txtTelefono.Focus();
+                cmbEspecialidad.Focus();
                 return true;
             }
             else

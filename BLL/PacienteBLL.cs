@@ -24,7 +24,10 @@ namespace BLL
             return _pacienteDAL.BuscarPacienteDni(dni);
         }
 
-
+        public List<Referencia> ObtenerReferencias()
+        {
+            return _pacienteDAL.ObtenerReferencias();
+        }
 
     }
 }

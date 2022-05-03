@@ -65,7 +65,7 @@ namespace DAL
             }
             catch (SqlException ex)
             {
-                throw new Exception("Error en cargar especialidadDAL " + ex.Message);
+                throw new Exception("Error en cargar especialidad DAL " + ex.Message);
             }
             finally
             {
@@ -93,7 +93,7 @@ namespace DAL
             Especialidad especialidad = new Especialidad();
             try
             {
-                string procedure = "sp_ObetenerIdEspecialidad";
+                string procedure = "sp_ObtenerIdEspecialidad";
                 comando.Connection = Conexion.AbrirConexion();
                 comando.CommandText = procedure;
                 comando.CommandType = CommandType.StoredProcedure;
