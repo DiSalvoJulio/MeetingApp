@@ -31,6 +31,7 @@ namespace MeetingApp
                 tabCerrarSesion.Visible = true;
                 tabPaciente.Visible = true;
                 tabProfesional.Visible = true;
+                tabHorario.Visible = true;
 
                 tabHomePaciente.Visible = false;
                 tabHomeProfesional.Visible = false;
@@ -49,6 +50,7 @@ namespace MeetingApp
                 tabDatosPaciente.Visible = true;
                 tabPaciente.Visible = false;
                 tabProfesional.Visible = false;
+                tabHorario.Visible = false;
 
                 tabEspecialidades.Visible = false;
                 tabObrasSociales.Visible = false;
@@ -66,6 +68,7 @@ namespace MeetingApp
                 tabReportes.Visible = true;
                 tabPaciente.Visible = false;
                 tabProfesional.Visible = false;
+                tabHorario.Visible = true;
 
                 tabEspecialidades.Visible = false;
                 tabObrasSociales.Visible = false;

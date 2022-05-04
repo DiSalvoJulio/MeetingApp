@@ -61,6 +61,9 @@
             <li>
               <a href="Gestiones/Profesional.aspx" runat="server" id="tabProfesional"><span class="fa fa-user-plus"></span> Profesional</a>
           </li>
+            <li>
+              <a href="Gestiones/Horarios.aspx" runat="server" id="tabHorario"><span class="fa fa-clock-o"></span> Horarios</a>
+          </li>
           <li>
             <a href="#" runat="server" id="tabMisTurno"><span class="fa fa-sticky-note"></span> Mis turnos</a>
           </li>

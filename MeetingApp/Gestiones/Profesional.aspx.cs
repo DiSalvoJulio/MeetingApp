@@ -22,31 +22,46 @@ namespace MeetingApp.Gestiones
                 btnAceptar.Enabled = false;
                 btnCancelar.Enabled = false;
                 btnModificar.Enabled = false;
+                VaciarCombo();
             }
         }
 
         public bool BuscarProfesional()
         {
+
             string dni = txtDniBuscar.Text;
             Usuario user = _usuarioBLL.BuscarUsuarioDni(dni);
-
-            if (user != null)
+            bool profesional = false;
+            if (user == null)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo encontrar un Profesional', 'error')", true);
+                profesional = false;
+            }
+            if (user.idRol == 2)//paciente
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo encontrar un Profesional', 'error')", true);
+                profesional = false;
+            }
+            else if (user.idRol == 3)
             {
                 Session["idUsuario"] = user.idUsuario;//usuario almacenado en session guardado en id
                 Session["User"] = user;//en este usuario cargo todos los datos 
                 CargarComboEspecialidades();
                 CargarCamposProfesional(user);
-                return true;
+                profesional = true;
             }
-            else
+            else if (user.idRol == 1)
             {
-                return false;
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo encontrar un Profesional', 'error')", true);
+                profesional = false;
             }
+            return profesional;
+
         }
 
         private void CargarCamposProfesional(Usuario user)
         {
-            if (user!=null)
+            if (user != null)
             {
                 txtApellido.Text = user.apellido;
                 txtNombre.Text = user.nombre;
@@ -54,11 +69,11 @@ namespace MeetingApp.Gestiones
                 txtFecNac.Text = user.fechaNacimiento.ToString("yyyy-MM-dd");//mostrar fecha desde la bd en front. Esta conversion se hace pq la bd tiene ese formato. año/mes/dia                       
                 txtEmail.Text = user.email;
                 txtTelefono.Text = user.telefono;
-                txtDireccion.Text = user.direccion;                
-                cmbEspecialidad.SelectedValue = user.idEspecialidad.ToString();                              
+                txtDireccion.Text = user.direccion;
+                cmbEspecialidad.SelectedValue = user.idEspecialidad.ToString();
                 txtMatricula.Text = user.matricula;
                 txtIngreso.Text = user.fechaIngreso.ToShortDateString();
-                txtEdad.Text = user.edad.ToString();                
+                txtEdad.Text = user.edad.ToString();
             }
         }
 
@@ -71,20 +86,20 @@ namespace MeetingApp.Gestiones
                 listaEspecialidad = _especialidadBLL.ObtenerEspecialidades();
                 cmbEspecialidad.Items.Clear();
 
-                int indice = 0;
+                //int indice = 0;
                 if (listaEspecialidad.Count > 0)
-                {                    
+                {
                     cmbEspecialidad.DataSource = listaEspecialidad;
                     cmbEspecialidad.DataTextField = "descripcion";
                     cmbEspecialidad.DataValueField = "idEspecialidad";
                     cmbEspecialidad.DataBind();
-                    cmbEspecialidad.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0"));
+                    //cmbEspecialidad.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0", false));
                     //cmbEspecialidad.Items[0].Attributes = false;
                 }
-                else
-                {
-                    cmbEspecialidad.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0"));
-                }
+                //else
+                //{
+                //    cmbEspecialidad.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0"));
+                //}
             }
             catch (Exception ex)
             {
@@ -104,6 +119,8 @@ namespace MeetingApp.Gestiones
                 else
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo encontrar un Profesional', 'error')", true);
+                    LimpiarCampos();
+                    btnModificar.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -144,13 +161,12 @@ namespace MeetingApp.Gestiones
             user.direccion = txtDireccion.Text;
             //user.pass = txtPass.Text;
             user.idEspecialidad = int.Parse(cmbEspecialidad.Text);
-            user.matricula = txtMatricula.Text;            
+            user.matricula = txtMatricula.Text;
 
             if (!CamposVaciosModificar())
             {
                 _profesionalBLL.ActualizarDatosProfesional(user);
                 DesahabilitarCampos();
-                
                 return true;
             }
             else
@@ -169,6 +185,9 @@ namespace MeetingApp.Gestiones
                     btnCancelar.Enabled = false;
                     btnAceptar.Enabled = false;
                     btnModificar.Enabled = true;
+                    txtDniBuscar.Enabled = true;
+                    txtDniBuscar.Text = "";
+                    btnBuscarProfesional.Enabled = true;
                 }
                 else
                 {
@@ -182,7 +201,7 @@ namespace MeetingApp.Gestiones
             {
                 throw new Exception("Error en Actualizar Datos " + ex.Message);
             }
-        }        
+        }
 
         private void HabilitarCampos()
         {
@@ -225,10 +244,30 @@ namespace MeetingApp.Gestiones
             txtTelefono.Text = "";
             txtDireccion.Text = "";
             txtMatricula.Text = "";
-            cmbEspecialidad.SelectedValue = "0";
+            //limpiar data bind nulo y cargar un items           
+            //int indice = -1;
+            //cmbEspecialidad.DataSource = null;
+            //cmbEspecialidad.DataTextField = "descripcion";
+            //cmbEspecialidad.DataValueField = "idEspecialidad";
+            //cmbEspecialidad.DataBind();
+            //cmbEspecialidad.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "-1", false));
+            VaciarCombo();
+            //cmbEspecialidad.SelectedValue = "-1";
             txtIngreso.Text = "";
             txtEdad.Text = "";
-        }        
+        }
+
+        public void VaciarCombo()
+        {
+            int indice = 0;
+            cmbEspecialidad.DataSource = null;
+            //cmbEspecialidad.DataTextField = "descripcion";
+            //cmbEspecialidad.DataValueField = "idEspecialidad";
+            cmbEspecialidad.DataBind();
+            cmbEspecialidad.Items.Clear();
+            cmbEspecialidad.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0"));
+            //cmbEspecialidad.SelectedValue = "0";
+        }
 
         public bool CamposVaciosModificar()
         {

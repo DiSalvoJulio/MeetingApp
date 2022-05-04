@@ -75,7 +75,7 @@
                 <asp:Label ID="Label3" runat="server" Text="Especialidad"></asp:Label>
                 <br />
                 <asp:DropDownList ID="cmbEspecialidad" runat="server" CssClass="btn btn-outline-info dropdown-toggle col-12" onClientClick="verDrop()" AutoPostBack="true">  
-                    <asp:ListItem Selected="True" Value="">Seleccione Especialidad...</asp:ListItem>
+                    <%--<asp:ListItem Selected="True" Value="" disabled="disabled">Seleccione Especialidad...</asp:ListItem>--%>
                 </asp:DropDownList>
                 <%--<asp:Label ID="Label3" runat="server" Text="Especialidad"></asp:Label>
                 <asp:TextBox ID="txtEspecialidad" name="txtEspecialidad" runat="server" placeholder="Especialidad" CssClass="form-control" OnkeyDown="Letras()" MaxLength="40"></asp:TextBox>--%>

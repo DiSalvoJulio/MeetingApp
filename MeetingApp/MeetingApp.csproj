@@ -131,6 +131,7 @@
     <Content Include="Gestiones\Default.css" />
     <Content Include="Gestiones\Especialidades.aspx" />
     <Content Include="Gestiones\Especialidades.css" />
+    <Content Include="Gestiones\Horarios.aspx" />
     <Content Include="Gestiones\ObrasSociales.aspx" />
     <Content Include="Gestiones\ObrasSociales.css" />
     <Content Include="Gestiones\Paciente.aspx" />
@@ -417,6 +418,13 @@
     </Compile>
     <Compile Include="Gestiones\Especialidades.aspx.designer.cs">
       <DependentUpon>Especialidades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gestiones\Horarios.aspx.cs">
+      <DependentUpon>Horarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gestiones\Horarios.aspx.designer.cs">
+      <DependentUpon>Horarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Gestiones\ObrasSociales.aspx.cs">
       <DependentUpon>ObrasSociales.aspx</DependentUpon>
