@@ -44,7 +44,7 @@ namespace DAL
         }
 
 
-        public List<ObtenerHorarioDTO> ObtenerHorario(int id)
+        public List<ObtenerHorarioDTO> ObtenerHorarios(int id)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace DAL
                         {
                             obtenerHorarios.idHorario = dr.GetInt32(0);
                         }
-                        if (!dr.IsDBNull(1)) 
+                        if (!dr.IsDBNull(1))
                         {
                             obtenerHorarios.dia = dr.GetString(1);
                         }
@@ -114,7 +114,7 @@ namespace DAL
                 comando.Parameters.Clear();
                 comando.Parameters.AddWithValue("@idHorario", id);
                 comando.Parameters.AddWithValue("@desde", desde);
-                comando.Parameters.AddWithValue("@hasta", hasta);              
+                comando.Parameters.AddWithValue("@hasta", hasta);
                 comando.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -127,7 +127,53 @@ namespace DAL
             }
         }
 
+        public ObtenerHorarioDTO ObtenerHorarioId(int idHorario)
+        {
+            try
+            {
+                string procedure = "sp_ObtenerHorarioId";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = procedure;
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@idHorario", idHorario);
+                comando.CommandType = CommandType.StoredProcedure;
 
+                using (SqlDataReader dr = comando.ExecuteReader())
+                {
+                    ObtenerHorarioDTO obtenerHorario = new ObtenerHorarioDTO();
+                    while (dr.Read())
+                    {
+                        //obtProf.idProfesional = int.Parse(dr["idUsuario"].ToString());
+                        //obtProf.NombreApellido = dr["Profesional"].ToString();
+                        if (!dr.IsDBNull(0)) //asigna el primer campo de la tabla a lo que se obteiene por GET
+                        {
+                            obtenerHorario.dia = dr.GetString(0);
+                        }
+                        if (!dr.IsDBNull(1))
+                        {
+                            obtenerHorario.turno = dr.GetString(1);
+                        }
+                        if (!dr.IsDBNull(2))
+                        {
+                            obtenerHorario.inicio = dr.GetString(2);
+                        }
+                        if (!dr.IsDBNull(3))
+                        {
+                            obtenerHorario.fin = dr.GetString(3);
+                        }
+                    }
+                    return obtenerHorario;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Error en Buscar Horario DAL " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
 
 
     }

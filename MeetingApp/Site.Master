@@ -6,12 +6,11 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <asp:PlaceHolder runat="server">     
-    </asp:PlaceHolder>
+    <asp:PlaceHolder runat="server"></asp:PlaceHolder>
 
-    <link rel="stylesheet" href="css/style.css">  
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
@@ -26,68 +25,68 @@
     </asp:ContentPlaceHolder>
 
 </head>
-<body>  
+<body>
 
     <form id="formulario" runat="server">
         <asp:ScriptManager runat="server" ID="ScriptManager1" AsyncPostBackTimeout="600">
-            <Scripts>           
-       
+            <Scripts>
             </Scripts>
         </asp:ScriptManager>
 
         <%-- SIDEBAR--%>
         <div class="wrapper d-flex align-items-stretch">
-			<nav id="sidebar" style="height:100vh;">
-				<h1><a href="index.html" class="logo">MA</a></h1>
-        <ul class="list-unstyled components mb-5">
-          <li class="active">
-            <a href="HomePaciente.aspx" runat="server" id="tabHomePaciente"><span class="fa fa-home"></span> Home</a>
-          </li>
-            <li class="">
-            <a href="HomeProfesional.aspx" runat="server" id="tabHomeProfesional"><span class="fa fa-home"></span> Home</a>
-          </li>
-          <li>
-              <a href="#" runat="server" id="tabTurno"><span class="fa fa-calendar-check-o"></span> Nuevo Turno</a>
-          </li>
-            <li>
-              <a href="Gestiones/Especialidades.aspx" runat="server" id="tabEspecialidades"><span class="fa fa-user-md"></span> Especialidades</a>
-          </li>
-            <li>
-              <a href="Gestiones/ObrasSociales.aspx" runat="server" id="tabObrasSociales"><span class="fa fa-medkit"></span> Obras Sociales</a>
-          </li>
-            <li>
-              <a href="Gestiones/Paciente.aspx" runat="server" id="tabPaciente"><span class="fa fa-user"></span> Paciente</a>
-          </li>
-            <li>
-              <a href="Gestiones/Profesional.aspx" runat="server" id="tabProfesional"><span class="fa fa-user-plus"></span> Profesional</a>
-          </li>
-            <li>
-              <a href="Gestiones/Horarios.aspx" runat="server" id="tabHorario"><span class="fa fa-clock-o"></span> Horarios</a>
-          </li>
-          <li>
-            <a href="#" runat="server" id="tabMisTurno"><span class="fa fa-sticky-note"></span> Mis turnos</a>
-          </li>
-          <li>
-            <a href="DatosPaciente.aspx" runat="server" id="tabDatosPaciente"><span class="fa fa-user"></span> Mis datos</a>
-          </li>
-            <li>
-            <a href="DatosProfesional.aspx" runat="server" id="tabDatosProfesional"><span class="fa fa-user"></span> Mis datos</a>
-          </li>
-            <li>
-            <a href="#" runat="server" id="tabReportes"><span class="fa fa-bar-chart"></span> Reportes</a>
-          </li>
-          <li>
-            <a href="InicioSesion.aspx" runat="server" id="tabCerrarSesion"><span class="fa fa-paper-plane"></span> Cerrar sesion</a>
-          </li>
-        </ul>
+            <nav id="sidebar" style="min-height: 100vh;">
+                <h1><a href="index.html" class="logo">MA</a></h1>
+                <ul class="list-unstyled components mb-5">
+                    <li class="active">
+                        <a href="HomePaciente.aspx" runat="server" id="tabHomePaciente"><span class="fa fa-home"></span>Home</a>
+                    </li>
+                    <li class="">
+                        <a href="HomeProfesional.aspx" runat="server" id="tabHomeProfesional"><span class="fa fa-home"></span>Home</a>
+                    </li>
+                    <li>
+                        <a href="#" runat="server" id="tabTurno"><span class="fa fa-calendar-check-o"></span>Nuevo Turno</a>
+                    </li>
+                    <li>
+                        <a href="Gestiones/Especialidades.aspx" runat="server" id="tabEspecialidades"><span class="fa fa-user-md"></span>Especialidades</a>
+                    </li>
+                    <li>
+                        <a href="Gestiones/ObrasSociales.aspx" runat="server" id="tabObrasSociales"><span class="fa fa-medkit"></span>Obras Sociales</a>
+                    </li>
+                    <li>
+                        <a href="Gestiones/Paciente.aspx" runat="server" id="tabPaciente"><span class="fa fa-user"></span>Paciente</a>
+                    </li>
+                    <li>
+                        <a href="Gestiones/Profesional.aspx" runat="server" id="tabProfesional"><span class="fa fa-user-plus"></span>Profesional</a>
+                    </li>
+                    <li>
+                        <a href="Gestiones/Horarios.aspx" runat="server" id="tabHorario"><span class="fa fa-clock-o"></span>Horarios</a>
+                    </li>
+                    <li>
+                        <a href="#" runat="server" id="tabMisTurno"><span class="fa fa-sticky-note"></span>Mis turnos</a>
+                    </li>
+                    <li>
+                        <a href="DatosPaciente.aspx" runat="server" id="tabDatosPaciente"><span class="fa fa-user"></span>Mis datos</a>
+                    </li>
+                    <li>
+                        <a href="DatosProfesional.aspx" runat="server" id="tabDatosProfesional"><span class="fa fa-user"></span>Mis datos</a>
+                    </li>
+                    <li>
+                        <a href="#" runat="server" id="tabReportes"><span class="fa fa-bar-chart"></span>Reportes</a>
+                    </li>
+                    <li>
+                        <a href="InicioSesion.aspx" runat="server" id="tabCerrarSesion"><span class="fa fa-paper-plane"></span>Cerrar sesion</a>
+                    </li>
+                </ul>
 
-        <div class="footer">
-        	<p>Practica Supervisada<i class="icon-heart" aria-hidden="true"></i> por <a href="" target="_blank">MeetingApp.com.ar</a>
-			</p>
-        </div>
-    	</nav>
+                <div class="footer">
+                    <p>
+                        Practica Supervisada<i class="icon-heart" aria-hidden="true"></i> por <a href="" target="_blank">MeetingApp.com.ar</a>
+                    </p>
+                </div>
+            </nav>
 
-    <%--    <!-- Page Content  -->
+            <%--    <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5">
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -119,11 +118,10 @@
             </div>
           </div>
         </nav>--%>
-                <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                   
-                </asp:ContentPlaceHolder>
-            </div>
-		</div>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" >
+            </asp:ContentPlaceHolder>
+        </div>
+        </div>
     </form>
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.js"></script>

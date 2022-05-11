@@ -17,19 +17,18 @@ namespace BLL
         {
             _horarioDAL.InsertarHorario(horario);
         }
-        public List<ObtenerHorarioDTO> ObtenerHorario(int id)
+        public List<ObtenerHorarioDTO> ObtenerHorarios(int id)
         {
-            return _horarioDAL.ObtenerHorario(id);
+            return _horarioDAL.ObtenerHorarios(id);
         }
 
         public void ActualizarHorario(int id, string desde, string hasta)
         {
             _horarioDAL.ActualizarHorario(id, desde, hasta);
         }
-
-
-
+        public ObtenerHorarioDTO ObtenerHorarioId(int id)
+        {
+            return _horarioDAL.ObtenerHorarioId(id);
+        }
     }
-
-
 }

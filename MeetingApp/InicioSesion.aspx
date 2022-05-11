@@ -33,7 +33,7 @@
                     </div>
                     <div>
                         <asp:Label ID="lblContra" runat="server" Text="Contraseña:"></asp:Label>
-                        <asp:TextBox ID="txtPass" CssClass="form-control" runat="server" placeholder="Contraseña"></asp:TextBox>
+                        <asp:TextBox ID="txtPass" CssClass="form-control" runat="server" placeholder="Contraseña" type="password"></asp:TextBox>
                     </div>
                     <hr />
                     <div class="row justify-content-center">
