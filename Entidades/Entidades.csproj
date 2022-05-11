@@ -42,7 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CaracterEspecial.cs" />
+    <Compile Include="Dia.cs" />
+    <Compile Include="DTOs\ObtenerHorarioDTO.cs" />
+    <Compile Include="DTOs\ObtenerProfesionalDTO.cs" />
     <Compile Include="Especialidad.cs" />
+    <Compile Include="Horario.cs" />
     <Compile Include="ObraSocial.cs" />
     <Compile Include="Referencia.cs" />
     <Compile Include="Rol.cs" />

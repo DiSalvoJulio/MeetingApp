@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using DAL;
 using Entidades;
+using Entidades.DTOs;
 
 namespace BLL
 {
@@ -14,12 +15,16 @@ namespace BLL
     {
         ProfesionalDAL _profesionalDAL = new ProfesionalDAL();
 
+
         public void ActualizarDatosProfesional(Usuario user)
         {
             _profesionalDAL.ActualizarDatosProfesional(user);
         }
-     
 
+        public List<ObtenerProfesionalDTO> BuscarProfesional()
+        {
+            return _profesionalDAL.BuscarProfesional();
+        }
 
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using Entidades;
+using Entidades.DTOs;
 
 namespace DAL
 {
@@ -45,6 +46,48 @@ namespace DAL
             }
         }
 
+        public List<ObtenerProfesionalDTO> BuscarProfesional()
+        {
+            try
+            {
+                string procedure = "sp_ObtenerProfesional";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = procedure;
+                comando.Parameters.Clear();
+                comando.CommandType = CommandType.StoredProcedure;
+
+                List<ObtenerProfesionalDTO> listaProfesional = new List<ObtenerProfesionalDTO>();
+
+                using (SqlDataReader dr = comando.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        ObtenerProfesionalDTO obtProf = new ObtenerProfesionalDTO();
+                        //obtProf.idProfesional = int.Parse(dr["idUsuario"].ToString());
+                        //obtProf.NombreApellido = dr["Profesional"].ToString();
+                        if (!dr.IsDBNull(0)) //asigna el primer campo de la tabla a lo que se obteiene por GET
+                        {
+                            obtProf.idProfesional = dr.GetInt32(0);
+                        }
+                        if (!dr.IsDBNull(1))
+                        {
+                            obtProf.NombreApellido = dr.GetString(1);
+                        }
+                        listaProfesional.Add(obtProf);
+                    }
+                    return listaProfesional;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Error en Buscar Profesional DAL " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+
+        }
 
     }
 }

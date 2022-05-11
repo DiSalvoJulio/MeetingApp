@@ -132,6 +132,7 @@
     <Content Include="Gestiones\Especialidades.aspx" />
     <Content Include="Gestiones\Especialidades.css" />
     <Content Include="Gestiones\Horarios.aspx" />
+    <Content Include="Gestiones\Horarios.css" />
     <Content Include="Gestiones\ObrasSociales.aspx" />
     <Content Include="Gestiones\ObrasSociales.css" />
     <Content Include="Gestiones\Paciente.aspx" />

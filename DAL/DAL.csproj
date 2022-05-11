@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexion.cs" />
+    <Compile Include="DiaDAL.cs" />
     <Compile Include="EspecialidadesDAL.cs" />
+    <Compile Include="HorarioDAL.cs" />
     <Compile Include="ObraSocialDAL.cs" />
     <Compile Include="PacienteDAL.cs" />
     <Compile Include="ProfesionalDAL.cs" />

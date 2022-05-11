@@ -1,0 +1,54 @@
+﻿/*.Buttons {
+    display: inline-block;
+    background-color: #ddd;
+    padding: 4px 11px;
+    font-family: Arial;
+    font-size: 16px;
+}
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.custom-control-label{
+    font-size: 20px;
+    
+}*/
+
+.tabla{
+    width: 100%;
+}
+
+table th {/*color y estilo del titulo*/
+    text-align: center;
+    background: black;
+    color: white;
+}
+
+table {/*estilo de letras y color de fondo de tabla*/
+    font-style: italic;
+    background-color: #C4DDFF;
+}
+
+tr, td{/*lineas de las row y espacio*/
+    border: 2px solid blue;
+    padding: 10px;
+    color: black;
+}
+
+.dias{
+    font-size: 20px;
+}
+
+
+
+
