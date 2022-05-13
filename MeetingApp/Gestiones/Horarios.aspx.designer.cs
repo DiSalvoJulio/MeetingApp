@@ -141,13 +141,13 @@ namespace MeetingApp.Gestiones
         protected global::System.Web.UI.WebControls.Panel panelModificarHorario;
 
         /// <summary>
-        /// Control h3Hora.
+        /// Control lblHorario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label h3Hora;
+        protected global::System.Web.UI.WebControls.Label lblHorario;
 
         /// <summary>
         /// Control lblDia.
@@ -159,13 +159,13 @@ namespace MeetingApp.Gestiones
         protected global::System.Web.UI.WebControls.Label lblDia;
 
         /// <summary>
-        /// Control horarioMañana.
+        /// Control divHorarioMañana.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl horarioMañana;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divHorarioMañana;
 
         /// <summary>
         /// Control cmbMañana1.
@@ -186,13 +186,13 @@ namespace MeetingApp.Gestiones
         protected global::System.Web.UI.WebControls.DropDownList cmbMañana2;
 
         /// <summary>
-        /// Control horarioTarde.
+        /// Control divHorarioTarde.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl horarioTarde;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divHorarioTarde;
 
         /// <summary>
         /// Control cmbTarde1.
@@ -213,13 +213,13 @@ namespace MeetingApp.Gestiones
         protected global::System.Web.UI.WebControls.DropDownList cmbTarde2;
 
         /// <summary>
-        /// Control btnSalir.
+        /// Control btnSalirModalActualizar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSalir;
+        protected global::System.Web.UI.WebControls.Button btnSalirModalActualizar;
 
         /// <summary>
         /// Control btnActualizar.
@@ -249,13 +249,13 @@ namespace MeetingApp.Gestiones
         protected global::System.Web.UI.WebControls.Label lblDiaEliminar;
 
         /// <summary>
-        /// Control Div1.
+        /// Control divHorarioEliminarMañana.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divHorarioEliminarMañana;
 
         /// <summary>
         /// Control lblMañanaDesdeEliminar.
@@ -276,13 +276,13 @@ namespace MeetingApp.Gestiones
         protected global::System.Web.UI.WebControls.Label lblMañanaHastaEliminar;
 
         /// <summary>
-        /// Control Div2.
+        /// Control divHorarioEliminarTarde.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div2;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divHorarioEliminarTarde;
 
         /// <summary>
         /// Control lblTardeDesdeEliminar.

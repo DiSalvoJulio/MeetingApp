@@ -14,7 +14,7 @@
             <div class="form-group col-md-6">
                 <%--DNI--%>
                 <asp:Label ID="Label4" runat="server" Text="Ingrese el D.N.I. del Profesional"></asp:Label>
-                <asp:TextBox ID="txtDniBuscar" name="txtDniBuscar" runat="server" placeholder="D.N.I." CssClass="form-control" MaxLength="40"></asp:TextBox>
+                <asp:TextBox ID="txtDniBuscar" name="txtDniBuscar" runat="server" placeholder="D.N.I." CssClass="form-control" MinLength="7" MaxLength="10" required="true"></asp:TextBox>
             </div>
             <div class="form-group col-md-6 mt-4">
                 <%--APELLIDO--%>

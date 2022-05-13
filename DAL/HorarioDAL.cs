@@ -176,5 +176,64 @@ namespace DAL
         }
 
 
+        //ELIMINAR HORARIO
+        public void EliminarHorario(Horario horario)
+        {
+            try
+            {
+                string procedure = "sp_EliminarHorario";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = procedure;
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@idHorario", horario.idHorario);
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en eliminar horario DAL " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
+        //VALIDAR HORARIO
+        public bool ValidarHorario(Horario horario)
+        {
+            try
+            {
+                string procedure = "sp_ValidarHorario";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = procedure;
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@idDia", horario.idDia);
+                comando.Parameters.AddWithValue("@turno", horario.turno);
+
+                using (SqlDataReader dr = comando.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception("Error en validar horario DAL " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
     }
 }

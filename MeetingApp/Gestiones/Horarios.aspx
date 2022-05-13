@@ -9,16 +9,16 @@
         <hr />
         <h5>Seleccione un profesional al cual se le asignara el horario de atencion</h5>
         <asp:Label ID="Label1" runat="server" Text="Profesional" CssClass="mr-3"></asp:Label>
-        <asp:DropDownList ID="cmbProfesional" runat="server" CssClass="btn btn-dark dropdown-toggle col-auto mt-1" AutoPostBack="true" OnSelectedIndexChanged="cmbProfesional_SelectedIndexChanged">
+        <asp:DropDownList ID="cmbProfesional" runat="server" CssClass="btn btn-primary dropdown-toggle col-auto mt-1" AutoPostBack="true" OnSelectedIndexChanged="cmbProfesional_SelectedIndexChanged">
         </asp:DropDownList>
         <!--Tabla horario-->
-        <div id="IdTablaHorario">
+        <div id="IdTablaHorario" class="table mt-4">
             <%--<h5 class="mt-5">Tabla de horarios</h5>--%>
             <%-- <asp:UpdatePanel runat="server">
                 <ContentTemplate>--%>
-            <asp:GridView ID="gvHorario" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover mt-5" OnRowCommand="gvHorario_RowCommand">
+            <asp:GridView ID="gvHorario" runat="server" AutoGenerateColumns="False" CssClass="table text-center table-hover" OnRowCommand="gvHorario_RowCommand" >
                 <HeaderStyle BackColor="#3E64FF" ForeColor="White" />
-                <RowStyle BackColor="#D6DBDF" ForeColor="#333333" />
+                    <RowStyle BackColor="#D6DBDF" ForeColor="#333333" />
                 <Columns>
                     <%--<asp:BoundField DataField="idArticulo" HeaderText="ARTICULO" />--%>
                     <asp:BoundField DataField="dia" HeaderText="Dia" />
@@ -28,12 +28,13 @@
                     <asp:BoundField DataField="profesional" HeaderText="Profesional" />
                     <asp:TemplateField HeaderText="Acciones">
                         <ItemTemplate>
-                            <asp:Button runat="server" ID="btnEditarHorario" CommandName="Modificar" CommandArgument='<%# Eval("idHorario") %>' Text="Modificar" CssClass="btn btn-success" />
+                            <asp:Button runat="server" ID="btnEditarHorario" CommandName="Modificar" CommandArgument='<%# Eval("idHorario") %>' Text="Modificar" CssClass="btn btn-info" />
 
                             <asp:Button runat="server" ID="btnEliminar" CommandName="Eliminar" CommandArgument='<%# Eval("idHorario") %>' Text="Eliminar" CssClass="btn btn-danger" />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
+  
             </asp:GridView>
             <%--<asp:Table ID="tblCarro" runat="server" Width="82px">
                 </asp:Table>--%>
@@ -136,8 +137,8 @@
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content w-75" style="margin-left: 12.5%">
                         <div class="modal-header">
-                            <h3 class="modal-title mr-1" style="margin-left: auto">Horario de </h3>
-                            <asp:Label CssClass="h3" Text="" ID="h3Hora" runat="server"></asp:Label>
+                            <h3 class="modal-title mr-1" style="margin-left: auto">Horario:</h3>
+                            <asp:Label CssClass="h3 ml-2" Text="" ID="lblHorario" runat="server"></asp:Label>
                             <hr />
                             <button runat="server" class="close" data-bs-dismiss="modal" aria-label="Close"
                                 onserverclick="CerrarModalHorario">
@@ -150,7 +151,7 @@
                                 <asp:Label ID="lblDia" Text="" CssClass="h5 col-sm-2 mt-1" runat="server"></asp:Label>
                             </div>
                             <%--MAÑANA--%>
-                            <div class="text-center row" id="horarioMañana" runat="server">
+                            <div class="text-center row" id="divHorarioMañana" runat="server">
                                 <div class="col-sm-1">
                                     <asp:Label runat="server" Text="Inicio"></asp:Label>
                                 </div>
@@ -185,7 +186,7 @@
                             <%--FIN MAÑANA--%>
 
                             <%--TARDE--%>
-                            <div class="text-center" id="horarioTarde" runat="server">
+                            <div class="text-center row" id="divHorarioTarde" runat="server">
                                 <div class="col-sm-1">
                                     <asp:Label runat="server" Text="Inicio"></asp:Label>
                                 </div>
@@ -224,7 +225,7 @@
                         </div>
                         <!--Fin Body Modal-->
                         <div class="modal-footer">
-                            <asp:Button ID="btnSalir" Text="Cancelar" runat="server" type="button" class="btn btn-danger" />
+                            <asp:Button ID="btnSalirModalActualizar" Text="Cancelar" runat="server" type="button" class="btn btn-danger" OnClick="btnSalirModalActualizar_Click" />
                             <asp:Button ID="btnActualizar" Text="Confirmar" runat="server" type="button" class="btn btn-primary" OnClick="btnActualizar_Click" />
                         </div>
                     </div>
@@ -250,45 +251,45 @@
                             <%--CODIGO CUERPO MODAL--%>
                             <div class="mb-3 row">
                                 <h4 class="col-sm-1 mr-2">Dia:</h4>
-                                <asp:Label ID="lblDiaEliminar" Text="" CssClass="h5 col-sm-2 mt-1" runat="server"></asp:Label>
+                                <asp:Label ID="lblDiaEliminar" Text="" CssClass="h5 col-sm-2 mt-1 ml-2" runat="server"></asp:Label>
                             </div>
                             <%--MAÑANA--%>
-                            <div class="text-center row" id="Div1" runat="server">
+                            <div class="text-center row" id="divHorarioEliminarMañana" runat="server">
                                 <div class="col-sm-1">
                                     <asp:Label runat="server" Text="Inicio"></asp:Label>
                                 </div>
                                 <div class="col-sm-3">
-                                    
-                                <asp:Label ID="lblMañanaDesdeEliminar" Text="" CssClass="h5 col-sm-2 mt-1" runat="server"></asp:Label>
+
+                                    <asp:Label ID="lblMañanaDesdeEliminar" Text="" CssClass="h5 col-sm-2 mt-1" runat="server"></asp:Label>
 
                                 </div>
                                 <div class="col-sm-1">
                                     <asp:Label runat="server" Text="Fin"></asp:Label>
                                 </div>
                                 <div class="col-sm-3">
-                                    
-                                <asp:Label ID="lblMañanaHastaEliminar" Text="" CssClass="h5 col-sm-2 mt-1" runat="server"></asp:Label>
+
+                                    <asp:Label ID="lblMañanaHastaEliminar" Text="" CssClass="h5 col-sm-2 mt-1" runat="server"></asp:Label>
 
                                 </div>
                             </div>
                             <%--FIN MAÑANA--%>
 
                             <%--TARDE--%>
-                            <div class="text-center" id="Div2" runat="server">
+                            <div class="text-center row" id="divHorarioEliminarTarde" runat="server">
                                 <div class="col-sm-1">
                                     <asp:Label runat="server" Text="Inicio"></asp:Label>
                                 </div>
                                 <div class="col-sm-3">
-                                    
-                                <asp:Label ID="lblTardeDesdeEliminar" Text="" CssClass="h5 col-sm-2 mt-1" runat="server"></asp:Label>
+
+                                    <asp:Label ID="lblTardeDesdeEliminar" Text="" CssClass="h5 col-sm-2 mt-1" runat="server"></asp:Label>
 
                                 </div>
                                 <div class="col-sm-1">
                                     <asp:Label runat="server" Text="Fin"></asp:Label>
                                 </div>
                                 <div class="col-sm-3">
-                                    
-                                <asp:Label ID="lblTardeHastaEliminar" Text="" CssClass="h5 col-sm-2 mt-1" runat="server"></asp:Label>
+
+                                    <asp:Label ID="lblTardeHastaEliminar" Text="" CssClass="h5 col-sm-2 mt-1" runat="server"></asp:Label>
 
                                 </div>
                             </div>
@@ -297,8 +298,8 @@
                         </div>
                         <!--Fin Body Modal-->
                         <div class="modal-footer">
-                            <asp:Button ID="btnCancelarEliminar" Text="Cancelar" runat="server" type="button" class="btn btn-danger" />
-                            <asp:Button ID="btnConfirmarEliminar" Text="Confirmar" runat="server" type="button" class="btn btn-primary" />
+                            <asp:Button ID="btnCancelarEliminar" Text="Cancelar" runat="server" type="button" class="btn btn-danger" OnClick="btnCancelarEliminar_Click" />
+                            <asp:Button ID="btnConfirmarEliminar" Text="Confirmar" runat="server" type="button" class="btn btn-primary" OnClick="btnConfirmarEliminar_Click" />
                         </div>
                     </div>
                 </div>

@@ -142,7 +142,6 @@ namespace DAL
                         return false;
                     }
                 }
-
             }
 
             catch (Exception ex)

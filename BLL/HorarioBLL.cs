@@ -30,5 +30,17 @@ namespace BLL
         {
             return _horarioDAL.ObtenerHorarioId(id);
         }
+
+        public void EliminarHorario(Horario horario)
+        {
+            _horarioDAL.EliminarHorario(horario);
+        }
+
+        public bool ValidarHorario(Horario horario)
+        {
+            return _horarioDAL.ValidarHorario(horario);
+        }
+
+
     }
 }

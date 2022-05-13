@@ -26,35 +26,24 @@ namespace MeetingApp.Gestiones
             }
         }
 
-        public bool BuscarProfesional()
+        public bool BuscarProfesionalDni()
         {
-
             string dni = txtDniBuscar.Text;
-            Usuario user = _usuarioBLL.BuscarUsuarioDni(dni);
+            //Usuario user = _usuarioBLL.BuscarUsuarioDni(dni);
+            Usuario user = _profesionalBLL.BuscarProfesionalDni(dni);
             bool profesional = false;
             if (user == null)
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo encontrar un Profesional', 'error')", true);
                 profesional = false;
-            }
-            if (user.idRol == 2)//paciente
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo encontrar un Profesional', 'error')", true);
-                profesional = false;
-            }
-            else if (user.idRol == 3)
-            {
-                Session["idUsuario"] = user.idUsuario;//usuario almacenado en session guardado en id
-                Session["User"] = user;//en este usuario cargo todos los datos 
-                CargarComboEspecialidades();
-                CargarCamposProfesional(user);
-                profesional = true;
-            }
-            else if (user.idRol == 1)
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo encontrar un Profesional', 'error')", true);
-                profesional = false;
-            }
+                return profesional;
+            }        
+
+            Session["idUsuario"] = user.idUsuario;//usuario almacenado en session guardado en id
+            Session["User"] = user;//en este usuario cargo todos los datos 
+            CargarComboEspecialidades();          
+            CargarCamposProfesional(user);
+            profesional = true;         
             return profesional;
 
         }
@@ -66,7 +55,8 @@ namespace MeetingApp.Gestiones
                 txtApellido.Text = user.apellido;
                 txtNombre.Text = user.nombre;
                 txtDni.Text = user.dni;
-                txtFecNac.Text = user.fechaNacimiento.ToString("yyyy-MM-dd");//mostrar fecha desde la bd en front. Esta conversion se hace pq la bd tiene ese formato. año/mes/dia                       
+                txtFecNac.Text = user.fechaNacimiento.ToString("yyyy-MM-dd");
+                //mostrar fecha desde la bd en front. Esta conversion se hace pq la bd tiene ese formato. año/mes/dia                       
                 txtEmail.Text = user.email;
                 txtTelefono.Text = user.telefono;
                 txtDireccion.Text = user.direccion;
@@ -111,7 +101,7 @@ namespace MeetingApp.Gestiones
         {
             try
             {
-                if (BuscarProfesional())
+                if (BuscarProfesionalDni())
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Se encontro un Profesional!', 'success')", true);
                     btnModificar.Enabled = true;
@@ -243,16 +233,8 @@ namespace MeetingApp.Gestiones
             txtEmail.Text = "";
             txtTelefono.Text = "";
             txtDireccion.Text = "";
-            txtMatricula.Text = "";
-            //limpiar data bind nulo y cargar un items           
-            //int indice = -1;
-            //cmbEspecialidad.DataSource = null;
-            //cmbEspecialidad.DataTextField = "descripcion";
-            //cmbEspecialidad.DataValueField = "idEspecialidad";
-            //cmbEspecialidad.DataBind();
-            //cmbEspecialidad.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "-1", false));
-            VaciarCombo();
-            //cmbEspecialidad.SelectedValue = "-1";
+            txtMatricula.Text = "";        
+            VaciarCombo();            
             txtIngreso.Text = "";
             txtEdad.Text = "";
         }

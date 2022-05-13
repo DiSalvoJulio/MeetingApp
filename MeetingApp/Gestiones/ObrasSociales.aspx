@@ -42,9 +42,9 @@
                         <asp:TemplateField HeaderText="ACCIONES">
                             <ItemTemplate>
 
-                                <asp:Button runat="server" ID="btnModificar" CommandName="Modificar" CommandArgument='<%# Eval("idObraSocial") %>' Text="Modificar" CssClass="btn btn-info" />
+                                <asp:Button runat="server" ID="btnModificar" CommandName="Modificar" CommandArgument='<%#Eval("idObraSocial")%>' Text="Modificar" CssClass="btn btn-info" />
 
-                                <asp:Button runat="server" ID="btnEliminar" CommandName="Eliminar" CommandArgument='<%# Eval("idObraSocial") %>' Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" />
+                                <asp:Button runat="server" ID="btnEliminar" CommandName="Eliminar" CommandArgument='<%#Eval("idObraSocial")%>' Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" />
 
                             </ItemTemplate>
                         </asp:TemplateField>

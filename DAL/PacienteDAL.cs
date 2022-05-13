@@ -163,19 +163,19 @@ namespace DAL
             return usuario;
         }
 
-        //BUSCAR PACIENTE
+        //BUSCAR PACIENTE POR DNI
         public Usuario BuscarPacienteDni(string dni)
         {
             Usuario u = null;
             //string passEncriptada = DAL.EncryptKeys.EncriptarPassword(pass, "Keys");
             try
             {
-                string procedure = "sp_ObtenerUsuario";
+                string procedure = "sp_ObtenerPacienteDNI";
                 comando.Connection = Conexion.AbrirConexion();
                 comando.CommandType = CommandType.StoredProcedure;
                 comando.CommandText = procedure;
                 comando.Parameters.Clear();
-                comando.Parameters.AddWithValue("@dato", dni);
+                comando.Parameters.AddWithValue("@dni", dni);
                 
                 SqlDataReader dr = comando.ExecuteReader();
 
@@ -187,10 +187,12 @@ namespace DAL
                 return u;
             }
             catch (Exception ex)
+            {               
+                throw new Exception(ex.Message);                
+            }
+            finally
             {
                 Conexion.CerrarConexion();
-                throw new Exception(ex.Message);
-                //return u;
             }
         }
 

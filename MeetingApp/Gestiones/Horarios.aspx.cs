@@ -78,7 +78,7 @@ namespace MeetingApp.Gestiones
             try
             {
                 List<ObtenerProfesionalDTO> listaProfesional = new List<ObtenerProfesionalDTO>();
-                listaProfesional = _profesionalBLL.BuscarProfesional();
+                listaProfesional = _profesionalBLL.ObtenerListaProfesionales();
                 cmbProfesional.Items.Clear();
 
                 int indice = 0;
@@ -107,65 +107,116 @@ namespace MeetingApp.Gestiones
         public List<Horario> CargarHorarioPorDia()
         {
             List<Horario> listaHorarios = new List<Horario>();
-            if (cmbDias.Text == "1" || cmbDias.Text == "2" || cmbDias.Text == "3" || cmbDias.Text == "4" || cmbDias.Text == "5" || cmbDias.Text == "6")
+
+            List<ObtenerHorarioDTO> ListaObtenerHorarios = _horarioBLL.ObtenerHorarios(int.Parse(cmbProfesional.SelectedValue));
+            bool turnoYaExiste = false;
+            //validar con la consulta la tabla del profesional horario comparar 
+            for (int i = 0; i < ListaObtenerHorarios.Count; i++)
             {
-                if (cmbDesdeMañana.SelectedValue != "0" && cmbHastaMañana.SelectedValue != "0")
+                string dia = "";
+                if (cmbDias.Text == "1")
                 {
-                    cmbDesdeMañana.Text = cmbDesdeMañana.Items[cmbDesdeMañana.SelectedIndex].ToString();
-                    cmbHastaMañana.Text = cmbHastaMañana.Items[cmbHastaMañana.SelectedIndex].ToString();
-                    cmbDesdeTarde.Text = cmbDesdeTarde.Items[cmbDesdeTarde.SelectedIndex].ToString();
-                    cmbHastaTarde.Text = cmbHastaTarde.Items[cmbHastaTarde.SelectedIndex].ToString();
-
-                    //MAÑANA
-                    Horario horarioMañana = new Horario();
-                    horarioMañana.desde = cmbDesdeMañana.Text;
-                    horarioMañana.hasta = cmbHastaMañana.Text;
-                    horarioMañana.idDia = Convert.ToInt32(cmbDias.Text);
-                    horarioMañana.idUsuarioProfesional = Convert.ToInt32(cmbProfesional.SelectedValue);
-                    horarioMañana.turno = "Mañana";
-                    int mañanaHasta = Convert.ToInt32(RecortarHorario(horarioMañana.hasta));
-                    int mañanaDesde = Convert.ToInt32(RecortarHorario(horarioMañana.desde));
-                    int cantidadMañana = (mañanaHasta - mañanaDesde);
-                    horarioMañana.cantidad = cantidadMañana;
-                    //horarioMañana.cantidad = CantidadTurnosMañana();
-                    //listaHorarios.Add(horarioMañana);
-
-                    _horarioBLL.InsertarHorario(horarioMañana);
-
+                    dia = "Lunes";
                 }
-                else if (cmbDesdeTarde.SelectedValue == "0" && cmbHastaTarde.SelectedValue == "0")
+                if (cmbDias.Text == "2")
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'Debe seleccionar desde y hasta', 'error')", true);
+                    dia = "Martes";
                 }
-
-                if (cmbDesdeTarde.SelectedValue != "0" && cmbHastaTarde.SelectedValue != "0")
+                if (cmbDias.Text == "3")
                 {
-                    //TARDE
-                    Horario horarioTarde = new Horario();
-                    horarioTarde.desde = cmbDesdeTarde.Text;
-                    horarioTarde.hasta = cmbHastaTarde.Text;
-                    horarioTarde.idDia = Convert.ToInt32(cmbDias.Text);
-                    horarioTarde.idUsuarioProfesional = Convert.ToInt32(cmbProfesional.SelectedValue);
-                    int tardeHasta = Convert.ToInt32(RecortarHorario(horarioTarde.hasta));
-                    int tardeDesde = Convert.ToInt32(RecortarHorario(horarioTarde.desde));
-                    int cantidadTarde = (tardeHasta - tardeDesde);
-                    horarioTarde.cantidad = cantidadTarde;
-                    //horarioTarde.cantidad = CantidadTurnosTarde();
-                    horarioTarde.turno = "Tarde";
-                    //listaHorarios.Add(horarioTarde);
-
-                    _horarioBLL.InsertarHorario(horarioTarde);
-
+                    dia = "Miercoles";
                 }
-                else if (cmbDesdeTarde.SelectedValue == "0" && cmbHastaTarde.SelectedValue == "0")
+                if (cmbDias.Text == "4")
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'Debe seleccionar desde y hasta', 'error')", true);
+                    dia = "Jueves";
+                }
+                if (cmbDias.Text == "5")
+                {
+                    dia = "Viernes";
+                }
+                if (cmbDias.Text == "6")
+                {
+                    dia = "Sabado";
+                }
+                if (ListaObtenerHorarios[i].dia == dia)
+                {
+                    string turno = "";
+                    if (cmbDesdeMañana.SelectedIndex > 0 && cmbHastaMañana.SelectedIndex > 0)
+                    {
+                        turno = "mañana";
+                    }
+                    if (cmbDesdeTarde.SelectedIndex > 0 && cmbHastaTarde.SelectedIndex > 0)
+                    {
+                        turno = "tarde";
+                    }
+                    if (ListaObtenerHorarios[i].turno.ToLower() == turno)
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'El profesional ya tiene un horario en ese turno', 'warning')", true);
+                        turnoYaExiste = true;
+                        break;
+                    }
                 }
             }
-            else
+
+            if (!turnoYaExiste)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'El Dia Domingo No se puede Cargar', 'error')", true);
+                if (cmbDias.Text == "1" || cmbDias.Text == "2" || cmbDias.Text == "3" || cmbDias.Text == "4" || cmbDias.Text == "5" || cmbDias.Text == "6")
+                {
+
+                    if (cmbDesdeMañana.SelectedValue != "0" && cmbHastaMañana.SelectedValue != "0")
+                    {
+                        cmbDesdeMañana.Text = cmbDesdeMañana.Items[cmbDesdeMañana.SelectedIndex].ToString();
+                        cmbHastaMañana.Text = cmbHastaMañana.Items[cmbHastaMañana.SelectedIndex].ToString();
+                        cmbDesdeTarde.Text = cmbDesdeTarde.Items[cmbDesdeTarde.SelectedIndex].ToString();
+                        cmbHastaTarde.Text = cmbHastaTarde.Items[cmbHastaTarde.SelectedIndex].ToString();
+
+                        //MAÑANA
+                        Horario horarioMañana = new Horario();
+
+                        horarioMañana.desde = cmbDesdeMañana.Text;
+                        horarioMañana.hasta = cmbHastaMañana.Text;
+                        horarioMañana.idDia = Convert.ToInt32(cmbDias.Text);
+                        horarioMañana.idUsuarioProfesional = Convert.ToInt32(cmbProfesional.SelectedValue);
+                        horarioMañana.turno = "Mañana";
+                        int mañanaHasta = Convert.ToInt32(RecortarHorario(horarioMañana.hasta));
+                        int mañanaDesde = Convert.ToInt32(RecortarHorario(horarioMañana.desde));
+                        int cantidadMañana = (mañanaHasta - mañanaDesde);
+                        horarioMañana.cantidad = cantidadMañana;
+                       
+                        _horarioBLL.InsertarHorario(horarioMañana);                      
+
+                    }
+                    else if (cmbDesdeTarde.SelectedValue == "0" && cmbHastaTarde.SelectedValue == "0")
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'Debe seleccionar desde y hasta', 'error')", true);
+                    }
+
+                    if (cmbDesdeTarde.SelectedValue != "0" && cmbHastaTarde.SelectedValue != "0")
+                    {
+                        //TARDE
+                        Horario horarioTarde = new Horario();
+                        horarioTarde.desde = cmbDesdeTarde.Text;
+                        horarioTarde.hasta = cmbHastaTarde.Text;
+                        horarioTarde.idDia = Convert.ToInt32(cmbDias.Text);
+                        horarioTarde.idUsuarioProfesional = Convert.ToInt32(cmbProfesional.SelectedValue);
+                        int tardeHasta = Convert.ToInt32(RecortarHorario(horarioTarde.hasta));
+                        int tardeDesde = Convert.ToInt32(RecortarHorario(horarioTarde.desde));
+                        int cantidadTarde = (tardeHasta - tardeDesde);
+                        horarioTarde.cantidad = cantidadTarde;
+                        //horarioTarde.cantidad = CantidadTurnosTarde();
+                        horarioTarde.turno = "Tarde";
+                        //listaHorarios.Add(horarioTarde);
+
+                        _horarioBLL.InsertarHorario(horarioTarde);
+
+                    }
+                    else if (cmbDesdeTarde.SelectedValue == "0" && cmbHastaTarde.SelectedValue == "0")
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'Debe seleccionar desde y hasta', 'error')", true);
+                    }
+                }
             }
+          
             return listaHorarios;
         }
 
@@ -181,9 +232,19 @@ namespace MeetingApp.Gestiones
         {
             try
             {
-                CargarHorarioPorDia();
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Horario cargado!', 'success')", true);
-                LimpiarCombosHorarios();
+                if (cmbProfesional.SelectedValue != "0")
+                {
+                    if (ValidarDesdehasta())
+                    {
+                        CargarHorarioPorDia();
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Horario cargado!', 'success')", true);
+                        LimpiarCombosHorarios();
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Debe seleccionar un profesional para cargar un horario', 'warning')", true);
+                }
             }
             catch (Exception ex)
             {
@@ -201,21 +262,23 @@ namespace MeetingApp.Gestiones
             {
                 //BOTON MODIFICAR EN LA GRILLA
                 panelModificarHorario.Visible = true;
-                horarioMañana.Visible = false;
-                horarioTarde.Visible = false;
+                //ocultar divs
+                divHorarioMañana.Visible = false;
+                divHorarioTarde.Visible = false;
+
                 //solo cargamos campos de la modal
                 ObtenerHorarioDTO horarios = _horarioBLL.ObtenerHorarioId(int.Parse(ViewState["idHorario"].ToString()));
-                h3Hora.Text = horarios.turno.ToString();
+                lblHorario.Text = horarios.turno.ToString();
                 lblDia.Text = horarios.dia;
                 if (horarios.turno == "Mañana")
                 {
-                    horarioMañana.Visible = true;
+                    divHorarioMañana.Visible = true;
                     cmbMañana1.SelectedValue = horarios.inicio;
                     cmbMañana2.SelectedValue = horarios.fin;
                 }
                 if (horarios.turno == "Tarde")
                 {
-                    horarioTarde.Visible = true;
+                    divHorarioTarde.Visible = true;
                     cmbTarde1.SelectedValue = horarios.inicio;
                     cmbTarde2.SelectedValue = horarios.fin;
                 }
@@ -224,25 +287,33 @@ namespace MeetingApp.Gestiones
             }
             if (e.CommandName.Equals("Eliminar"))
             {
+                //BOTON ELIMINAR EN LA GRILLA
                 panelEliminarHorario.Visible = true;
+                //ocultar divs
+                divHorarioEliminarMañana.Visible = false;
+                divHorarioEliminarTarde.Visible = false;
+
+                //solo cargamos campos de la modal
                 ObtenerHorarioDTO horarios = _horarioBLL.ObtenerHorarioId(int.Parse(ViewState["idHorario"].ToString()));
-                //h3Hora.Text = horarios.turno.ToString();
+                lblHorario.Text = horarios.turno.ToString();
                 lblDiaEliminar.Text = horarios.dia;
+
                 if (horarios.turno == "Mañana")
                 {
-                    horarioMañana.Visible = true;
+                    divHorarioEliminarMañana.Visible = true;
                     lblMañanaDesdeEliminar.Text = horarios.inicio;
                     lblMañanaHastaEliminar.Text = horarios.fin;
                 }
                 if (horarios.turno == "Tarde")
                 {
-                    horarioTarde.Visible = true;
+                    divHorarioEliminarTarde.Visible = true;
                     lblTardeDesdeEliminar.Text = horarios.inicio;
                     lblTardeHastaEliminar.Text = horarios.fin;
                 }
             }
         }
 
+        //cargar tabla con horarios
         protected void cmbProfesional_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarTablaHorario();
@@ -263,6 +334,7 @@ namespace MeetingApp.Gestiones
             panelEliminarHorario.Visible = false;
         }
 
+        //limpiar los combos de horarios
         public void LimpiarCombosHorarios()
         {
             cmbDesdeMañana.SelectedValue = "0";
@@ -271,6 +343,7 @@ namespace MeetingApp.Gestiones
             cmbHastaTarde.SelectedValue = "0";
         }
 
+        //vaciar tabla horarios
         public void VaciarTablaHorarios()
         {
             cmbProfesional.SelectedValue = "0";
@@ -278,12 +351,13 @@ namespace MeetingApp.Gestiones
             gvHorario.DataBind();
         }
 
+        //metodo actualizar horario
         public void ActualizarHorario()
         {
             Horario nuevoHorario = new Horario();
             nuevoHorario.idHorario = int.Parse(ViewState["idHorario"].ToString());
 
-            if (h3Hora.Text.ToString().Trim() == "Mañana")
+            if (lblHorario.Text.ToString().Trim() == "Mañana")
             {
                 nuevoHorario.desde = cmbMañana1.SelectedValue.ToString();
                 nuevoHorario.hasta = cmbMañana2.SelectedValue.ToString();
@@ -294,8 +368,11 @@ namespace MeetingApp.Gestiones
             {
                 nuevoHorario.desde = cmbTarde1.SelectedValue.ToString();
                 nuevoHorario.hasta = cmbTarde2.SelectedValue.ToString();
+
                 _horarioBLL.ActualizarHorario(nuevoHorario.idHorario, nuevoHorario.desde, nuevoHorario.hasta);
             }
+
+
         }
 
 
@@ -309,11 +386,69 @@ namespace MeetingApp.Gestiones
                 panelModificarHorario.Visible = false;
                 CargarTablaHorario();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                throw new Exception("No se pudo actualizar horario " + ex.Message);
             }
         }
+
+        //cerrar modal actualizar
+        protected void btnSalirModalActualizar_Click(object sender, EventArgs e)
+        {
+            panelModificarHorario.Visible = false;
+        }
+
+        //metodo eliminar horario
+        public void EliminarHorario()
+        {
+            Horario horario = new Horario();
+            horario.idHorario = int.Parse(ViewState["idHorario"].ToString());
+            _horarioBLL.EliminarHorario(horario);
+        }
+
+        //boton eliminar horario
+        protected void btnConfirmarEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                EliminarHorario();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Se Elimino el horario!', 'success')", true);
+                panelEliminarHorario.Visible = false;
+                CargarTablaHorario();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("No se pudo eliminar horario " + ex.Message);
+            }
+        }
+
+        //cerrar modal eliminar
+        protected void btnCancelarEliminar_Click(object sender, EventArgs e)
+        {
+            panelEliminarHorario.Visible = false;
+        }
+
+        //validar que Hora de Inicio sea anterior a Hora Fin
+        public bool ValidarDesdehasta()
+        {
+            int desdeM = int.Parse(RecortarHorario(cmbDesdeMañana.Text));
+            int hastaM = int.Parse(RecortarHorario(cmbHastaMañana.Text));
+            int desdeT = int.Parse(RecortarHorario(cmbHastaTarde.Text));
+            int hastaT = int.Parse(RecortarHorario(cmbHastaTarde.Text));
+
+            if (desdeM > hastaM)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'Hora de Inicio debe ser anterior a Hora Fin', 'error')", true);
+                return false;
+            }
+            if (desdeT < hastaT)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'Hora de Inicio debe ser anterior a Hora Fin', 'error')", true);
+                return false;
+            }
+            return true;
+        }
+
 
 
     }

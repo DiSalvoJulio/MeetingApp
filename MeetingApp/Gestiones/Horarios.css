@@ -27,19 +27,20 @@
 .tabla{
     width: 100%;
 }
-
-table th {/*color y estilo del titulo*/
+ 
+th { /*color y estilo del titulo*/
     text-align: center;
-    background: black;
+    background: #3E64FF;
     color: white;
+    padding: 0px;
 }
 
-table {/*estilo de letras y color de fondo de tabla*/
+table { /*estilo de letras y color de fondo de tabla*/
     font-style: italic;
-    background-color: #C4DDFF;
+    background-color: #dee2e6;
 }
 
-tr, td{/*lineas de las row y espacio*/
+tr, td { /*lineas de las row y espacio*/
     border: 2px solid blue;
     padding: 10px;
     color: black;
@@ -47,6 +48,14 @@ tr, td{/*lineas de las row y espacio*/
 
 .dias{
     font-size: 20px;
+}
+
+.table th {
+    padding: 0rem;       
+}
+
+body{
+    color: black;
 }
 
 

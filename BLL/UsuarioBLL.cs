@@ -13,10 +13,10 @@ namespace BLL
     public class UsuarioBLL
     {
         UsuarioDAL _usuarioDAL = new UsuarioDAL();
-        public Usuario BuscarUsuarioDni(string dni)
-        {
-            return _usuarioDAL.BuscarUsuarioDni(dni);
-        }
+        //public Usuario BuscarUsuarioDni(string dni)
+        //{
+        //    return _usuarioDAL.(dni);
+        //}
 
     }
 }
