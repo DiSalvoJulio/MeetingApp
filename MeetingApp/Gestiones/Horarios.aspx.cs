@@ -90,7 +90,6 @@ namespace MeetingApp.Gestiones
                     cmbProfesional.DataBind();
 
                     cmbProfesional.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccionar...", "0"));
-
                 }
                 else
                 {
@@ -182,8 +181,8 @@ namespace MeetingApp.Gestiones
                         int mañanaDesde = Convert.ToInt32(RecortarHorario(horarioMañana.desde));
                         int cantidadMañana = (mañanaHasta - mañanaDesde);
                         horarioMañana.cantidad = cantidadMañana;
-                       
-                        _horarioBLL.InsertarHorario(horarioMañana);                      
+
+                        _horarioBLL.InsertarHorario(horarioMañana);
 
                     }
                     else if (cmbDesdeTarde.SelectedValue == "0" && cmbHastaTarde.SelectedValue == "0")
@@ -216,13 +215,14 @@ namespace MeetingApp.Gestiones
                     }
                 }
             }
-          
+
             return listaHorarios;
         }
 
         //CORTAR HORA PARA HACER RESTA Y CALCULAR LA CANTIDAD DE TURNOS
         public string RecortarHorario(string hora)
         {
+            if (hora.Length == 1) return "0"; // 0 return "0"
             string nuevaHora = hora.Substring(0, 2);
             return nuevaHora;
         }
@@ -232,9 +232,14 @@ namespace MeetingApp.Gestiones
         {
             try
             {
-                if (cmbProfesional.SelectedValue != "0")
+                if (cmbProfesional.SelectedValue != "0")//valida la seleccion del profesional
                 {
-                    if (ValidarDesdehasta())
+                    if (!ValidarMañanaOTarde())
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Debse Ingresar al menos un horario mañana o tarde', 'warning')", true);
+                        return;
+                    }
+                    if (ValidarDesdehasta())//valida fecha inicio anterior a fecha fin
                     {
                         CargarHorarioPorDia();
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Horario cargado!', 'success')", true);
@@ -372,11 +377,9 @@ namespace MeetingApp.Gestiones
                 _horarioBLL.ActualizarHorario(nuevoHorario.idHorario, nuevoHorario.desde, nuevoHorario.hasta);
             }
 
-
         }
 
-
-
+        //BOTON ACTUALIZAR
         protected void btnActualizar_Click(object sender, EventArgs e)
         {
             try
@@ -431,6 +434,10 @@ namespace MeetingApp.Gestiones
         //validar que Hora de Inicio sea anterior a Hora Fin
         public bool ValidarDesdehasta()
         {
+            //if (cmbDesdeMañana.SelectedValue=="0" && cmbHastaMañana.SelectedValue=="0")
+            //{
+
+            //}
             int desdeM = int.Parse(RecortarHorario(cmbDesdeMañana.Text));
             int hastaM = int.Parse(RecortarHorario(cmbHastaMañana.Text));
             int desdeT = int.Parse(RecortarHorario(cmbHastaTarde.Text));
@@ -449,7 +456,19 @@ namespace MeetingApp.Gestiones
             return true;
         }
 
+        public bool ValidarMañanaOTarde()
+        {
+            int desdeM = int.Parse(RecortarHorario(cmbDesdeMañana.SelectedValue));
+            int hastaM = int.Parse(RecortarHorario(cmbHastaMañana.SelectedValue));
+            int desdeT = int.Parse(RecortarHorario(cmbDesdeTarde.SelectedValue));
+            int hastaT = int.Parse(RecortarHorario(cmbHastaTarde.SelectedValue));
 
+            if ((desdeM == 0 && hastaM == 0) || (desdeT == 0 && hastaT == 0))
+            {                
+                return false;
+            }
+            return true;
+        }
 
     }
 }
