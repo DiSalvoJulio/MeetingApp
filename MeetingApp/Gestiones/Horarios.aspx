@@ -157,7 +157,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:DropDownList ID="cmbMañana1" runat="server" CssClass="btn btn-outline-dark dropdown-toggle col-auto mt-1" AutoPostBack="false">
-                                        <asp:ListItem Text="--:--" Value="0"></asp:ListItem>
+                                       <%-- <asp:ListItem Text="--:--" Value="0"></asp:ListItem>--%>
                                         <asp:ListItem Text="07:00" Value="07:00"></asp:ListItem>
                                         <asp:ListItem Text="08:00" Value="08:00"></asp:ListItem>
                                         <asp:ListItem Text="09:00" Value="09:00"></asp:ListItem>
@@ -172,7 +172,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:DropDownList ID="cmbMañana2" runat="server" CssClass="btn btn-outline-dark dropdown-toggle col-auto mt-1" AutoPostBack="false">
-                                        <asp:ListItem Text="--:--" Value="0"></asp:ListItem>
+                                        <%--<asp:ListItem Text="--:--" Value="0"></asp:ListItem>--%>
                                         <asp:ListItem Text="07:00" Value="07:00"></asp:ListItem>
                                         <asp:ListItem Text="08:00" Value="08:00"></asp:ListItem>
                                         <asp:ListItem Text="09:00" Value="09:00"></asp:ListItem>
@@ -192,7 +192,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:DropDownList ID="cmbTarde1" runat="server" CssClass="btn btn-outline-dark dropdown-toggle col-auto mt-1" AutoPostBack="false">
-                                        <asp:ListItem Text="--:--" Value="0"></asp:ListItem>
+                                      <%--  <asp:ListItem Text="--:--" Value="0"></asp:ListItem>--%>
                                         <asp:ListItem Text="13:00" Value="13:00"></asp:ListItem>
                                         <asp:ListItem Text="14:00" Value="14:00"></asp:ListItem>
                                         <asp:ListItem Text="15:00" Value="15:00"></asp:ListItem>
@@ -208,7 +208,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:DropDownList ID="cmbTarde2" runat="server" CssClass="btn btn-outline-dark dropdown-toggle col-auto mt-1" AutoPostBack="false">
-                                        <asp:ListItem Text="--:--" Value="0"></asp:ListItem>
+                                       <%-- <asp:ListItem Text="--:--" Value="0"></asp:ListItem>--%>
                                         <asp:ListItem Text="13:00" Value="13:00"></asp:ListItem>
                                         <asp:ListItem Text="14:00" Value="14:00"></asp:ListItem>
                                         <asp:ListItem Text="15:00" Value="15:00"></asp:ListItem>
