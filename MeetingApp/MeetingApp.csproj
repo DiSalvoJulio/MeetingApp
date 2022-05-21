@@ -222,6 +222,7 @@
     <Content Include="Login\fonts\poppins\Poppins-SemiBoldItalic.ttf" />
     <Content Include="Login\fonts\poppins\Poppins-Thin.ttf" />
     <Content Include="Login\fonts\poppins\Poppins-ThinItalic.ttf" />
+    <Content Include="NuevoTurnoPaciente.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -471,6 +472,13 @@
     </Compile>
     <Compile Include="InicioSesion.aspx.designer.cs">
       <DependentUpon>InicioSesion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NuevoTurnoPaciente.aspx.cs">
+      <DependentUpon>NuevoTurnoPaciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NuevoTurnoPaciente.aspx.designer.cs">
+      <DependentUpon>NuevoTurnoPaciente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registrar.aspx.cs">

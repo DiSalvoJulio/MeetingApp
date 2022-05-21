@@ -112,7 +112,22 @@ namespace MeetingApp
             user.direccion = txtDireccion.Text;
             //user.pass = txtPass.Text;
             user.ocupacion = txtOcupacion.Text;
-            user.idReferencia = int.Parse(txtReferencia.Text);         
+            //user.idReferencia = int.Parse(txtReferencia.Text);
+            int referencia = 0;
+            if (txtReferencia.Text == "Amigo")
+            {
+                referencia = 1;               
+            }
+            if (txtReferencia.Text == "Familiar")
+            {
+                referencia = 2;
+            }
+            if (txtReferencia.Text == "Vecino")
+            {
+                referencia = 3;
+            }
+            //int referencia = int.Parse(txtReferencia.Text);
+            user.idReferencia = referencia;         
 
             if (!CamposVaciosModificar())
             {
@@ -164,8 +179,7 @@ namespace MeetingApp
             //_pacienteBLL.ActualizarDatosPaciente();
             //CargarCamposPaciente(user);
 
-        }
-        
+        }        
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {

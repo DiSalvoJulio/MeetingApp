@@ -45,10 +45,12 @@
     <Compile Include="DiaBLL.cs" />
     <Compile Include="EspecialidadBLL.cs" />
     <Compile Include="HorarioBLL.cs" />
+    <Compile Include="NuevoTurnoPacienteBLL.cs" />
     <Compile Include="ObraSocialBLL.cs" />
     <Compile Include="PacienteBLL.cs" />
     <Compile Include="ProfesionalBLL.cs" />
     <Compile Include="RegistrarBLL.cs" />
+    <Compile Include="TurnoBLL.cs" />
     <Compile Include="UsuarioBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

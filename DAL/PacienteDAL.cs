@@ -44,6 +44,10 @@ namespace DAL
             {
                 throw new Exception("Error en Obtener referencia DAL " + ex.Message);
             }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
         }
 
 

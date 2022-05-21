@@ -206,5 +206,66 @@ namespace DAL
 
         }
 
+        public List<Usuario> ObtenerProfesionalId(int id)
+        {
+            try
+            {
+                string procedure = "sp_ObtenerProfesionalId";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = procedure;
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@idProfesional", id);
+                comando.CommandType = CommandType.StoredProcedure;
+
+                List<Usuario> ListaProfesionales = new List<Usuario>();
+
+                using (SqlDataReader dr = comando.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        Usuario profesionales = new Usuario();
+                        
+                        if (!dr.IsDBNull(0)) 
+                        {
+                            profesionales.idUsuario = dr.GetInt32(0);
+                        }
+                        if (!dr.IsDBNull(1))
+                        {
+                            profesionales.nombre = dr.GetString(1);
+                        }
+                        if (!dr.IsDBNull(2))
+                        {
+                            profesionales.apellido = dr.GetString(2);
+                        }
+                        //if (!dr.IsDBNull(3))
+                        //{
+                        //    profesionales.inicio = dr.GetString(3);
+                        //}
+                        //if (!dr.IsDBNull(4))
+                        //{
+                        //    profesionales.fin = dr.GetString(4);
+                        //}
+                        //if (!dr.IsDBNull(5))
+                        //{
+                        //    profesionales.profesional = dr.GetString(5);
+                        //}
+                        ListaProfesionales.Add(profesionales);
+                    }
+                    return ListaProfesionales;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Error en Buscar Profesional DAL " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
+
+
+
     }
 }

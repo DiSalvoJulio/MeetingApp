@@ -60,13 +60,13 @@ namespace MeetingApp
         protected global::System.Web.UI.HtmlControls.HtmlAnchor tabHomeProfesional;
 
         /// <summary>
-        /// Control tabTurno.
+        /// Control tabTurnoPaciente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor tabTurno;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor tabTurnoPaciente;
 
         /// <summary>
         /// Control tabEspecialidades.

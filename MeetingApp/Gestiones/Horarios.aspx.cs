@@ -182,6 +182,8 @@ namespace MeetingApp.Gestiones
                         int cantidadMañana = (mañanaHasta - mañanaDesde);
                         horarioMañana.cantidad = cantidadMañana;
 
+
+
                         _horarioBLL.InsertarHorario(horarioMañana);
 
                     }

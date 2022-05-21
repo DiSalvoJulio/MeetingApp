@@ -30,5 +30,10 @@ namespace BLL
             return _profesionalDAL.ObtenerListaProfesionales();
         }
 
+        public List<Usuario> ObtenerProfesionalId(int id)
+        {
+            return _profesionalDAL.ObtenerProfesionalId(id);
+        }
+
     }
 }

@@ -45,11 +45,13 @@
     <Compile Include="DiaDAL.cs" />
     <Compile Include="EspecialidadesDAL.cs" />
     <Compile Include="HorarioDAL.cs" />
+    <Compile Include="NuevoTurnoPacienteDAL.cs" />
     <Compile Include="ObraSocialDAL.cs" />
     <Compile Include="PacienteDAL.cs" />
     <Compile Include="ProfesionalDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistrarDAL.cs" />
+    <Compile Include="TurnoDAL.cs" />
     <Compile Include="UsuarioDAL.cs" />
   </ItemGroup>
   <ItemGroup>
