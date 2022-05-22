@@ -45,7 +45,6 @@
     <Compile Include="DiaDAL.cs" />
     <Compile Include="EspecialidadesDAL.cs" />
     <Compile Include="HorarioDAL.cs" />
-    <Compile Include="NuevoTurnoPacienteDAL.cs" />
     <Compile Include="ObraSocialDAL.cs" />
     <Compile Include="PacienteDAL.cs" />
     <Compile Include="ProfesionalDAL.cs" />

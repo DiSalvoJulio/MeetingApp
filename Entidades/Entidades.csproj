@@ -43,7 +43,9 @@
   <ItemGroup>
     <Compile Include="CaracterEspecial.cs" />
     <Compile Include="Dia.cs" />
+    <Compile Include="DTOs\HorariosDTO.cs" />
     <Compile Include="DTOs\ObtenerHorarioDTO.cs" />
+    <Compile Include="DTOs\ObtenerHorarioProfesionalDiaDTO.cs" />
     <Compile Include="DTOs\ObtenerProfesionalDTO.cs" />
     <Compile Include="DTOs\ObtenerTurnoDTO.cs" />
     <Compile Include="Especialidad.cs" />

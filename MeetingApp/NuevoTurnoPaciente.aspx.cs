@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BLL;
 using Entidades;
+using Entidades.DTOs;
 
 namespace MeetingApp
 {
@@ -13,6 +14,7 @@ namespace MeetingApp
     {
         EspecialidadBLL _especialidadBLL = new EspecialidadBLL();
         TurnoBLL _turnoBLL = new TurnoBLL();
+        HorarioBLL _horarioBLL = new HorarioBLL();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -76,13 +78,14 @@ namespace MeetingApp
                 listaProfesionales = _turnoBLL.ObtenerProfesionalesXEspecialidad(idEspecialidad);
                 cmbProfesional.Items.Clear();
 
-                //int indice = 0;
+                int indice = 0;
                 if (listaProfesionales.Count > 0)
                 {
                     cmbProfesional.DataSource = listaProfesionales;
                     cmbProfesional.DataValueField = "idUsuario";
                     cmbProfesional.DataTextField = "apellido";
                     cmbProfesional.DataBind();
+                    cmbProfesional.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Profesional...", "0"));
                     divProfesionales.Visible = true;
                 }
                 else
@@ -103,20 +106,26 @@ namespace MeetingApp
 
         protected void cmbProfesional_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CargarHorariosPorProfesional();
+           // CargarHorariosPorProfesional();
         }
 
         private void CargarHorariosPorProfesional()
         {
-            if (txtCalendario.Text.Length != 0)
+
+            
+        }
+
+        protected void btnMostrarHorarios_Click(object sender, EventArgs e)
+        {
+            if (txtCalendario.Value.Length != 0)
             {
-                string diaEspañol = "";
-                if (txtCalendario.Text.Equals(""))
+                string diaEspanol = "";
+                if (txtCalendario.Value.Equals(""))
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Debe seleccionar un dia', 'warning')", true);
                     return;
                 }
-                DateTime dia = Convert.ToDateTime(txtCalendario.Text);
+                DateTime dia = Convert.ToDateTime(txtCalendario.Value);
                 if (dia.DayOfWeek.ToString() == "Sunday")
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'El dia Domingo no se atiende', 'warning')", true);
@@ -124,38 +133,67 @@ namespace MeetingApp
                 }
                 if (dia.DayOfWeek.ToString() == "Monday")
                 {
-                    diaEspañol = "Lunes";
+                    diaEspanol = "Lunes";
                 }
                 if (dia.DayOfWeek.ToString() == "Tuesday")
                 {
-                    diaEspañol = "Martes";
+                    diaEspanol = "Martes";
                 }
                 if (dia.DayOfWeek.ToString() == "Wednesday")
                 {
-                    diaEspañol = "Miercoles";
+                    diaEspanol = "Miercoles";
                 }
                 if (dia.DayOfWeek.ToString() == "Thursday")
                 {
-                    diaEspañol = "Jueves";
+                    diaEspanol = "Jueves";
                 }
                 if (dia.DayOfWeek.ToString() == "Friday")
                 {
-                    diaEspañol = "Viernes";
+                    diaEspanol = "Viernes";
                 }
                 if (dia.DayOfWeek.ToString() == "Saturday")
                 {
-                    diaEspañol = "Sabado";
+                    diaEspanol = "Sabado";
                 }
 
+                int idProfesional = int.Parse(cmbProfesional.SelectedValue);
+                int idEspecialidad = int.Parse(cmbEspecialidad.SelectedValue);
+                List<ObtenerTurnoDTO> listaTurnosDados = _turnoBLL.ObtenerTurnoPorProfesionalYEspecialidad(idProfesional, idEspecialidad, dia);
+                List<ObtenerHorarioProfesionalDiaDTO> listaHorarioProf = _horarioBLL.ObtenerHorarioProfesionalDia(idProfesional, diaEspanol);
+                
 
-                //int idProfesional = int.Parse(cmbProfesional.SelectedValue);
-                //_nuevoTurnoPacienteBLL.ObtenerProfesionalesXEspecialidad(idProfesional, diaEspañol);
+                TimeSpan inicio = TimeSpan.Parse(listaHorarioProf[0].desde);
+                TimeSpan fin = TimeSpan.Parse(listaHorarioProf[0].hasta);
 
-                //llamar metodo de la dal
+                List<HorariosDTO> listaHorarioDTO = new List<HorariosDTO>();
+                
+                while (inicio < fin)
+                {
+                    HorariosDTO horarioDTO = new HorariosDTO();
+                    horarioDTO.Horario = inicio.ToString().Substring(0,5);
+                    //cmbHorarioDisponible.Items.Insert(i, new ListItem(inicio.ToString(), inicio.ToString()));
+                    inicio += TimeSpan.Parse("01:00");
+                    //i++;
+                    bool turnoDado = false;
+                    for (int i = 0; i < listaTurnosDados.Count; i++)
+                    {
+                        if (horarioDTO.Horario==listaTurnosDados[i].horaTurno)
+                        {
+                            turnoDado = true;
+                        }
+                    }
+                    if (!turnoDado)
+                    {
+                        listaHorarioDTO.Add(horarioDTO);                        
+                    }
+                }           
+
+                cmbHorarioDisponible.DataSource = listaHorarioDTO;
+                cmbHorarioDisponible.DataValueField = "Horario";
+                cmbHorarioDisponible.DataTextField = "Horario";
+                cmbHorarioDisponible.DataBind();
+               
             }
         }
-
-
-
     }
 }

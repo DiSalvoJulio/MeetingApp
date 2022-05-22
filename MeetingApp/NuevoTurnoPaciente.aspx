@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NuevoTurnoPaciente.aspx.cs" Inherits="MeetingApp.NuevoTurnoPaciente" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NuevoTurnoPaciente.aspx.cs" Inherits="MeetingApp.NuevoTurnoPaciente" Culture="es-MX" UICulture="es" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderContent" runat="server">
 </asp:Content>
@@ -28,19 +28,43 @@
         </asp:UpdatePanel>
 
         <%--almanaque para ver los dias--%>
-        <asp:TextBox type="date" runat="server" class="form-control col-3 mt-5" ID="txtCalendario"></asp:TextBox>
+        <%--<asp:TextBox type="date" runat="server" class="form-control col-3 mt-5" ID="txtCalendario"></asp:TextBox>--%>
+        <input size="16" runat="server" type="date" class="form-control col-4" id="txtCalendario">
+        <asp:Button Text="Mostrar Horarios" ID="btnMostrarHorarios" class="btn btn-danger mt-5" runat="server" OnClick="btnMostrarHorarios_Click" />
 
-        <asp:Button Text="Reservar Turno" class="btn btn-danger mt-5" runat="server"/>
-        
+
+        <asp:UpdatePanel runat="server">
+            <ContentTemplate>
+                <div class="row mt-5" id="divHorariosDisponibles" runat="server">
+                    <%--combo horarios--%>
+                    <h5 class="mr-3 mt-1 col-sm-4">Seleccione un Horario</h5>
+                    <%-- <asp:Label ID="Label2" runat="server" Text="Profesional" CssClass="mr-3"></asp:Label>--%>
+                    <asp:DropDownList ID="cmbHorarioDisponible" runat="server" CssClass="btn btn-primary col-sm-4 mt-1" AutoPostBack="false">
+                    </asp:DropDownList>
+                </div>
+            </ContentTemplate>
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="btnMostrarHorarios" EventName="Click" />
+            </Triggers>
+        </asp:UpdatePanel>
+
+
+
+        <asp:Button Text="Reservar Turno" class="btn btn-danger mt-5" runat="server" />
+
+
+
         <%--importar un datepicker y tenerlo en español--%>
+
         <script type="text/javascript">
-            $('.datepicker').datepicker({
+            $("#txtCalendario").datepicker({
                 format: 'mm/dd/yyyy',
                 startDate: '-3d',
-                language: 'es'
-            });            
+                language: 'es',
+                autoclose: false
+            });
         </script>
-<%--        <script>
+        <%--        <script>
             $.datepicker.regional['es'] = {
                 closeText: 'Cerrar',
                 prevText: '< Ant',
@@ -63,8 +87,6 @@
                 $("#txtCalendario").datepicker();
             });
         </script>--%>
-
-
     </div>
     <%--FIN CONTAINER--%>
 </asp:Content>

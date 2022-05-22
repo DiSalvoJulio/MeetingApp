@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using DAL;
 using Entidades;
+using Entidades.DTOs;
 
 namespace BLL
 {
@@ -17,6 +18,11 @@ namespace BLL
         public List<Usuario> ObtenerProfesionalesXEspecialidad(int idEspecialidad)
         {
             return _turnoDAL.ObtenerProfesionalesXEspecialidad(idEspecialidad);
+        }
+
+        public List<ObtenerTurnoDTO> ObtenerTurnoPorProfesionalYEspecialidad(int idProfesional, int idEspecialidad, DateTime dia)
+        {
+            return _turnoDAL.ObtenerTurnoPorProfesionalYEspecialidad(idProfesional, idEspecialidad, dia);
         }
     }
 }

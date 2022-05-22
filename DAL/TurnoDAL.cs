@@ -97,6 +97,51 @@ namespace DAL
             }
         }
 
+        //obtener lista de profesionales por especialidad
+        public List<ObtenerTurnoDTO> ObtenerTurnoPorProfesionalYEspecialidad(int idProfesional, int idEspecialidad, DateTime dia)
+        {
+            try
+            {
+                string procedure = "sp_ObtenerTurnosDTO";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = procedure;
+                comando.Parameters.Clear();
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@idEspecialidad", idEspecialidad);
+                comando.Parameters.AddWithValue("@idProfesional", idProfesional);
+                comando.Parameters.AddWithValue("@dia", dia);
+                comando.ExecuteNonQuery();
+
+                List<ObtenerTurnoDTO> listaTurnosDto = new List<ObtenerTurnoDTO>();
+
+                using (SqlDataReader dr = comando.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        ObtenerTurnoDTO turno = new ObtenerTurnoDTO();
+                        turno.idTurno = Convert.ToInt32(dr["idTurno"]);
+                        turno.descripcion = dr["descripcion"].ToString();
+                        turno.horaTurno = dr["horaTurno"].ToString();
+                        turno.fechaSolicitud = Convert.ToDateTime(dr["fechaSolicitud"]);                       
+                        turno.profesional = dr["Profesional"].ToString();
+                        turno.paciente = dr["Paciente"].ToString();
+                        turno.especialidad = dr["Especialidad"].ToString();
+                        listaTurnosDto.Add(turno);
+                    }
+                    return listaTurnosDto;
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Error en cargar TurnoDto DAL " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
 
 
 

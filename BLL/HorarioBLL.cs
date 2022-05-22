@@ -41,6 +41,9 @@ namespace BLL
             return _horarioDAL.ValidarHorario(horario);
         }
 
-
+        public List<ObtenerHorarioProfesionalDiaDTO> ObtenerHorarioProfesionalDia(int idProfesional, string dia)
+        {
+            return _horarioDAL.ObtenerHorarioProfesionalDia(idProfesional, dia);
+        }
     }
 }

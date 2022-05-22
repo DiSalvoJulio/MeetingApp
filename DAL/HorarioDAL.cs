@@ -236,7 +236,48 @@ namespace DAL
         }
 
 
+        public List<ObtenerHorarioProfesionalDiaDTO> ObtenerHorarioProfesionalDia(int idProfesional, string dia)
+        {
+            try
+            {
+                string procedure = "sp_ObtenerHorarioPorProfesionalYDia";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = procedure;
+                comando.Parameters.Clear();
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@idProfesional", idProfesional);
+                comando.Parameters.AddWithValue("@dia", dia);
+                comando.ExecuteNonQuery();
 
+                List<ObtenerHorarioProfesionalDiaDTO> listaHorarios = new List<ObtenerHorarioProfesionalDiaDTO>();
+
+                using (SqlDataReader dr = comando.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        ObtenerHorarioProfesionalDiaDTO horario = new ObtenerHorarioProfesionalDiaDTO();
+                        horario.idHorario = Convert.ToInt32(dr["idHorario"]);
+                        horario.desde = dr["desde"].ToString();
+                        horario.hasta = dr["hasta"].ToString();
+                        horario.cantidad = Convert.ToInt32(dr["cantidad"]);
+                        horario.idProfesional = Convert.ToInt32(dr["idProfesional"]);
+                        horario.dia = dr["dia"].ToString();
+                        horario.turno = dr["turno"].ToString(); ;
+                        listaHorarios.Add(horario);
+                    }
+                    return listaHorarios;
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Error en cargar HorarioProfesionalDia DAL " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
 
 
     }
