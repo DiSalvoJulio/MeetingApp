@@ -20,9 +20,9 @@ namespace BLL
             return _turnoDAL.ObtenerProfesionalesXEspecialidad(idEspecialidad);
         }
 
-        public List<ObtenerTurnoDTO> ObtenerTurnoPorProfesionalYEspecialidad(int idProfesional, int idEspecialidad, DateTime dia)
+        public List<ObtenerTurnoDTO> ObtenerTurnoPorProfesionalYEspecialidad(int idHorarioProfesional, DateTime dia)
         {
-            return _turnoDAL.ObtenerTurnoPorProfesionalYEspecialidad(idProfesional, idEspecialidad, dia);
+            return _turnoDAL.ObtenerTurnoPorProfesionalYEspecialidad(idHorarioProfesional, dia);
         }
     }
 }

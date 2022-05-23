@@ -3,6 +3,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#txtCalendario').datepicker({
+                format: 'mm/dd/yyyy',
+                startDate: '-3d',
+                language: 'es',
+                autoclose: false
+            });
+        });
+    </script>
     <div class="container">
         <h1 style="color: red; text-align: center">Nuevo Turno</h1>
         <hr />
@@ -13,7 +23,7 @@
                     <%--combo especialidades--%>
                     <h5 class="mr-3 mt-1 col-sm-4">Seleccione una Especialidad</h5>
                     <%-- <asp:Label ID="Label1" runat="server" Text="Especialidad" CssClass="mr-3"></asp:Label>--%>
-                    <asp:DropDownList ID="cmbEspecialidad" runat="server" CssClass="btn btn-primary col-sm-4 mt-1" AutoPostBack="true" OnSelectedIndexChanged="cmbEspecialidad_SelectedIndexChanged">
+                    <asp:DropDownList ID="cmbEspecialidad" runat="server" CssClass="btn btn-primary col-sm-3 mt-1" AutoPostBack="true" OnSelectedIndexChanged="cmbEspecialidad_SelectedIndexChanged">
                     </asp:DropDownList>
                 </div>
 
@@ -21,16 +31,18 @@
                     <%--combo profesionales--%>
                     <h5 class="mr-3 mt-1 col-sm-4">Seleccione un Profesional</h5>
                     <%-- <asp:Label ID="Label2" runat="server" Text="Profesional" CssClass="mr-3"></asp:Label>--%>
-                    <asp:DropDownList ID="cmbProfesional" runat="server" CssClass="btn btn-primary col-sm-4 mt-1" AutoPostBack="true" OnSelectedIndexChanged="cmbProfesional_SelectedIndexChanged">
+                    <asp:DropDownList ID="cmbProfesional" runat="server" CssClass="btn btn-primary col-sm-3 mt-1" AutoPostBack="true">
                     </asp:DropDownList>
                 </div>
             </ContentTemplate>
         </asp:UpdatePanel>
 
-        <%--almanaque para ver los dias--%>
+        <%--calendario para ver los dias--%>
         <%--<asp:TextBox type="date" runat="server" class="form-control col-3 mt-5" ID="txtCalendario"></asp:TextBox>--%>
-        <input size="16" runat="server" type="date" class="form-control col-4" id="txtCalendario">
-        <asp:Button Text="Mostrar Horarios" ID="btnMostrarHorarios" class="btn btn-danger mt-5" runat="server" OnClick="btnMostrarHorarios_Click" />
+        <div class="row">
+            <input runat="server" type="date" class="form-control col-3 mt-5 ml-3 mr-5" id="txtCalendario">
+            <asp:Button Text="Mostrar Horarios" ID="btnMostrarHorarios" class="btn btn-info col-sm-2 mt-5 ml-5" runat="server" OnClick="btnMostrarHorarios_Click" />
+        </div>
 
 
         <asp:UpdatePanel runat="server">
@@ -39,7 +51,7 @@
                     <%--combo horarios--%>
                     <h5 class="mr-3 mt-1 col-sm-4">Seleccione un Horario</h5>
                     <%-- <asp:Label ID="Label2" runat="server" Text="Profesional" CssClass="mr-3"></asp:Label>--%>
-                    <asp:DropDownList ID="cmbHorarioDisponible" runat="server" CssClass="btn btn-primary col-sm-4 mt-1" AutoPostBack="false">
+                    <asp:DropDownList ID="cmbHorarioDisponible" runat="server" CssClass="btn btn-primary col-sm-2 mt-1" AutoPostBack="false">
                     </asp:DropDownList>
                 </div>
             </ContentTemplate>
@@ -55,15 +67,20 @@
 
 
         <%--importar un datepicker y tenerlo en español--%>
-
-        <script type="text/javascript">
+        <%--<script>
+            document.getElementById('#txtCalendario').value = new Date().toDateInputValue();
+            $(document).ready(function () {
+                $('#txtCalendario').val(new Date().toDateInputValue());
+            });
+        </script>--%>
+        <%--<script type="text/javascript">
             $("#txtCalendario").datepicker({
                 format: 'mm/dd/yyyy',
                 startDate: '-3d',
                 language: 'es',
                 autoclose: false
             });
-        </script>
+        </script>--%>
         <%--        <script>
             $.datepicker.regional['es'] = {
                 closeText: 'Cerrar',

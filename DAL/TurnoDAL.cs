@@ -98,7 +98,7 @@ namespace DAL
         }
 
         //obtener lista de profesionales por especialidad
-        public List<ObtenerTurnoDTO> ObtenerTurnoPorProfesionalYEspecialidad(int idProfesional, int idEspecialidad, DateTime dia)
+        public List<ObtenerTurnoDTO> ObtenerTurnoPorProfesionalYEspecialidad(int idHorarioProfesional, DateTime dia)
         {
             try
             {
@@ -106,9 +106,8 @@ namespace DAL
                 comando.Connection = Conexion.AbrirConexion();
                 comando.CommandText = procedure;
                 comando.Parameters.Clear();
-                comando.CommandType = CommandType.StoredProcedure;
-                comando.Parameters.AddWithValue("@idEspecialidad", idEspecialidad);
-                comando.Parameters.AddWithValue("@idProfesional", idProfesional);
+                comando.CommandType = CommandType.StoredProcedure;                
+                comando.Parameters.AddWithValue("@idHorarioProfesional", idHorarioProfesional);
                 comando.Parameters.AddWithValue("@dia", dia);
                 comando.ExecuteNonQuery();
 

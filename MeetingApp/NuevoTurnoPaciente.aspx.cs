@@ -21,10 +21,9 @@ namespace MeetingApp
             if (!IsPostBack)
             {
                 CargarComboEspecialidades();
-                divProfesionales.Visible = false;
+                //divProfesionales.Visible = false;
             }
         }
-
 
         //CARGAR COMBO ESPECIALIDADES
         public void CargarComboEspecialidades()
@@ -48,6 +47,7 @@ namespace MeetingApp
                 //else
                 //{
                 //    cmbEspecialidad.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0"));
+                //    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Debe seleccionar una Especialidad', 'warning')", true);
                 //}
             }
             catch (Exception ex)
@@ -64,9 +64,9 @@ namespace MeetingApp
                 int idEspecialidad = int.Parse(cmbEspecialidad.SelectedValue);
                 CargarComboProfesionalesxEspecialidad(idEspecialidad);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //programar error
+                throw new Exception("Error en seleccionar combo " + ex.Message);
             }
         }
 
@@ -86,7 +86,7 @@ namespace MeetingApp
                     cmbProfesional.DataTextField = "apellido";
                     cmbProfesional.DataBind();
                     cmbProfesional.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Profesional...", "0"));
-                    divProfesionales.Visible = true;
+                    //divProfesionales.Visible = true;
                 }
                 else
                 {
@@ -94,26 +94,30 @@ namespace MeetingApp
                     {
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'La Especialidad no tiene un Profesional a cargo', 'warning')", true);
                     }
-                    divProfesionales.Visible = false;
+                    else
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Debe seleccionar una Especialidad', 'warning')", true);
+                    }
+                    //divProfesionales.Visible = false;
                     //cmbProfesional.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("No hay Profesional para esta especialidad", "0"));
                 }
             }
             catch (Exception ex)
             {
-                //mensaje error
+                throw new Exception("Error en cargar combo especialidad por profesional " + ex.Message);
             }
         }
 
-        protected void cmbProfesional_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           // CargarHorariosPorProfesional();
-        }
+        //protected void cmbProfesional_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    CargarHorariosPorProfesional();
+        //}
 
-        private void CargarHorariosPorProfesional()
-        {
+        //private void CargarHorariosPorProfesional()
+        //{
 
-            
-        }
+
+        //}
 
         protected void btnMostrarHorarios_Click(object sender, EventArgs e)
         {
@@ -156,44 +160,88 @@ namespace MeetingApp
                     diaEspanol = "Sabado";
                 }
 
-                int idProfesional = int.Parse(cmbProfesional.SelectedValue);
-                int idEspecialidad = int.Parse(cmbEspecialidad.SelectedValue);
-                List<ObtenerTurnoDTO> listaTurnosDados = _turnoBLL.ObtenerTurnoPorProfesionalYEspecialidad(idProfesional, idEspecialidad, dia);
-                List<ObtenerHorarioProfesionalDiaDTO> listaHorarioProf = _horarioBLL.ObtenerHorarioProfesionalDia(idProfesional, diaEspanol);
-                
+                int idHorarioProfesional = int.Parse(cmbProfesional.SelectedValue);
+                //int idEspecialidad = int.Parse(cmbEspecialidad.SelectedValue);
+                List<ObtenerTurnoDTO> listaTurnosDados = _turnoBLL.ObtenerTurnoPorProfesionalYEspecialidad(idHorarioProfesional, dia);
+                List<ObtenerHorarioProfesionalDiaDTO> listaHorarioProf = _horarioBLL.ObtenerHorarioProfesionalDia(idHorarioProfesional, diaEspanol);
 
-                TimeSpan inicio = TimeSpan.Parse(listaHorarioProf[0].desde);
-                TimeSpan fin = TimeSpan.Parse(listaHorarioProf[0].hasta);
-
-                List<HorariosDTO> listaHorarioDTO = new List<HorariosDTO>();
-                
-                while (inicio < fin)
+                if (!(listaTurnosDados.Count > 0) && !(listaHorarioProf.Count > 0))
                 {
-                    HorariosDTO horarioDTO = new HorariosDTO();
-                    horarioDTO.Horario = inicio.ToString().Substring(0,5);
-                    //cmbHorarioDisponible.Items.Insert(i, new ListItem(inicio.ToString(), inicio.ToString()));
-                    inicio += TimeSpan.Parse("01:00");
-                    //i++;
-                    bool turnoDado = false;
-                    for (int i = 0; i < listaTurnosDados.Count; i++)
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'No hay horarios disponibles en ese dia', 'warning')", true);
+                    cmbHorarioDisponible.Items.Clear();//limpiamos el combo                    
+                    return;
+                }
+                else
+                {
+                    //mañana        
+                    TimeSpan inicioM = TimeSpan.Parse(listaHorarioProf[0].desde);
+                    TimeSpan finM = TimeSpan.Parse(listaHorarioProf[0].hasta);
+                    //tarde
+                    TimeSpan inicioT = TimeSpan.Parse(listaHorarioProf[1].desde);
+                    TimeSpan finT = TimeSpan.Parse(listaHorarioProf[1].hasta);
+
+                    List<HorariosDTO> listaHorarioDTO = new List<HorariosDTO>();
+
+                    while (inicioM < finM)
                     {
-                        if (horarioDTO.Horario==listaTurnosDados[i].horaTurno)
+                        HorariosDTO horarioDTO = new HorariosDTO();
+                        horarioDTO.Horario = inicioM.ToString().Substring(0, 5) + ' ' + "Hs.";
+                        inicioM += TimeSpan.Parse("01:00");                        
+                        bool turnoDado = false;
+                        for (int i = 0; i < listaTurnosDados.Count; i++)
                         {
-                            turnoDado = true;
+                            if (horarioDTO.Horario == listaTurnosDados[i].horaTurno)
+                            {
+                                turnoDado = true;
+                            }
+                        }
+                        if (!turnoDado)
+                        {
+                            listaHorarioDTO.Add(horarioDTO);
                         }
                     }
-                    if (!turnoDado)
-                    {
-                        listaHorarioDTO.Add(horarioDTO);                        
-                    }
-                }           
 
-                cmbHorarioDisponible.DataSource = listaHorarioDTO;
-                cmbHorarioDisponible.DataValueField = "Horario";
-                cmbHorarioDisponible.DataTextField = "Horario";
-                cmbHorarioDisponible.DataBind();
-               
+                    while (inicioT < finT)
+                    {
+                        HorariosDTO horarioDTO = new HorariosDTO();
+                        horarioDTO.Horario = inicioT.ToString().Substring(0, 5) + ' ' + "Hs.";
+                        inicioT += TimeSpan.Parse("01:00");
+                        bool turnoDado = false;
+                        for (int i = 0; i < listaTurnosDados.Count; i++)
+                        {
+                            if (horarioDTO.Horario == listaTurnosDados[i].horaTurno)
+                            {
+                                turnoDado = true;
+                            }
+                        }
+                        if (!turnoDado)
+                        {
+                            listaHorarioDTO.Add(horarioDTO);
+                        }
+                    }
+
+                    cmbHorarioDisponible.DataSource = listaHorarioDTO;
+                    cmbHorarioDisponible.DataValueField = "Horario";
+                    cmbHorarioDisponible.DataTextField = "Horario";
+                    cmbHorarioDisponible.DataBind();
+
+                }//cierre else
+
+
+
             }
+
+
+
+
+
+
+
+
+
+
+
+
         }
     }
 }
