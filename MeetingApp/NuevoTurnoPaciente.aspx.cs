@@ -168,62 +168,112 @@ namespace MeetingApp
                 if (!(listaTurnosDados.Count > 0) && !(listaHorarioProf.Count > 0))
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'No hay horarios disponibles en ese dia', 'warning')", true);
-                    cmbHorarioDisponible.Items.Clear();//limpiamos el combo                    
+                    cmbHorarioDisponible.Items.Clear();//limpiamos el combo
+                    cmbHorarioDisponible.Items.Insert(0, new System.Web.UI.WebControls.ListItem("Seleccione Horario...", "0"));
                     return;
                 }
                 else
                 {
-                    //mañana        
-                    TimeSpan inicioM = TimeSpan.Parse(listaHorarioProf[0].desde);
-                    TimeSpan finM = TimeSpan.Parse(listaHorarioProf[0].hasta);
-                    //tarde
-                    TimeSpan inicioT = TimeSpan.Parse(listaHorarioProf[1].desde);
-                    TimeSpan finT = TimeSpan.Parse(listaHorarioProf[1].hasta);
-
                     List<HorariosDTO> listaHorarioDTO = new List<HorariosDTO>();
 
-                    while (inicioM < finM)
+                    if (listaHorarioProf[0].turno == "Mañana" || listaHorarioProf[0].turno == "Tarde")
                     {
-                        HorariosDTO horarioDTO = new HorariosDTO();
-                        horarioDTO.Horario = inicioM.ToString().Substring(0, 5) + ' ' + "Hs.";
-                        inicioM += TimeSpan.Parse("01:00");                        
-                        bool turnoDado = false;
-                        for (int i = 0; i < listaTurnosDados.Count; i++)
+                        if (listaHorarioProf[0].turno == "Tarde")
                         {
-                            if (horarioDTO.Horario == listaTurnosDados[i].horaTurno)
+                            //tarde
+                            TimeSpan inicioT = TimeSpan.Parse(listaHorarioProf[0].desde);
+                            TimeSpan finT = TimeSpan.Parse(listaHorarioProf[0].hasta);
+
+                            while (inicioT < finT)
                             {
-                                turnoDado = true;
+                                HorariosDTO horarioDTO = new HorariosDTO();
+                                horarioDTO.Horario = inicioT.ToString().Substring(0, 5) + ' ' + "Hs.";
+                                inicioT += TimeSpan.Parse("01:00");
+                                bool turnoDado = false;
+                                for (int i = 0; i < listaTurnosDados.Count; i++)
+                                {
+                                    if (horarioDTO.Horario == listaTurnosDados[i].horaTurno)
+                                    {
+                                        turnoDado = true;
+                                    }
+                                }
+                                if (!turnoDado)
+                                {
+                                    listaHorarioDTO.Add(horarioDTO);
+                                }
                             }
+
+                            cmbHorarioDisponible.DataSource = listaHorarioDTO;
+                            cmbHorarioDisponible.DataValueField = "Horario";
+                            cmbHorarioDisponible.DataTextField = "Horario";
+                            cmbHorarioDisponible.DataBind();
                         }
-                        if (!turnoDado)
+                        else if (listaHorarioProf[0].turno == "Mañana")
                         {
-                            listaHorarioDTO.Add(horarioDTO);
+                            //mañana        
+                            TimeSpan inicioM = TimeSpan.Parse(listaHorarioProf[0].desde);
+                            TimeSpan finM = TimeSpan.Parse(listaHorarioProf[0].hasta);
+
+                            while (inicioM < finM)
+                            {
+                                HorariosDTO horarioDTO = new HorariosDTO();
+                                horarioDTO.Horario = inicioM.ToString().Substring(0, 5) + ' ' + "Hs.";
+                                inicioM += TimeSpan.Parse("01:00");
+                                bool turnoDado = false;
+                                for (int i = 0; i < listaTurnosDados.Count; i++)
+                                {
+                                    if (horarioDTO.Horario == listaTurnosDados[i].horaTurno)
+                                    {
+                                        turnoDado = true;
+                                    }
+                                }
+                                if (!turnoDado)
+                                {
+                                    listaHorarioDTO.Add(horarioDTO);
+                                }
+                            }
+
+                            cmbHorarioDisponible.DataSource = listaHorarioDTO;
+                            cmbHorarioDisponible.DataValueField = "Horario";
+                            cmbHorarioDisponible.DataTextField = "Horario";
+                            cmbHorarioDisponible.DataBind();
+                        }
+                        
+                    }
+                    if ((listaHorarioProf.Count > 1))
+                    {
+                        if (listaHorarioProf[1].turno == "Tarde")
+                        {
+                            //tarde
+                            TimeSpan inicioT = TimeSpan.Parse(listaHorarioProf[1].desde);
+                            TimeSpan finT = TimeSpan.Parse(listaHorarioProf[1].hasta);
+
+                            while (inicioT < finT)
+                            {
+                                HorariosDTO horarioDTO = new HorariosDTO();
+                                horarioDTO.Horario = inicioT.ToString().Substring(0, 5) + ' ' + "Hs.";
+                                inicioT += TimeSpan.Parse("01:00");
+                                bool turnoDado = false;
+                                for (int i = 0; i < listaTurnosDados.Count; i++)
+                                {
+                                    if (horarioDTO.Horario == listaTurnosDados[i].horaTurno)
+                                    {
+                                        turnoDado = true;
+                                    }
+                                }
+                                if (!turnoDado)
+                                {
+                                    listaHorarioDTO.Add(horarioDTO);
+                                }
+                            }
+
+                            cmbHorarioDisponible.DataSource = listaHorarioDTO;
+                            cmbHorarioDisponible.DataValueField = "Horario";
+                            cmbHorarioDisponible.DataTextField = "Horario";
+                            cmbHorarioDisponible.DataBind();
                         }
                     }
 
-                    while (inicioT < finT)
-                    {
-                        HorariosDTO horarioDTO = new HorariosDTO();
-                        horarioDTO.Horario = inicioT.ToString().Substring(0, 5) + ' ' + "Hs.";
-                        inicioT += TimeSpan.Parse("01:00");
-                        bool turnoDado = false;
-                        for (int i = 0; i < listaTurnosDados.Count; i++)
-                        {
-                            if (horarioDTO.Horario == listaTurnosDados[i].horaTurno)
-                            {
-                                turnoDado = true;
-                            }
-                        }
-                        if (!turnoDado)
-                        {
-                            listaHorarioDTO.Add(horarioDTO);
-                        }
-                    }
-
-                    cmbHorarioDisponible.DataSource = listaHorarioDTO;
-                    cmbHorarioDisponible.DataValueField = "Horario";
-                    cmbHorarioDisponible.DataTextField = "Horario";
-                    cmbHorarioDisponible.DataBind();
 
                 }//cierre else
 

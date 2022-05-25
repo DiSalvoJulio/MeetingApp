@@ -4,6 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
+        console.log(19);
         $(document).ready(function () {
             $('#txtCalendario').datepicker({
                 format: 'mm/dd/yyyy',
@@ -32,6 +33,7 @@
                     <h5 class="mr-3 mt-1 col-sm-4">Seleccione un Profesional</h5>
                     <%-- <asp:Label ID="Label2" runat="server" Text="Profesional" CssClass="mr-3"></asp:Label>--%>
                     <asp:DropDownList ID="cmbProfesional" runat="server" CssClass="btn btn-primary col-sm-3 mt-1" AutoPostBack="true">
+                        <asp:ListItem Text="Seleccione Profesional..."></asp:ListItem>
                     </asp:DropDownList>
                 </div>
             </ContentTemplate>
@@ -41,7 +43,7 @@
         <%--<asp:TextBox type="date" runat="server" class="form-control col-3 mt-5" ID="txtCalendario"></asp:TextBox>--%>
         <div class="row">
             <input runat="server" type="date" class="form-control col-3 mt-5 ml-3 mr-5" id="txtCalendario">
-            <asp:Button Text="Mostrar Horarios" ID="btnMostrarHorarios" class="btn btn-info col-sm-2 mt-5 ml-5" runat="server" OnClick="btnMostrarHorarios_Click" />
+            <asp:Button Text="Mostrar Horarios" ID="btnMostrarHorarios" class="btn btn-info col-sm-3 mt-5 ml-5" runat="server" OnClick="btnMostrarHorarios_Click" />
         </div>
 
 
@@ -51,7 +53,8 @@
                     <%--combo horarios--%>
                     <h5 class="mr-3 mt-1 col-sm-4">Seleccione un Horario</h5>
                     <%-- <asp:Label ID="Label2" runat="server" Text="Profesional" CssClass="mr-3"></asp:Label>--%>
-                    <asp:DropDownList ID="cmbHorarioDisponible" runat="server" CssClass="btn btn-primary col-sm-2 mt-1" AutoPostBack="false">
+                    <asp:DropDownList ID="cmbHorarioDisponible" runat="server" CssClass="btn btn-primary col-sm-3 mt-1" AutoPostBack="false">
+                        <asp:ListItem Text="Seleccione Horario..."></asp:ListItem>
                     </asp:DropDownList>
                 </div>
             </ContentTemplate>
