@@ -50,6 +50,7 @@
     <Compile Include="DTOs\ObtenerProfesionalDTO.cs" />
     <Compile Include="DTOs\ObtenerTurnoDTO.cs" />
     <Compile Include="Especialidad.cs" />
+    <Compile Include="FormaPago.cs" />
     <Compile Include="Horario.cs" />
     <Compile Include="ObraSocial.cs" />
     <Compile Include="Referencia.cs" />

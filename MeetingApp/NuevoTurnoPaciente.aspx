@@ -63,9 +63,32 @@
             </Triggers>
         </asp:UpdatePanel>
 
+        <%--FORMA DE PAGO--%>
+        <div class="row mt-5">
+            <%--combo especialidades--%>
+            <h5 class="mr-3 mt-1 col-sm-4">Forma de pago</h5>
+            <%-- <asp:Label ID="Label1" runat="server" Text="Especialidad" CssClass="mr-3"></asp:Label>--%>
+            <asp:DropDownList ID="cmbFormaPago" runat="server" CssClass="btn btn-primary col-sm-3 mt-1" AutoPostBack="false">
+                <asp:ListItem Text="Forma de Pago..."></asp:ListItem>
+            </asp:DropDownList>
+        </div>
 
+         <%--OBRA SOCIAL--%>
+        <div class="row mt-5">
+            <%--combo obras sociales--%>
+            <h5 class="mr-3 mt-1 col-sm-4">Obra Social</h5>
+            <%-- <asp:Label ID="Label1" runat="server" Text="Especialidad" CssClass="mr-3"></asp:Label>--%>
+            <asp:DropDownList ID="cmbObraSocial" runat="server" CssClass="btn btn-primary col-sm-3 mt-1" AutoPostBack="false">
+                <asp:ListItem Text="Obra Social..."></asp:ListItem>
+            </asp:DropDownList>
+        </div>
 
-        <asp:Button Text="Reservar Turno" class="btn btn-danger mt-5" runat="server" />
+        <div class="mt-5">
+            <h5 class="mr-3 mt-1 col-sm-4">Motivo del turno</h5>
+            <asp:TextBox runat="server" TextMode="MultiLine" Width="50%" ID="txtMotivo"></asp:TextBox>
+        </div>
+
+        <asp:Button Text="Reservar Turno" ID="btnReservarTurno" class="btn btn-danger mt-5" runat="server" OnClick="btnReservarTurno_Click" />
 
 
 

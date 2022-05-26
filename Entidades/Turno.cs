@@ -16,5 +16,8 @@ namespace Entidades
         public int idFormaPago { get; set; }
         public int idUsuarioPaciente { get; set; }
         public int idHorarioProfesional { get; set; }
+        public int idEspecialidad { get; set; }
+        public string fechaTurno { get; set; }
+        public int idObraSocial { get; set; }
     }
 }

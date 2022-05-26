@@ -54,6 +54,7 @@ namespace MeetingApp.Gestiones
                 else
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo encontrar un paciente', 'error')", true);
+                    txtDniBuscar.Focus();
                 }
             }
             catch (Exception ex)
@@ -70,6 +71,7 @@ namespace MeetingApp.Gestiones
             btnBuscarPaciente.Enabled = true;
             btnAceptar.Enabled = false;
             btnCancelar.Enabled = false;
+            txtDniBuscar.Focus();
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)
@@ -118,6 +120,8 @@ namespace MeetingApp.Gestiones
                     btnCancelar.Enabled = false;
                     btnAceptar.Enabled = false;
                     btnModificar.Enabled = true;
+                    btnBuscarPaciente.Enabled = true;
+                    txtDniBuscar.Enabled = true;
                 }
                 else
                 {

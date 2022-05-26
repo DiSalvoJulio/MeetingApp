@@ -375,8 +375,9 @@ namespace MeetingApp.Gestiones
             nuevoHorario.idHorario = int.Parse(ViewState["idHorario"].ToString());
 
             if (lblHorario.Text.ToString().Trim() == "Mañana")
-            {                            
-                if (ValidarDesdehastaModal())//valida fecha inicio anterior a fecha fin
+            {
+                string maniana = "Mañana";
+                if (ValidarDesdehastaModal(maniana))//valida fecha inicio anterior a fecha fin
                 {                    
                     nuevoHorario.desde = cmbMañana1.SelectedValue.ToString();
                     nuevoHorario.hasta = cmbMañana2.SelectedValue.ToString();
@@ -392,8 +393,9 @@ namespace MeetingApp.Gestiones
                 }
             }
             else
-            {               
-                if (ValidarDesdehastaModal())
+            {
+                string tarde = "Tarde";
+                if (ValidarDesdehastaModal(tarde))
                 {
                     nuevoHorario.desde = cmbTarde1.SelectedValue.ToString();
                     nuevoHorario.hasta = cmbTarde2.SelectedValue.ToString();
@@ -526,36 +528,46 @@ namespace MeetingApp.Gestiones
         }
 
         //validar que Hora de Inicio sea anterior a Hora Fin
-        public bool ValidarDesdehastaModal()
-        {           
-            //combos de modal actualizar
-            int inicioM = int.Parse(RecortarHorario(cmbMañana1.SelectedValue));
-            int finM = int.Parse(RecortarHorario(cmbMañana2.SelectedValue));
-            int inicioT = int.Parse(RecortarHorario(cmbTarde1.SelectedValue));
-            int finT = int.Parse(RecortarHorario(cmbTarde2.SelectedValue));           
+        public bool ValidarDesdehastaModal(string turno)
+        {
+            if(turno == "Mañana")
+            {
+                //combos de modal actualizar
+                int inicioM = int.Parse(RecortarHorario(cmbMañana1.SelectedValue));
+                int finM = int.Parse(RecortarHorario(cmbMañana2.SelectedValue));
+                //combos de modal actualizar
+                if (inicioM > finM)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Hora de Inicio debe ser anterior a Hora Fin', 'warning')", true);
+                    return false;
+                }
+                if (inicioM == finM)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Hora de Inicio debe ser anterior a Hora Fin', 'warning')", true);
+                    return false;
+                }
+                return true;
+            }
+            else
+            {
+                int inicioT = int.Parse(RecortarHorario(cmbTarde1.SelectedValue));
+                int finT = int.Parse(RecortarHorario(cmbTarde2.SelectedValue));
 
-            //combos de modal actualizar
-            if (inicioM > finM)
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Hora de Inicio debe ser anterior a Hora Fin', 'warning')", true);
-                return false;
-            }
-            if (inicioM == finM)
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Hora de Inicio debe ser anterior a Hora Fin', 'warning')", true);
-                return false;
-            }
-            if (inicioT > finT)
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Hora de Inicio debe ser anterior a Hora Fin', 'warning')", true);
-                return false;
-            }
-            if (inicioT == finT)
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Hora de Inicio debe ser anterior a Hora Fin', 'warning')", true);
-                return false;
-            }
-            return true;
+
+                if (inicioT > finT)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Hora de Inicio debe ser anterior a Hora Fin', 'warning')", true);
+                    return false;
+                }
+                if (inicioT == finT)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Hora de Inicio debe ser anterior a Hora Fin', 'warning')", true);
+                    return false;
+                }
+                return true;
+            }            
+          
+           
         }
 
     }

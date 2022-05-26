@@ -5,7 +5,7 @@
     <div class="container">
     <%-- SECCION 1--%>
     <section class="content-header">
-        <h1 style="color: red; text-align: center">Mis Datos - Paciente</h1>
+        <h1 style="color: red; text-align: center">Mis Datos</h1>
     </section>
     <%-- SECCION 2--%>
         <hr class="color: red;" />

@@ -24,5 +24,15 @@ namespace BLL
         {
             return _turnoDAL.ObtenerTurnoPorProfesionalYEspecialidad(idHorarioProfesional, dia);
         }
+
+        public bool InsertarTurno(Turno turno)
+        {
+           return _turnoDAL.InsertarTurno(turno);
+        }
+
+        public List<FormaPago> ObtenerFormasDePagos()
+        {
+            return _turnoDAL.ObtenerFormasDePagos();
+        }
     }
 }

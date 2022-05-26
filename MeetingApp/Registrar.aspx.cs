@@ -101,7 +101,7 @@ namespace MeetingApp
             //validar si el usuario ya existe
             if (ExisteUsuario(txtEmail.Text, txtDni.Text))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Usuario Existente!')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Usuario Existente! El e-mail ya esta registrado.')", true);
                 return;
             }
 

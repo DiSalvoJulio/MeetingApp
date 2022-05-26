@@ -127,6 +127,7 @@ namespace MeetingApp.Gestiones
             btnBuscarProfesional.Enabled = true;
             btnAceptar.Enabled = false;
             btnCancelar.Enabled = false;
+            txtDniBuscar.Focus();
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)
@@ -178,6 +179,7 @@ namespace MeetingApp.Gestiones
                     txtDniBuscar.Enabled = true;
                     txtDniBuscar.Text = "";
                     btnBuscarProfesional.Enabled = true;
+                    txtDniBuscar.Focus();
                 }
                 else
                 {

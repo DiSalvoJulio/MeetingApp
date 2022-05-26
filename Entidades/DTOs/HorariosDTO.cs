@@ -8,6 +8,7 @@ namespace Entidades.DTOs
 {
     public class HorariosDTO
     {
+        public int idHorario { get; set; }
         public string Horario { get; set; }
         
     }
