@@ -78,14 +78,15 @@
             <%--combo obras sociales--%>
             <h5 class="mr-3 mt-1 col-sm-4">Obra Social</h5>
             <%-- <asp:Label ID="Label1" runat="server" Text="Especialidad" CssClass="mr-3"></asp:Label>--%>
-            <asp:DropDownList ID="cmbObraSocial" runat="server" CssClass="btn btn-primary col-sm-3 mt-1" AutoPostBack="false">
+            <asp:TextBox ID="txtObraSocial" name="txtObraSocial" runat="server" placeholder="Obra Social" CssClass="form-control col-sm-3" Enabled="false"></asp:TextBox>
+            <%--<asp:DropDownList ID="cmbObraSocial" runat="server" CssClass="btn btn-primary col-sm-3 mt-1" AutoPostBack="false">
                 <asp:ListItem Text="Obra Social..."></asp:ListItem>
-            </asp:DropDownList>
+            </asp:DropDownList>--%>
         </div>
 
         <div class="mt-5">
             <h5 class="mr-3 mt-1 col-sm-4">Motivo del turno</h5>
-            <asp:TextBox runat="server" TextMode="MultiLine" Width="50%" ID="txtMotivo"></asp:TextBox>
+            <asp:TextBox runat="server" TextMode="MultiLine" Width="60%" ID="txtMotivo"></asp:TextBox>
         </div>
 
         <asp:Button Text="Reservar Turno" ID="btnReservarTurno" class="btn btn-danger mt-5" runat="server" OnClick="btnReservarTurno_Click" />

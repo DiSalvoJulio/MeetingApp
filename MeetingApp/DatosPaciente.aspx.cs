@@ -13,6 +13,8 @@ namespace MeetingApp
     public partial class DatosPaciente : System.Web.UI.Page
     {
         PacienteBLL _pacienteBLL = new PacienteBLL();
+        ObraSocialBLL _obraSocialBLL = new ObraSocialBLL();
+        RegistrarBLL _registrarBLL = new RegistrarBLL();
         
         //Usuario user = (Usuario)Session["Usuario"];
         protected void Page_Load(object sender, EventArgs e)
@@ -24,6 +26,8 @@ namespace MeetingApp
                 CargarCamposPaciente(user);
                 btnCancelar.Enabled = false;
                 btnAceptar.Enabled = false;
+                CargarComboObrasSociales();
+                CargarComboReferencias();
             }
 
         }       
@@ -37,17 +41,19 @@ namespace MeetingApp
             txtEmail.Text = user.email;
             txtTelefono.Text = user.telefono;
             txtDireccion.Text = user.direccion;
-            txtOcupacion.Text = user.ocupacion;            
-            List<Referencia> listR = _pacienteBLL.ObtenerReferencias();
-            var descripcion = "";
-            foreach (Referencia r in listR)
-            {
-                if (r.idReferencia == user.idReferencia)
-                {
-                    descripcion = r.descripcion;
-                }
-            }            
-            txtReferencia.Text = descripcion;
+            cmbObraSocial.SelectedValue = user.idObraSocial.ToString();
+            txtOcupacion.Text = user.ocupacion;
+            cmbReferencias.SelectedValue = user.idReferencia.ToString();
+            //List<Referencia> listR = _pacienteBLL.ObtenerReferencias();
+            //var descripcion = "";
+            //foreach (Referencia r in listR)
+            //{
+            //    if (r.idReferencia == user.idReferencia)
+            //    {
+            //        descripcion = r.descripcion;
+            //    }
+            //}            
+            //txtReferencia.Text = descripcion;
             txtIngreso.Text = user.fechaIngreso.ToShortDateString();
             txtEdad.Text = user.edad.ToString();
             DesahabilitarCampos();
@@ -65,8 +71,7 @@ namespace MeetingApp
         {
             txtDni.Enabled = false;
             txtEmail.Enabled = false;
-            txtEdad.Enabled = false;
-            txtReferencia.Enabled = false;
+            txtEdad.Enabled = false;            
             txtIngreso.Enabled = false;
         }
 
@@ -81,7 +86,8 @@ namespace MeetingApp
             txtTelefono.Enabled = false;
             txtDireccion.Enabled = false;
             txtOcupacion.Enabled = false;
-            txtReferencia.Enabled = false;
+            cmbObraSocial.Enabled = false;
+            cmbReferencias.Enabled = false;
             txtIngreso.Enabled = false;
             txtEdad.Enabled = false;
         }
@@ -99,6 +105,8 @@ namespace MeetingApp
             txtOcupacion.Enabled = true;            
             txtIngreso.Enabled = true;
             txtEdad.Enabled = true;
+            cmbObraSocial.Enabled = true;
+            cmbReferencias.Enabled = true;
             CamposNoModificables();
         }
 
@@ -112,22 +120,8 @@ namespace MeetingApp
             user.direccion = txtDireccion.Text;
             //user.pass = txtPass.Text;
             user.ocupacion = txtOcupacion.Text;
-            //user.idReferencia = int.Parse(txtReferencia.Text);
-            int referencia = 0;
-            if (txtReferencia.Text == "Amigo")
-            {
-                referencia = 1;               
-            }
-            if (txtReferencia.Text == "Familiar")
-            {
-                referencia = 2;
-            }
-            if (txtReferencia.Text == "Vecino")
-            {
-                referencia = 3;
-            }
-            //int referencia = int.Parse(txtReferencia.Text);
-            user.idReferencia = referencia;         
+            user.idObraSocial = int.Parse(cmbObraSocial.Text);
+            user.idReferencia = int.Parse(cmbReferencias.Text);                     
 
             if (!CamposVaciosModificar())
             {
@@ -142,6 +136,68 @@ namespace MeetingApp
             }
         }
 
+        //CARGAR COMBO OBRAS SOCIALES
+        public void CargarComboObrasSociales()
+        {
+            try
+            {
+                List<ObraSocial> listaObraSocial = new List<ObraSocial>();
+                listaObraSocial = _obraSocialBLL.ObtenerObraSocial();
+                cmbObraSocial.Items.Clear();
+
+                int indice = 0;
+                if (listaObraSocial.Count > 0)
+                {
+                    cmbObraSocial.DataSource = listaObraSocial;
+                    cmbObraSocial.DataTextField = "descripcion";
+                    cmbObraSocial.DataValueField = "idObraSocial";
+                    cmbObraSocial.DataBind();
+                    cmbObraSocial.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Obra Social...", "0"));
+
+                }
+                //else
+                //{
+                //    cmbEspecialidad.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0"));
+                //    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Debe seleccionar una Especialidad', 'warning')", true);
+                //}
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en cargar combo obras sociales " + ex.Message);
+            }
+        }
+       
+        //CARGAR COMBO REFERENCIAS
+        public void CargarComboReferencias()
+        {
+            try
+            {
+                List<Referencia> listaReferencia = new List<Referencia>();
+                listaReferencia = _registrarBLL.ObtenerReferencias();
+                cmbReferencias.Items.Clear();
+
+                int indice = 0;
+                if (listaReferencia.Count > 0)
+                {
+                    cmbReferencias.DataSource = listaReferencia;
+                    cmbReferencias.DataTextField = "descripcion";
+                    cmbReferencias.DataValueField = "idReferencia";
+                    cmbReferencias.DataBind();
+                    //cmbEspecialidad.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0"));
+                    //cmbEspecialidad.Items[0].Attributes = false;
+                }
+                else
+                {
+                    cmbReferencias.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Referencia...", "0"));
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error en cargar combo referencia " + ex.Message);
+            }
+        }
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
@@ -167,7 +223,7 @@ namespace MeetingApp
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo actualizar datos', 'error')", true);
                     btnCancelar.Enabled = false;
-                    btnAceptar.Enabled = false;
+                    btnAceptar.Enabled = true;
                     btnModificar.Enabled = true;
                 }
             }
@@ -247,7 +303,7 @@ namespace MeetingApp
             if (txtOcupacion.Text.Equals(""))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar Ocupacion')", true);
-                txtTelefono.Focus();
+                txtOcupacion.Focus();                
                 return true;
             }
             else

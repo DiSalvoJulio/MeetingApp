@@ -36,6 +36,11 @@ namespace BLL
             return registrarDAL.ObtenerEspecialidades();
         }
 
+        //combo referencias
+        public List<Referencia> ObtenerReferencias()
+        {
+            return registrarDAL.ObtenerReferencias();
+        }
 
     }
 }

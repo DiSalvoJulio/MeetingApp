@@ -49,18 +49,27 @@
                 <%--DIRECCION--%>
                 <asp:Label ID="direccion" runat="server" Text="Direccion - Nro"></asp:Label>
                 <asp:TextBox ID="txtDireccion" name="txtDireccion" runat="server" placeholder="Direccion - Nro" CssClass="form-control" OnkeyDown="" MaxLength="50"></asp:TextBox>
-            </div>                      
-            <div class="form-group col-md-4">
+            </div>
+            <div class="form-group col-md-6">
+                <%--OBRA SOCIAL--%>
+                <asp:Label ID="Label4" runat="server" Text="Obra Social"></asp:Label>
+                <br />
+                <asp:DropDownList ID="cmbObraSocial" runat="server" CssClass="btn btn-outline-info dropdown-toggle col-12" onClientClick="verDrop()" AutoPostBack="false">               
+                </asp:DropDownList>        
+            </div>
+            <div class="form-group col-md-6">
                 <%--OCUPACION--%>
                 <asp:Label ID="Label3" runat="server" Text="Ocupacion"></asp:Label>
                 <asp:TextBox ID="txtOcupacion" name="txtOcupacion" runat="server" placeholder="Ocupacion" CssClass="form-control" OnkeyDown="Letras()" MaxLength="40"></asp:TextBox>
             </div>
-            <div class="form-group col-md-4">
-                <%--REFERENCIA--%>
-                <asp:Label ID="Label2" runat="server" Text="Referencia"></asp:Label>
-                <asp:TextBox ID="txtReferencia" name="txtReferencia" runat="server" placeholder="Referencia" CssClass="form-control" OnkeyDown="Letras()" MaxLength="40"></asp:TextBox>
+            <div class="form-group col-md-6">
+                <%--REFERENCIAS--%>
+                <asp:Label ID="lblReferencias" runat="server" Text="Referencia de como llego al Profesional"></asp:Label>
+                <br />
+                <asp:DropDownList ID="cmbReferencias" runat="server" CssClass="btn btn-outline-info dropdown-toggle col-12" onClientClick="verDrop()" AutoPostBack="false">               
+                </asp:DropDownList>        
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
                 <%--FECHA INGRESO--%>
                 <asp:Label ID="Ingreso" runat="server" Text="Fecha de Ingreso"></asp:Label>
                 <asp:TextBox ID="txtIngreso" name="txtIngreso" runat="server" placeholder="Fecha de Ingreso" CssClass="form-control" OnkeyDown="Letras()" MaxLength="40" oninput="maxlengthNumber(this);"></asp:TextBox>

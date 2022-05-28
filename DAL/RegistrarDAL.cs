@@ -371,5 +371,40 @@ namespace DAL
         }
 
 
+        public List<Referencia> ObtenerReferencias()
+        {
+            try
+            {
+                string procedure = "sp_ObtenerReferencias";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = procedure;
+                comando.Parameters.Clear();
+                comando.CommandType = CommandType.StoredProcedure;
+
+                List<Referencia> listaReferencia = new List<Referencia>();
+
+                using (SqlDataReader dr = comando.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        Referencia referencia = new Referencia();
+                        referencia.idReferencia = int.Parse(dr["idReferencia"].ToString());
+                        referencia.descripcion = dr["descripcion"].ToString();
+                        listaReferencia.Add(referencia);
+                    }
+                    return listaReferencia;
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Error en cargar referencias " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
     }
 }

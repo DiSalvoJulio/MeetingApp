@@ -159,6 +159,24 @@ namespace MeetingApp
         protected global::System.Web.UI.WebControls.TextBox txtDireccion;
 
         /// <summary>
+        /// Control Label4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label4;
+
+        /// <summary>
+        /// Control cmbObraSocial.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cmbObraSocial;
+
+        /// <summary>
         /// Control Label3.
         /// </summary>
         /// <remarks>
@@ -177,22 +195,22 @@ namespace MeetingApp
         protected global::System.Web.UI.WebControls.TextBox txtOcupacion;
 
         /// <summary>
-        /// Control Label2.
+        /// Control lblReferencias.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label lblReferencias;
 
         /// <summary>
-        /// Control txtReferencia.
+        /// Control cmbReferencias.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtReferencia;
+        protected global::System.Web.UI.WebControls.DropDownList cmbReferencias;
 
         /// <summary>
         /// Control Ingreso.

@@ -198,7 +198,7 @@ namespace MeetingApp
 
                 throw new Exception("Error en cargar combo especialidad " + ex.Message);
             }
-        }
+        }       
 
 
         //VALIDACIONES

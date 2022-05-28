@@ -23,8 +23,10 @@ namespace MeetingApp
             {
                 CargarComboEspecialidades();
                 CargarComboFormasDePagos();
-                CargarComboObrasSociales();
+                //CargarComboObrasSociales();
                 Usuario user = (Usuario)Session["Usuario"];
+                //txtObraSocial.Text = user.idObraSocial.ToString();
+                txtObraSocial.Text = MostrarObraSocial();
                 //divProfesionales.Visible = false;
             }
         }
@@ -143,36 +145,53 @@ namespace MeetingApp
             }
         }
 
-        //CARGAR COMBO OBRAS SOCIALES
-        public void CargarComboObrasSociales()
+        //Metodo para mostrar la obra social en txt
+        public string MostrarObraSocial()
         {
-            try
+            Usuario user = (Usuario)Session["Usuario"];
+            string obraSocial = "";
+            //int id = 0;
+            List<ObraSocial> listaObra = _obraSocialBLL.ObtenerObraSocial();
+            foreach (ObraSocial item in listaObra)
             {
-                List<ObraSocial> listaObraSocial = new List<ObraSocial>();
-                listaObraSocial = _obraSocialBLL.ObtenerObraSocial();
-                cmbObraSocial.Items.Clear();
-
-                int indice = 0;
-                if (listaObraSocial.Count > 0)
+                if (user.idObraSocial == item.idObraSocial)
                 {
-                    cmbObraSocial.DataSource = listaObraSocial;
-                    cmbObraSocial.DataTextField = "descripcion";
-                    cmbObraSocial.DataValueField = "idObraSocial";
-                    cmbObraSocial.DataBind();
-                    cmbObraSocial.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Obra Social...", "0"));
-
-                }
-                //else
-                //{
-                //    cmbEspecialidad.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0"));
-                //    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Debe seleccionar una Especialidad', 'warning')", true);
-                //}
+                    obraSocial = item.descripcion;
+                }                
             }
-            catch (Exception ex)
-            {
-                throw new Exception("Error en cargar combo obras sociales " + ex.Message);
-            }
+            return obraSocial;            
         }
+
+        //CARGAR COMBO OBRAS SOCIALES
+        //public void CargarComboObrasSociales()
+        //{
+        //    try
+        //    {
+        //        List<ObraSocial> listaObraSocial = new List<ObraSocial>();
+        //        listaObraSocial = _obraSocialBLL.ObtenerObraSocial();
+        //        cmbObraSocial.Items.Clear();
+
+        //        int indice = 0;
+        //        if (listaObraSocial.Count > 0)
+        //        {
+        //            cmbObraSocial.DataSource = listaObraSocial;
+        //            cmbObraSocial.DataTextField = "descripcion";
+        //            cmbObraSocial.DataValueField = "idObraSocial";
+        //            cmbObraSocial.DataBind();
+        //            cmbObraSocial.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Obra Social...", "0"));
+
+        //        }
+        //        else
+        //        {
+        //            cmbEspecialidad.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0"));
+        //            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Debe seleccionar una Especialidad', 'warning')", true);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception("Error en cargar combo obras sociales " + ex.Message);
+        //    }
+        //}
 
         protected void btnMostrarHorarios_Click(object sender, EventArgs e)
         {
@@ -393,9 +412,10 @@ namespace MeetingApp
                 turno.fechaTurno = txtCalendario.Value;
                 turno.horaTurno = cmbHorarioDisponible.SelectedItem.Text;                
                 turno.idFormaPago = int.Parse(cmbFormaPago.SelectedValue);
-                turno.idObraSocial = int.Parse(cmbObraSocial.SelectedValue);
-                turno.descripcion = txtMotivo.Text;
-                turno.idUsuarioPaciente = user.idUsuario;
+                //turno.idObraSocial = /*int.Parse(cmbObraSocial.SelectedValue);*/ user.idObraSocial;
+                //string obrasocial = user.idObraSocial.ToString();
+                //obrasocial = int.Parse(cmbObraSocial.Text);
+                //turno.descripcion = txtMotivo.Text;               
 
                 bool result = _turnoBLL.InsertarTurno(turno);
                 if (result)

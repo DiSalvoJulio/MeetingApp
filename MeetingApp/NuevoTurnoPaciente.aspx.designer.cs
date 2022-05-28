@@ -87,13 +87,13 @@ namespace MeetingApp
         protected global::System.Web.UI.WebControls.DropDownList cmbFormaPago;
 
         /// <summary>
-        /// Control cmbObraSocial.
+        /// Control txtObraSocial.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbObraSocial;
+        protected global::System.Web.UI.WebControls.TextBox txtObraSocial;
 
         /// <summary>
         /// Control txtMotivo.
