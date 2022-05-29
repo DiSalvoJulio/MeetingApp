@@ -47,9 +47,9 @@
                     <li>
                         <a href="NuevoTurnoPaciente.aspx" runat="server" id="tabTurnoPaciente"><span class="fa fa-calendar-check-o"></span>Nuevo Turno</a>
                     </li>
-                   <%-- <li>
-                        <a href="#" runat="server" id="tabTurnoProfesional"><span class="fa fa-calendar-check-o"></span>Nuevo Turno</a>
-                    </li>--%>
+                    <li>
+                        <a href="TurnoProfesional.aspx" runat="server" id="tabTurnoProfesional"><span class="fa fa-calendar-check-o"></span>Asignar Turno</a>
+                    </li>
                     <li>
                         <a href="Gestiones/Especialidades.aspx" runat="server" id="tabEspecialidades"><span class="fa fa-user-md"></span>Especialidades</a>
                     </li>

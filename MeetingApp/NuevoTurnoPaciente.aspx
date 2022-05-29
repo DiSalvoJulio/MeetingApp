@@ -22,7 +22,7 @@
             <ContentTemplate>
                 <div class="row">
                     <%--combo especialidades--%>
-                    <h5 class="mr-3 mt-1 col-sm-4">Seleccione una Especialidad</h5>
+                    <h5 class="mr-3 mt-1 col-sm-4">Seleccione una especialidad</h5>
                     <%-- <asp:Label ID="Label1" runat="server" Text="Especialidad" CssClass="mr-3"></asp:Label>--%>
                     <asp:DropDownList ID="cmbEspecialidad" runat="server" CssClass="btn btn-primary col-sm-3 mt-1" AutoPostBack="true" OnSelectedIndexChanged="cmbEspecialidad_SelectedIndexChanged">
                     </asp:DropDownList>
@@ -30,10 +30,10 @@
 
                 <div class="row mt-5" id="divProfesionales" runat="server">
                     <%--combo profesionales--%>
-                    <h5 class="mr-3 mt-1 col-sm-4">Seleccione un Profesional</h5>
+                    <h5 class="mr-3 mt-1 col-sm-4">Seleccione un profesional</h5>
                     <%-- <asp:Label ID="Label2" runat="server" Text="Profesional" CssClass="mr-3"></asp:Label>--%>
                     <asp:DropDownList ID="cmbProfesional" runat="server" CssClass="btn btn-primary col-sm-3 mt-1" AutoPostBack="true">
-                        <asp:ListItem Text="Seleccione Profesional..."></asp:ListItem>
+                        <asp:ListItem Text="Seleccione profesional..."></asp:ListItem>
                     </asp:DropDownList>
                 </div>
             </ContentTemplate>
@@ -43,7 +43,7 @@
         <%--<asp:TextBox type="date" runat="server" class="form-control col-3 mt-5" ID="txtCalendario"></asp:TextBox>--%>
         <div class="row">
             <input runat="server" type="date" class="form-control col-3 mt-5 ml-3 mr-5" id="txtCalendario">
-            <asp:Button Text="Mostrar Horarios" ID="btnMostrarHorarios" class="btn btn-info col-sm-3 mt-5 ml-5" runat="server" OnClick="btnMostrarHorarios_Click" />
+            <asp:Button Text="Mostrar horarios" ID="btnMostrarHorarios" class="btn btn-info col-sm-3 mt-5 ml-5" runat="server" OnClick="btnMostrarHorarios_Click" />
         </div>
 
 
@@ -51,10 +51,10 @@
             <ContentTemplate>
                 <div class="row mt-5" id="divHorariosDisponibles" runat="server">
                     <%--combo horarios--%>
-                    <h5 class="mr-3 mt-1 col-sm-4">Seleccione un Horario</h5>
+                    <h5 class="mr-3 mt-1 col-sm-4">Seleccione un horario</h5>
                     <%-- <asp:Label ID="Label2" runat="server" Text="Profesional" CssClass="mr-3"></asp:Label>--%>
                     <asp:DropDownList ID="cmbHorarioDisponible" runat="server" CssClass="btn btn-primary col-sm-3 mt-1" AutoPostBack="false">
-                        <asp:ListItem Text="Seleccione Horario..."></asp:ListItem>
+                        <asp:ListItem Text="Seleccione horario..."></asp:ListItem>
                     </asp:DropDownList>
                 </div>
             </ContentTemplate>
@@ -69,16 +69,16 @@
             <h5 class="mr-3 mt-1 col-sm-4">Forma de pago</h5>
             <%-- <asp:Label ID="Label1" runat="server" Text="Especialidad" CssClass="mr-3"></asp:Label>--%>
             <asp:DropDownList ID="cmbFormaPago" runat="server" CssClass="btn btn-primary col-sm-3 mt-1" AutoPostBack="false">
-                <asp:ListItem Text="Forma de Pago..."></asp:ListItem>
+                <asp:ListItem Text="Forma de pago..."></asp:ListItem>
             </asp:DropDownList>
         </div>
 
          <%--OBRA SOCIAL--%>
         <div class="row mt-5">
             <%--combo obras sociales--%>
-            <h5 class="mr-3 mt-1 col-sm-4">Obra Social</h5>
+            <h5 class="mr-3 mt-1 col-sm-4">Obra social</h5>
             <%-- <asp:Label ID="Label1" runat="server" Text="Especialidad" CssClass="mr-3"></asp:Label>--%>
-            <asp:TextBox ID="txtObraSocial" name="txtObraSocial" runat="server" placeholder="Obra Social" CssClass="form-control col-sm-3" Enabled="false"></asp:TextBox>
+            <asp:TextBox ID="txtObraSocial" name="txtObraSocial" runat="server" placeholder="Obra social" CssClass="form-control col-sm-3" Enabled="false"></asp:TextBox>
             <%--<asp:DropDownList ID="cmbObraSocial" runat="server" CssClass="btn btn-primary col-sm-3 mt-1" AutoPostBack="false">
                 <asp:ListItem Text="Obra Social..."></asp:ListItem>
             </asp:DropDownList>--%>
@@ -89,7 +89,9 @@
             <asp:TextBox runat="server" TextMode="MultiLine" Width="60%" ID="txtMotivo"></asp:TextBox>
         </div>
 
-        <asp:Button Text="Reservar Turno" ID="btnReservarTurno" class="btn btn-danger mt-5" runat="server" OnClick="btnReservarTurno_Click" />
+        <div class="form-row" style="justify-content: center;">
+        <asp:Button Text="Reservar turno" ID="btnReservarTurno" class="btn btn-danger mt-5" runat="server" OnClick="btnReservarTurno_Click" />
+        </div>
 
 
 
