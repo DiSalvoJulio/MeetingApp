@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using DAL;
 using Entidades;
+using Entidades.DTOs;
 
 namespace BLL
 {
@@ -27,6 +28,11 @@ namespace BLL
         public List<Referencia> ObtenerReferencias()
         {
             return _pacienteDAL.ObtenerReferencias();
+        }
+
+        public List<ObtenerTurnosPacienteDTO> ObtenerTurnosPaciente(int idPaciente)
+        {
+            return _pacienteDAL.ObtenerTurnosPaciente(idPaciente);
         }
 
     }

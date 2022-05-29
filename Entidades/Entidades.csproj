@@ -49,6 +49,8 @@
     <Compile Include="DTOs\ObtenerHorarioProfesionalDiaDTO.cs" />
     <Compile Include="DTOs\ObtenerProfesionalDTO.cs" />
     <Compile Include="DTOs\ObtenerTurnoDTO.cs" />
+    <Compile Include="DTOs\ObtenerTurnosPacienteDTO.cs" />
+    <Compile Include="DTOs\ObtenerTurnosProfesionalDTO.cs" />
     <Compile Include="Especialidad.cs" />
     <Compile Include="FormaPago.cs" />
     <Compile Include="Horario.cs" />

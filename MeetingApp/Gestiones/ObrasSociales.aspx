@@ -13,14 +13,14 @@
         <hr />
 
         <div class="form-group col-md-6 mt-5">
-            <asp:Button ID="btnAgregar" Text="Agregar Nueva Obra Social" runat="server" class="btn-primary" CssClass="btn btn-primary" OnClick="btnAgregar_Click" />
+            <asp:Button ID="btnAgregar" Text="Agregar nueva obra social" runat="server" class="btn-primary" CssClass="btn btn-primary" OnClick="btnAgregar_Click" />
         </div>
         <%-- SECCION 2--%>
         <section class="content">
             <div class="row" runat="server" visible="false" id="divAgregarObraSocial">
                 <div class="form-group col-md-6 mt-3">
-                    <asp:Label Text="Escribir la nueva Obra Social a agregar" runat="server" />
-                    <asp:TextBox ID="txtObraSocial" runat="server" Text="" CssClass="form-control mt-2" placeholder="Nueva Obra Social..." OnkeyDown="Letras()" MaxLength="40" oninput="maxlengthNumber(this);" />
+                    <asp:Label Text="Escribir la nueva obra social a agregar" runat="server" />
+                    <asp:TextBox ID="txtObraSocial" runat="server" Text="" CssClass="form-control mt-2" placeholder="Nueva obra social..." OnkeyDown="Letras()" MaxLength="40" oninput="maxlengthNumber(this);" />
                 </div>
                 <div class="form-group col-md-6 mt-5">
                     <asp:Button ID="btnConfirmar" Text="Confirmar" runat="server" CssClass="btn btn-primary" OnClick="btnConfirmar_Click" />

@@ -14,7 +14,7 @@
             </div>
             <div class="form-group col-md-6 mt-4">
                 <%--BUSCAR--%>
-                <asp:Button ID="btnBuscarPaciente" runat="server" Text="Buscar Paciente" OnClick="btnBuscarPaciente_Click" CssClass="btn btn-primary" />
+                <asp:Button ID="btnBuscarPaciente" runat="server" Text="Buscar paciente" OnClick="btnBuscarPaciente_Click" CssClass="btn btn-primary" />
             </div>
             <hr />
         </div>
@@ -26,7 +26,7 @@
             </div>
             <div class="form-group col-md-3">
                 <%--OBRA SOCIAL--%>
-                <asp:Label ID="Label2" runat="server" Text="Obra Social"></asp:Label>
+                <asp:Label ID="Label2" runat="server" Text="Obra social"></asp:Label>
                 <asp:TextBox ID="txtObraSocial" name="txtObraSocial" runat="server" placeholder="Obra Social" CssClass="form-control" Enabled="false"></asp:TextBox>
             </div>
             <div class="form-group col-md-4 mt-4">

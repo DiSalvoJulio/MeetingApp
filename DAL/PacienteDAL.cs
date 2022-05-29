@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using Entidades;
+using Entidades.DTOs;
 
 namespace DAL
 {
@@ -193,6 +194,52 @@ namespace DAL
             catch (Exception ex)
             {               
                 throw new Exception(ex.Message);                
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
+
+        //obtener lista de profesionales por especialidad
+        public List<ObtenerTurnosPacienteDTO> ObtenerTurnosPaciente(int idPaciente)
+        {
+            try
+            {
+                string procedure = "sp_ObtenerTurnosPacienteDTO";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = procedure;
+                comando.Parameters.Clear();
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@idPaciente", idPaciente);                
+                comando.ExecuteNonQuery();
+
+                List<ObtenerTurnosPacienteDTO> listaTurnosDto = new List<ObtenerTurnosPacienteDTO>();
+
+                using (SqlDataReader dr = comando.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        ObtenerTurnosPacienteDTO turno = new ObtenerTurnosPacienteDTO();
+                        turno.idTurno = Convert.ToInt32(dr["idTurno"]);
+                        //turno.fechaTurno = Convert.ToDateTime(dr["Fecha"]);
+                        turno.fechaTurno = dr["Fecha"].ToString();//ver como cambiar el mostrado de la fecha
+                        turno.horaTurno = dr["Hora"].ToString();
+                        turno.descripcion = dr["Descripcion"].ToString();
+                        turno.profesional = dr["Profesional"].ToString();
+                        turno.especialidad = dr["Especialidad"].ToString();
+                        turno.obraSocial = dr["ObraSocial"].ToString();
+                        turno.estado = Convert.ToBoolean(dr["Estado"].ToString());
+                        listaTurnosDto.Add(turno);
+                    }
+                    return listaTurnosDto;
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Error en cargar TurnoPacienteDto DAL " + ex.Message);
             }
             finally
             {

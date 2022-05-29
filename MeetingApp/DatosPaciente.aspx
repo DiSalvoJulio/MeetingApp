@@ -27,7 +27,7 @@
             </div>
             <div class="form-group col-md-6">
                 <%--FECHA NACIMIENTO--%>
-                <asp:Label ID="fechaNac" runat="server" Text="Fecha de Nacimiento"></asp:Label>
+                <asp:Label ID="fechaNac" runat="server" Text="Fecha de nacimiento"></asp:Label>
                 <asp:TextBox ID="txtFecNac" name="txtFecNac" runat="server" placeholder="Fecha de nacimiento" Type="date" CssClass="form-control" OnkeyDown="Letras()" MaxLength="10"></asp:TextBox>
             </div>
             <div class="form-group col-md-6">
@@ -64,7 +64,7 @@
             </div>
             <div class="form-group col-md-6">
                 <%--REFERENCIAS--%>
-                <asp:Label ID="lblReferencias" runat="server" Text="Referencia de como llego al Profesional"></asp:Label>
+                <asp:Label ID="lblReferencias" runat="server" Text="Referencia de como llego al profesional"></asp:Label>
                 <br />
                 <asp:DropDownList ID="cmbReferencias" runat="server" CssClass="btn btn-outline-info dropdown-toggle col-12" onClientClick="verDrop()" AutoPostBack="false">               
                 </asp:DropDownList>        

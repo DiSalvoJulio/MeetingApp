@@ -222,6 +222,8 @@
     <Content Include="Login\fonts\poppins\Poppins-SemiBoldItalic.ttf" />
     <Content Include="Login\fonts\poppins\Poppins-Thin.ttf" />
     <Content Include="Login\fonts\poppins\Poppins-ThinItalic.ttf" />
+    <Content Include="MisTurnosPaciente.aspx" />
+    <Content Include="MisTurnosProfesional.aspx" />
     <Content Include="NuevoTurnoPaciente.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -473,6 +475,20 @@
     </Compile>
     <Compile Include="InicioSesion.aspx.designer.cs">
       <DependentUpon>InicioSesion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MisTurnosPaciente.aspx.cs">
+      <DependentUpon>MisTurnosPaciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MisTurnosPaciente.aspx.designer.cs">
+      <DependentUpon>MisTurnosPaciente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MisTurnosProfesional.aspx.cs">
+      <DependentUpon>MisTurnosProfesional.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MisTurnosProfesional.aspx.designer.cs">
+      <DependentUpon>MisTurnosProfesional.aspx</DependentUpon>
     </Compile>
     <Compile Include="NuevoTurnoPaciente.aspx.cs">
       <DependentUpon>NuevoTurnoPaciente.aspx</DependentUpon>

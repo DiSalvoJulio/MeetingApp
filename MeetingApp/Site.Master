@@ -66,7 +66,10 @@
                         <a href="Gestiones/Horarios.aspx" runat="server" id="tabHorario"><span class="fa fa-clock-o"></span>Horarios</a>
                     </li>
                     <li>
-                        <a href="#" runat="server" id="tabMisTurno"><span class="fa fa-sticky-note"></span>Mis turnos</a>
+                        <a href="MisTurnosPaciente.aspx" runat="server" id="tabMisTurnosPaciente"><span class="fa fa-sticky-note"></span>Mis turnos</a>
+                    </li>
+                    <li>
+                        <a href="MisTurnosProfesional.aspx" runat="server" id="tabMisTurnosProfesional"><span class="fa fa-sticky-note"></span>Turnos asignados</a>
                     </li>
                     <li>
                         <a href="DatosPaciente.aspx" runat="server" id="tabDatosPaciente"><span class="fa fa-user"></span>Mis datos</a>

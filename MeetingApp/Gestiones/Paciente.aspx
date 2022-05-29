@@ -19,7 +19,7 @@
             </div>
             <div class="form-group col-md-6 mt-4">
                 <%--APELLIDO--%>
-                <asp:Button ID="btnBuscarPaciente" runat="server" Text="Buscar Paciente" OnClick="btnBuscarPaciente_Click" CssClass="btn btn-primary" />
+                <asp:Button ID="btnBuscarPaciente" runat="server" Text="Buscar paciente" OnClick="btnBuscarPaciente_Click" CssClass="btn btn-primary" />
                 <%--<asp:Label ID="Label5" runat="server" Text="Apellido y Nombre"></asp:Label>--%>
                 <%--<asp:TextBox ID="TextBox2" name="txtApellido" runat="server" placeholder="Apellido y Nombre" CssClass="form-control" OnkeyDown="Letras()" MaxLength="40"></asp:TextBox>
             </div>--%>
@@ -47,7 +47,7 @@
             </div>
             <div class="form-group col-md-6">
                 <%--FECHA NACIMIENTO--%>
-                <asp:Label ID="fechaNac" runat="server" Text="Fecha de Nacimiento"></asp:Label>
+                <asp:Label ID="fechaNac" runat="server" Text="Fecha de nacimiento"></asp:Label>
                 <asp:TextBox ID="txtFecNac" name="txtFecNac" runat="server" placeholder="Fecha de nacimiento" Type="date" CssClass="form-control" OnkeyDown="Letras()" MaxLength="10"></asp:TextBox>
             </div>
             <div class="form-group col-md-6">
@@ -77,13 +77,13 @@
             </div>
             <div class="form-group col-md-4">
                 <%--REFERENCIA--%>
-                <asp:Label ID="Label2" runat="server" Text="Referencia"></asp:Label>
+                <asp:Label ID="Label2" runat="server" Text="Referencia de como llego al profesional"></asp:Label>
                 <asp:TextBox ID="txtReferencia" name="txtReferencia" runat="server" placeholder="Referencia" CssClass="form-control" OnkeyDown="Letras()" MaxLength="40"></asp:TextBox>
             </div>
             <div class="form-group col-md-4">
                 <%--FECHA INGRESO--%>
-                <asp:Label ID="Ingreso" runat="server" Text="Fecha de Ingreso"></asp:Label>
-                <asp:TextBox ID="txtIngreso" name="txtIngreso" runat="server" placeholder="Fecha de Ingreso" CssClass="form-control" OnkeyDown="Letras()" MaxLength="40" oninput="maxlengthNumber(this);"></asp:TextBox>
+                <asp:Label ID="Ingreso" runat="server" Text="Fecha de ingreso"></asp:Label>
+                <asp:TextBox ID="txtIngreso" name="txtIngreso" runat="server" placeholder="Fecha de ingreso" CssClass="form-control" OnkeyDown="Letras()" MaxLength="40" oninput="maxlengthNumber(this);"></asp:TextBox>
             </div>
         </div>
         <%--cierre del row--%>
