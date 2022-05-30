@@ -3,17 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <script type="text/javascript">
-        console.log(19);
-        $(document).ready(function () {
-            $('#txtCalendario').datepicker({
-                format: 'mm/dd/yyyy',
-                startDate: '-3d',
-                language: 'es',
-                autoclose: false
-            });
-        });
-    </script>
     <div class="container">
         <h1 style="color: red; text-align: center">Nuevo Turno</h1>
         <hr />
@@ -73,7 +62,7 @@
             </asp:DropDownList>
         </div>
 
-         <%--OBRA SOCIAL--%>
+        <%--OBRA SOCIAL--%>
         <div class="row mt-5">
             <%--combo obras sociales--%>
             <h5 class="mr-3 mt-1 col-sm-4">Obra social</h5>
@@ -90,49 +79,58 @@
         </div>
 
         <div class="form-row" style="justify-content: center;">
-        <asp:Button Text="Reservar turno" ID="btnReservarTurno" class="btn btn-danger mt-5" runat="server" OnClick="btnReservarTurno_Click" />
+            <asp:Button Text="Reservar turno" ID="btnReservarTurno" class="btn btn-danger mt-5" runat="server" OnClick="btnReservarTurno_Click" />
         </div>
 
+        <%--MODAL PARA CONFIRMAR EL TURNO--%>
+        <asp:Panel runat="server" ID="panelConfirmarTurno" Visible="false">
+            <div class="modal fade show" tabindex="-1" aria-hidden="true" style="display: block;">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content w-75" style="margin-left: 12.5%">
+                        <div class="modal-header">
+                            <h3 class="modal-title" style="margin-left: auto">Detalle del turno</h3>
+                            <hr id="hrContent">
+                            <button runat="server" class="close" data-bs-dismiss="modal" aria-label="Close"
+                                onserverclick="CerrarModalTurno">
+                                x</button>
+                        </div>
+                        <div class="modal-body col-md-8">
+                            <%--CODIGO CUERPO MODAL--%>
+                            <asp:Label ID="txtFecha" runat="server" Text="Fecha" CssClass="mr-3"></asp:Label>
+                            <asp:Label ID="txtHora" runat="server" Text="Hora" CssClass="mr-3"></asp:Label>
+                            <asp:Label ID="txtFormaPago" runat="server" Text="Forma Pago" CssClass="mr-3"></asp:Label>
 
 
-        <%--importar un datepicker y tenerlo en español--%>
-        <%--<script>
-            document.getElementById('#txtCalendario').value = new Date().toDateInputValue();
-            $(document).ready(function () {
-                $('#txtCalendario').val(new Date().toDateInputValue());
-            });
-        </script>--%>
-        <%--<script type="text/javascript">
-            $("#txtCalendario").datepicker({
-                format: 'mm/dd/yyyy',
-                startDate: '-3d',
-                language: 'es',
-                autoclose: false
-            });
-        </script>--%>
-        <%--        <script>
-            $.datepicker.regional['es'] = {
-                closeText: 'Cerrar',
-                prevText: '< Ant',
-                nextText: 'Sig >',
-                currentText: 'Hoy',
-                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-                monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-                dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-                dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
-                dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-                weekHeader: 'Sm',
-                dateFormat: 'dd/mm/yy',
-                firstDay: 1,
-                isRTL: false,
-                showMonthAfterYear: false,
-                yearSuffix: ''
-            };
-            $.datepicker.setDefaults($.datepicker.regional['es']);
-            $(function () {
-                $("#txtCalendario").datepicker();
-            });
-        </script>--%>
+                            <%--CIERRE CUERPO MODAL--%>
+                        </div>
+                        <!--Fin Body Modal-->
+                        <div class="modal-footer">
+                            <asp:Button ID="btnCancelarEliminar" Text="Cancelar" runat="server" type="button" class="btn btn-danger" />
+                            <asp:Button ID="btnConfirmarEliminar" Text="Confirmar" runat="server" type="button" class="btn btn-primary" onclick="btnConfirmarEliminar_Click"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-backdrop fade show"></div>
+        </asp:Panel>
+
+
+
+
+
+        <%-- VALIDA QUE NO SE PUEDA SELECCIONAR FECHA ANTERIOR--%>
+        <script>            
+            let date = new Date();
+            const fecha = date.toISOString().split(":");
+            const fechaPartida = fecha[0].split("T");
+            const inputDate = document.getElementById("<%: txtCalendario.ClientID %>");
+
+            let min = document.createAttribute("min")
+            min.value = fechaPartida[0]
+            console.log(inputDate)
+            inputDate.setAttributeNode(min)
+        </script>
+
     </div>
     <%--FIN CONTAINER--%>
 </asp:Content>

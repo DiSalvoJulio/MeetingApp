@@ -243,7 +243,7 @@ namespace MeetingApp
                     listaTurnosDados = _turnoBLL.ObtenerTurnoPorProfesionalYEspecialidad(listaHorarioProf[0].idHorario, dia);
                     listaTurnosDados = _turnoBLL.ObtenerTurnoPorProfesionalYEspecialidad(listaHorarioProf[1].idHorario, dia);
                 }
-                else
+                if (listaHorarioProf.Count == 0)//aca habia un else
                 {
                     listaTurnosDados = _turnoBLL.ObtenerTurnoPorProfesionalYEspecialidad(listaHorarioProf[0].idHorario, dia);
                 }
@@ -251,7 +251,7 @@ namespace MeetingApp
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'No hay horarios disponibles en ese dia', 'warning')", true);
                     cmbHorarioDisponible.Items.Clear();//limpiamos el combo
-                    //cmbHorarioDisponible.Items.Insert(0, new System.Web.UI.WebControls.ListItem("Seleccione Horario...", "0"));
+                    //cmbHorarioDisponible.Items.Insert(0, new System.Web.UI.WebControls.ListItem("Horarios...", "0"));
                     return;
                 }
                 else
@@ -412,14 +412,10 @@ namespace MeetingApp
                 turno.horaTurno = cmbHorarioDisponible.SelectedItem.Text;                
                 turno.idFormaPago = int.Parse(cmbFormaPago.SelectedValue);
                 turno.idObraSocial = user.idObraSocial;
-                turno.descripcion = txtMotivo.Text.Trim();             
-                
-                bool result = _turnoBLL.InsertarTurno(turno);
-                if (result)
-                {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'El turno se genero correctamente', 'success')", true);
-                    //limpiar campos
-                }
+                turno.descripcion = txtMotivo.Text.Trim();
+
+                //Turno turnoNuevo = (Turno)Session["nuevoTurno"];
+                Session["nuevoTurno"] = turno;               
 
             }
         }
@@ -427,14 +423,21 @@ namespace MeetingApp
         //boton para reservar el turno nuevo
         protected void btnReservarTurno_Click(object sender, EventArgs e)
         {
-            try
-            {               
-                InsertarTurno();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error en insertar turno " + ex.Message);
-            }
+            InsertarTurno();
+            panelConfirmarTurno.Visible = true;
+            Turno turno = (Turno)Session["nuevoTurno"];
+            txtFecha.Text = turno.fechaTurno;
+            txtHora.Text = turno.horaTurno;
+            txtFormaPago.Text = turno.idFormaPago.ToString();
+
+            //try
+            //{               
+            //    InsertarTurno();
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new Exception("Error en insertar turno " + ex.Message);
+            //}
         }
 
         public List<HorariosDTO> tieneHorarioManianaTarde(List<ObtenerHorarioProfesionalDiaDTO> listaHorarioProf, List<ObtenerTurnoDTO> listaTurnosDados)
@@ -567,9 +570,25 @@ namespace MeetingApp
         }
 
 
+        //cerrar modal con cruz
+        public void CerrarModalTurno(object sender, EventArgs e)
+        {
+            //ID DEL PANEL DE LA MODAL
+            panelConfirmarTurno.Visible = false;
+        }
 
-
-
+        //confirma turno
+        protected void btnConfirmarEliminar_Click(object sender, EventArgs e)
+        {
+            Turno turno = (Turno)Session["nuevoTurno"];
+            bool result = _turnoBLL.InsertarTurno(turno);
+            if (result)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'El turno se genero correctamente', 'success')", true);
+                //limpiar campos
+                panelConfirmarTurno.Visible = false;
+            }
+        }
 
     }
 }

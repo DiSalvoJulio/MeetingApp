@@ -41,8 +41,7 @@ namespace DAL
                 return true;
             }
             catch (SqlException ex)
-            {
-                
+            {                
                 throw new Exception("Error en Insertar Turno " + ex.Message);
             }
             finally

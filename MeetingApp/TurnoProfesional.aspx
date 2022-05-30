@@ -64,7 +64,7 @@
             <div class="form-group col-md-5">
                 <asp:Label ID="Label6" runat="server" Text="Horario"></asp:Label>
             <asp:DropDownList ID="cmbHorarioDisponible" runat="server" CssClass="btn btn-primary" AutoPostBack="false">
-                <asp:ListItem Text="Seleccione horario..."></asp:ListItem>
+                <asp:ListItem Text="Horarios..."></asp:ListItem>
             </asp:DropDownList>  
                 </div>
                 </ContentTemplate>
@@ -92,7 +92,18 @@
         <asp:Button Text="Reservar turno" ID="btnReservarTurno" class="btn btn-danger mt-5" runat="server" />
         </div>
 
+         <%-- VALIDA QUE NO SE PUEDA SELECCIONAR FECHA ANTERIOR--%>
+        <script>            
+            let date = new Date();
+            const fecha = date.toISOString().split(":");
+            const fechaPartida = fecha[0].split("T");
+            const inputDate = document.getElementById("<%: txtCalendario.ClientID %>");
 
+            let min = document.createAttribute("min")
+            min.value = fechaPartida[0]
+            console.log(inputDate)
+            inputDate.setAttributeNode(min)
+        </script>  
 
 
         <%--fin container--%>
