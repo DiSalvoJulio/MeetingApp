@@ -22,7 +22,7 @@
                     <h5 class="mr-3 mt-1 col-sm-4">Seleccione un profesional</h5>
                     <%-- <asp:Label ID="Label2" runat="server" Text="Profesional" CssClass="mr-3"></asp:Label>--%>
                     <asp:DropDownList ID="cmbProfesional" runat="server" CssClass="btn btn-primary col-sm-3 mt-1" AutoPostBack="true">
-                        <asp:ListItem Text="Seleccione profesional..."></asp:ListItem>
+                        <asp:ListItem Text="Profesional..."></asp:ListItem>
                     </asp:DropDownList>
                 </div>
             </ContentTemplate>
@@ -43,7 +43,7 @@
                     <h5 class="mr-3 mt-1 col-sm-4">Seleccione un horario</h5>
                     <%-- <asp:Label ID="Label2" runat="server" Text="Profesional" CssClass="mr-3"></asp:Label>--%>
                     <asp:DropDownList ID="cmbHorarioDisponible" runat="server" CssClass="btn btn-primary col-sm-3 mt-1" AutoPostBack="false">
-                        <asp:ListItem Text="Seleccione horario..."></asp:ListItem>
+                        <asp:ListItem Text="Horario..."></asp:ListItem>
                     </asp:DropDownList>
                 </div>
             </ContentTemplate>

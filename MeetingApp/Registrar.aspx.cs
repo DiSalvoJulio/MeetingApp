@@ -44,7 +44,14 @@ namespace MeetingApp
                 user.idEspecialidad = cmbProfesion.SelectedIndex;
 
                 registrarBLL.InsertarUsuario(user);
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Registro con Exito!', 'Sera redirigido al Login para iniciar sesion', 'success')", true);
+                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Registro con Exito!', 'Sera redirigido al Login para iniciar sesion', 'success')", true);
+
+                /*Datos del mail que se envia al usuario registrado*/
+                string persona = user.nombre + " " +user.apellido;
+                Email email = new Email();
+                string mensajeError = "";
+                email.SendEmailRegistro(user.email, persona, user.dni, user.pass,ref mensajeError);
+
                 return true;
                 
 
@@ -110,16 +117,19 @@ namespace MeetingApp
             {
                 if (InsertarUsuario())
                 {
+                    
+                    //var cancellationTokenSource = new CancellationTokenSource();
+                    //var cancellationToken = cancellationTokenSource.Token;
 
-                    var cancellationTokenSource = new CancellationTokenSource();
-                    var cancellationToken = cancellationTokenSource.Token;
+                    //Task.Delay(2000).ContinueWith(async (t) =>
+                    //{
+                    //    Response.Redirect("InicioSesion.aspx", false);
+                    //}, cancellationToken);
 
-                    Task.Delay(2000).ContinueWith(async (t) =>
-                    {
-                        Response.Redirect("InicioSesion.aspx", false);
-                    }, cancellationToken);
                     //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Registro con Exito!', 'Sera redirigido al Login para iniciar sesion', 'success')", true);
-                   
+
+                    Response.Redirect("InicioSesion.aspx", false);
+
                 }
                 else
                 {

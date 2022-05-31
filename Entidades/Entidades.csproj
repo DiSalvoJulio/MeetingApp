@@ -51,6 +51,7 @@
     <Compile Include="DTOs\ObtenerTurnoDTO.cs" />
     <Compile Include="DTOs\ObtenerTurnosPacienteDTO.cs" />
     <Compile Include="DTOs\ObtenerTurnosProfesionalDTO.cs" />
+    <Compile Include="Email.cs" />
     <Compile Include="Especialidad.cs" />
     <Compile Include="FormaPago.cs" />
     <Compile Include="Horario.cs" />

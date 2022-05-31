@@ -47,7 +47,7 @@ namespace MeetingApp
                     cmbEspecialidad.DataTextField = "descripcion";
                     cmbEspecialidad.DataValueField = "idEspecialidad";
                     cmbEspecialidad.DataBind();
-                    cmbEspecialidad.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione especialidad...", "0"));
+                    cmbEspecialidad.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Especialidad...", "0"));
 
                 }
                 //else
@@ -91,18 +91,20 @@ namespace MeetingApp
                     cmbProfesional.DataValueField = "idUsuario";
                     cmbProfesional.DataTextField = "apellido";
                     cmbProfesional.DataBind();
-                    cmbProfesional.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Seleccione profesional...", "0"));
+                    cmbProfesional.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Profesional...", "0"));
                     //divProfesionales.Visible = true;
                 }
                 else
                 {
-                    if (cmbProfesional.SelectedValue != "0")
+                    if (cmbEspecialidad.SelectedValue != "0")
                     {
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'La especialidad no tiene un profesional a cargo', 'warning')", true);
+                        cmbProfesional.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Profesional...", "0"));
                     }
-                    else
+                    if (cmbEspecialidad.SelectedValue == "0")
                     {
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Debe seleccionar una especialidad', 'warning')", true);
+                        cmbProfesional.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Profesional...", "0"));
                     }
                     //divProfesionales.Visible = false;
                     //cmbProfesional.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("No hay Profesional para esta especialidad", "0"));
@@ -243,7 +245,7 @@ namespace MeetingApp
                     listaTurnosDados = _turnoBLL.ObtenerTurnoPorProfesionalYEspecialidad(listaHorarioProf[0].idHorario, dia);
                     listaTurnosDados = _turnoBLL.ObtenerTurnoPorProfesionalYEspecialidad(listaHorarioProf[1].idHorario, dia);
                 }
-                if (listaHorarioProf.Count == 0)//aca habia un else
+                if (listaHorarioProf.Count > 0)//aca habia un else
                 {
                     listaTurnosDados = _turnoBLL.ObtenerTurnoPorProfesionalYEspecialidad(listaHorarioProf[0].idHorario, dia);
                 }
@@ -251,7 +253,7 @@ namespace MeetingApp
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'No hay horarios disponibles en ese dia', 'warning')", true);
                     cmbHorarioDisponible.Items.Clear();//limpiamos el combo
-                    //cmbHorarioDisponible.Items.Insert(0, new System.Web.UI.WebControls.ListItem("Horarios...", "0"));
+                    cmbHorarioDisponible.Items.Insert(0, new System.Web.UI.WebControls.ListItem("Horarios...", "0"));
                     return;
                 }
                 else
@@ -387,20 +389,10 @@ namespace MeetingApp
             }
         }
 
-        //metodo para insertar el horario
-        public void InsertarTurno()
+        //metodo para insertar el horario en turno y retornamos un Turno
+        public Turno InsertarTurno()
         {
-            if (cmbEspecialidad.SelectedValue == "0")
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Seleccionar especialidad', 'warning')", true);
-                return;
-            }
-            if (cmbProfesional.SelectedValue == "0")
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Seleccionar profesional', 'warning')", true);
-                return;
-            }
-            else
+            try
             {
                 Usuario user = (Usuario)Session["Usuario"];
 
@@ -409,35 +401,45 @@ namespace MeetingApp
                 turno.idEspecialidad = int.Parse(cmbEspecialidad.SelectedValue);
                 turno.idHorarioProfesional = int.Parse(cmbHorarioDisponible.SelectedValue);
                 turno.fechaTurno = txtCalendario.Value;
-                turno.horaTurno = cmbHorarioDisponible.SelectedItem.Text;                
+                turno.horaTurno = cmbHorarioDisponible.SelectedItem.Text;
                 turno.idFormaPago = int.Parse(cmbFormaPago.SelectedValue);
                 turno.idObraSocial = user.idObraSocial;
                 turno.descripcion = txtMotivo.Text.Trim();
 
                 //Turno turnoNuevo = (Turno)Session["nuevoTurno"];
-                Session["nuevoTurno"] = turno;               
-
+                Session["nuevoTurno"] = turno;
+                return turno;
             }
+            catch (Exception)
+            {
+                return null;
+            }
+                
+
         }
 
         //boton para reservar el turno nuevo
         protected void btnReservarTurno_Click(object sender, EventArgs e)
         {
-            InsertarTurno();
-            panelConfirmarTurno.Visible = true;
-            Turno turno = (Turno)Session["nuevoTurno"];
-            txtFecha.Text = turno.fechaTurno;
-            txtHora.Text = turno.horaTurno;
-            txtFormaPago.Text = turno.idFormaPago.ToString();
+            if (ValidarCamposVaciosTurno())
+            {                
+                panelConfirmarTurno.Visible = true;
 
-            //try
-            //{               
-            //    InsertarTurno();
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new Exception("Error en insertar turno " + ex.Message);
-            //}
+                Turno turno = InsertarTurno();
+                if (turno != null)
+                {
+                    //datos de la modal
+                    txtFecha.Text = turno.fechaTurno;
+                    txtHora.Text = turno.horaTurno;
+                    txtFormaPago.Text = turno.idFormaPago.ToString();
+
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'No se pudo insertar un nuevo turno', 'warning')", true);
+                }
+            }          
+
         }
 
         public List<HorariosDTO> tieneHorarioManianaTarde(List<ObtenerHorarioProfesionalDiaDTO> listaHorarioProf, List<ObtenerTurnoDTO> listaTurnosDados)
@@ -589,6 +591,43 @@ namespace MeetingApp
                 panelConfirmarTurno.Visible = false;
             }
         }
+
+        public bool ValidarCamposVaciosTurno()
+        {
+            if (cmbEspecialidad.SelectedValue == "0")
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Seleccionar especialidad', 'warning')", true);
+                return false;
+            }
+            if (cmbProfesional.SelectedValue == "0")
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Seleccionar profesional', 'warning')", true);
+                return false;
+            }
+            if (txtCalendario.Value.Equals(""))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Seleccionar fecha', 'warning')", true);
+                return false;
+            }
+            if (cmbHorarioDisponible.SelectedValue == "0")
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Seleccionar horario', 'warning')", true);
+                return false;
+            }
+            if (cmbFormaPago.SelectedValue == "0")
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Seleccionar forma de pago', 'warning')", true);
+                return false;
+            }
+            if (txtMotivo.Text.Equals(""))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Completar un motivo', 'warning')", true);
+                return false;
+            }
+            return true;
+        }
+
+
 
     }
 }
