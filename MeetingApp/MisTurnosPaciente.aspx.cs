@@ -31,25 +31,7 @@ namespace MeetingApp
             int idPaciente = paciente.idUsuario;
             List<ObtenerTurnosPacienteDTO> turnos = _pacienteBLL.ObtenerTurnosPaciente(idPaciente);
             gvTurnos.DataSource = turnos;
-            //for (int i = 0; i < turnos.Count; i++)
-            //{
-            //    if (turnos[i].estado)
-            //    {
-            //        turnos[i].estado = Convert.ToBoolean("Activo");
-            //    }
-            //    else
-            //    {
-            //        turnos[i].estado = Convert.ToBoolean("Cancelado");
-            //    }
-                //if (turnos[i].estado)
-                //{
-                //    turnos[i].activoString = "✔";
-                //}
-                //else
-                //{
-                //    turnos[i].activoString = "❌";
-                //}
-            //}
+        
             gvTurnos.DataBind();
         }
 

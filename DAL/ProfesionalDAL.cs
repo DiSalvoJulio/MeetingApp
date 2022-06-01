@@ -287,12 +287,12 @@ namespace DAL
                         ObtenerTurnosProfesionalDTO turno = new ObtenerTurnosProfesionalDTO();
                         turno.idTurno = Convert.ToInt32(dr["idTurno"]);
                         //turno.fechaTurno = Convert.ToDateTime(dr["Fecha"]);
-                        turno.fechaTurno = dr["Fecha"].ToString();//ver como cambiar el mostrado de la fecha
+                        turno.fechaTurno = dr["Fecha"].ToString().Substring(0,10);//ver como cambiar el mostrado de la fecha
                         turno.horaTurno = dr["Hora"].ToString();
                         turno.descripcion = dr["Descripcion"].ToString();
                         turno.paciente = dr["Paciente"].ToString();                        
                         turno.obraSocial = dr["ObraSocial"].ToString();
-                        turno.estado = Convert.ToBoolean(dr["Estado"].ToString());
+                        turno.estado = dr["Estado"].ToString() == "True" ? turno.estado = "Activo" : turno.estado = "Cancelado";
                         listaTurnosDto.Add(turno);
                     }
                     return listaTurnosDto;

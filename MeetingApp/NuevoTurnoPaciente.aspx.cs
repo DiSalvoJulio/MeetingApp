@@ -240,12 +240,14 @@ namespace MeetingApp
                 //int idEspecialidad = int.Parse(cmbEspecialidad.SelectedValue);
                 List<ObtenerHorarioProfesionalDiaDTO> listaHorarioProf = _horarioBLL.ObtenerHorarioProfesionalDia(idHorarioProfesional, diaEspanol);
                 List<ObtenerTurnoDTO> listaTurnosDados = new List<ObtenerTurnoDTO>();
-                if (listaHorarioProf.Count>1)
+
+
+                if (listaHorarioProf.Count==2)
                 {
                     listaTurnosDados = _turnoBLL.ObtenerTurnoPorProfesionalYEspecialidad(listaHorarioProf[0].idHorario, dia);
-                    listaTurnosDados = _turnoBLL.ObtenerTurnoPorProfesionalYEspecialidad(listaHorarioProf[1].idHorario, dia);
+                    //listaTurnosDados = _turnoBLL.ObtenerTurnoPorProfesionalYEspecialidad(listaHorarioProf[1].idHorario, dia);
                 }
-                if (listaHorarioProf.Count > 0)//aca habia un else
+                if (listaHorarioProf.Count==1)//aca habia un else
                 {
                     listaTurnosDados = _turnoBLL.ObtenerTurnoPorProfesionalYEspecialidad(listaHorarioProf[0].idHorario, dia);
                 }
@@ -258,8 +260,10 @@ namespace MeetingApp
                 }
                 else
                 {
+                    //crear lista horario
                     List<HorariosDTO> listaHorarioDTO = new List<HorariosDTO>();
                     //filtra la lista cuando tiene 2 horarios
+
                     if (listaHorarioProf.Count == 2)
                     {
                         listaHorarioDTO = tieneHorarioManianaTarde(listaHorarioProf, listaTurnosDados);
@@ -280,118 +284,32 @@ namespace MeetingApp
                     cmbHorarioDisponible.DataBind();
 
                     //filtrar la lista cuando tiene 1 horario
+                    //List<HorariosDTO> listaNueva = listaHorarioDTO;
+                    Session["Horario"] = listaHorarioDTO;
 
-                    //if (listaHorarioProf[0].turno == "Mañana" || listaHorarioProf[0].turno == "Tarde")
-                    //{
-                    //    if (listaHorarioProf[0].turno == "Tarde")
-                    //    {
-                    //        //tarde
-                    //        TimeSpan inicioT = TimeSpan.Parse(listaHorarioProf[1].desde);
-                    //        TimeSpan finT = TimeSpan.Parse(listaHorarioProf[1].hasta);
-                    //        int k = 0;
-                    //        while (inicioT < finT)
-                    //        {
-                    //            HorariosDTO horarioDTO = new HorariosDTO();
-                    //            horarioDTO.Horario = inicioT.ToString().Substring(0, 5) + ' ' + "Hs.";
-                    //            horarioDTO.idHorario = Convert.ToInt32(listaHorarioProf[1].idHorario);
-                    //            inicioT += TimeSpan.Parse("01:00");
-                    //            bool turnoDado = false;
-                    //            for (int i = 0; i < listaTurnosDados.Count; i++)
-                    //            {
-                    //                if (horarioDTO.Horario == listaTurnosDados[i].horaTurno)
-                    //                {
-                    //                    turnoDado = true;
-                    //                }
-                    //            }
-                    //            if (!turnoDado)
-                    //            {
-                    //                listaHorarioDTO.Add(horarioDTO);
-                    //            }
-                    //            //k++;
-                    //        }
-
-                    //        cmbHorarioDisponible.DataSource = listaHorarioDTO;
-                    //        cmbHorarioDisponible.DataValueField = "idHorario";
-                    //        cmbHorarioDisponible.DataTextField = "Horario";
-                    //        cmbHorarioDisponible.DataBind();
-                    //    }
-                    //    else if (listaHorarioProf[0].turno == "Mañana")
-                    //    {
-                    //        //mañana        
-                    //        TimeSpan inicioM = TimeSpan.Parse(listaHorarioProf[0].desde);
-                    //        TimeSpan finM = TimeSpan.Parse(listaHorarioProf[0].hasta);
-                    //        int k = 0;
-
-                    //        while (inicioM < finM)
-                    //        {
-                    //            HorariosDTO horarioDTO = new HorariosDTO();
-                    //            horarioDTO.Horario = inicioM.ToString().Substring(0, 5) + ' ' + "Hs.";
-                    //            horarioDTO.idHorario = Convert.ToInt32(listaHorarioProf[0].idHorario);
-
-                    //            inicioM += TimeSpan.Parse("01:00");
-                    //            bool turnoDado = false;
-                    //            for (int i = 0; i < listaTurnosDados.Count; i++)
-                    //            {
-                    //                if (horarioDTO.Horario == listaTurnosDados[i].horaTurno)
-                    //                {
-                    //                    turnoDado = true;
-                    //                }
-                    //            }
-                    //            if (!turnoDado)
-                    //            {
-                    //                listaHorarioDTO.Add(horarioDTO);
-                    //            }
-                    //            k++;
-                    //        }
-                    //        cmbHorarioDisponible.DataSource = listaHorarioDTO;
-                    //        cmbHorarioDisponible.DataValueField = "idHorario";
-                    //        cmbHorarioDisponible.DataTextField = "Horario";
-                    //        cmbHorarioDisponible.DataBind();
-                    //    }
-
-                    //}
-                    //if ((listaHorarioProf.Count > 1))
-                    //{
-                    //    if (listaHorarioProf[1].turno == "Tarde")
-                    //    {
-                    //        //tarde
-                    //        TimeSpan inicioT = TimeSpan.Parse(listaHorarioProf[1].desde);
-                    //        TimeSpan finT = TimeSpan.Parse(listaHorarioProf[1].hasta);
-
-                    //        while (inicioT < finT)
-                    //        {
-                    //            HorariosDTO horarioDTO = new HorariosDTO();
-                    //            horarioDTO.Horario = inicioT.ToString().Substring(0, 5) + ' ' + "Hs.";
-                    //            inicioT += TimeSpan.Parse("01:00");
-                    //            bool turnoDado = false;
-                    //            for (int i = 0; i < listaTurnosDados.Count; i++)
-                    //            {
-                    //                if (horarioDTO.Horario == listaTurnosDados[i].horaTurno)
-                    //                {
-                    //                    turnoDado = true;
-                    //                }
-                    //            }
-                    //            if (!turnoDado)
-                    //            {
-                    //                listaHorarioDTO.Add(horarioDTO);
-                    //            }
-                    //        }
-
-                    //        cmbHorarioDisponible.DataSource = listaHorarioDTO;
-                    //        cmbHorarioDisponible.DataValueField = "Horario";
-                    //        cmbHorarioDisponible.DataTextField = "Horario";
-                    //        cmbHorarioDisponible.DataBind();
-                    //    }
-                    //}
+                    
 
                 }//cierre else
 
             }
         }
 
+        public string horaSeleccionada()
+        {
+            List<HorariosDTO> horario = (List<HorariosDTO>)Session["Horario"];
+            string hora = "";
+            foreach (HorariosDTO item in horario)
+            {
+                if (cmbHorarioDisponible.SelectedItem.Text == item.Horario)
+                {
+                    hora = item.Horario;
+                }                
+            }
+            return hora;
+        }
         //metodo para insertar el horario en turno y retornamos un Turno
         public Turno InsertarTurno()
-        {
+        {    
             try
             {
                 Usuario user = (Usuario)Session["Usuario"];
@@ -399,9 +317,14 @@ namespace MeetingApp
                 Turno turno = new Turno();
                 turno.fechaSolicitud = DateTime.UtcNow;
                 turno.idEspecialidad = int.Parse(cmbEspecialidad.SelectedValue);
-                turno.idHorarioProfesional = int.Parse(cmbHorarioDisponible.SelectedValue);
+                turno.idHorarioProfesional = int.Parse(cmbHorarioDisponible.SelectedValue.Split('-')[1]);
+                //con split separamos con gion cada posicion del arreglo,y el [1] que seria la segunda posicion del arreglo.
+                turno.idUsuarioPaciente = user.idUsuario;
                 turno.fechaTurno = txtCalendario.Value;
-                turno.horaTurno = cmbHorarioDisponible.SelectedItem.Text;
+                //turno.horaTurno = cmbHorarioDisponible.SelectedValue;
+                //turno.horaTurno = Convert.ToString(cmbHorarioDisponible.SelectedValue);
+
+                turno.horaTurno = horaSeleccionada();
                 turno.idFormaPago = int.Parse(cmbFormaPago.SelectedValue);
                 turno.idObraSocial = user.idObraSocial;
                 turno.descripcion = txtMotivo.Text.Trim();
@@ -437,11 +360,13 @@ namespace MeetingApp
                 else
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'No se pudo insertar un nuevo turno', 'warning')", true);
+
                 }
             }          
 
         }
 
+        //recorrido de horarios de maniana y tarde
         public List<HorariosDTO> tieneHorarioManianaTarde(List<ObtenerHorarioProfesionalDiaDTO> listaHorarioProf, List<ObtenerTurnoDTO> listaTurnosDados)
         {
             if (listaHorarioProf == null || listaHorarioProf.Count != 2)
@@ -455,12 +380,13 @@ namespace MeetingApp
             TimeSpan finM = TimeSpan.Parse(listaHorarioProf[0].hasta);
             TimeSpan inicioT = TimeSpan.Parse(listaHorarioProf[1].desde);
             TimeSpan finT = TimeSpan.Parse(listaHorarioProf[1].hasta);
-            //int k = 0;
+            int k = 1;//variable de recorrido del combo
             while (inicioM < finM)
             {
                 HorariosDTO horarioDTO = new HorariosDTO();
                 horarioDTO.Horario = inicioM.ToString().Substring(0, 5);
-                horarioDTO.idHorario = Convert.ToInt32(listaHorarioProf[0].idHorario);
+                //horarioDTO.idHorario = Convert.ToInt32(listaHorarioProf[0].idHorario);
+                horarioDTO.idHorario = k.ToString() + "-" + listaHorarioProf[0].idHorario;//k agrega un valor a cada item del combobox
 
                 inicioM += TimeSpan.Parse("01:00");
                 bool turnoDado = false;
@@ -475,13 +401,14 @@ namespace MeetingApp
                 {
                     listaHorarioDTO.Add(horarioDTO);
                 }
-                //k++;
+                k++;//en cada while le asigna un nuevo valor para obtener el value distinto del id
             }
             while (inicioT < finT)
             {
                 HorariosDTO horarioDTO = new HorariosDTO();
                 horarioDTO.Horario = inicioT.ToString().Substring(0, 5);
-                horarioDTO.idHorario = Convert.ToInt32(listaHorarioProf[1].idHorario);
+                //horarioDTO.idHorario = Convert.ToInt32(listaHorarioProf[1].idHorario);
+                horarioDTO.idHorario = k.ToString() + "-" + listaHorarioProf[1].idHorario; 
                 inicioT += TimeSpan.Parse("01:00");
                 bool turnoDado = false;
                 for (int i = 0; i < listaTurnosDados.Count; i++)
@@ -495,7 +422,7 @@ namespace MeetingApp
                 {
                     listaHorarioDTO.Add(horarioDTO);
                 }
-                //k++;
+                k++;
             }
             return listaHorarioDTO;
         }
@@ -509,12 +436,13 @@ namespace MeetingApp
                 //tarde
                 TimeSpan inicioT = TimeSpan.Parse(listaHorarioProf[1].desde);
                 TimeSpan finT = TimeSpan.Parse(listaHorarioProf[1].hasta);
-                //int k = 0;
+                int k = 1;
                 while (inicioT < finT)
                 {
                     HorariosDTO horarioDTO = new HorariosDTO();
                     horarioDTO.Horario = inicioT.ToString().Substring(0, 5);
-                    horarioDTO.idHorario = Convert.ToInt32(listaHorarioProf[1].idHorario);
+                    //horarioDTO.idHorario = Convert.ToInt32(listaHorarioProf[1].idHorario);
+                    horarioDTO.idHorario = k.ToString() + "-" + listaHorarioProf[1].idHorario;
                     inicioT += TimeSpan.Parse("01:00");
                     bool turnoDado = false;
                     for (int i = 0; i < listaTurnosDados.Count; i++)
@@ -528,7 +456,7 @@ namespace MeetingApp
                     {
                         listaHorarioDTO.Add(horarioDTO);
                     }
-                    //k++;
+                    k++;
                 }
             }
             return listaHorarioDTO;
@@ -544,13 +472,15 @@ namespace MeetingApp
                 //mañana        
                 TimeSpan inicioM = TimeSpan.Parse(listaHorarioProf[0].desde);
                 TimeSpan finM = TimeSpan.Parse(listaHorarioProf[0].hasta);
-                //int k = 0;
+
+                int k = 1;
 
                 while (inicioM < finM)
                 {
                     HorariosDTO horarioDTO = new HorariosDTO();
                     horarioDTO.Horario = inicioM.ToString().Substring(0, 5);
-                    horarioDTO.idHorario = Convert.ToInt32(listaHorarioProf[0].idHorario);
+                    //horarioDTO.idHorario = Convert.ToInt32(listaHorarioProf[0].idHorario);
+                    horarioDTO.idHorario = k.ToString() + "-" + listaHorarioProf[0].idHorario;
 
                     inicioM += TimeSpan.Parse("01:00");
                     bool turnoDado = false;
@@ -565,7 +495,7 @@ namespace MeetingApp
                     {
                         listaHorarioDTO.Add(horarioDTO);
                     }
-                    //k++;
+                    k++;
                 }
             }
             return listaHorarioDTO;

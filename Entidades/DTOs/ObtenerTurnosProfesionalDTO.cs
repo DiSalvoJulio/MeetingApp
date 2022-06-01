@@ -14,6 +14,6 @@ namespace Entidades.DTOs
         public string descripcion { get; set; }
         public string paciente { get; set; }        
         public string obraSocial { get; set; }
-        public bool estado { get; set; }
+        public string estado { get; set; }
     }
 }

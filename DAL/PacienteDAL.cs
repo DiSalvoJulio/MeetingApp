@@ -18,7 +18,7 @@ namespace DAL
 
         public List<Referencia> ObtenerReferencias()
         {
-            List <Referencia> listaReferencia = new List<Referencia>();
+            List<Referencia> listaReferencia = new List<Referencia>();
             try
             {
                 string procedure = "sp_ObtenerReferencias";
@@ -32,9 +32,9 @@ namespace DAL
                     {
                         Referencia rerefencia = new Referencia();
                         //usuario.idUsuario = int.Parse(dr["idUsuario"].ToString());
-                        rerefencia.idReferencia =  Convert.ToInt32( dr["idReferencia"]);
+                        rerefencia.idReferencia = Convert.ToInt32(dr["idReferencia"]);
                         rerefencia.descripcion = dr["descripcion"].ToString();
-                        
+
                         listaReferencia.Add(rerefencia);
                     }
                     return listaReferencia;
@@ -61,7 +61,7 @@ namespace DAL
                 comando.CommandText = procedure;
                 comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.Clear();
-                comando.Parameters.AddWithValue("@idUsuario", user.idUsuario);                
+                comando.Parameters.AddWithValue("@idUsuario", user.idUsuario);
                 comando.Parameters.AddWithValue("@apellido", user.apellido);
                 comando.Parameters.AddWithValue("@nombre", user.nombre);
                 comando.Parameters.AddWithValue("@fechaNacimiento", user.fechaNacimiento);
@@ -181,7 +181,7 @@ namespace DAL
                 comando.CommandText = procedure;
                 comando.Parameters.Clear();
                 comando.Parameters.AddWithValue("@dni", dni);
-                
+
                 SqlDataReader dr = comando.ExecuteReader();
 
                 if (dr.Read())
@@ -192,8 +192,8 @@ namespace DAL
                 return u;
             }
             catch (Exception ex)
-            {               
-                throw new Exception(ex.Message);                
+            {
+                throw new Exception(ex.Message);
             }
             finally
             {
@@ -212,7 +212,7 @@ namespace DAL
                 comando.CommandText = procedure;
                 comando.Parameters.Clear();
                 comando.CommandType = CommandType.StoredProcedure;
-                comando.Parameters.AddWithValue("@idPaciente", idPaciente);                
+                comando.Parameters.AddWithValue("@idPaciente", idPaciente);
                 comando.ExecuteNonQuery();
 
                 List<ObtenerTurnosPacienteDTO> listaTurnosDto = new List<ObtenerTurnosPacienteDTO>();
@@ -224,13 +224,13 @@ namespace DAL
                         ObtenerTurnosPacienteDTO turno = new ObtenerTurnosPacienteDTO();
                         turno.idTurno = Convert.ToInt32(dr["idTurno"]);
                         //turno.fechaTurno = Convert.ToDateTime(dr["Fecha"]);
-                        turno.fechaTurno = dr["Fecha"].ToString();//ver como cambiar el mostrado de la fecha
+                        turno.fechaTurno = dr["Fecha"].ToString().Substring(0,10);
                         turno.horaTurno = dr["Hora"].ToString();
                         turno.descripcion = dr["Descripcion"].ToString();
                         turno.profesional = dr["Profesional"].ToString();
                         turno.especialidad = dr["Especialidad"].ToString();
                         turno.obraSocial = dr["ObraSocial"].ToString();
-                        turno.estado = Convert.ToBoolean(dr["Estado"].ToString());
+                        turno.estado = dr["Estado"].ToString() == "True" ? turno.estado = "Activo" : turno.estado = "Cancelado";
                         listaTurnosDto.Add(turno);
                     }
                     return listaTurnosDto;

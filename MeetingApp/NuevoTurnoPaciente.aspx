@@ -119,8 +119,10 @@
 
 
         <%-- VALIDA QUE NO SE PUEDA SELECCIONAR FECHA ANTERIOR--%>
-        <script>            
-            let date = new Date();
+        <script>           
+                       
+            let date = new Date();//crea la fecha de hoy
+            date.setDate(date.getDate() + 1);//agrega 1 dia para no seleccionar el dia de hoy en calendario
             const fecha = date.toISOString().split(":");
             const fechaPartida = fecha[0].split("T");
             const inputDate = document.getElementById("<%: txtCalendario.ClientID %>");

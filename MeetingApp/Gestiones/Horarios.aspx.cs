@@ -514,12 +514,12 @@ namespace MeetingApp.Gestiones
             int desdeT = int.Parse(RecortarHorario(cmbDesdeTarde.SelectedValue));
             int hastaT = int.Parse(RecortarHorario(cmbHastaTarde.SelectedValue));            
 
-            if (desdeM > hastaM)
+            if ((desdeM > hastaM) || (desdeM == hastaM))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Hora de Inicio debe ser anterior a Hora Fin', 'warning')", true);
                 return false;
             }
-            if (desdeT > hastaT)
+            if ((desdeT > hastaT) || (desdeT == hastaT))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Hora de Inicio debe ser anterior a Hora Fin', 'warning')", true);
                 return false;

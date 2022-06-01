@@ -41,7 +41,7 @@ namespace MeetingApp
                 user.pass = txtPass.Text;
                 user.idRol = chkProfesional.Checked ? 3 : 2;//true profesional sino paciente
                 user.matricula = txtMatricula.Text;
-                user.idEspecialidad = cmbProfesion.SelectedIndex;
+                user.idEspecialidad = int.Parse(cmbProfesion.SelectedValue);
 
                 registrarBLL.InsertarUsuario(user);
                 //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Registro con Exito!', 'Sera redirigido al Login para iniciar sesion', 'success')", true);
