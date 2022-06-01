@@ -236,6 +236,7 @@ namespace MeetingApp
                     diaEspanol = "Sabado";
                 }
 
+                //VER POR QUE NO SACA LA HORA CARGADA
                 int idHorarioProfesional = int.Parse(cmbProfesional.SelectedValue);
                 //int idEspecialidad = int.Parse(cmbEspecialidad.SelectedValue);
                 List<ObtenerHorarioProfesionalDiaDTO> listaHorarioProf = _horarioBLL.ObtenerHorarioProfesionalDia(idHorarioProfesional, diaEspanol);

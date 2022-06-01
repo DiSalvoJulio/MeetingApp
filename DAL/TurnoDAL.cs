@@ -41,7 +41,7 @@ namespace DAL
                 return true;
             }
             catch (SqlException ex)
-            {                
+            {
                 throw new Exception("Error en Insertar Turno " + ex.Message);
             }
             finally
@@ -65,7 +65,7 @@ namespace DAL
                 {
                     while (dr.Read())
                     {
-                        Turno turno = new Turno();                        
+                        Turno turno = new Turno();
                         turno.idTurno = Convert.ToInt32(dr["idTurno"]);
                         turno.descripcion = dr["descripcion"].ToString();
                         turno.horaTurno = dr["horaTurno"].ToString();
@@ -139,7 +139,7 @@ namespace DAL
                 comando.Connection = Conexion.AbrirConexion();
                 comando.CommandText = procedure;
                 comando.Parameters.Clear();
-                comando.CommandType = CommandType.StoredProcedure;                
+                comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.AddWithValue("@idHorarioProfesional", idHorarioProfesional);
                 comando.Parameters.AddWithValue("@dia", dia);
                 comando.ExecuteNonQuery();
@@ -154,7 +154,7 @@ namespace DAL
                         turno.idTurno = Convert.ToInt32(dr["idTurno"]);
                         turno.descripcion = dr["descripcion"].ToString();
                         turno.horaTurno = dr["horaTurno"].ToString();
-                        turno.fechaSolicitud = Convert.ToDateTime(dr["fechaSolicitud"]);                       
+                        turno.fechaSolicitud = Convert.ToDateTime(dr["fechaSolicitud"]);
                         turno.profesional = dr["Profesional"].ToString();
                         turno.paciente = dr["Paciente"].ToString();
                         turno.especialidad = dr["Especialidad"].ToString();
@@ -208,6 +208,143 @@ namespace DAL
                 Conexion.CerrarConexion();
             }
         }
+
+        //obtener un turno por id
+        public ObtenerTurnoIdDTO ObtenerTurnoId(int idTurno)
+        {
+            try
+            {
+                string procedure = "sp_ObtenerTurnoId";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = procedure;
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@idTurno", idTurno);
+                comando.CommandType = CommandType.StoredProcedure;
+
+                using (SqlDataReader dr = comando.ExecuteReader())
+                {
+                    ObtenerTurnoIdDTO obtenerTurno = new ObtenerTurnoIdDTO();
+                    while (dr.Read())
+                    {
+                        //obtProf.idProfesional = int.Parse(dr["idUsuario"].ToString());
+                        //obtProf.NombreApellido = dr["Profesional"].ToString();
+                        if (!dr.IsDBNull(0)) //asigna el primer campo de la tabla a lo que se obteiene por GET
+                        {
+                            obtenerTurno.idTurno = dr.GetInt32(0);
+                        }
+                        if (!dr.IsDBNull(1))
+                        {
+                            obtenerTurno.dia = dr.GetString(1);
+                        }
+                        if (!dr.IsDBNull(2))
+                        {
+                            obtenerTurno.fechaTurno = dr.GetDateTime(2);
+                        }
+                        if (!dr.IsDBNull(3))
+                        {
+                            obtenerTurno.horaTurno = dr.GetString(3);
+                        }
+                        if (!dr.IsDBNull(4))
+                        {
+                            obtenerTurno.descripcion = dr.GetString(4);
+                        }
+                        if (!dr.IsDBNull(5))
+                        {
+                            obtenerTurno.especialidad = dr.GetString(5);
+                        }
+                        if (!dr.IsDBNull(6))
+                        {
+                            obtenerTurno.profesional = dr.GetString(6);
+                        }
+                    }
+                    return obtenerTurno;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en Obtener Turno ID DAL " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
+
+        //cancelar el turno
+        //public bool CancelarTurno(Turno turno)
+        //{
+        //    try
+        //    {
+        //        string procedure = "sp_CancelarTurno";
+        //        comando.Connection = Conexion.AbrirConexion();
+        //        comando.CommandText = procedure;
+        //        comando.CommandType = CommandType.StoredProcedure;
+        //        comando.Parameters.Clear();
+        //        comando.Parameters.AddWithValue("@idTurno", turno.idTurno);
+
+        //        using (SqlDataReader dr = comando.ExecuteReader())
+        //        {
+        //            if (dr.Read())
+        //            {
+        //                return true;
+        //            }
+        //            else
+        //            {
+        //                return false;
+        //            }
+        //        }
+
+        //    }
+
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception("Error en Cancelar DAL " + ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        Conexion.CerrarConexion();
+        //    }
+
+        //}
+
+        //cancelar el turno
+        public bool CancelarTurno(int idTurno)
+        {
+            try
+            {
+                string procedure = "sp_CancelarTurno";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = procedure;
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@idTurno", idTurno);
+
+                using (SqlDataReader dr = comando.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception("Error en Cancelar DAL " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+
+        }
+
 
 
 

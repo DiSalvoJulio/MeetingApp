@@ -34,5 +34,23 @@ namespace BLL
         {
             return _turnoDAL.ObtenerFormasDePagos();
         }
+
+        public ObtenerTurnoIdDTO ObtenerTurnoId(int idTurno)
+        {
+            return _turnoDAL.ObtenerTurnoId(idTurno);
+        }
+
+        //public bool CancelarTurno(Turno turno)
+        //{
+        //    return _turnoDAL.CancelarTurno(turno);
+        //}
+
+        public bool CancelarTurno(int idTurno)
+        {
+            return _turnoDAL.CancelarTurno(idTurno);
+        }
+
+
+
     }
 }

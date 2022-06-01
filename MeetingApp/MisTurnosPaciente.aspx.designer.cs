@@ -33,67 +33,58 @@ namespace MeetingApp
         protected global::System.Web.UI.WebControls.Panel panelCancelarTurno;
 
         /// <summary>
-        /// Control lblDiaEliminar.
+        /// Control lblDia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDiaEliminar;
+        protected global::System.Web.UI.WebControls.Label lblDia;
 
         /// <summary>
-        /// Control divHorarioEliminarMañana.
+        /// Control lblFecha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divHorarioEliminarMañana;
+        protected global::System.Web.UI.WebControls.Label lblFecha;
 
         /// <summary>
-        /// Control lblMañanaDesdeEliminar.
+        /// Control lblHora.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMañanaDesdeEliminar;
+        protected global::System.Web.UI.WebControls.Label lblHora;
 
         /// <summary>
-        /// Control lblMañanaHastaEliminar.
+        /// Control lblDescripcion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMañanaHastaEliminar;
+        protected global::System.Web.UI.WebControls.Label lblDescripcion;
 
         /// <summary>
-        /// Control divHorarioEliminarTarde.
+        /// Control lblEspecialidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divHorarioEliminarTarde;
+        protected global::System.Web.UI.WebControls.Label lblEspecialidad;
 
         /// <summary>
-        /// Control lblTardeDesdeEliminar.
+        /// Control lblProfesional.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTardeDesdeEliminar;
-
-        /// <summary>
-        /// Control lblTardeHastaEliminar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTardeHastaEliminar;
+        protected global::System.Web.UI.WebControls.Label lblProfesional;
 
         /// <summary>
         /// Control btnCancelar.
@@ -105,12 +96,12 @@ namespace MeetingApp
         protected global::System.Web.UI.WebControls.Button btnCancelar;
 
         /// <summary>
-        /// Control btnConfirmar.
+        /// Control btnConfirmarCancelado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConfirmar;
+        protected global::System.Web.UI.WebControls.Button btnConfirmarCancelado;
     }
 }
