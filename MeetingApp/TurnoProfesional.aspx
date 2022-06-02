@@ -56,7 +56,7 @@
                 </div>
             <div class="form-group col-md-2">
                 <asp:Label ID="Label5" runat="server" Text="Mostrar"></asp:Label>
-            <asp:Button Text="Mostrar horarios" ID="btnMostrarHorarios" class="btn btn-info" runat="server" />
+            <asp:Button Text="Mostrar horarios" ID="btnMostrarHorarios" class="btn btn-info" runat="server" onclick="btnMostrarHorarios_Click"/>
                 </div>
 
             <asp:UpdatePanel runat="server">
@@ -74,6 +74,8 @@
         </asp:UpdatePanel>
         </div>
 
+
+        <%--FORMA DE PAGO--%>
         <div class="row mt-2">
             <div class="form-group col-md-3">
                 <asp:Label ID="Label7" runat="server" Text="Forma de pago"></asp:Label>
@@ -89,8 +91,47 @@
         </div>
 
         <div class="form-row" style="justify-content: end;">
-        <asp:Button Text="Reservar turno" ID="btnReservarTurno" class="btn btn-danger mt-5" runat="server" />
+        <asp:Button Text="Reservar turno" ID="btnReservarTurno" class="btn btn-danger mt-5" runat="server" onclick="btnReservarTurno_Click"/>
         </div>
+
+
+
+         <%--MODAL PARA CONFIRMAR EL TURNO--%>
+        <asp:Panel runat="server" ID="panelConfirmarTurno" Visible="false">
+            <div class="modal fade show" tabindex="-1" aria-hidden="true" style="display: block;">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content w-75" style="margin-left: 12.5%">
+                        <div class="modal-header">
+                            <h3 class="modal-title" style="margin-left: auto">Detalle del turno</h3>
+                            <hr id="hrContent">
+                            <button runat="server" class="close" data-bs-dismiss="modal" aria-label="Close"
+                                onserverclick="CerrarModalTurno">
+                                x</button>
+                        </div>
+                        <div class="modal-body col-md-8">
+                            <%--CODIGO CUERPO MODAL--%>
+                            <asp:Label ID="txtFecha" runat="server" Text="Fecha" CssClass="mr-3"></asp:Label>
+                            <asp:Label ID="txtHora" runat="server" Text="Hora" CssClass="mr-3"></asp:Label>
+                            <asp:Label ID="txtFormaPago" runat="server" Text="Forma Pago" CssClass="mr-3"></asp:Label>
+
+
+                            <%--CIERRE CUERPO MODAL--%>
+                        </div>
+                        <!--Fin Body Modal-->
+                        <div class="modal-footer">
+                            <asp:Button ID="btnCancelar" Text="Cancelar" runat="server" type="button" class="btn btn-danger" onclick="btnCancelar_Click"/>
+                            <asp:Button ID="btnConfirmarTurno" Text="Confirmar" runat="server" type="button" class="btn btn-primary" onclick="btnConfirmarTurno_Click"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-backdrop fade show"></div>
+        </asp:Panel>
+
+
+
+
+
 
          <%-- VALIDA QUE NO SE PUEDA SELECCIONAR FECHA ANTERIOR--%>
         <script>            

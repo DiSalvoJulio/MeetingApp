@@ -225,6 +225,10 @@
     <Content Include="MisTurnosPaciente.aspx" />
     <Content Include="MisTurnosProfesional.aspx" />
     <Content Include="NuevoTurnoPaciente.aspx" />
+    <Content Include="Reportes\Reporte1.aspx" />
+    <Content Include="Reportes\Reporte2.aspx" />
+    <Content Include="Reportes\Reporte3.aspx" />
+    <Content Include="Reportes\Reporte4.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -504,6 +508,34 @@
     </Compile>
     <Compile Include="Registrar.aspx.designer.cs">
       <DependentUpon>Registrar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Reporte1.aspx.cs">
+      <DependentUpon>Reporte1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\Reporte1.aspx.designer.cs">
+      <DependentUpon>Reporte1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Reporte2.aspx.cs">
+      <DependentUpon>Reporte2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\Reporte2.aspx.designer.cs">
+      <DependentUpon>Reporte2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Reporte3.aspx.cs">
+      <DependentUpon>Reporte3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\Reporte3.aspx.designer.cs">
+      <DependentUpon>Reporte3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Reporte4.aspx.cs">
+      <DependentUpon>Reporte4.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\Reporte4.aspx.designer.cs">
+      <DependentUpon>Reporte4.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

@@ -98,7 +98,7 @@
                         </div>
                         <!--Fin Body Modal-->
                         <div class="modal-footer">
-                            <asp:Button ID="btnCancelar" Text="Cancelar" runat="server" type="button" class="btn btn-danger" onclick="btnCancelar_Click"/>
+                            <asp:Button ID="btnCancelar" Text="Volver" runat="server" type="button" class="btn btn-info" onclick="btnCancelar_Click"/>
                             <asp:Button ID="btnConfirmarCancelado" Text="Confirmar" runat="server" type="button" class="btn btn-primary" onclick="btnConfirmarCancelado_Click"/>
                         </div>
                     </div>

@@ -49,6 +49,7 @@
     <Compile Include="PacienteBLL.cs" />
     <Compile Include="ProfesionalBLL.cs" />
     <Compile Include="RegistrarBLL.cs" />
+    <Compile Include="ReporteBLL.cs" />
     <Compile Include="TurnoBLL.cs" />
     <Compile Include="UsuarioBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

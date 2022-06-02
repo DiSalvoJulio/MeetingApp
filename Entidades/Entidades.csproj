@@ -50,6 +50,7 @@
     <Compile Include="DTOs\ObtenerProfesionalDTO.cs" />
     <Compile Include="DTOs\ObtenerTurnoDTO.cs" />
     <Compile Include="DTOs\ObtenerTurnoIdDTO.cs" />
+    <Compile Include="DTOs\ObtenerTurnosActivosPorFechasDTO.cs" />
     <Compile Include="DTOs\ObtenerTurnosPacienteDTO.cs" />
     <Compile Include="DTOs\ObtenerTurnosProfesionalDTO.cs" />
     <Compile Include="Email.cs" />

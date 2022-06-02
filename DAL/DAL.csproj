@@ -50,6 +50,7 @@
     <Compile Include="ProfesionalDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistrarDAL.cs" />
+    <Compile Include="ReporteDAL.cs" />
     <Compile Include="TurnoDAL.cs" />
     <Compile Include="UsuarioDAL.cs" />
   </ItemGroup>

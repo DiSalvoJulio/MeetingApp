@@ -241,12 +241,16 @@ namespace MeetingApp
                 //int idEspecialidad = int.Parse(cmbEspecialidad.SelectedValue);
                 List<ObtenerHorarioProfesionalDiaDTO> listaHorarioProf = _horarioBLL.ObtenerHorarioProfesionalDia(idHorarioProfesional, diaEspanol);
                 List<ObtenerTurnoDTO> listaTurnosDados = new List<ObtenerTurnoDTO>();
+                List<ObtenerTurnoDTO> List2 = new List<ObtenerTurnoDTO>();
+
 
 
                 if (listaHorarioProf.Count==2)
                 {
                     listaTurnosDados = _turnoBLL.ObtenerTurnoPorProfesionalYEspecialidad(listaHorarioProf[0].idHorario, dia);
-                    //listaTurnosDados = _turnoBLL.ObtenerTurnoPorProfesionalYEspecialidad(listaHorarioProf[1].idHorario, dia);
+                    List2 = _turnoBLL.ObtenerTurnoPorProfesionalYEspecialidad(listaHorarioProf[1].idHorario, dia);
+                    listaTurnosDados = listaTurnosDados.Concat<ObtenerTurnoDTO>(List2).ToList();
+                    //hay que concatenar las Listas para que no muestre horarios reservados
                 }
                 if (listaHorarioProf.Count==1)//aca habia un else
                 {

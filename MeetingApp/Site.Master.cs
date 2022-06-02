@@ -42,6 +42,10 @@ namespace MeetingApp
                 tabMisTurnosPaciente.Visible = false;
                 tabMisTurnosProfesional.Visible = false;
                 tabReportes.Visible = false;
+                tabReporte1.Visible = false;
+                tabReporte2.Visible = false;
+                tabReporte3.Visible = false;
+                tabReporte4.Visible = false;
             }
             else if (user.idRol == 2)//paciente
             {
@@ -61,6 +65,10 @@ namespace MeetingApp
                 tabReportes.Visible = false;
                 tabMisTurnosProfesional.Visible = false;
                 tabTurnoProfesional.Visible = false;
+                tabReporte1.Visible = false;
+                tabReporte2.Visible = false;
+                tabReporte3.Visible = false;
+                tabReporte4.Visible = false;
             }
             else //profesional
             {
@@ -70,6 +78,10 @@ namespace MeetingApp
                 tabDatosProfesional.Visible = true;
                 tabReportes.Visible = true;
                 tabTurnoProfesional.Visible = true;
+                tabReporte1.Visible = true;
+                tabReporte2.Visible = true;
+                tabReporte3.Visible = true;
+                tabReporte4.Visible = true;
 
 
                 tabPaciente.Visible = false;

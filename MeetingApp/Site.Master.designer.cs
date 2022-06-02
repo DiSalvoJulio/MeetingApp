@@ -168,6 +168,42 @@ namespace MeetingApp
         protected global::System.Web.UI.HtmlControls.HtmlAnchor tabReportes;
 
         /// <summary>
+        /// Control tabReporte1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor tabReporte1;
+
+        /// <summary>
+        /// Control tabReporte2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor tabReporte2;
+
+        /// <summary>
+        /// Control tabReporte3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor tabReporte3;
+
+        /// <summary>
+        /// Control tabReporte4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor tabReporte4;
+
+        /// <summary>
         /// Control tabCerrarSesion.
         /// </summary>
         /// <remarks>
