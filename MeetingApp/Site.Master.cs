@@ -41,7 +41,7 @@ namespace MeetingApp
                 tabTurnoProfesional.Visible = false;
                 tabMisTurnosPaciente.Visible = false;
                 tabMisTurnosProfesional.Visible = false;
-                tabReportes.Visible = false;
+                //tabReportes.Visible = false;
                 tabReporte1.Visible = false;
                 tabReporte2.Visible = false;
                 tabReporte3.Visible = false;
@@ -62,7 +62,7 @@ namespace MeetingApp
                 tabObrasSociales.Visible = false;
                 tabHomeProfesional.Visible = false;
                 tabDatosProfesional.Visible = false;
-                tabReportes.Visible = false;
+                //tabReportes.Visible = false;
                 tabMisTurnosProfesional.Visible = false;
                 tabTurnoProfesional.Visible = false;
                 tabReporte1.Visible = false;
@@ -76,7 +76,7 @@ namespace MeetingApp
                 tabMisTurnosProfesional.Visible = true;
                 tabCerrarSesion.Visible = true;
                 tabDatosProfesional.Visible = true;
-                tabReportes.Visible = true;
+                //tabReportes.Visible = true;
                 tabTurnoProfesional.Visible = true;
                 tabReporte1.Visible = true;
                 tabReporte2.Visible = true;

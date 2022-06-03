@@ -77,13 +77,26 @@
                     <li>
                         <a href="DatosProfesional.aspx" runat="server" id="tabDatosProfesional"><span class="fa fa-user"></span>Mis datos</a>
                     </li>
+                    <li>
+                        <a href="Reportes/Reporte1.aspx" runat="server" id="tabReporte1"><span class="fa fa-bar-chart"></span>Reporte 1</a>
+                    </li>
+                    
+                    <li>
+                        <a href="Reportes/Reporte2.aspx" runat="server" id="tabReporte2"><span class="fa fa-bar-chart"></span>Reporte 2</a>
+                    </li>
+                    <li>
+                        <a href="Reportes/Reporte3.aspx" runat="server" id="tabReporte3"><span class="fa fa-bar-chart"></span>Reporte 3</a>
+                    </li>
+                    <li>
+                        <a href="Reportes/Reporte4.aspx" runat="server" id="tabReporte4"><span class="fa fa-bar-chart"></span>Reporte 4</a>
+                    </li>
                     <%--REPORTES--%>
-                    <li class="active"> 
+                    <%--   <li class="active"> 
                             <a href="#homeSubmenu" runat="server" id="tabReportes" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Reportes</a>
                             <ul class="collapse list-unstyled" id="homeSubmenu">
                                 <li>
                                     <a href="Reportes/Reporte1.aspx" runat="server" id="tabReporte1">Reporte 1</a>
-                                </li><%--fa fa-bar-chart--%>
+                                </li>fa fa-bar-chart
                                 <li>
                                     <a href="Reportes/Reporte2.aspx" runat="server" id="tabReporte2">Reporte 2</a>
                                 </li>
@@ -94,7 +107,7 @@
                                     <a href="Reportes/Reporte4.aspx" runat="server" id="tabReporte4">Reporte 4</a>
                                 </li>
                             </ul>                       
-                    </li>
+                    </li>--%>
                     <li>
                         <a href="InicioSesion.aspx" runat="server" id="tabCerrarSesion"><span class="fa fa-paper-plane"></span>Cerrar sesion</a>
                     </li>
@@ -107,7 +120,7 @@
                 </div>
             </nav>
 
-           <%-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <%-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class="container-fluid">
 
             <button type="button" id="sidebarCollapse" class="btn btn-primary">
@@ -137,7 +150,7 @@
           </div>
         </nav>--%>
 
-       
+
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
         </div>

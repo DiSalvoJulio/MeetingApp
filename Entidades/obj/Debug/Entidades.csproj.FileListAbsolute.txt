@@ -6,6 +6,7 @@ C:\PracticaSupervisada\Entidades\obj\Debug\Entidades.pdb
 C:\PracticaSupervisada\Entidades\obj\Debug\Entidades.csproj.AssemblyReference.cache
 C:\PS_UTN\MeetingApp\Entidades\bin\Debug\Entidades.dll
 C:\PS_UTN\MeetingApp\Entidades\bin\Debug\Entidades.pdb
+C:\PS_UTN\MeetingApp\Entidades\obj\Debug\Entidades.csproj.AssemblyReference.cache
 C:\PS_UTN\MeetingApp\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
 C:\PS_UTN\MeetingApp\Entidades\obj\Debug\Entidades.dll
 C:\PS_UTN\MeetingApp\Entidades\obj\Debug\Entidades.pdb

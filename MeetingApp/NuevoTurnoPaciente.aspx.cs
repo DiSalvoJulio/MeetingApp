@@ -312,7 +312,9 @@ namespace MeetingApp
             }
             return hora;
         }
-        //metodo para insertar el horario en turno y retornamos un Turno
+
+
+        //metodo para CARGARGAR TODOS LOS DATOS DEL TURNO el horario en turno y retornamos un Turno
         public Turno InsertarTurno()
         {    
             try
@@ -346,7 +348,9 @@ namespace MeetingApp
 
         }
 
-        //boton para reservar el turno nuevo
+
+
+        //boton MODAL QUE CONFIRMA el turno nuevo
         protected void btnReservarTurno_Click(object sender, EventArgs e)
         {
             if (ValidarCamposVaciosTurno())
@@ -357,9 +361,13 @@ namespace MeetingApp
                 if (turno != null)
                 {
                     //datos de la modal
-                    txtFecha.Text = turno.fechaTurno;
-                    txtHora.Text = turno.horaTurno;
-                    txtFormaPago.Text = turno.idFormaPago.ToString();
+                    //lblDia.Text = turno.descripcion;                  
+                    lblFecha.Text = turno.fechaTurno;                    
+                    lblHora.Text = turno.horaTurno;
+                    lblDescripcion.Text = turno.descripcion;
+                    //lblPaciente.Text = paciente.apellido + ' ' + paciente.nombre;
+                    lblObraSocial.Text = MostrarObraSocial();
+                    //lblFormaPago.Text = MostrarFormaPago();
 
                 }
                 else

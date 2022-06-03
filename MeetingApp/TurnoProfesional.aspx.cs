@@ -17,6 +17,7 @@ namespace MeetingApp
         EspecialidadBLL _especialidadBLL = new EspecialidadBLL();
         HorarioBLL _horarioBLL = new HorarioBLL();
         TurnoBLL _turnoBLL = new TurnoBLL();
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -103,9 +104,18 @@ namespace MeetingApp
         //limpiar datos del paciente
         private void LimpiarDatos()
         {
+            //int indice = 0;
             txtDniBuscar.Text = "";
             txtDatos.Text = "";
             txtObraSocial.Text = "";
+            txtMotivo.Text = "";
+            txtCalendario.Value = "";
+            cmbFormaPago.SelectedValue = "0";
+            //cmbHorarioDisponible.SelectedValue = "Horarios...";
+            //cmbHorarioDisponible.Text = "Horarios...";
+            //cmbFormaPago.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Forma de pago...", "0"));
+            //cmbHorarioDisponible.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Horarios...", "0"));
+
         }
 
         protected void btnLimpiarDatos_Click(object sender, EventArgs e)
@@ -114,6 +124,7 @@ namespace MeetingApp
             txtDniBuscar.Enabled = true;
             btnBuscarPaciente.Enabled = true;
             btnLimpiarDatos.Enabled = false;
+            
         }
 
         //Metodo para mostrar la especialidad en txt
@@ -325,9 +336,10 @@ namespace MeetingApp
         }
 
 
-        //boton para reservar el turno nuevo
+        //boton para reservar el turno nuevo MODAL
         protected void btnReservarTurno_Click(object sender, EventArgs e)
         {
+            Usuario paciente = (Usuario)Session["User"];//USUARIO PACIENTE
             if (ValidarCamposVaciosTurno())
             {
                 panelConfirmarTurno.Visible = true;
@@ -336,9 +348,13 @@ namespace MeetingApp
                 if (turno != null)
                 {
                     //datos de la modal
-                    txtFecha.Text = turno.fechaTurno;
-                    txtHora.Text = turno.horaTurno;
-                    txtFormaPago.Text = turno.idFormaPago.ToString();
+                    //lblDia.Text = turno.descripcion;
+                    lblFecha.Text = turno.fechaTurno;
+                    lblHora.Text = turno.horaTurno;
+                    lblDescripcion.Text = turno.descripcion;
+                    lblPaciente.Text = paciente.apellido+ ' ' +paciente.nombre;
+                    lblObraSocial.Text = MostrarObraSocial();
+                    lblFormaPago.Text = MostrarFormaPago();
 
                 }
                 else
@@ -512,6 +528,23 @@ namespace MeetingApp
             }
         }
 
+        //Metodo para mostrar la forma de pago en modal
+        public string MostrarFormaPago()
+        {
+            //string dni = txtDniBuscar.Text;
+            //Usuario paciente = _pacienteBLL.BuscarPacienteDni(dni);
+            string formaPago = "";
+
+            List<FormaPago> lista = _turnoBLL.ObtenerFormasDePagos();
+            foreach (FormaPago item in lista)
+            {
+                if (cmbFormaPago.SelectedIndex == item.idFormaPago)
+                {
+                    formaPago = item.descripcion;
+                }
+            }
+            return formaPago;
+        }
 
         public bool ValidarCamposVaciosTurno()
         {

@@ -77,8 +77,7 @@
                             <div class="row mb-3">
                                 <h4 class="col-sm-2 mr-5">Profesional:</h4>
                                     <asp:Label ID="lblProfesional" Text="" CssClass="h5 col-auto mt-1 ml-4" runat="server"></asp:Label>
-                                </div>                          
-                          
+                                </div>   
                             <%--CIERRE CUERPO MODAL--%>
                         </div>
                         <!--Fin Body Modal-->

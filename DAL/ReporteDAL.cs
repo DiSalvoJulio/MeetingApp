@@ -62,6 +62,47 @@ namespace DAL
 
         }
 
+        //REPORTE 2
+        public List<ObtenerFormasDePagosDTO> ObtenerFormasDePagos(int mes)
+        {
+            try
+            {
+                string proc = "sp_Rep4_PacientesPorMes";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = proc;
+                comando.Parameters.Clear();
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@mes", mes);
+                comando.ExecuteNonQuery();
+
+                List<ObtenerFormasDePagosDTO> lista = new List<ObtenerFormasDePagosDTO>();
+
+
+                using (SqlDataReader dr = comando.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        ObtenerFormasDePagosDTO obtenerTurnos = new ObtenerFormasDePagosDTO();                        
+                        obtenerTurnos.cantidad = int.Parse(dr["Cantidad"].ToString());
+                        obtenerTurnos.descripcion = dr["descripcion"].ToString();
+
+                        lista.Add(obtenerTurnos);
+                    }
+
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en obtener cantidad formas de pagos por mes " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+
+        }
+
 
 
         //REPORTE 3
@@ -101,6 +142,48 @@ namespace DAL
             catch (Exception ex)
             {
                 throw new Exception("Error en obtenerCancelados " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+
+        }
+
+
+        //REPORTE 4
+        public List<ObtenerTurnosPorMesDTO> ObtenerTurnosPorMes(int mes)
+        {
+            try
+            {
+                string proc = "sp_Rep4_PacientesPorMes";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = proc;
+                comando.Parameters.Clear();
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@mes", mes);                
+                comando.ExecuteNonQuery();
+
+                List<ObtenerTurnosPorMesDTO> lista = new List<ObtenerTurnosPorMesDTO>();
+
+
+                using (SqlDataReader dr = comando.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        ObtenerTurnosPorMesDTO obtenerTurnos = new ObtenerTurnosPorMesDTO();
+                        obtenerTurnos.paciente = dr["Paciente"].ToString();
+                        obtenerTurnos.cantidadTurnos = int.Parse(dr["CantidadTurnos"].ToString());                        
+
+                        lista.Add(obtenerTurnos);
+                    }
+
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en obtener cantidad de pacientes por mes " + ex.Message);
             }
             finally
             {

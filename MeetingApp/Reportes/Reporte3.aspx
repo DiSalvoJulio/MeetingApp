@@ -5,7 +5,8 @@
     <div class="container">
         <h1 style="color: red; text-align: center">Reporte 3</h1>
         <hr />
-        <h5>Seleccionar Fechas</h5>
+        <h3>Listado de turnos cancelados con filtros de fecha mínima y fecha máxima</h3>
+        <h4 class="mt-5">Seleccionar Fechas</h4>
         <div class="form-row">
             <%--  FECHA--%>
             <div class="form-group col-md-3">
