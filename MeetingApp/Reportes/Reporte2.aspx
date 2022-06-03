@@ -1,4 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Reporte2.aspx.cs" Inherits="MeetingApp.Reportes.Reporte2" %>
+
+<%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -32,7 +34,26 @@
         <td>
             <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar" CssClass="btn btn-outline-success col-auto mt-1 ml-5" onclick="btnLimpiar_Click"/>
         </td>
+        <br />
+        <br />
+        <br />
 
+        <%--GRAFICO--%>
+
+        <div class="mt-5">
+            <asp:Chart ID="gf_formasPagos" runat="server" Height="374px" Width="552px">
+                <Series>
+                    <asp:Series Name="Serie"></asp:Series>
+                </Series>
+                <ChartAreas>
+                    <asp:ChartArea Name="ChartArea"></asp:ChartArea>
+                </ChartAreas>
+            </asp:Chart> 
+        </div>
+
+
+        <%--FIN GRAFICO--%>
+         
 
         <%--fin container--%>
     </div>

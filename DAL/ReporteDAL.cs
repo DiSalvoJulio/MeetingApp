@@ -65,9 +65,10 @@ namespace DAL
         //REPORTE 2
         public List<ObtenerFormasDePagosDTO> ObtenerFormasDePagos(int mes)
         {
+            
             try
             {
-                string proc = "sp_Rep4_PacientesPorMes";
+                string proc = "sp_rep2_FormasDePagoAgrupadasPorMes";
                 comando.Connection = Conexion.AbrirConexion();
                 comando.CommandText = proc;
                 comando.Parameters.Clear();
@@ -83,18 +84,19 @@ namespace DAL
                     while (dr.Read())
                     {
                         ObtenerFormasDePagosDTO obtenerTurnos = new ObtenerFormasDePagosDTO();                        
+
                         obtenerTurnos.cantidad = int.Parse(dr["Cantidad"].ToString());
                         obtenerTurnos.descripcion = dr["descripcion"].ToString();
 
-                        lista.Add(obtenerTurnos);
+                        lista.Add(obtenerTurnos);                        
+                    
                     }
-
                 }
                 return lista;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error en obtener cantidad formas de pagos por mes " + ex.Message);
+                throw new Exception(ex.Message);
             }
             finally
             {

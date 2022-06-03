@@ -1,6 +1,6 @@
 ﻿.content {
-    background-color: #D5F5E3;
-    /*background-color: #7FB5FF;color mas azul*/
+    background-color: #96b5d4;
+    /*background-color: #D5F5E3;*/
 }
 
 .modal-header{
@@ -8,6 +8,12 @@
     align-items: flex-start;
     justify-content: space-between;   
     border: none;   
+}
+
+.termi {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
 }
 
 

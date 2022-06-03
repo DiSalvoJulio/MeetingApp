@@ -26,7 +26,7 @@
         </asp:ScriptManager>
         <%-- SECCION 1--%>
         <section class="content-header mt-2">
-            <h1 style="color: red; text-align: center">Registrarme!</h1>
+            <h1 style="color: red; text-align: center">Registrarme</h1>
         </section>
         <%-- SECCION 2--%>
         <div class="container">
@@ -80,16 +80,16 @@
             </div>
             <%--cierre del row--%>
 
-            <div class="row">        
+            <div class="row">
 
-              <%--  <div class="custom-control custom-switch">
+                <%--  <div class="custom-control custom-switch">
                     <asp:CheckBox ID="chkProfesional" runat="server" OnCheckedChanged="chkProfesional_CheckedChanged" AutoPostBack="true" CssClass="custom-control-input" />
                     <label class="custom-control-label" for="chkProfesional">Soy Profesional.</label>
                 </div>--%>
 
-                <div class="form-group col-md-12 mt-3">
+                <div class="form col-md-12 mt-3">
                     <div class="form-check">
-                        <asp:CheckBox ID="chkProfesional" runat="server" OnCheckedChanged="chkProfesional_CheckedChanged" AutoPostBack="true" CssClass="form-check-input" />
+                        <asp:CheckBox ID="chkProfesional" runat="server" OnCheckedChanged="chkProfesional_CheckedChanged" AutoPostBack="true" CssClass="form" />
                         <label class="form-check-label" for="chkProfesional">Soy Profesional.</label>
                     </div>
 
@@ -120,20 +120,26 @@
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" CssClass="btn btn-danger" />
                     <asp:Button ID="btnRegistrar" runat="server" Text="Registrarme" OnClick="btnRegistrar_Click" CssClass="btn btn-primary" />
                 </div>
+            </div>         
+
+            <%--SECCION TERMINOS Y CONDICIONES--%>
+            <div class="termi row mt-5">
+                <input style="opacity:1;" class="mb-4" type="checkbox" data-required="1" name="terminos"/><p style="color:black;padding-left:20px">Aceptar los <a style="color:blue;" href="#">Términos y Condiciones</a></p>
             </div>
-            <%--<div class="row">
-                <div class="form-group col-md-1 mt-5">
-                    <a href="InicioSesion.aspx" class="btn btn-dark">Atras</a>
-                </div>
-                <div class="col-md-8">
-                </div>
-                <div class="form-group col-md-3 mt-5">
-                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" CssClass="btn btn-danger" />
-                    <asp:Button ID="btnRegistrar" runat="server" Text="Registrarme" OnClick="btnRegistrar_Click" CssClass="btn btn-primary" />
-                </div>
-            </div>--%>
-        </div>
-        <%--SECCION 3 GRILLA--%>
+
+        <%--<div class="form col-md-12 mt-3" style="justify-content:center;">
+            <div class="form-check">
+                <asp:CheckBox ID="chkTerminos" runat="server" AutoPostBack="false" CssClass="form" />
+                <label class="" for="chkTerminos">Aceptar los</label><p>terminos</p>
+            </div>
+        </div>--%>
+
+
+
+
+            <%--fin container--%>
+        </div>     
+
     </form>
     <script src="js/jquery.min.js"></script>
     <%-- <script src="js/popper.js"></script>

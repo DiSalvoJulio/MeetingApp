@@ -111,6 +111,9 @@ namespace MeetingApp
             txtMotivo.Text = "";
             txtCalendario.Value = "";
             cmbFormaPago.SelectedValue = "0";
+            txtDniBuscar.Enabled = true;
+            btnBuscarPaciente.Enabled = true;
+            btnLimpiarDatos.Enabled = false;
             //cmbHorarioDisponible.SelectedValue = "Horarios...";
             //cmbHorarioDisponible.Text = "Horarios...";
             //cmbFormaPago.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Forma de pago...", "0"));
@@ -525,6 +528,10 @@ namespace MeetingApp
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'El turno se genero correctamente', 'success')", true);
                 //limpiar campos
                 panelConfirmarTurno.Visible = false;
+                LimpiarDatos();
+                //txtDniBuscar.Enabled = true;
+                //btnBuscarPaciente.Enabled = true;
+                //btnLimpiarDatos.Enabled = false;
             }
         }
 

@@ -1,16 +1,25 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MisTurnosPaciente.aspx.cs" Inherits="MeetingApp.MisTurnosPaciente" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderContent" runat="server">
+    <style>
+        .scrolling-table-container {
+            height: 378px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+    </style>
 </asp:Content>
+
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
         <h1 style="color: red; text-align: center">Mis Turnos</h1>
         <hr />
         
         <!--Tabla turnos-->
-        <div id="IdTurnos" class="table mt-4">            
             <%-- <asp:UpdatePanel runat="server">
                 <ContentTemplate>--%>
+        <div class="scrolling-table-container mt-4">            
             <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" CssClass="table text-center table-hover" OnRowCommand="gvTurnos_RowCommand" >
                 <HeaderStyle BackColor="#3E64FF" ForeColor="White" />
                     <RowStyle BackColor="#D6DBDF" ForeColor="#333333" />
@@ -30,9 +39,9 @@
                 </Columns>
   
             </asp:GridView>           
+        </div>
             <%--     </ContentTemplate>
             </asp:UpdatePanel>--%>
-        </div>
 
         <!-- MODAL CANCELAR TURNO-->
         <asp:Panel runat="server" ID="panelCancelarTurno" Visible="false">
