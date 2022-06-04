@@ -34,7 +34,7 @@
 
 
             <div class="volver mt-5">
-                <a href="Registrar.aspx" class="btn btn-info">Volver</a>
+                <a href="Registrar.aspx" class="btn btn-info">Volver a Inicio sesión</a>
             </div>
         </div>
     </form>

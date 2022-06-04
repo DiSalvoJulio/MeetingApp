@@ -226,6 +226,7 @@
     <Content Include="MisTurnosPaciente.aspx" />
     <Content Include="MisTurnosProfesional.aspx" />
     <Content Include="NuevoTurnoPaciente.aspx" />
+    <Content Include="PreguntasFrecuentes.aspx" />
     <Content Include="RecuperarContrasenia.aspx" />
     <Content Include="RecuperarContrasenia.css" />
     <Content Include="Reportes\Reporte1.aspx" />
@@ -505,6 +506,13 @@
     </Compile>
     <Compile Include="NuevoTurnoPaciente.aspx.designer.cs">
       <DependentUpon>NuevoTurnoPaciente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PreguntasFrecuentes.aspx.cs">
+      <DependentUpon>PreguntasFrecuentes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PreguntasFrecuentes.aspx.designer.cs">
+      <DependentUpon>PreguntasFrecuentes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecuperarContrasenia.aspx.cs">

@@ -2,3 +2,8 @@
     background-color: #96b5d4;
     /*background-color: #D5F5E3;*/
 }
+.datos {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}

@@ -103,7 +103,7 @@
                     <%--PROFESION--%>
                     <asp:Label ID="Label1" runat="server" Text="Profesion"></asp:Label>
                     <br />
-                    <asp:DropDownList ID="cmbProfesion" runat="server" CssClass="btn btn-outline-info dropdown-toggle col-12" onClientClick="verDrop()">
+                    <asp:DropDownList ID="cmbProfesion" runat="server" CssClass="btn btn-outline-dark dropdown-toggle col-12" onClientClick="verDrop()">
                         <%--<asp:ListItem Selected="True"> </asp:ListItem>   --%>
                     </asp:DropDownList>
                 </div>
@@ -115,7 +115,7 @@
                 <%--</div>--%>
             </div>
             <div class="modal-header mt-5" style="padding: 1rem 0rem !important; border: none;">
-                <a href="InicioSesion.aspx" class="btn btn-dark">Atras</a>
+                <a href="InicioSesion.aspx" class="btn btn-info">Volver a Inicio sesión</a>
                 <div>
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" CssClass="btn btn-danger" />
                     <asp:Button ID="btnRegistrar" runat="server" Text="Registrarme" OnClick="btnRegistrar_Click" CssClass="btn btn-primary" />
