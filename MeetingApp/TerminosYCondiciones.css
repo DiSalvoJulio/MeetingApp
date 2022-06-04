@@ -1,0 +1,9 @@
+﻿.content {
+    background-color: #96b5d4;
+    /*background-color: #D5F5E3;*/
+}
+
+.volver{
+    display: flex;
+    align-items: flex-end;
+}

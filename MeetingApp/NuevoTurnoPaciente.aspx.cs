@@ -263,6 +263,20 @@ namespace MeetingApp
                     cmbHorarioDisponible.Items.Insert(0, new System.Web.UI.WebControls.ListItem("Horarios...", "0"));
                     return;
                 }
+
+                //valida que todos los horarios esten ocupados ya.
+                int cantHorarios = 0;
+                foreach (var item in listaHorarioProf)
+                {
+                    cantHorarios += item.cantidad;
+                }
+                if (cantHorarios==listaTurnosDados.Count)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'No hay horarios disponibles en ese dia', 'warning')", true);
+                    cmbHorarioDisponible.Items.Clear();//limpiamos el combo
+                    cmbHorarioDisponible.Items.Insert(0, new System.Web.UI.WebControls.ListItem("Horarios...", "0"));
+                    return;
+                } //fin validacion de horarios dados              
                 else
                 {
                     //crear lista horario
@@ -447,15 +461,15 @@ namespace MeetingApp
             if (listaHorarioProf[0].turno == "Tarde")
             {
                 //tarde
-                TimeSpan inicioT = TimeSpan.Parse(listaHorarioProf[1].desde);
-                TimeSpan finT = TimeSpan.Parse(listaHorarioProf[1].hasta);
+                TimeSpan inicioT = TimeSpan.Parse(listaHorarioProf[0].desde); //si solo tiene horarios tarde trae arreglo en 0
+                TimeSpan finT = TimeSpan.Parse(listaHorarioProf[0].hasta);
                 int k = 1;
                 while (inicioT < finT)
                 {
                     HorariosDTO horarioDTO = new HorariosDTO();
                     horarioDTO.Horario = inicioT.ToString().Substring(0, 5);
                     //horarioDTO.idHorario = Convert.ToInt32(listaHorarioProf[1].idHorario);
-                    horarioDTO.idHorario = k.ToString() + "-" + listaHorarioProf[1].idHorario;
+                    horarioDTO.idHorario = k.ToString() + "-" + listaHorarioProf[0].idHorario;
                     inicioT += TimeSpan.Parse("01:00");
                     bool turnoDado = false;
                     for (int i = 0; i < listaTurnosDados.Count; i++)

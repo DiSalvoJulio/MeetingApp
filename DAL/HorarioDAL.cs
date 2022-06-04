@@ -262,7 +262,7 @@ namespace DAL
                         horario.cantidad = Convert.ToInt32(dr["cantidad"]);
                         horario.idProfesional = Convert.ToInt32(dr["idProfesional"]);
                         horario.dia = dr["dia"].ToString();
-                        horario.turno = dr["turno"].ToString(); ;
+                        horario.turno = dr["turno"].ToString();
                         listaHorarios.Add(horario);
                     }
                     return listaHorarios;

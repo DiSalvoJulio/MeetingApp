@@ -87,7 +87,7 @@
                     <label class="custom-control-label" for="chkProfesional">Soy Profesional.</label>
                 </div>--%>
 
-                <div class="form col-md-12 mt-3">
+                <div class="form col-md-12 mt-5">
                     <div class="form-check">
                         <asp:CheckBox ID="chkProfesional" runat="server" OnCheckedChanged="chkProfesional_CheckedChanged" AutoPostBack="true" CssClass="form" />
                         <label class="form-check-label" for="chkProfesional">Soy Profesional.</label>
@@ -124,7 +124,7 @@
 
             <%--SECCION TERMINOS Y CONDICIONES--%>
             <div class="termi row mt-5">
-                <input style="opacity:1;" class="mb-4" type="checkbox" data-required="1" name="terminos"/><p style="color:black;padding-left:20px">Aceptar los <a style="color:blue;" href="#">Términos y Condiciones</a></p>
+                <input runat="server" style="opacity:1;" id="chkTerminos" class="mb-4" type="checkbox" data-required="1" name="chkTerminos"/><p style="color:black;padding-left:20px">Aceptar los <a style="color:blue;" href="TerminosYCondiciones.aspx">Términos y Condiciones</a></p>
             </div>
 
         <%--<div class="form col-md-12 mt-3" style="justify-content:center;">

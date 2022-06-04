@@ -92,8 +92,6 @@ namespace MeetingApp
         //REGISTRAR
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
-
-
             if (!ValidarCamposPorRol())
             {
                 return;
@@ -103,7 +101,6 @@ namespace MeetingApp
             //{
             //    return;
             //}
-
 
             //validar si el usuario ya existe
             if (ExisteUsuario(txtEmail.Text, txtDni.Text))
@@ -249,7 +246,12 @@ namespace MeetingApp
                 txtPass.Focus();
                 return true;
             }
-
+            if (chkTerminos.Checked==false)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe aceptar los Terminos Y condiciones para registrarse')", true);
+                chkTerminos.Focus();
+                return true;
+            }
             else
             {
                 return false;

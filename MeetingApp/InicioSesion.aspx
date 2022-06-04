@@ -42,6 +42,9 @@
                     <div class="mt-3">
                         <a href="Registrar.aspx">Registrarme!</a>
                     </div>
+                    <div class="mt-5">
+                        <a href="RecuperarContrasenia.aspx">Olvide mi contraseña?</a>
+                    </div>
                 </div>
             </form>
         </div>

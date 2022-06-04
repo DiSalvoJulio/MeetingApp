@@ -251,6 +251,19 @@ namespace MeetingApp
                     cmbHorarioDisponible.Items.Insert(0, new System.Web.UI.WebControls.ListItem("Horarios...", "0"));
                     return;
                 }
+                //valida que todos los horarios esten ocupados ya.
+                int cantHorarios = 0;
+                foreach (var item in listaHorarioProf)
+                {
+                    cantHorarios += item.cantidad;
+                }
+                if (cantHorarios == listaTurnosDados.Count)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'No hay horarios disponibles en ese dia', 'warning')", true);
+                    cmbHorarioDisponible.Items.Clear();//limpiamos el combo
+                    cmbHorarioDisponible.Items.Insert(0, new System.Web.UI.WebControls.ListItem("Horarios...", "0"));
+                    return;
+                } //fin validacion de horarios dados 
                 else
                 {
                     //crear lista horario
@@ -472,8 +485,8 @@ namespace MeetingApp
             if (listaHorarioProf[0].turno == "Mañana")
             {
                 //mañana        
-                TimeSpan inicioM = TimeSpan.Parse(listaHorarioProf[0].desde);
-                TimeSpan finM = TimeSpan.Parse(listaHorarioProf[0].hasta);
+                TimeSpan inicioM = TimeSpan.Parse(listaHorarioProf[1].desde);
+                TimeSpan finM = TimeSpan.Parse(listaHorarioProf[1].hasta);
 
                 int k = 1;
 
