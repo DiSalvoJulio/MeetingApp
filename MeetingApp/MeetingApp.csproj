@@ -148,6 +148,8 @@
     <Content Include="css\bootstrap\mixins\.DS_Store" />
     <Content Include="HomePaciente.aspx" />
     <Content Include="HomeProfesional.aspx" />
+    <Content Include="images\paciente1.jpg" />
+    <Content Include="images\profesional1.jpg" />
     <Content Include="InicioSesion.css" />
     <Content Include="js\.DS_Store" />
     <Content Include="images\.DS_Store" />

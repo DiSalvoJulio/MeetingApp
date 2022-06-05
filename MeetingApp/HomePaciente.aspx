@@ -1,5 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="HomePaciente.aspx.cs" Inherits="MeetingApp.HomePaciente" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderContent" runat="server">
+    <style>
+        body{
+            background-image:url(images/paciente1.jpg);
+            background-size:cover;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
