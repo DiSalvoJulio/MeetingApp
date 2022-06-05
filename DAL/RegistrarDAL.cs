@@ -21,7 +21,7 @@ namespace DAL
             {
                 string procedure = "";
 
-                if (usuario.idRol==2) //esPaciente
+                if (usuario.idRol == 2) //esPaciente
                 {
                     procedure = "sp_InsertarPaciente";
                     comando.Connection = Conexion.AbrirConexion();
@@ -39,7 +39,7 @@ namespace DAL
                     comando.Parameters.AddWithValue("@matricula", usuario.matricula);
                     comando.Parameters.AddWithValue("@idEspecialidad", usuario.idEspecialidad);
                 }
-                
+
                 comando.Parameters.AddWithValue("@apellido", usuario.apellido);
                 comando.Parameters.AddWithValue("@nombre", usuario.nombre);
                 comando.Parameters.AddWithValue("@dni", usuario.dni);
@@ -47,10 +47,10 @@ namespace DAL
                 comando.Parameters.AddWithValue("@pass", usuario.pass);
                 //comando.Parameters.AddWithValue("@pass", EncryptKeys.EncriptarPassword(usuario.pass, "Keys"));                                      
                 comando.Parameters.AddWithValue("@fechaIngreso", usuario.fechaIngreso);
-                comando.Parameters.AddWithValue("@fechaNacimiento", usuario.fechaNacimiento);             
+                comando.Parameters.AddWithValue("@fechaNacimiento", usuario.fechaNacimiento);
                 //comando.Parameters.AddWithValue("@esAdmin", usuario.esAdmin);
                 //comando.Parameters.AddWithValue("@cuentaConfirmada", usuario.cuentaConfirmada);
-                comando.Parameters.AddWithValue("@idRol", usuario.idRol);              
+                comando.Parameters.AddWithValue("@idRol", usuario.idRol);
                 comando.ExecuteNonQuery();
 
             }
@@ -350,7 +350,7 @@ namespace DAL
                 comando.CommandText = procedure;
                 comando.Parameters.Clear();
                 comando.CommandType = CommandType.StoredProcedure;
-            
+
                 using (SqlDataReader dr = comando.ExecuteReader())
                 {
                     while (dr.Read())
@@ -367,7 +367,7 @@ namespace DAL
             catch (Exception ex)
             {
                 throw new Exception("Error en obtener especialidades " + ex.Message);
-            }            
+            }
         }
 
 
@@ -405,6 +405,76 @@ namespace DAL
                 Conexion.CerrarConexion();
             }
         }
+
+        //corroborar q exista el correo para recuperar cuenta
+        public Usuario ObtenerExisteCorreo(string email)
+        {
+            try
+            {
+                string procedure = "sp_ExisteCorreoRegistrado";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = procedure;
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@email", email);
+                comando.CommandType = CommandType.StoredProcedure;
+
+                Usuario usuario = new Usuario();
+
+                using (SqlDataReader dr = comando.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+
+                        usuario.idUsuario = int.Parse(dr["idUsuario"].ToString());
+                        usuario.nombre = dr["nombre"].ToString();
+                        usuario.apellido = dr["apellido"].ToString();
+                        usuario.email = dr["email"].ToString();
+
+                    }
+                }
+                return usuario;
+
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Error en cargar mail " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
+        //enviar blanqueo de claves
+        public int RecuperarCuenta(int idUsuario, string pass)
+        {
+            try
+            {
+                string procedure = "sp_ActualizarContrasenia";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = procedure;
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@idUsuario", idUsuario);
+                comando.Parameters.AddWithValue("@pass", pass);
+                comando.CommandType = CommandType.StoredProcedure;
+
+                int result = comando.ExecuteNonQuery();
+                return result;
+
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Error en recuperar clave " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
+
+
+
 
     }
 }

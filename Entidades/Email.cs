@@ -89,5 +89,82 @@ namespace Entidades
             }
         }
 
+
+        public void SendEmailRecuperarContrasenia(string _emailUsuario, string NombreSolicitante, int idUsuario,
+            ref string mensajeErrror)
+        {
+            try
+            {
+                string pFromEmail = mail;
+                string pFromPassword = password;
+                string pEmailSmtpServer = EmailSmtpServer;
+                string pEnableSSL = EnableSSL;
+                string pPort = EmailPort;
+                #pragma warning disable CS0219 // La variable 'b' está asignada pero su valor nunca se usa
+                bool b = false;
+                #pragma warning restore CS0219 // La variable 'b' está asignada pero su valor nunca se usa
+
+                string link = "https://localhost:44398/ActualizarPassword.aspx?id=" + idUsuario;
+
+                string asuntoMail = "Recupero con exito";
+
+                //string templateMail;
+
+                string pBodyHtml = "<html>";
+                pBodyHtml += "<head></head>";
+                pBodyHtml += "<body>";
+                pBodyHtml += "<p><i>Hola " + NombreSolicitante + ", </i><p>";
+                pBodyHtml += "<p><i>Procedio a recuperar la contraseña</i><p>";
+                pBodyHtml += "<a href=\""+ link +"\">Hacer click en este Link</a>";
+                pBodyHtml += "<p><i>Muchas gracias por confiar en Meeting App</i></p>";
+                pBodyHtml += "<p><i>Saludos!!!</i></p>";
+                pBodyHtml += "</body>";
+                pBodyHtml += "</html>";
+                
+
+                //templateMail = string.Format(pBodyHtml, NombreSolicitante, link);
+
+                MailMessage mm = new MailMessage(pFromEmail, _emailUsuario)
+                {
+                    Subject = asuntoMail,
+                    IsBodyHtml = true,
+                    Body = pBodyHtml
+                };
+                
+                bool _ssl = false;
+                if (pEnableSSL == "1")
+                    _ssl = true;
+
+                SmtpClient smtp = new SmtpClient
+                {
+                    Host = pEmailSmtpServer,
+                    Port = int.Parse(pPort),
+                    EnableSsl = _ssl,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(pFromEmail, pFromPassword)
+                };
+
+                //TODO: PAT, solucion1 de esta forma funciona
+                ServicePointManager.ServerCertificateValidationCallback = delegate (object s,
+                    System.Security.Cryptography.X509Certificates.X509Certificate certificate,
+                    X509Chain chain, SslPolicyErrors sslPolicyErrors)
+                { return true; };
+
+                smtp.Send(mm);
+            }
+
+            catch (SmtpException e)
+            {
+                mensajeErrror = e.Message.ToString();
+            }
+            catch (Exception e)
+            {
+                mensajeErrror = e.Message.ToString();
+            }
+        }
+
+
+
     }
 }

@@ -21,6 +21,11 @@ namespace MeetingApp
         {
             if (!IsPostBack)
             {
+                //cerrar sesion en todos las paginas
+                if (Session["Usuario"] == null)
+                {
+                    Response.Redirect("InicioSesion.aspx");
+                }
                 Usuario profesional = (Usuario)Session["Usuario"];
                 btnLimpiarDatos.Enabled = false;
                 //CargarGrillaTurnos();
@@ -108,8 +113,10 @@ namespace MeetingApp
         public void CargarGrillaTurnos(int idProfesional, string dni)
         {           
             List<ObtenerTurnosProfesionalDTO> turnos = _profesionalBLL.ObtenerTurnosProfesionalPorPaciente(idProfesional, dni);
+            
             gvTurnos.DataSource = turnos;
             //aca va el if del Estado
+            
             gvTurnos.DataBind();
         }
 

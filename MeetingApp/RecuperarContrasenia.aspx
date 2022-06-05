@@ -30,16 +30,16 @@
             </section>
             <hr />
 
-            <div class="datos">
+            <div class="">
                 <div class="row">
                     <div class="form-group col-md-5">
                         <%--EMAIL--%>
                         <asp:Label ID="email" runat="server" Text="Completar email de su cuenta"></asp:Label>
-                        <asp:TextBox ID="txtEmail" name="txtEmail" runat="server" placeholder="Email" Type="email" CssClass="form-control" MaxLength="50"></asp:TextBox>
+                        <asp:TextBox ID="txtEmail" name="txtEmail" runat="server" placeholder="Email" Type="email" CssClass="form-control" MaxLength="50" required="true"></asp:TextBox>
                     </div>
                     <div class="form-group col-md-5 mt-4">
                         <%--ENVIAR--%>
-                        <asp:Button ID="btnEnviar" runat="server" Text="Enviar" CssClass="btn btn-primary" />
+                        <asp:Button ID="btnEnviar" runat="server" Text="Enviar" CssClass="btn btn-primary" onclick="btnEnviar_Click"/>
                     </div>
                 </div>
                 <h5 class="mt-1">Se enviara un email para recuperar su cuenta, revise su casilla de correo.</h5>

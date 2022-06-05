@@ -20,6 +20,11 @@ namespace MeetingApp.Gestiones
         {
             if (!IsPostBack)
             {
+                //cerrar sesion en todos las paginas
+                if (Session["Usuario"] == null)
+                {
+                    Response.Redirect("InicioSesion.aspx");
+                }
                 CargarComboDias();
                 CargarComboProfesional();
                 VaciarTablaHorarios();
@@ -507,23 +512,48 @@ namespace MeetingApp.Gestiones
         }
 
         //validar que Hora de Inicio sea anterior a Hora Fin
+        //public bool ValidarDesdehasta()
+        //{           
+        //    int desdeM = int.Parse(RecortarHorario(cmbDesdeMañana.SelectedValue));
+        //    int hastaM = int.Parse(RecortarHorario(cmbHastaMañana.SelectedValue));
+        //    int desdeT = int.Parse(RecortarHorario(cmbDesdeTarde.SelectedValue));
+        //    int hastaT = int.Parse(RecortarHorario(cmbHastaTarde.SelectedValue));            
+
+        //    if ((desdeM > hastaM) || (desdeM == hastaM))
+        //    {
+        //        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Hora de Inicio debe ser anterior a Hora Fin', 'warning')", true);
+        //        return false;
+        //    }
+        //    if ((desdeT > hastaT) || (desdeT == hastaT))
+        //    {
+        //        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Hora de Inicio debe ser anterior a Hora Fin', 'warning')", true);
+        //        return false;
+        //    }         
+        //    return true;
+        //}
         public bool ValidarDesdehasta()
-        {           
+        {
             int desdeM = int.Parse(RecortarHorario(cmbDesdeMañana.SelectedValue));
             int hastaM = int.Parse(RecortarHorario(cmbHastaMañana.SelectedValue));
             int desdeT = int.Parse(RecortarHorario(cmbDesdeTarde.SelectedValue));
-            int hastaT = int.Parse(RecortarHorario(cmbHastaTarde.SelectedValue));            
+            int hastaT = int.Parse(RecortarHorario(cmbHastaTarde.SelectedValue));
 
-            if ((desdeM > hastaM) || (desdeM == hastaM))
+            if ((desdeM!=0) && (hastaM!=0))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Hora de Inicio debe ser anterior a Hora Fin', 'warning')", true);
-                return false;
+                if ((desdeM > hastaM) || (desdeM == hastaM))
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Hora de Inicio turno mañana debe ser anterior a Hora Fin', 'warning')", true);
+                    return false;
+                }
             }
-            if ((desdeT > hastaT) || (desdeT == hastaT))
+            if ((desdeT != 0) && (hastaT != 0))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Hora de Inicio debe ser anterior a Hora Fin', 'warning')", true);
-                return false;
-            }         
+                if ((desdeT > hastaT) || (desdeT == hastaT))
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Hora de Inicio turno tarde debe ser anterior a Hora Fin', 'warning')", true);
+                    return false;
+                }
+            }
             return true;
         }
 

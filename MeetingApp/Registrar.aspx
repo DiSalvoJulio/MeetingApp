@@ -88,7 +88,7 @@
                 </div>--%>
 
                 <div class="form col-md-12 mt-5">
-                    <div class="form-check">
+                    <div class="form-check p-0">
                         <asp:CheckBox ID="chkProfesional" runat="server" OnCheckedChanged="chkProfesional_CheckedChanged" AutoPostBack="true" CssClass="form" />
                         <label class="form-check-label" for="chkProfesional">Soy Profesional.</label>
                     </div>
@@ -117,14 +117,14 @@
             <div class="modal-header mt-5" style="padding: 1rem 0rem !important; border: none;">
                 <a href="InicioSesion.aspx" class="btn btn-info">Volver a Inicio sesión</a>
                 <div>
-                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" CssClass="btn btn-danger" />
+                    <%--<asp:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" CssClass="btn btn-danger" />--%>
                     <asp:Button ID="btnRegistrar" runat="server" Text="Registrarme" OnClick="btnRegistrar_Click" CssClass="btn btn-primary" />
                 </div>
             </div>         
 
             <%--SECCION TERMINOS Y CONDICIONES--%>
             <div class="termi row mt-5">
-                <input runat="server" style="opacity:1;" id="chkTerminos" class="mb-4" type="checkbox" data-required="1" name="chkTerminos"/><p style="color:black;padding-left:20px">Aceptar los <a style="color:blue;" href="TerminosYCondiciones.aspx">Términos y Condiciones</a></p>
+                <input runat="server" style="opacity:1;" id="chkTerminos" class="mb-4" type="checkbox" data-required="1" name="chkTerminos"/><p style="color:black;padding-left:20px; margin-bottom:20px;">Aceptar los <a style="color:blue;" href="TerminosYCondiciones.aspx">Términos y Condiciones</a></p>
             </div>
 
         <%--<div class="form col-md-12 mt-3" style="justify-content:center;">

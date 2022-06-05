@@ -293,6 +293,7 @@ namespace DAL
                         turno.paciente = dr["Paciente"].ToString();                        
                         turno.obraSocial = dr["ObraSocial"].ToString();
                         turno.estado = dr["Estado"].ToString() == "True" ? turno.estado = "Activo" : turno.estado = "Cancelado";
+                        
                         listaTurnosDto.Add(turno);
                     }
                     return listaTurnosDto;

@@ -17,6 +17,11 @@ namespace MeetingApp.Gestiones
         {
             if (!IsPostBack)
             {
+                //cerrar sesion en todos las paginas
+                if (Session["Usuario"] == null)
+                {
+                    Response.Redirect("InicioSesion.aspx");
+                }
                 //Usuario user = (Usuario)Session["Usuario"];
                 CargarObrasSociales();//carga la grilla al inicio
             }

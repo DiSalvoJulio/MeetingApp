@@ -18,7 +18,11 @@ namespace MeetingApp.Reportes
         {
             if (!IsPostBack)
             {
-                
+                //cerrar sesion en todos las paginas
+                if (Session["Usuario"] == null)
+                {
+                    Response.Redirect("InicioSesion.aspx");
+                }
             }
         }
 

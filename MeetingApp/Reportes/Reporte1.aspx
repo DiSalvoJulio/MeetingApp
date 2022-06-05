@@ -4,7 +4,7 @@
     <style>
         .scrolling-table-container {
             height: 378px;
-            overflow-y: scroll;
+            overflow-y: auto;
             overflow-x: hidden;
         }
     </style>

@@ -42,5 +42,17 @@ namespace BLL
             return registrarDAL.ObtenerReferencias();
         }
 
+        //obeter mail
+        public Usuario ObtenerExisteCorreo(string email)
+        {
+            return registrarDAL.ObtenerExisteCorreo(email);
+        }
+
+        //recuperar clave
+        public int RecuperarCuenta(int idUsuario, string pass)
+        {
+            return registrarDAL.RecuperarCuenta(idUsuario, pass);
+        }
+
     }
 }

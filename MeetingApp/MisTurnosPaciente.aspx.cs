@@ -19,6 +19,11 @@ namespace MeetingApp
         {
             if (!IsPostBack)
             {
+                //cerrar sesion en todos las paginas
+                if (Session["Usuario"] == null)
+                {
+                    Response.Redirect("InicioSesion.aspx");
+                }
                 Usuario paciente = (Usuario)Session["Usuario"];
                 Session["idPaciente"] = paciente.idUsuario;
                 CargarGrillaTurnos();

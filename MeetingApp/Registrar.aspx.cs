@@ -114,7 +114,7 @@ namespace MeetingApp
             {
                 if (InsertarUsuario())
                 {
-                    
+
                     //var cancellationTokenSource = new CancellationTokenSource();
                     //var cancellationToken = cancellationTokenSource.Token;
 
@@ -124,6 +124,9 @@ namespace MeetingApp
                     //}, cancellationToken);
 
                     //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Registro con Exito!', 'Sera redirigido al Login para iniciar sesion', 'success')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Registro con Exito!')", true);
+
+                    Thread.Sleep(2000);
 
                     Response.Redirect("InicioSesion.aspx", false);
 

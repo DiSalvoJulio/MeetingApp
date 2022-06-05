@@ -35,8 +35,7 @@
             <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar" CssClass="btn btn-outline-success col-auto mt-1 ml-5" onclick="btnLimpiar_Click"/>
         </td>
         <br />
-        <br />
-        <br />
+        
 
         <%--GRAFICO--%>
 

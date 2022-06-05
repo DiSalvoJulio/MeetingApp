@@ -22,6 +22,11 @@ namespace MeetingApp
         {
             if (!IsPostBack)
             {
+                //cerrar sesion en todos las paginas
+                if (Session["Usuario"] == null)
+                {
+                    Response.Redirect("InicioSesion.aspx");
+                }
                 Usuario profesional = (Usuario)Session["Usuario"];
                 btnLimpiarDatos.Enabled = false;
                 txtEspecialidad.Text = MostrarEspecialidad();
@@ -114,10 +119,10 @@ namespace MeetingApp
             txtDniBuscar.Enabled = true;
             btnBuscarPaciente.Enabled = true;
             btnLimpiarDatos.Enabled = false;
-            //cmbHorarioDisponible.SelectedValue = "Horarios...";
-            //cmbHorarioDisponible.Text = "Horarios...";
-            //cmbFormaPago.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Forma de pago...", "0"));
-            //cmbHorarioDisponible.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Horarios...", "0"));
+
+            //limpiar el combo
+            cmbHorarioDisponible.Items.Clear();            
+            cmbHorarioDisponible.Items.Insert(0, new System.Web.UI.WebControls.ListItem("Horario...", "0"));            
 
         }
 
