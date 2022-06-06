@@ -18,10 +18,12 @@ namespace MeetingApp.Gestiones
         {
             if (!IsPostBack)
             {
+                //Usuario usuario = (Usuario)Session["Usuario"];
                 //cerrar sesion en todos las paginas
                 if (Session["Usuario"] == null)
                 {
-                    Response.Redirect("InicioSesion.aspx");
+                    Session.Abandon();
+                    //Response.Redirect("/Gestiones/InicioSesion.aspx");
                 }
                 //Usuario user = (Usuario)Session["Usuario"];
                 CargarEspecialidades();//carga la grilla al inicio
@@ -99,19 +101,27 @@ namespace MeetingApp.Gestiones
         public bool ActualizarEspecialidad()
         {
             Especialidad espe = new Especialidad();
-            espe.descripcion = txtActualizarEspecialidad.Text;
+            espe.descripcion = caracter.SacarTilde(txtActualizarEspecialidad.Text);
             espe.idEspecialidad = (int)ViewState["idEspecialidad"];
 
-            if (_especialidadBLL.ValidarNombreEspecialidad(espe))
-            {               
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Cuidado!', 'Este nombre de especialidad ya existe!', 'warning')", true);
+            if (txtActualizarEspecialidad.Text=="")
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Cuidado!', 'El nombre no debe estar vacio', 'warning')", true);
                 return false;
             }
             else
             {
-                _especialidadBLL.ActualizarEspecialidad(espe);
-                return true;
-            }
+                if (_especialidadBLL.ValidarNombreEspecialidad(espe))
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Cuidado!', 'Este nombre de especialidad ya existe!', 'warning')", true);
+                    return false;
+                }
+                else
+                {
+                    _especialidadBLL.ActualizarEspecialidad(espe);
+                    return true;
+                }
+            }            
 
         }
 

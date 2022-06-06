@@ -15,6 +15,15 @@ namespace MeetingApp
     {
 
         /// <summary>
+        /// Control Lbel1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Lbel1;
+
+        /// <summary>
         /// Control cmbEspecialidad.
         /// </summary>
         /// <remarks>
@@ -24,13 +33,13 @@ namespace MeetingApp
         protected global::System.Web.UI.WebControls.DropDownList cmbEspecialidad;
 
         /// <summary>
-        /// Control divProfesionales.
+        /// Control La2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divProfesionales;
+        protected global::System.Web.UI.WebControls.Label La2;
 
         /// <summary>
         /// Control cmbProfesional.
@@ -69,6 +78,15 @@ namespace MeetingApp
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divHorariosDisponibles;
 
         /// <summary>
+        /// Control Label2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+
+        /// <summary>
         /// Control cmbHorarioDisponible.
         /// </summary>
         /// <remarks>
@@ -76,6 +94,15 @@ namespace MeetingApp
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList cmbHorarioDisponible;
+
+        /// <summary>
+        /// Control Label1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
         /// Control cmbFormaPago.
@@ -87,6 +114,15 @@ namespace MeetingApp
         protected global::System.Web.UI.WebControls.DropDownList cmbFormaPago;
 
         /// <summary>
+        /// Control lblOb.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOb;
+
+        /// <summary>
         /// Control txtObraSocial.
         /// </summary>
         /// <remarks>
@@ -94,6 +130,15 @@ namespace MeetingApp
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtObraSocial;
+
+        /// <summary>
+        /// Control Label3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
         /// Control txtMotivo.

@@ -1,7 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Especialidades.aspx.cs" Inherits="MeetingApp.Gestiones.Especialidades" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderContent" runat="server">
+    <style>
+        .scrolling-table-container {
+            height: 500px; /*Largo de la tabla eje y*/
+            overflow-y: auto;/*Saca el scroll si la tabla aparece cuando la cargamos y aparece con la tabla*/
+            overflow-x: hidden;
+        }
+    </style>
 </asp:Content>
+
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <link href="Especialidades.css" rel="stylesheet" />
 
@@ -32,7 +41,7 @@
         </section>
         <%-- SECCION 3 GRILLA--%>
         <div class="row">
-            <div class="table col-md-auto mt-3">
+            <div class="scrolling-table-container col-md-10 mt-3">
                 <asp:GridView runat="server" ID="GVEspecialidades" AutoGenerateColumns="false" CssClass="table text-center table-hover" OnRowCommand="GVEspecialidades_RowCommand">
                     <HeaderStyle BackColor="#3E64FF" ForeColor="White" />
                     <RowStyle BackColor="#D6DBDF" ForeColor="#333333" />

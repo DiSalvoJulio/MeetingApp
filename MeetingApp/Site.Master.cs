@@ -107,7 +107,8 @@ namespace MeetingApp
         protected void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             Session["Usuario"] = null;
-            Response.Redirect("InicioSesion.aspx");
+            Session.Abandon();
+            Response.Redirect("~/InicioSesion.aspx");
         }
     }
 }

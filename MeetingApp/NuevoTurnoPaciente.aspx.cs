@@ -380,8 +380,11 @@ namespace MeetingApp
                 if (turno != null)
                 {
                     //datos de la modal
-                    //lblDia.Text = turno.descripcion;                  
-                    lblFecha.Text = turno.fechaTurno;                    
+                    //string fechaSalida3 = fecha.ToString("dd/MM/yyyy");
+                    //DateTime fecha = new DateTime(2022, 06, 06);
+                    //turno.fechaSolicitud = 
+                    //string fecha = turno.fechaSolicitud(2022, 06, 06);
+                    lblFecha.Text = turno.fechaTurno;   //.ToString("dd/MM/yyyy"); ;                    
                     lblHora.Text = turno.horaTurno;
                     lblDescripcion.Text = turno.descripcion;
                     //lblPaciente.Text = paciente.apellido + ' ' + paciente.nombre;

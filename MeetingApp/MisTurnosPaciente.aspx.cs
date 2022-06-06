@@ -26,18 +26,35 @@ namespace MeetingApp
                 }
                 Usuario paciente = (Usuario)Session["Usuario"];
                 Session["idPaciente"] = paciente.idUsuario;
+
+                
+                
                 CargarGrillaTurnos();
             }
         }
 
-        //CARGAR GRILLA ESPECIALIDAD
+        //CARGAR GRILLA Turnos
         public void CargarGrillaTurnos()
         {
             Usuario paciente = (Usuario)Session["Usuario"];
             int idPaciente = paciente.idUsuario;
             List<ObtenerTurnosPacienteDTO> turnos = _pacienteBLL.ObtenerTurnosPaciente(idPaciente);
             gvTurnos.DataSource = turnos;
-        
+
+            //for (int i = 0; i < turnos.Count; i++)
+            //{
+            //    if (turnos[i].estado == "Activo")
+            //    {
+            //        //btnCancelarTurno.Enabled = true;
+            //        //turnos[i].activoString = "✔";
+
+            //    }
+            //    else
+            //    {
+            //        //turnos[i].activoString = "❌";
+
+            //    }
+            //}
             gvTurnos.DataBind();
         }
 

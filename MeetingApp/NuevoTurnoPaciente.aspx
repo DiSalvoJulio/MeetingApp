@@ -10,39 +10,43 @@
         <asp:UpdatePanel runat="server">
             <ContentTemplate>
                 <div class="row">
+                <div class="form-group mt-2">
                     <%--combo especialidades--%>
-                    <h5 class="mr-3 mt-1 col-sm-4">Seleccione una especialidad</h5>
-                    <%-- <asp:Label ID="Label1" runat="server" Text="Especialidad" CssClass="mr-3"></asp:Label>--%>
-                    <asp:DropDownList ID="cmbEspecialidad" runat="server" CssClass="btn btn-primary col-sm-3 mt-1" AutoPostBack="true" OnSelectedIndexChanged="cmbEspecialidad_SelectedIndexChanged">
+                    <%--<h5 class="mr-3 mt-1">Seleccione una especialidad</h5>--%>
+                     <asp:Label ID="Lbel1" runat="server" Text="Seleccione una especialidad" CssClass=""></asp:Label>
+                    <asp:DropDownList ID="cmbEspecialidad" runat="server" CssClass="btn btn-primary form-control col-sm-9 mt-1" AutoPostBack="true" OnSelectedIndexChanged="cmbEspecialidad_SelectedIndexChanged">
                     </asp:DropDownList>
                 </div>
-
-                <div class="row mt-5" id="divProfesionales" runat="server">
+                <div class="form-group mt-2 mr-5">
+                <%--<div class="mt-5" id="divProfesionales" runat="server">--%>
                     <%--combo profesionales--%>
-                    <h5 class="mr-3 mt-1 col-sm-4">Seleccione un profesional</h5>
-                    <%-- <asp:Label ID="Label2" runat="server" Text="Profesional" CssClass="mr-3"></asp:Label>--%>
-                    <asp:DropDownList ID="cmbProfesional" runat="server" CssClass="btn btn-primary col-sm-3 mt-1" AutoPostBack="true">
+                    <%--<h5 class="mr-3 mt-1">Seleccione un profesional</h5>--%>
+                     <asp:Label ID="La2" runat="server" Text="Seleccione un profesional" CssClass=""></asp:Label>
+                    <asp:DropDownList ID="cmbProfesional" runat="server" CssClass="btn btn-primary form-control col-sm-10 mt-1" AutoPostBack="true">
                         <asp:ListItem Text="Profesional..."></asp:ListItem>
                     </asp:DropDownList>
+                <%--</div>--%>
                 </div>
+                    </div>
+
             </ContentTemplate>
         </asp:UpdatePanel>
 
         <%--calendario para ver los dias--%>
         <%--<asp:TextBox type="date" runat="server" class="form-control col-3 mt-5" ID="txtCalendario"></asp:TextBox>--%>
         <div class="row">
-            <input runat="server" type="date" class="form-control col-3 mt-5 ml-3 mr-5" id="txtCalendario">
-            <asp:Button Text="Mostrar horarios" ID="btnMostrarHorarios" class="btn btn-info col-sm-3 mt-5 ml-5" runat="server" OnClick="btnMostrarHorarios_Click" />
+            <input runat="server" type="date" class="form-control col-3 mt-4 mr-5" id="txtCalendario">
+            <asp:Button Text="Mostrar horarios" ID="btnMostrarHorarios" class="btn btn-info col-sm-3 mt-4 ml-5" runat="server" OnClick="btnMostrarHorarios_Click" />
         </div>
 
-
+        <div class="row">
         <asp:UpdatePanel runat="server">
             <ContentTemplate>
-                <div class="row mt-5" id="divHorariosDisponibles" runat="server">
+                <div class="form-group mt-4 mr-5" id="divHorariosDisponibles" runat="server">
                     <%--combo horarios--%>
-                    <h5 class="mr-3 mt-1 col-sm-4">Seleccione un horario</h5>
-                    <%-- <asp:Label ID="Label2" runat="server" Text="Profesional" CssClass="mr-3"></asp:Label>--%>
-                    <asp:DropDownList ID="cmbHorarioDisponible" runat="server" CssClass="btn btn-primary col-sm-3 mt-1" AutoPostBack="false">
+                    <%--<h5 class="mr-3 mt-1 col-sm-4">Seleccione un horario</h5>--%>
+                     <asp:Label ID="Label2" runat="server" Text="Seleccione un horario" CssClass="mr-3"></asp:Label>
+                    <asp:DropDownList ID="cmbHorarioDisponible" runat="server" CssClass="btn btn-primary form-control col-sm-12" AutoPostBack="false">
                         <asp:ListItem Text="Horario..."></asp:ListItem>
                     </asp:DropDownList>
                 </div>
@@ -53,32 +57,36 @@
         </asp:UpdatePanel>
 
         <%--FORMA DE PAGO--%>
-        <div class="row mt-5">
+        <div class="form-group mt-4 ml-5">
             <%--combo especialidades--%>
-            <h5 class="mr-3 mt-1 col-sm-4">Forma de pago</h5>
-            <%-- <asp:Label ID="Label1" runat="server" Text="Especialidad" CssClass="mr-3"></asp:Label>--%>
-            <asp:DropDownList ID="cmbFormaPago" runat="server" CssClass="btn btn-primary col-sm-3 mt-1" AutoPostBack="false">
+            <%--<h5 class="mr-3 mt-1 col-sm-4">Forma de pago</h5>--%>
+             <asp:Label ID="Label1" runat="server" Text="Forma de pago" CssClass=""></asp:Label>
+            <asp:DropDownList ID="cmbFormaPago" runat="server" CssClass="btn btn-primary form-control col-sm-12" AutoPostBack="false">
                 <asp:ListItem Text="Forma de pago..."></asp:ListItem>
             </asp:DropDownList>
         </div>
+            </div>
 
         <%--OBRA SOCIAL--%>
-        <div class="row mt-5">
+        <div class="row">
+        <div class="form-group mt-4 mr-5 col-md-3">
             <%--combo obras sociales--%>
-            <h5 class="mr-3 mt-1 col-sm-4">Obra social</h5>
-            <%-- <asp:Label ID="Label1" runat="server" Text="Especialidad" CssClass="mr-3"></asp:Label>--%>
-            <asp:TextBox ID="txtObraSocial" name="txtObraSocial" runat="server" placeholder="Obra social" CssClass="form-control col-sm-3" Enabled="false"></asp:TextBox>
+            <%--<h5 class="mr-3 mt-1 col-sm-4">Obra social</h5>--%>
+             <asp:Label ID="lblOb" runat="server" Text="Obra social" CssClass=""></asp:Label>
+            <asp:TextBox ID="txtObraSocial" name="txtObraSocial" runat="server" placeholder="Obra social" CssClass="form-control col-auto" Enabled="false"></asp:TextBox>
             <%--<asp:DropDownList ID="cmbObraSocial" runat="server" CssClass="btn btn-primary col-sm-3 mt-1" AutoPostBack="false">
                 <asp:ListItem Text="Obra Social..."></asp:ListItem>
             </asp:DropDownList>--%>
         </div>
 
-        <div class="mt-5">
-            <h5 class="mr-3 mt-1 col-sm-4">Motivo del turno</h5>
-            <asp:TextBox runat="server" TextMode="MultiLine" Width="60%" ID="txtMotivo"></asp:TextBox>
+        <div class="form-group mt-2 ml-5">
+            <%--<h5 class="mr-3 mt-1 col-auto">Motivo del turno</h5>--%>
+            <asp:Label ID="Label3" runat="server" Text="Motivo del turno" CssClass="mr-3"></asp:Label>
+            <asp:TextBox runat="server" TextMode="MultiLine" Width="200%" CssClass="form-control" ID="txtMotivo"></asp:TextBox>
         </div>
+            </div>
 
-        <div class="form-row" style="justify-content: center;">
+        <div class="row" style="justify-content: center;">
             <asp:Button Text="Reservar turno" ID="btnReservarTurno" class="btn btn-danger mt-5" runat="server" OnClick="btnReservarTurno_Click" />
         </div>
 

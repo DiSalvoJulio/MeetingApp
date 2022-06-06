@@ -12,6 +12,7 @@ namespace MeetingApp.Gestiones
     public partial class ObrasSociales : System.Web.UI.Page
     {
         ObraSocialBLL _obraSocialBLL = new ObraSocialBLL();
+        CaracterEspecial caracter = new CaracterEspecial();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,7 +32,7 @@ namespace MeetingApp.Gestiones
         public void InsertarObraSocial()
         {
             ObraSocial obraSocial = new ObraSocial();
-            obraSocial.descripcion = txtObraSocial.Text;            
+            obraSocial.descripcion = caracter.SacarTilde(txtObraSocial.Text);            
 
             if (txtObraSocial.Text.Equals(""))
             {
@@ -97,19 +98,28 @@ namespace MeetingApp.Gestiones
         public bool ActualizarObraSocial()
         {
             ObraSocial obraS = new ObraSocial();
-            obraS.descripcion = txtActualizarObraSocial.Text;
+            obraS.descripcion = caracter.SacarTilde(txtActualizarObraSocial.Text);
             obraS.idObraSocial = (int)ViewState["idObraSocial"];
 
-            if (_obraSocialBLL.ValidarNombreObraSocial(obraS))
+            if (txtActualizarObraSocial.Text=="")
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Cuidado!', 'Este nombre de Obra Social ya existe!', 'warning')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Cuidado!', 'El nombre de la obra social no puede estar vacio', 'warning')", true);
                 return false;
             }
             else
             {
-                _obraSocialBLL.ActualizarObraSocial(obraS);
-                return true;
+                if (_obraSocialBLL.ValidarNombreObraSocial(obraS))
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Cuidado!', 'Este nombre de Obra Social ya existe!', 'warning')", true);
+                    return false;
+                }
+                else
+                {
+                    _obraSocialBLL.ActualizarObraSocial(obraS);
+                    return true;
+                }
             }
+            
 
         }
 
