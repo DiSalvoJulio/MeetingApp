@@ -19,9 +19,10 @@ namespace MeetingApp.Reportes
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            divGrafico.Visible = false;//sacamos que no se muestre el div
             if (!IsPostBack)
             {
-                //cerrar sesion en todos las paginas
+                
                 if (Session["Usuario"] == null)
                 {
                     Response.Redirect("InicioSesion.aspx");
@@ -31,12 +32,22 @@ namespace MeetingApp.Reportes
 
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
-            obtenerDatos();
+            if (cmbMes.SelectedValue=="0")
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe seleccionar un Mes')", true);
+                return;
+            }
+            else
+            {
+                obtenerDatos();
+                
+            }
         }
 
         protected void btnLimpiar_Click(object sender, EventArgs e)
         {
-
+            cmbMes.SelectedValue = "0";
+            divGrafico.Visible = false;
         }
 
         public void obtenerDatos()
@@ -54,7 +65,18 @@ namespace MeetingApp.Reportes
                 cont++;
 
             }
-            gf_formasPagos.Series["Serie"].Points.DataBindXY(nombres, cantPagos);
+            if (pagosPorMes.Count > 0)//cantPagos[cont]==0
+            {
+                gf_formasPagos.Series["Serie"].Points.DataBindXY(nombres, cantPagos);
+                divGrafico.Visible = true;
+                //btnImprimir.Visible = false;
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('No hay datos para este Mes')", true);
+                divGrafico.Visible = false;
+                //btnImprimir.Disabled = true;
+            }
         }
 
 

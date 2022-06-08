@@ -104,7 +104,7 @@
                     <asp:Label ID="Label1" runat="server" Text="Profesion"></asp:Label>
                     <br />
                     <asp:DropDownList ID="cmbProfesion" runat="server" CssClass="btn btn-outline-dark dropdown-toggle col-12" onClientClick="verDrop()">
-                        <%--<asp:ListItem Selected="True"> </asp:ListItem>   --%>
+                        <asp:ListItem Selected="True">Seleccione Especialidad...</asp:ListItem>   
                     </asp:DropDownList>
                 </div>
                 <div class="form-group col-md-6 mt-3">

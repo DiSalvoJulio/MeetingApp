@@ -269,44 +269,7 @@ namespace DAL
                 Conexion.CerrarConexion();
             }
         }
-
-
-        //cancelar el turno
-        //public bool CancelarTurno(Turno turno)
-        //{
-        //    try
-        //    {
-        //        string procedure = "sp_CancelarTurno";
-        //        comando.Connection = Conexion.AbrirConexion();
-        //        comando.CommandText = procedure;
-        //        comando.CommandType = CommandType.StoredProcedure;
-        //        comando.Parameters.Clear();
-        //        comando.Parameters.AddWithValue("@idTurno", turno.idTurno);
-
-        //        using (SqlDataReader dr = comando.ExecuteReader())
-        //        {
-        //            if (dr.Read())
-        //            {
-        //                return true;
-        //            }
-        //            else
-        //            {
-        //                return false;
-        //            }
-        //        }
-
-        //    }
-
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception("Error en Cancelar DAL " + ex.Message);
-        //    }
-        //    finally
-        //    {
-        //        Conexion.CerrarConexion();
-        //    }
-
-        //}
+               
 
         //cancelar el turno
         public bool CancelarTurno(int idTurno)
@@ -345,8 +308,49 @@ namespace DAL
 
         }
 
+        //OBTENER TURNOS POR FECHAS
+        public List<ObtenerTurnosActivosPorFechasDTO> ObtenerTurnosPorFecha(DateTime fecha)
+        {
+            try
+            {
+                string proc = "sp_ObtenerTurnosPorFechas";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = proc;
+                comando.Parameters.Clear();
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@fechaMin", fecha);                
+                comando.ExecuteNonQuery();
+
+                List<ObtenerTurnosActivosPorFechasDTO> lista = new List<ObtenerTurnosActivosPorFechasDTO>();
 
 
+                using (SqlDataReader dr = comando.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        ObtenerTurnosActivosPorFechasDTO obtenerActivos = new ObtenerTurnosActivosPorFechasDTO();
+                        obtenerActivos.fecha = (dr["Fecha"]).ToString().Substring(0, 10);
+                        obtenerActivos.hora = dr["Hora"].ToString();
+                        obtenerActivos.paciente = dr["Paciente"].ToString();
+                        obtenerActivos.obraSocial = dr["Obra Social"].ToString();
+                        obtenerActivos.estado = dr["Estado"].ToString() == "True" ? obtenerActivos.estado = "Activo" : obtenerActivos.estado = "Cancelado";
+
+                        lista.Add(obtenerActivos);
+                    }
+
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en obtenerActivos " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+
+        }
 
 
     }

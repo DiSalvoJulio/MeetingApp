@@ -55,7 +55,7 @@ namespace MeetingApp
                 {
                     Session["Usuario"] = usu;
                     //Response.Redirect("Gestiones/Default.aspx");
-                    Response.Redirect("Gestiones/Especialidades.aspx");
+                    Response.Redirect("HomeAdmin.aspx");
                     //Response.Redirect("Gestiones/ObrasSociales.aspx");
                 }
             }

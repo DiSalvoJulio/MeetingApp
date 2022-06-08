@@ -41,8 +41,12 @@ namespace MeetingApp.Reportes
         }
 
         protected void btnConsultar_Click(object sender, EventArgs e)
-        {           
-
+        {
+            if (cmbMes.SelectedValue == "0")
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe seleccionar un Mes')", true);
+                return;
+            }
             int mes = int.Parse(cmbMes.SelectedValue);
             ViewState["mes"] = mes;
             //este viewstate es el creado en el metodo
@@ -52,10 +56,11 @@ namespace MeetingApp.Reportes
             {
                 CargarGrillaTurnos();
                 btnLimpiar.Enabled = true;
+                btnImprimir.Disabled = false;
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('No se encontró un paciente que tenga mas de un turno por el mes seleccionado')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('No se encontró un paciente que tenga mas de un turno en el (Mes) seleccionado')", true);
                 btnLimpiar.Enabled = true;
             }
         }
@@ -64,6 +69,8 @@ namespace MeetingApp.Reportes
         {
             gvTurnos.DataSource = null;
             gvTurnos.DataBind();
+            cmbMes.SelectedValue = "0";
+            btnImprimir.Disabled = true;
         }
 
         

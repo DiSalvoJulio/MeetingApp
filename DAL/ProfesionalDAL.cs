@@ -311,5 +311,53 @@ namespace DAL
         }
 
 
+
+        //obtener lista de turnos por fecha
+        public List<ObtenerTurnosProfesionalDTO> ObtenerTurnosPorFecha(int idProfesional, DateTime fecha)
+        {
+            try
+            {
+                string procedure = "sp_ObtenerTurnosPorFechaDTO";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = procedure;
+                comando.Parameters.Clear();
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@idProfesional", idProfesional);
+                comando.Parameters.AddWithValue("@fecha", fecha);
+                comando.ExecuteNonQuery();
+
+                List<ObtenerTurnosProfesionalDTO> listaTurnosDto = new List<ObtenerTurnosProfesionalDTO>();
+
+                using (SqlDataReader dr = comando.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        ObtenerTurnosProfesionalDTO turno = new ObtenerTurnosProfesionalDTO();
+                        turno.idTurno = Convert.ToInt32(dr["idTurno"]);
+                        //turno.fechaTurno = Convert.ToDateTime(dr["Fecha"]);
+                        turno.fechaTurno = dr["Fecha"].ToString().Substring(0, 10);//ver como cambiar el mostrado de la fecha
+                        turno.horaTurno = dr["Hora"].ToString();
+                        turno.descripcion = dr["Descripcion"].ToString();
+                        turno.paciente = dr["Paciente"].ToString();
+                        turno.obraSocial = dr["ObraSocial"].ToString();
+                        turno.estado = dr["Estado"].ToString() == "True" ? turno.estado = "Activo" : turno.estado = "Cancelado";
+
+                        listaTurnosDto.Add(turno);
+                    }
+                    return listaTurnosDto;
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Error en cargar TurnoProfesionalPacienteDto DAL " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
+
     }
 }

@@ -195,13 +195,22 @@ namespace MeetingApp
         protected global::System.Web.UI.WebControls.Label lblDescripcion;
 
         /// <summary>
-        /// Control lblPaciente.
+        /// Control lblEspecialidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPaciente;
+        protected global::System.Web.UI.WebControls.Label lblEspecialidad;
+
+        /// <summary>
+        /// Control lblProfesional.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblProfesional;
 
         /// <summary>
         /// Control lblObraSocial.
@@ -222,13 +231,13 @@ namespace MeetingApp
         protected global::System.Web.UI.WebControls.Label lblFormaPago;
 
         /// <summary>
-        /// Control btnCancelarEliminar.
+        /// Control btnCancelarModalTurno.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelarEliminar;
+        protected global::System.Web.UI.WebControls.Button btnCancelarModalTurno;
 
         /// <summary>
         /// Control btnConfirmarEliminar.

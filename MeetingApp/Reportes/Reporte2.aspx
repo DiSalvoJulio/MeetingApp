@@ -5,9 +5,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
-        <h1 style="color: red; text-align: center">Reporte 2</h1>
+        <h3 style="color: red; text-align: center">Reporte 2</h3>
         <hr />
-        <h3 class="mb-5">Listado de formas de pago mas utilizadas por mes</h3>
+        <h5 class="mb-5">Listado de formas de pago mas utilizadas por mes</h5>
         <td>
             <asp:Label ID="Label1" runat="server" Text="Seleccionar mes" CssClass="mr-3"></asp:Label>
         </td>
@@ -29,31 +29,85 @@
             </asp:DropDownList>
         </td>
         <td>
-            <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-primary col-auto mt-1 ml-5 mr-5" onclick="btnConsultar_Click"/>
+            <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-primary col-auto mt-1 ml-5 mr-5" OnClick="btnConsultar_Click" />
         </td>
         <td>
-            <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar" CssClass="btn btn-outline-success col-auto mt-1 ml-5" onclick="btnLimpiar_Click"/>
+            <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar" CssClass="btn btn-outline-success col-auto mt-1 ml-5" OnClick="btnLimpiar_Click" />
+            <button id="btnImprimir" class="btn btn-info ml-3" runat="server" onclick="return pdf()">Imprimir</button>
         </td>
         <br />
-        
+
 
         <%--GRAFICO--%>
 
-        <div class="mt-5">
-            <asp:Chart ID="gf_formasPagos" runat="server" Height="374px" Width="552px">
-                <Series>
-                    <asp:Series Name="Serie"></asp:Series>
-                </Series>
-                <ChartAreas>
-                    <asp:ChartArea Name="ChartArea"></asp:ChartArea>
-                </ChartAreas>
-            </asp:Chart> 
+        <div class="mt-5" id="divGrafico" runat="server" visible="false">
+            <div id="print">
+                <asp:Chart ID="gf_formasPagos" runat="server" Height="336px" Width="497px">
+                    <Series>
+                        <asp:Series Name="Serie" ChartArea="ChartArea"></asp:Series>
+                    </Series>
+                    <ChartAreas>
+                        <asp:ChartArea Name="ChartArea"></asp:ChartArea>
+                    </ChartAreas>
+                    <Titles>
+                        <asp:Title Text="Cantidad por Mes" />
+                    </Titles>
+                </asp:Chart>
+            </div>
         </div>
+
+        <%--<div>
+            <h5 class="ml-5">Medios de pagos</h5>
+        </div>--%>
 
 
         <%--FIN GRAFICO--%>
-         
+
 
         <%--fin container--%>
     </div>
+
+    <style type="text/css">
+        @media screen {
+            #printSection {
+                display: none;
+            }
+        }
+
+        @media print {
+            body > *:not(#printSection) {
+                display: none;
+            }
+
+            #printSection, #printSection * {
+                visibility: visible;
+            }
+
+            #printSection {
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
+    </style>
+
+    <script>
+        function pdf() {
+            var elem = document.getElementById('print');
+            var domClone = elem.cloneNode(true);
+            var $printSection = document.createElement("div");
+            $printSection.id = "printSection";
+            $printSection.appendChild(domClone);
+            document.body.insertBefore($printSection, document.body.firstChild);
+
+            window.print();
+
+            // Clean up print section for future use
+            var oldElem = document.getElementById("printSection");
+            if (oldElem != null) { oldElem.parentNode.removeChild(oldElem); }
+            //oldElem.remove() not supported by IE
+
+            return true;
+        }
+    </script>
 </asp:Content>

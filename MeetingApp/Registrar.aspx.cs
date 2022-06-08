@@ -19,7 +19,7 @@ namespace MeetingApp
         {
             if (!IsPostBack)
             {
-                CargarComboEspecialidades();
+                //CargarComboEspecialidades();
                 cmbProfesion.Enabled = false;
                 txtMatricula.Enabled = false;
             }
@@ -105,7 +105,7 @@ namespace MeetingApp
             //validar si el usuario ya existe
             if (ExisteUsuario(txtEmail.Text, txtDni.Text))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Usuario Existente! El e-mail ya esta registrado.')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Usuario Existente! El Email ya esta registrado.')", true);
                 return;
             }
 
@@ -124,11 +124,12 @@ namespace MeetingApp
                     //}, cancellationToken);
 
                     //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Registro con Exito!', 'Sera redirigido al Login para iniciar sesion', 'success')", true);
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Registro con Exito!')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Su registro ha sido exitoso', 'success')", true);
+                    LimpiarCampos();
 
-                    Thread.Sleep(2000);
+                    //Thread.Sleep(2000);
 
-                    Response.Redirect("InicioSesion.aspx", false);
+                    //Response.Redirect("InicioSesion.aspx", false);
 
                 }
                 else
@@ -187,12 +188,16 @@ namespace MeetingApp
                 txtMatricula.Enabled = false;
                 cmbProfesion.SelectedIndex = 0;
                 txtMatricula.Text = "";
+                cmbProfesion.Items.Clear();
+                cmbProfesion.Items.Insert(0, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0"));
+
             }
             else
             {
                 cmbProfesion.Enabled = true;
                 txtMatricula.Enabled = true;
                 chkProfesional.Checked = true;
+                CargarComboEspecialidades();
                 //chkProfesional.CssClass = "checked";
             }
 
@@ -314,7 +319,23 @@ namespace MeetingApp
             }
         }
 
-
+        public void LimpiarCampos()
+        {
+            txtApellido.Text = "";
+            txtNombre.Text = "";
+            txtDni.Text = "";
+            txtFecNac.Text = "";
+            txtEmail.Text = "";
+            txtPass.Text = "";
+            txtPass2.Text = "";
+            chkProfesional.Checked = false;
+            cmbProfesion.Items.Clear();
+            cmbProfesion.Items.Insert(0, new System.Web.UI.WebControls.ListItem("Seleccione Especialidad...", "0"));
+            cmbProfesion.Enabled = false;
+            txtMatricula.Text = "";
+            txtMatricula.Enabled = false;
+            chkTerminos.Checked = false;
+        }
 
 
     }

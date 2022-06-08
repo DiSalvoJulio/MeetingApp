@@ -23,6 +23,7 @@
           <%--  BOTON LIMPIAR GRILLA --%>
             <div class="form-group col-md-3">
                 <asp:Button ID="btnLimpiarGrilla" runat="server" Text="Limpiar" CssClass="btn btn-outline-success" onclick="btnLimpiarGrilla_Click"/>
+                <button ID="btnImprimir" disabled="disabled" class="btn btn-info ml-3" runat="server" onclick="return pdf()">Imprimir</button>
             </div>
         </div>
 
@@ -30,6 +31,7 @@
         <div id="IdTurnosCancelados" class="table mt-4">            
             <%-- <asp:UpdatePanel runat="server">
                 <ContentTemplate>--%>
+            <div id="print">
             <asp:GridView ID="gvTurnosCancelados" runat="server" AutoGenerateColumns="False" CssClass="table text-center table-hover"  >
                 <HeaderStyle BackColor="#3E64FF" ForeColor="White" />
                     <RowStyle BackColor="#D6DBDF" ForeColor="#333333" />
@@ -47,7 +49,8 @@
                         </ItemTemplate>
                     </asp:TemplateField>--%>
                 </Columns>  
-            </asp:GridView>           
+            </asp:GridView>  
+                </div>
             <%--     </ContentTemplate>
             </asp:UpdatePanel>--%>
         </div>
@@ -56,4 +59,48 @@
 
         <%--fin container--%>
     </div>
+
+    <style type="text/css">
+        @media screen {
+            #printSection {
+                display: none;
+            }
+        }
+
+        @media print {
+            body > *:not(#printSection) {
+                display: none;
+            }
+
+            #printSection, #printSection * {
+                visibility: visible;
+            }
+
+            #printSection {
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
+    </style>
+
+    <script>
+        function pdf() {
+            var elem = document.getElementById('print');
+            var domClone = elem.cloneNode(true);
+            var $printSection = document.createElement("div");
+            $printSection.id = "printSection";
+            $printSection.appendChild(domClone);
+            document.body.insertBefore($printSection, document.body.firstChild);
+
+            window.print();
+
+            // Clean up print section for future use
+            var oldElem = document.getElementById("printSection");
+            if (oldElem != null) { oldElem.parentNode.removeChild(oldElem); }
+            //oldElem.remove() not supported by IE
+
+            return true;
+        }
+    </script>
 </asp:Content>

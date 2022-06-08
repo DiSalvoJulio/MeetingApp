@@ -30,6 +30,7 @@ namespace MeetingApp
 
             if (user.idRol == 1) //administrador
             {
+                tadAdmin.Visible = true;
                 tabEspecialidades.Visible = true; //son los id que estan en la sidebar en los li
                 tabObrasSociales.Visible = true;
                 //tabCerrarSesion.Visible = true;
@@ -67,6 +68,7 @@ namespace MeetingApp
                 tabEspecialidades.Visible = false;
                 tabObrasSociales.Visible = false;
                 tabHomeProfesional.Visible = false;
+                tadAdmin.Visible = false;
                 tabDatosProfesional.Visible = false;
                 //tabReportes.Visible = false;
                 tabMisTurnosProfesional.Visible = false;
@@ -98,6 +100,7 @@ namespace MeetingApp
                 tabEspecialidades.Visible = false;
                 tabObrasSociales.Visible = false;
                 tabHomePaciente.Visible = false;
+                tadAdmin.Visible = false;
                 tabDatosPaciente.Visible = false;
                 tabMisTurnosPaciente.Visible = false;
             }

@@ -209,39 +209,7 @@ namespace DAL
                 Conexion.CerrarConexion();
             }
 
-        }
-
-        //public static Usuario ObtenerUsuarioId(int usu)
-        //{
-        //    Usuario usuario = new Usuario();
-        //    try
-        //    {
-        //        string procedure = "sp_ObtenerPacienteId";
-        //        comando.Connection = Conexion.AbrirConexion();
-        //        comando.CommandText = procedure;
-        //        comando.CommandType = CommandType.StoredProcedure;
-        //        comando.Parameters.Clear();
-        //        comando.Parameters.AddWithValue("@idUsuario", usu);
-        //        comando.ExecuteNonQuery();
-        //        SqlDataReader dread = comando.ExecuteReader();
-
-        //        if (dread.Read())
-        //        {
-        //            usuario = BuscarMozo(dread);
-        //        }
-        //        Conexion.CerrarConexion();
-        //        return usuario;
-
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw new Exception("Ha ocurrido un error " + e);
-        //    }
-        //    finally
-        //    {
-        //        Conexion.CerrarConexion();
-        //    }
-        //}
+        }       
 
         public Usuario ObtenerUsuarioId(int id) // al pasarle el nomnbre de la tabla suscriptor va a devolver lista dinamica cargada con los suscruptores
         {
@@ -333,7 +301,6 @@ namespace DAL
             }
             catch (Exception)
             {
-
                 throw new Exception("No se puede cargar la lista desde la BD, por algun motivo");
             }
         }
@@ -406,7 +373,7 @@ namespace DAL
             }
         }
 
-        //corroborar q exista el correo para recuperar cuenta
+        //corroborar que exista el correo para recuperar cuenta
         public Usuario ObtenerExisteCorreo(string email)
         {
             try

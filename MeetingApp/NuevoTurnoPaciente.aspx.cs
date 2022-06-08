@@ -16,6 +16,7 @@ namespace MeetingApp
         TurnoBLL _turnoBLL = new TurnoBLL();
         HorarioBLL _horarioBLL = new HorarioBLL();
         ObraSocialBLL _obraSocialBLL = new ObraSocialBLL();
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -167,6 +168,23 @@ namespace MeetingApp
                 }                
             }
             return obraSocial;            
+        }
+
+        //Metodo para mostrar la obra social en txt
+        public string MostrarFormasPagos()
+        {
+            Usuario user = (Usuario)Session["Usuario"];
+            string formasPagos = "";
+            //int id = 0;
+            List<FormaPago> listaFormas = _turnoBLL.ObtenerFormasDePagos();
+            foreach (FormaPago item in listaFormas)
+            {
+                //if (cmbFormaPago.SelectedItem.Value == item.idFormaPago)
+                //{
+                //    formasPagos = item.descripcion;
+                //}
+            }
+            return formasPagos;
         }
 
         //CARGAR COMBO OBRAS SOCIALES
@@ -362,8 +380,7 @@ namespace MeetingApp
             catch (Exception)
             {
                 return null;
-            }
-                
+            }               
 
         }
 
@@ -372,6 +389,7 @@ namespace MeetingApp
         //boton MODAL QUE CONFIRMA el turno nuevo
         protected void btnReservarTurno_Click(object sender, EventArgs e)
         {
+            Usuario paciente = (Usuario)Session["Usuario"];
             if (ValidarCamposVaciosTurno())
             {                
                 panelConfirmarTurno.Visible = true;
@@ -380,16 +398,27 @@ namespace MeetingApp
                 if (turno != null)
                 {
                     //datos de la modal
-                    //string fechaSalida3 = fecha.ToString("dd/MM/yyyy");
-                    //DateTime fecha = new DateTime(2022, 06, 06);
-                    //turno.fechaSolicitud = 
-                    //string fecha = turno.fechaSolicitud(2022, 06, 06);
-                    lblFecha.Text = turno.fechaTurno;   //.ToString("dd/MM/yyyy"); ;                    
+                    //Usamos el metodo AgregarCero y pasamos la fecha a string para mostrarla correctamente en front.
+                    DateTime fecha = DateTime.Parse(turno.fechaTurno);
+                    string anio = fecha.Year.ToString();
+                    string mes = fecha.Month.ToString();
+                    mes = AgregarCero(mes);
+                    string dia = fecha.Day.ToString();
+                    dia = AgregarCero(dia);
+                    string fechaActual2 = dia + "-" + mes + "-" + anio;
+                    lblFecha.Text = fechaActual2;
+
+                    //combo especialidad
+                    string especialidad = cmbEspecialidad.SelectedItem.Text;
+                    string profesional = cmbProfesional.SelectedItem.Text;
+                    string formaPago = cmbFormaPago.SelectedItem.Text;
+
                     lblHora.Text = turno.horaTurno;
                     lblDescripcion.Text = turno.descripcion;
-                    //lblPaciente.Text = paciente.apellido + ' ' + paciente.nombre;
+                    lblEspecialidad.Text = especialidad;
+                    lblProfesional.Text = profesional;
                     lblObraSocial.Text = MostrarObraSocial();
-                    //lblFormaPago.Text = MostrarFormaPago();
+                    lblFormaPago.Text = formaPago;
 
                 }
                 else
@@ -544,7 +573,7 @@ namespace MeetingApp
             panelConfirmarTurno.Visible = false;
         }
 
-        //confirma turno
+        //confirma el turno (boton confirmar dentro de la Modal)
         protected void btnConfirmarEliminar_Click(object sender, EventArgs e)
         {
             Turno turno = (Turno)Session["nuevoTurno"];
@@ -592,7 +621,19 @@ namespace MeetingApp
             return true;
         }
 
+        //funcion para 2 digitos para mes o dia.
+        public string AgregarCero(string nombre)
+        {
+            if (Convert.ToInt32(nombre) < 10)
+            {
+                nombre = "0" + nombre;
+            }
+            return nombre;
+        }
 
-
+        protected void btnCancelarModalTurno_Click(object sender, EventArgs e)
+        {
+            panelConfirmarTurno.Visible = false;
+        }
     }
 }

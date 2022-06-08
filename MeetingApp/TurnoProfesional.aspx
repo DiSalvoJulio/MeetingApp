@@ -91,7 +91,7 @@
         </div>
 
         <div class="form-row" style="justify-content: end;">
-        <asp:Button Text="Reservar turno" ID="btnReservarTurno" class="btn btn-danger mt-5" runat="server" onclick="btnReservarTurno_Click"/>
+        <asp:Button Text="Reservar turno" ID="btnReservarTurno" class="btn btn-danger mt-3 mb-3" runat="server" onclick="btnReservarTurno_Click"/>
         </div>
 
 

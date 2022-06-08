@@ -14,9 +14,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <link href="Especialidades.css" rel="stylesheet" />
 
-    <div class="container w-75">
+    <div class="container">
         <%-- SECCION 1--%>
-        <section class="content-header">
+        <section class="">
             <h1 style="color: red; text-align: center">Especialidades</h1>
         </section>
         <hr />
@@ -40,8 +40,8 @@
             </div>
         </section>
         <%-- SECCION 3 GRILLA--%>
-        <div class="row">
-            <div class="scrolling-table-container col-md-10 mt-3">
+        <div class="row" style="justify-content:center;">
+            <div class="scrolling-table-container mt-3" style="min-width:80%">
                 <asp:GridView runat="server" ID="GVEspecialidades" AutoGenerateColumns="false" CssClass="table text-center table-hover" OnRowCommand="GVEspecialidades_RowCommand">
                     <HeaderStyle BackColor="#3E64FF" ForeColor="White" />
                     <RowStyle BackColor="#D6DBDF" ForeColor="#333333" />

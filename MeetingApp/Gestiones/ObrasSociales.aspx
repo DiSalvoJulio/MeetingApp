@@ -14,7 +14,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <link href="ObrasSociales.css" rel="stylesheet" />
 
-    <div class="container w-75">
+    <div class="container">
         <%-- SECCION 1--%>
         <section class="content-header">
             <h1 style="color: red; text-align: center">Obras Sociales</h1>
@@ -40,8 +40,8 @@
             </div>
         </section>
         <%-- SECCION 3 GRILLA--%>
-        <div class="row">
-            <div class="scrolling-table-container mt-3">
+        <div class="row" style="justify-content:center;">
+            <div class="scrolling-table-container mt-3" style="min-width:80%">
                 <asp:GridView runat="server" ID="GVObrasSociales" AutoGenerateColumns="false" CssClass="table text-center table-hover" OnRowCommand="GVObrasSociales_RowCommand">
                     <HeaderStyle BackColor="#3E64FF" ForeColor="White" />
                     <RowStyle BackColor="#D6DBDF" ForeColor="#333333" />

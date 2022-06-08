@@ -28,17 +28,25 @@ namespace MeetingApp
                 }
                 Usuario profesional = (Usuario)Session["Usuario"];
                 btnLimpiarDatos.Enabled = false;
-                //CargarGrillaTurnos();
-                    
+
+                btnImprimir.Disabled = true;
+
+                //CargarGrillaTurnos();                    
                 //txtEspecialidad.Text = MostrarEspecialidad();
                 //txtProfesional.Text = profesional.apellido + ' ' + profesional.nombre;
-                //CargarComboFormasDePagos();
+                //CargarComboFormasDePagos();                
             }
+            btnImprimir.Disabled = true;
         }
 
         //metodo para buscar el paciente
         public bool BuscarPaciente()
         {
+            if (txtDniBuscar.Text=="")
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar un D.N.I')", true);
+                return false;
+            }
             Usuario profesional = (Usuario)Session["Usuario"];
             int idProfesional = profesional.idUsuario;
             string dni = txtDniBuscar.Text;
@@ -105,7 +113,7 @@ namespace MeetingApp
             LimpiarDatos();
             txtDniBuscar.Enabled = true;
             btnBuscarPaciente.Enabled = true;
-            btnLimpiarDatos.Enabled = false;
+            //btnLimpiarDatos.Enabled = false;
             
         }
 
@@ -194,6 +202,128 @@ namespace MeetingApp
             }
 
         }
+
+
+        //metodo para cargar grilla de turnos
+        public void CargarGrillaTurnosPorFecha(int idProfesional, DateTime fecha)
+        {
+            //ViewState["fecha"] = fecha;
+            List<ObtenerTurnosProfesionalDTO> turnos = _profesionalBLL.ObtenerTurnosPorFecha(idProfesional, fecha);
+
+            gvTurnosPorFecha.DataSource = turnos;            
+
+            gvTurnosPorFecha.DataBind();
+        }
+
+        protected void btnBuscarTurnosPorFecha_Click(object sender, EventArgs e)
+        {
+            if (dtpFecha.Value=="")
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('La fecha no puede estar vacia')", true);
+                return;
+            }
+            Usuario profesional = (Usuario)Session["Usuario"];
+            int idProfesional = profesional.idUsuario;
+            DateTime fecha = DateTime.Parse(dtpFecha.Value);
+            ViewState["fecha"] = fecha;
+
+            List<ObtenerTurnosProfesionalDTO> turnosPorFecha = _profesionalBLL.ObtenerTurnosPorFecha(idProfesional, DateTime.Parse(ViewState["fecha"].ToString()));
+
+            if (turnosPorFecha.Count>0)
+            {
+                CargarGrillaTurnosPorFecha(idProfesional, fecha);
+                dtpFecha.Disabled = true;
+                btnBuscarTurnosPorFecha.Enabled = false;
+                btnImprimir.Disabled = false;
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('No se encontró turno/s en esta fecha')", true);
+            }
+
+            //Usuario paciente = _pacienteBLL.BuscarPacienteDni(dni);
+            //try
+            //{
+            //    //if (BuscarPaciente())
+            //    //{
+            //        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'turnos!', 'success')", true);
+            //        //txtDniBuscar.Enabled = false;
+            //        //btnBuscarPaciente.Enabled = false;
+            //        //btnLimpiarDatos.Enabled = true;
+            //        CargarGrillaTurnosPorFecha(idProfesional, fecha);
+            //    //}
+            //    //else
+            //    //{
+            //        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo encontrar', 'error')", true);
+            //        dtpFecha.Focus();
+            //    //}
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new Exception("Error en Buscar Paciente " + ex.Message);
+            //}
+        }
+
+        protected void gvTurnosPorFecha_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int idTurno = Convert.ToInt32(e.CommandArgument);
+            ViewState["idTurno"] = idTurno;
+
+            if (e.CommandName.Equals("Imprimir"))
+            {
+                //BOTON CANCELAR TURNO EN LA GRILLA
+                //panelCancelarTurno.Visible = true;
+
+                //solo cargamos campos de la modal
+
+                ObtenerTurnoIdDTO turnos = _turnoBLL.ObtenerTurnoId(int.Parse(ViewState["idTurno"].ToString()));
+
+                //lblDia.Text = turnos.dia;
+                //lblFecha.Text = turnos.fechaTurno.ToString().Substring(0, 10);
+                //lblHora.Text = turnos.horaTurno;
+                //lblDescripcion.Text = turnos.descripcion;
+                //lblEspecialidad.Text = turnos.especialidad;
+                //lblProfesional.Text = turnos.profesional;
+
+            }
+        }
+
+        protected void btnDivPorDni_Click(object sender, EventArgs e)
+        {
+            //se llama por el ID del div
+            divPorDNI.Visible = true;
+            btnDivPorDni.Visible = false;
+            btnDivPorFecha.Visible = false;
+        }
+
+        protected void btnDivPorFecha_Click(object sender, EventArgs e)
+        {
+            //se llama por el ID del div
+            divPorFecha.Visible = true;
+            btnDivPorDni.Visible = false;
+            btnDivPorFecha.Visible = false;
+        }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            divPorDNI.Visible = false;
+            divPorFecha.Visible = false;
+            btnDivPorDni.Visible = true;
+            btnDivPorFecha.Visible = true;
+            txtDniBuscar.Text = "";
+            dtpFecha.Value = "";
+        }
+
+        //boton que limpia lo de buscar por fecha
+        protected void btnLimpiarDatosPorFecha_Click(object sender, EventArgs e)
+        {
+            dtpFecha.Value = "";
+            dtpFecha.Disabled = false;
+            btnBuscarTurnosPorFecha.Enabled = true;
+            gvTurnosPorFecha.DataSource = null;
+            gvTurnosPorFecha.DataBind();
+        }
+
 
 
     }

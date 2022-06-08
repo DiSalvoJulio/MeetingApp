@@ -124,10 +124,15 @@
                                     <h4 class="col-sm-3 mr-5">Descripcion:</h4>
                                     <asp:Label ID="lblDescripcion" runat="server" Text="" CssClass="h5 col-auto mt-1 ml-2"></asp:Label>
                                 </div>
-                            <%--PACIENTE--%>
+                             <%--ESPECIALIDAD--%>
                                 <div class="row mb-3">
-                                    <h4 class="col-sm-3 mr-2">Paciente:</h4>
-                                    <asp:Label ID="lblPaciente" Text="" CssClass="h5 col-auto mt-1 ml-2" runat="server"></asp:Label>
+                                    <h4 class="col-sm-5 mr-2">Especialidad:</h4>
+                                    <asp:Label ID="lblEspecialidad" Text="" CssClass="h5 col-auto mt-1 ml-2" runat="server"></asp:Label>
+                                </div>
+                            <%--PROFESIONAL--%>
+                                <div class="row mb-3">
+                                    <h4 class="col-sm-5 mr-2">Profesional:</h4>
+                                    <asp:Label ID="lblProfesional" Text="" CssClass="h5 col-auto mt-1 ml-2" runat="server"></asp:Label>
                                 </div>
                             <%--OBRA SOCIAL--%>
                             <div class="row mb-3">
@@ -143,7 +148,7 @@
                         </div>
                         <!--Fin Body Modal-->
                         <div class="modal-footer">
-                            <asp:Button ID="btnCancelarEliminar" Text="Cancelar" runat="server" type="button" class="btn btn-danger" />
+                            <asp:Button ID="btnCancelarModalTurno" Text="Cancelar" runat="server" type="button" class="btn btn-danger" onclick="btnCancelarModalTurno_Click"/>
                             <asp:Button ID="btnConfirmarEliminar" Text="Confirmar" runat="server" type="button" class="btn btn-primary" onclick="btnConfirmarEliminar_Click"/>
                         </div>
                     </div>

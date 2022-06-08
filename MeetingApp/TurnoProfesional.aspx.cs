@@ -368,9 +368,21 @@ namespace MeetingApp
                 Turno turno = InsertarTurno();
                 if (turno != null)
                 {
-                    //datos de la modal
+                    //DATOS DE LA MODAL ANTES DE RESERVAR
+
+                    //Usamos el metodo AgregarCero y pasamos la fecha a string para mostrarla correctamente en front.
+
+                    DateTime fecha = DateTime.Parse(turno.fechaTurno);
+                    string anio = fecha.Year.ToString();
+                    string mes = fecha.Month.ToString();
+                    mes = AgregarCero(mes);
+                    string dia = fecha.Day.ToString();
+                    dia = AgregarCero(dia);
+                    string fechaActual2 = dia + "-" + mes + "-" + anio;
+                    lblFecha.Text = fechaActual2;
+
                     //lblDia.Text = turno.descripcion;
-                    lblFecha.Text = turno.fechaTurno;
+                    
                     lblHora.Text = turno.horaTurno;
                     lblDescripcion.Text = turno.descripcion;
                     lblPaciente.Text = paciente.apellido+ ' ' +paciente.nombre;
@@ -607,10 +619,19 @@ namespace MeetingApp
         }
 
 
+        //funcion para 2 digitos para mes o dia.
+        public string AgregarCero(string nombre)
+        {
+            if (Convert.ToInt32(nombre) < 10)
+            {
+                nombre = "0" + nombre;
+            }
+            return nombre;
+        }
 
 
-
-
+          
+        
 
 
     }
