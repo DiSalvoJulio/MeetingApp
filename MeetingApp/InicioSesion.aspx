@@ -5,6 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <link href="InicioSesion.css" rel="stylesheet" />
@@ -24,7 +26,7 @@
                 </asp:ScriptManager>
 
                 <div class="form-control h-75" style="background-color: powderblue;">
-                    <div class="col-md-6 text-center mb-5">
+                    <div class="row justify-content-center mb-5">
                         <asp:Label class="h1" ID="lblBienvenido" runat="server" Text="Login"></asp:Label>
                     </div>
                     <div>
@@ -39,10 +41,10 @@
                     <div class="row justify-content-center">
                         <asp:Button ID="btnIngresar" CssClass="btn btn-primary btn-dark" runat="server" Text="Ingresar" OnClick="btnIngresar_Click" />
                     </div>
-                    <div class="mt-3">
-                        <a href="Registrar.aspx">Registrarme!</a>
+                    <div class="row justify-content-center mt-3">
+                        <a href="Registrar.aspx">CREAR CUENTA</a>
                     </div>
-                    <div class="mt-5">
+                    <div class="row justify-content-center mt-3">
                         <a href="RecuperarContrasenia.aspx">Olvide mi contraseña?</a>
                     </div>
                 </div>

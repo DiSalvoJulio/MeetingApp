@@ -18,7 +18,19 @@ namespace MeetingApp
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
-        {           
+        {
+            if (txtUsuario.Text=="")
+            {                
+                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar Usuario')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Debe completar Usuario', 'warning')", true);
+                return;
+            }
+            if (txtPass.Text == "")
+            {
+                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar Contraseña')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Debe completar Contraseña', 'warning')", true);
+                return;
+            }
             Usuario usu = _registrarBLL.UsuarioSesion(txtUsuario.Text, txtPass.Text);
 
             if (usu != null)
@@ -61,8 +73,11 @@ namespace MeetingApp
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Usuario Existente!')", true);
+                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('No existe usuario')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'No existe usuario', 'error')", true);
             }
+
+
         }
     }
 }
