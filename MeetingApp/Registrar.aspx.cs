@@ -40,8 +40,11 @@ namespace MeetingApp
                 user.email = txtEmail.Text;
                 user.pass = txtPass.Text;
                 user.idRol = chkProfesional.Checked ? 3 : 2;//true profesional sino paciente
-                user.matricula = txtMatricula.Text;
-                user.idEspecialidad = int.Parse(cmbProfesion.SelectedValue);
+                if (chkProfesional.Checked)
+                {
+                    user.matricula = txtMatricula.Text;
+                    user.idEspecialidad = int.Parse(cmbProfesion.SelectedValue);
+                }
 
                 registrarBLL.InsertarUsuario(user);
                 //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Registro con Exito!', 'Sera redirigido al Login para iniciar sesion', 'success')", true);
@@ -49,14 +52,15 @@ namespace MeetingApp
                 /*Datos del mail que se envia al usuario registrado*/
                 string persona = user.nombre + " " +user.apellido;
                 Email email = new Email();
+                string Usuario = user.email + " o " + user.dni; 
                 string mensajeError = "";
-                email.SendEmailRegistro(user.email, persona, user.dni, user.pass,ref mensajeError);
+                email.SendEmailRegistro(user.email, persona, Usuario, user.pass,ref mensajeError);
 
                 return true;
                 
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }

@@ -188,6 +188,7 @@ namespace MeetingApp
         //mostrar horarios
         protected void btnMostrarHorarios_Click(object sender, EventArgs e)
         {
+
             if (txtCalendario.Value.Length != 0)
             {
                 string diaEspanol = "";

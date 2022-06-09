@@ -106,11 +106,13 @@ namespace MeetingApp
                     {
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'La especialidad no tiene un profesional a cargo', 'warning')", true);
                         cmbProfesional.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Profesional...", "0"));
+                        LimpiarDatosTurno();
                     }
                     if (cmbEspecialidad.SelectedValue == "0")
                     {
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Debe seleccionar una especialidad', 'warning')", true);
                         cmbProfesional.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("Profesional...", "0"));
+                        LimpiarDatosTurno();
                     }
                     //divProfesionales.Visible = false;
                     //cmbProfesional.Items.Insert(indice, new System.Web.UI.WebControls.ListItem("No hay Profesional para esta especialidad", "0"));
@@ -171,21 +173,21 @@ namespace MeetingApp
         }
 
         //Metodo para mostrar la obra social en txt
-        public string MostrarFormasPagos()
-        {
-            Usuario user = (Usuario)Session["Usuario"];
-            string formasPagos = "";
-            //int id = 0;
-            List<FormaPago> listaFormas = _turnoBLL.ObtenerFormasDePagos();
-            foreach (FormaPago item in listaFormas)
-            {
-                //if (cmbFormaPago.SelectedItem.Value == item.idFormaPago)
-                //{
-                //    formasPagos = item.descripcion;
-                //}
-            }
-            return formasPagos;
-        }
+        //public string MostrarFormasPagos()
+        //{
+        //    Usuario user = (Usuario)Session["Usuario"];
+        //    string formasPagos = "";
+        //    //int id = 0;
+        //    List<FormaPago> listaFormas = _turnoBLL.ObtenerFormasDePagos();
+        //    foreach (FormaPago item in listaFormas)
+        //    {
+        //        //if (cmbFormaPago.SelectedItem.Value == item.idFormaPago)
+        //        //{
+        //        //    formasPagos = item.descripcion;
+        //        //}
+        //    }
+        //    return formasPagos;
+        //}
 
         //CARGAR COMBO OBRAS SOCIALES
         //public void CargarComboObrasSociales()
@@ -220,6 +222,11 @@ namespace MeetingApp
 
         protected void btnMostrarHorarios_Click(object sender, EventArgs e)
         {
+            if (cmbProfesional.SelectedValue == "0")
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Debe seleccionar un profesional', 'warning')", true);
+                return;
+            }
             if (txtCalendario.Value.Length != 0)
             {
                 string diaEspanol = "";
@@ -420,6 +427,17 @@ namespace MeetingApp
                     lblObraSocial.Text = MostrarObraSocial();
                     lblFormaPago.Text = formaPago;
 
+                    //datos para enviar por mail
+                    //Email email = new Email();
+                    ////email.EnviarEmailDatosTurnos(paciente.email);
+                    //string datospaciente = paciente.apellido + " " + paciente.nombre;
+                    //string datoFecha = turno.fechaTurno;
+                    //string datoHora = turno.horaTurno;
+                    //string datoEspecialidad = especialidad;
+                    //string datoProfesional = profesional;
+                    //string msjError = "Error en enviar mensaje";
+                    //email.SendEmailNuevoTurno(paciente.email, datospaciente, datoFecha, datoHora, datoEspecialidad, datoProfesional, ref msjError);
+
                 }
                 else
                 {
@@ -576,12 +594,40 @@ namespace MeetingApp
         //confirma el turno (boton confirmar dentro de la Modal)
         protected void btnConfirmarEliminar_Click(object sender, EventArgs e)
         {
+            Usuario paciente = (Usuario)Session["Usuario"];
             Turno turno = (Turno)Session["nuevoTurno"];
+
             bool result = _turnoBLL.InsertarTurno(turno);
             if (result)
             {
+
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'El turno se genero correctamente', 'success')", true);
-                //limpiar campos
+
+                //combo especialidad
+                string especialidad = cmbEspecialidad.SelectedItem.Text;
+                string profesional = cmbProfesional.SelectedItem.Text;
+                
+
+                lblHora.Text = turno.horaTurno;
+                lblDescripcion.Text = turno.descripcion;
+                lblEspecialidad.Text = especialidad;
+                lblProfesional.Text = profesional;              
+               
+
+                Email email = new Email();
+                //email.EnviarEmailDatosTurnos(paciente.email);
+                string datospaciente = paciente.apellido + " " + paciente.nombre;
+                string datoFecha = turno.fechaTurno;
+                string datoHora = turno.horaTurno;
+                string datoEspecialidad = especialidad;
+                string datoProfesional = profesional;
+                string msjError = "Error en enviar mensaje";
+                email.SendEmailNuevoTurno(paciente.email, datospaciente, datoFecha, datoHora, datoEspecialidad, datoProfesional, ref msjError);
+
+                //LIMPIAR CAMPOS
+                LimpiarDatosTurno();
+
+
                 panelConfirmarTurno.Visible = false;
             }
         }
@@ -635,5 +681,22 @@ namespace MeetingApp
         {
             panelConfirmarTurno.Visible = false;
         }
+
+
+        //limpiar datos del paciente
+        private void LimpiarDatosTurno()
+        {          
+            cmbEspecialidad.SelectedValue = "0";
+            cmbProfesional.Items.Clear();
+            cmbProfesional.Items.Insert(0, new System.Web.UI.WebControls.ListItem("Profesional...", "0"));
+            cmbHorarioDisponible.Items.Clear();
+            cmbHorarioDisponible.Items.Insert(0, new System.Web.UI.WebControls.ListItem("Horario...", "0"));
+            txtCalendario.Value = "";
+            cmbFormaPago.SelectedValue = "0";
+            txtMotivo.Text = "";            
+
+        }
+
+
     }
 }

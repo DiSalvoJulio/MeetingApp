@@ -6,7 +6,7 @@
     <div class="container">
         <h1 style="color: red; text-align: center">Nuevo Turno</h1>
         <hr />
-        <div class="row">
+        <div class="row"> <%--ESTA BIEEEEEEEEEEEEEEEN--%>
             <div class="form-group col-md-4">
                 <%--DNI--%>
                 <asp:Label ID="Label4" runat="server" Text="Ingrese el D.N.I. del paciente"></asp:Label>
@@ -50,11 +50,13 @@
         </div>
 
         <div class="row mt-2">
+            <%--CALENDARIO--%>
             <div class="form-group col-md-4">
                 <asp:Label ID="Label3" runat="server" Text="Calendario"></asp:Label>
             <input runat="server" type="date" class="form-control" id="txtCalendario">
                 </div>
             <div class="form-group col-md-2">
+                <%--MOSTRAR HORARIOS--%>
                 <asp:Label ID="Label5" runat="server" Text="Mostrar"></asp:Label>
             <asp:Button Text="Mostrar horarios" ID="btnMostrarHorarios" class="btn btn-info" runat="server" onclick="btnMostrarHorarios_Click"/>
                 </div>
@@ -62,6 +64,7 @@
             <asp:UpdatePanel runat="server">
             <ContentTemplate>
             <div class="form-group col-md-5">
+                <%--HORARIOS--%>
                 <asp:Label ID="Label6" runat="server" Text="Horario"></asp:Label>
             <asp:DropDownList ID="cmbHorarioDisponible" runat="server" CssClass="btn btn-primary" AutoPostBack="false">
                 <asp:ListItem Text="Horarios..."></asp:ListItem>
