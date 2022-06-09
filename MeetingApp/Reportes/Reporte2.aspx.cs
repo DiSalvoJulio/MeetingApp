@@ -27,6 +27,7 @@ namespace MeetingApp.Reportes
                 {
                     Response.Redirect("InicioSesion.aspx");
                 }
+                
             }
         }
 
@@ -52,12 +53,16 @@ namespace MeetingApp.Reportes
 
         public void obtenerDatos()
         {
+            Usuario profesional = (Usuario)Session["Usuario"];
+            int idProfesional = profesional.idUsuario;
+
+
             int[] cantPagos = new int[4];
             string[] nombres = new string[4];
             int cont = 0;
             int mes = int.Parse(cmbMes.SelectedValue);
             //creamos el viewstate para usar esa fecha seleccionada
-            List<ObtenerFormasDePagosDTO> pagosPorMes = _reporteBLL.ObtenerFormasDePagos(mes);
+            List<ObtenerFormasDePagosDTO> pagosPorMes = _reporteBLL.ObtenerFormasDePagos(idProfesional, mes);
             for (int i = 0; i < pagosPorMes.Count; i++)
             {
                 cantPagos[cont] = pagosPorMes[i].cantidad;

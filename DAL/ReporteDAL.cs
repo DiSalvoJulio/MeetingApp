@@ -18,7 +18,7 @@ namespace DAL
 
 
         //REPORTE 1
-        public List<ObtenerTurnosActivosPorFechasDTO> ObtenerTurnosActivosPorFechas(DateTime fecha1, DateTime fecha2)
+        public List<ObtenerTurnosActivosPorFechasDTO> ObtenerTurnosActivosPorFechas(int idProfesional, DateTime fecha1, DateTime fecha2)
         {
             try
             {
@@ -27,6 +27,7 @@ namespace DAL
                 comando.CommandText = proc;
                 comando.Parameters.Clear();
                 comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@idProfesional", idProfesional);
                 comando.Parameters.AddWithValue("@fechaMin", fecha1);
                 comando.Parameters.AddWithValue("@fechaMax", fecha2);
                 comando.ExecuteNonQuery();
@@ -63,7 +64,7 @@ namespace DAL
         }
 
         //REPORTE 2
-        public List<ObtenerFormasDePagosDTO> ObtenerFormasDePagos(int mes)
+        public List<ObtenerFormasDePagosDTO> ObtenerFormasDePagos(int idProfesional, int mes)
         {
             
             try
@@ -73,6 +74,7 @@ namespace DAL
                 comando.CommandText = proc;
                 comando.Parameters.Clear();
                 comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@idProfesional", idProfesional);
                 comando.Parameters.AddWithValue("@mes", mes);
                 comando.ExecuteNonQuery();
 
@@ -108,7 +110,7 @@ namespace DAL
 
 
         //REPORTE 3
-        public List<ObtenerTurnosActivosPorFechasDTO> ObtenerTurnosCanceladosPorFechas(DateTime fecha1, DateTime fecha2)
+        public List<ObtenerTurnosActivosPorFechasDTO> ObtenerTurnosCanceladosPorFechas(int idProfesional, DateTime fecha1, DateTime fecha2)
         {
             try
             {
@@ -117,6 +119,7 @@ namespace DAL
                 comando.CommandText = proc;
                 comando.Parameters.Clear();
                 comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@idProfesional", idProfesional);
                 comando.Parameters.AddWithValue("@fechaMin", fecha1);
                 comando.Parameters.AddWithValue("@fechaMax", fecha2);
                 comando.ExecuteNonQuery();
@@ -154,7 +157,7 @@ namespace DAL
 
 
         //REPORTE 4
-        public List<ObtenerTurnosPorMesDTO> ObtenerTurnosPorMes(int mes)
+        public List<ObtenerTurnosPorMesDTO> ObtenerTurnosPorMes(int idProfesional, int mes)
         {
             try
             {
@@ -163,6 +166,7 @@ namespace DAL
                 comando.CommandText = proc;
                 comando.Parameters.Clear();
                 comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@idProfesional", idProfesional);
                 comando.Parameters.AddWithValue("@mes", mes);                
                 comando.ExecuteNonQuery();
 

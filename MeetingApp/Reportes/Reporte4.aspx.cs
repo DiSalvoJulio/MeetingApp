@@ -30,11 +30,14 @@ namespace MeetingApp.Reportes
         //CARGAR GRILLA TURNOS ACTIVOS
         public void CargarGrillaTurnos()
         {
+            Usuario profesional = (Usuario)Session["Usuario"];
+            int idProfesional = profesional.idUsuario;
+
             int mes = int.Parse(cmbMes.SelectedValue);
             ViewState["mes"] = mes;
             
             //creamos el viewstate para usar esa fecha seleccionada
-            List<ObtenerTurnosPorMesDTO> turnosPorMes = _reporteBLL.ObtenerTurnosPorMes(mes);
+            List<ObtenerTurnosPorMesDTO> turnosPorMes = _reporteBLL.ObtenerTurnosPorMes(idProfesional, mes);
                 
             gvTurnos.DataSource = turnosPorMes;
             gvTurnos.DataBind();
@@ -42,6 +45,9 @@ namespace MeetingApp.Reportes
 
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
+            Usuario profesional = (Usuario)Session["Usuario"];
+            int idProfesional = profesional.idUsuario;
+
             if (cmbMes.SelectedValue == "0")
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe seleccionar un Mes')", true);
@@ -50,7 +56,7 @@ namespace MeetingApp.Reportes
             int mes = int.Parse(cmbMes.SelectedValue);
             ViewState["mes"] = mes;
             //este viewstate es el creado en el metodo
-            List<ObtenerTurnosPorMesDTO> turnosPorMes = _reporteBLL.ObtenerTurnosPorMes(mes);
+            List<ObtenerTurnosPorMesDTO> turnosPorMes = _reporteBLL.ObtenerTurnosPorMes(idProfesional, mes);
                 
             if (turnosPorMes.Count > 0)
             {

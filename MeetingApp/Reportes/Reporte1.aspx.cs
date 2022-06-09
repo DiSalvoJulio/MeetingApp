@@ -28,9 +28,11 @@ namespace MeetingApp.Reportes
 
         //CARGAR GRILLA TURNOS ACTIVOS
         public void CargarGrillaTurnosActivos()
-        {            
+        {
+            Usuario profesional = (Usuario)Session["Usuario"];
+            int idProfesional = profesional.idUsuario;
             //creamos el viewstate para usar esa fecha seleccionada
-            List<ObtenerTurnosActivosPorFechasDTO> turnosActivos = _reporteBLL.ObtenerTurnosActivosPorFechas(DateTime.Parse(ViewState["fecha1"].ToString()), DateTime.Parse(ViewState["fecha2"].ToString()));
+            List<ObtenerTurnosActivosPorFechasDTO> turnosActivos = _reporteBLL.ObtenerTurnosActivosPorFechas(idProfesional, DateTime.Parse(ViewState["fecha1"].ToString()), DateTime.Parse(ViewState["fecha2"].ToString()));
             gvTurnosActivos.DataSource = turnosActivos;
             gvTurnosActivos.DataBind();
         }
@@ -39,7 +41,8 @@ namespace MeetingApp.Reportes
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
             //validamos que la fecha inicio sea anterior a la fecha fin
-
+            Usuario profesional = (Usuario)Session["Usuario"];
+            int idProfesional = profesional.idUsuario;
             DateTime fecha1 = DateTime.Parse(dtpFecha1.Value);//26/01 00:00
             DateTime fecha2 = DateTime.Parse(dtpFecha2.Value);//26/01 00:00
 
@@ -59,7 +62,7 @@ namespace MeetingApp.Reportes
             //txtVentaTotalDiaria.Text = Convert.ToInt32(CalcularTotalPorFecha(ReportesBLL.VentaEntreFechas(fecha1, fecha2))).ToString();
 
             //este viewstate es el creado en el metodo
-            List<ObtenerTurnosActivosPorFechasDTO> turnosActivos = _reporteBLL.ObtenerTurnosActivosPorFechas(DateTime.Parse(ViewState["fecha1"].ToString()), DateTime.Parse(ViewState["fecha2"].ToString()));
+            List<ObtenerTurnosActivosPorFechasDTO> turnosActivos = _reporteBLL.ObtenerTurnosActivosPorFechas(idProfesional, DateTime.Parse(ViewState["fecha1"].ToString()), DateTime.Parse(ViewState["fecha2"].ToString()));
             if (turnosActivos.Count > 0)
             {
                 CargarGrillaTurnosActivos();

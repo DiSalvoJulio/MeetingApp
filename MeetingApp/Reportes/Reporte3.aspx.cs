@@ -30,8 +30,10 @@ namespace MeetingApp.Reportes
         //CARGAR GRILLA TURNOS ACTIVOS
         public void CargarGrillaTurnosActivos()
         {
+            Usuario profesional = (Usuario)Session["Usuario"];
+            int idProfesional = profesional.idUsuario;
             //creamos el viewstate para usar esa fecha seleccionada
-            List<ObtenerTurnosActivosPorFechasDTO> turnosCancelados = _reporteBLL.ObtenerTurnosCanceladosPorFechas(DateTime.Parse(ViewState["fecha1"].ToString()), DateTime.Parse(ViewState["fecha2"].ToString()));
+            List<ObtenerTurnosActivosPorFechasDTO> turnosCancelados = _reporteBLL.ObtenerTurnosCanceladosPorFechas(idProfesional, DateTime.Parse(ViewState["fecha1"].ToString()), DateTime.Parse(ViewState["fecha2"].ToString()));
             gvTurnosCancelados.DataSource = turnosCancelados;
             gvTurnosCancelados.DataBind();
         }
@@ -39,6 +41,8 @@ namespace MeetingApp.Reportes
         //boton consultar turnos activos
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
+            Usuario profesional = (Usuario)Session["Usuario"];
+            int idProfesional = profesional.idUsuario;
             //validamos que la fecha inicio sea anterior a la fecha fin
 
             DateTime fecha1 = DateTime.Parse(dtpFecha1.Value);//26/01 00:00
@@ -61,7 +65,7 @@ namespace MeetingApp.Reportes
             //txtVentaTotalDiaria.Text = Convert.ToInt32(CalcularTotalPorFecha(ReportesBLL.VentaEntreFechas(fecha1, fecha2))).ToString();
 
             //este viewstate es el creado en el metodo
-            List<ObtenerTurnosActivosPorFechasDTO> turnosCancelados = _reporteBLL.ObtenerTurnosCanceladosPorFechas(DateTime.Parse(ViewState["fecha1"].ToString()), DateTime.Parse(ViewState["fecha2"].ToString()));
+            List<ObtenerTurnosActivosPorFechasDTO> turnosCancelados = _reporteBLL.ObtenerTurnosCanceladosPorFechas(idProfesional, DateTime.Parse(ViewState["fecha1"].ToString()), DateTime.Parse(ViewState["fecha2"].ToString()));
             if (turnosCancelados.Count > 0)
             {
                 CargarGrillaTurnosActivos();

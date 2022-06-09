@@ -14,27 +14,27 @@ namespace BLL
         ReporteDAL _reporteDAL = new ReporteDAL();
 
         //REPORTE 1
-        public List<ObtenerTurnosActivosPorFechasDTO> ObtenerTurnosActivosPorFechas(DateTime fecha1, DateTime fecha2)
+        public List<ObtenerTurnosActivosPorFechasDTO> ObtenerTurnosActivosPorFechas(int idProfesional, DateTime fecha1, DateTime fecha2)
         {
-            return _reporteDAL.ObtenerTurnosActivosPorFechas(fecha1, fecha2);
+            return _reporteDAL.ObtenerTurnosActivosPorFechas(idProfesional,fecha1, fecha2);
         }
 
         //REPORTE 2
-        public List<ObtenerFormasDePagosDTO> ObtenerFormasDePagos(int mes)
+        public List<ObtenerFormasDePagosDTO> ObtenerFormasDePagos(int idProfesional,  int mes)
         {
-            return _reporteDAL.ObtenerFormasDePagos(mes);
+            return _reporteDAL.ObtenerFormasDePagos(idProfesional, mes);
         }
 
         //REPORTE 3
-        public List<ObtenerTurnosActivosPorFechasDTO> ObtenerTurnosCanceladosPorFechas(DateTime fecha1, DateTime fecha2)
+        public List<ObtenerTurnosActivosPorFechasDTO> ObtenerTurnosCanceladosPorFechas(int idProfesional, DateTime fecha1, DateTime fecha2)
         {
-            return _reporteDAL.ObtenerTurnosCanceladosPorFechas(fecha1, fecha2);
+            return _reporteDAL.ObtenerTurnosCanceladosPorFechas(idProfesional, fecha1, fecha2);
         }
 
         //REPORTE 4
-        public List<ObtenerTurnosPorMesDTO> ObtenerTurnosPorMes(int mes)
+        public List<ObtenerTurnosPorMesDTO> ObtenerTurnosPorMes(int idProfesional, int mes)
         {
-            return _reporteDAL.ObtenerTurnosPorMes(mes);
+            return _reporteDAL.ObtenerTurnosPorMes(idProfesional, mes);
         }
 
 
