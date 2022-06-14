@@ -35,5 +35,10 @@ namespace BLL
             return _pacienteDAL.ObtenerTurnosPaciente(idPaciente);
         }
 
+        public List<ObtenerTurnosPacienteDTO> ObtenerTurnosHistoricosPaciente(int idPaciente)
+        {
+            return _pacienteDAL.ObtenerTurnosHistoricosPaciente(idPaciente);
+        }
+
     }
 }

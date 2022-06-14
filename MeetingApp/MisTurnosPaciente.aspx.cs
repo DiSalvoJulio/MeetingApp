@@ -30,9 +30,31 @@ namespace MeetingApp
                 
                 
                 CargarGrillaTurnos();
+                CargarGrillaTurnosHistoricos();
             }
         }
 
+        protected void btnProximos_Click(object sender, EventArgs e)
+        {
+            divProximos.Visible = true;
+            btnHistoricos.Visible = false;
+        }
+        protected void btnHistoricos_Click(object sender, EventArgs e)
+        {
+            divHistoricos.Visible = true;
+            btnProximos.Visible = false;
+        }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            divProximos.Visible = false;
+            divHistoricos.Visible = false;
+            btnProximos.Visible = true;
+            btnHistoricos.Visible = true;
+        }
+
+
+        #region PROXIMOS
         //CARGAR GRILLA Turnos
         public void CargarGrillaTurnos()
         {
@@ -40,21 +62,7 @@ namespace MeetingApp
             int idPaciente = paciente.idUsuario;
             List<ObtenerTurnosPacienteDTO> turnos = _pacienteBLL.ObtenerTurnosPaciente(idPaciente);
             gvTurnos.DataSource = turnos;
-
-            //for (int i = 0; i < turnos.Count; i++)
-            //{
-            //    if (turnos[i].estado == "Activo")
-            //    {
-            //        //btnCancelarTurno.Enabled = true;
-            //        //turnos[i].activoString = "✔";
-
-            //    }
-            //    else
-            //    {
-            //        //turnos[i].activoString = "❌";
-
-            //    }
-            //}
+           
             gvTurnos.DataBind();
         }
 
@@ -104,6 +112,7 @@ namespace MeetingApp
                 panelCancelarTurno.Visible = false;
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Se canceló el turno!', 'success')", true);
                 CargarGrillaTurnos();
+                CargarGrillaTurnosHistoricos();//se actualiza la grilla de cancelados tambien en la tabla historicos
             }
             else
             {
@@ -119,10 +128,14 @@ namespace MeetingApp
             {
                 int idTurno = (int)ViewState["idTurno"];
                 ObtenerTurnoIdDTO turno = _turnoBLL.ObtenerTurnoId(idTurno);
-                _turnoBLL.CancelarTurno(idTurno);
-                
+                _turnoBLL.CancelarTurno(idTurno);               
 
                 return true;
+
+                //VER SI MANDAR MAIL AL PROFESIONAL Y AL PACIENTE POR CANCELAR EL TURNO
+
+
+
             }
             catch (Exception ex)
             {
@@ -132,6 +145,23 @@ namespace MeetingApp
         }
 
 
+        #endregion PROXIMOS
+
+
+        #region HISTORICOS
+
+        //CARGAR GRILLA Turnos HISTORICOS
+        public void CargarGrillaTurnosHistoricos()
+        {
+            Usuario paciente = (Usuario)Session["Usuario"];
+            int idPaciente = paciente.idUsuario;
+            List<ObtenerTurnosPacienteDTO> turnos = _pacienteBLL.ObtenerTurnosHistoricosPaciente(idPaciente);
+            gvTurnosHistoricos.DataSource = turnos;
+
+            gvTurnosHistoricos.DataBind();
+        }
+
+        #endregion Historicos
 
 
     }
