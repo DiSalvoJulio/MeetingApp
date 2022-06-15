@@ -32,9 +32,9 @@ namespace BLL
         }
 
         //REPORTE 4
-        public List<ObtenerTurnosPorMesDTO> ObtenerTurnosPorMes(int idProfesional, int mes)
+        public List<ObtenerTurnosPorMesDTO> ObtenerTurnosPorMes(int idProfesional, DateTime fecha1, DateTime fecha2)
         {
-            return _reporteDAL.ObtenerTurnosPorMes(idProfesional, mes);
+            return _reporteDAL.ObtenerTurnosPorMes(idProfesional, fecha1, fecha2);
         }
 
 

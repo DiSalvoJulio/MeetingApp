@@ -15,22 +15,22 @@ namespace MeetingApp.Reportes
     {
 
         /// <summary>
-        /// Control Label1.
+        /// Control dtpFecha1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl dtpFecha1;
 
         /// <summary>
-        /// Control cmbMes.
+        /// Control dtpFecha2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbMes;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl dtpFecha2;
 
         /// <summary>
         /// Control btnConsultar.

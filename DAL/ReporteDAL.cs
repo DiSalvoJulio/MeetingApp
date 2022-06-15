@@ -157,7 +157,7 @@ namespace DAL
 
 
         //REPORTE 4
-        public List<ObtenerTurnosPorMesDTO> ObtenerTurnosPorMes(int idProfesional, int mes)
+        public List<ObtenerTurnosPorMesDTO> ObtenerTurnosPorMes(int idProfesional, DateTime fecha1, DateTime fecha2)
         {
             try
             {
@@ -167,7 +167,8 @@ namespace DAL
                 comando.Parameters.Clear();
                 comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.AddWithValue("@idProfesional", idProfesional);
-                comando.Parameters.AddWithValue("@mes", mes);                
+                comando.Parameters.AddWithValue("@fechaMin", fecha1);
+                comando.Parameters.AddWithValue("@fechaMax", fecha2);
                 comando.ExecuteNonQuery();
 
                 List<ObtenerTurnosPorMesDTO> lista = new List<ObtenerTurnosPorMesDTO>();

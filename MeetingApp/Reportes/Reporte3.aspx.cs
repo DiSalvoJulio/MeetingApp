@@ -43,8 +43,8 @@ namespace MeetingApp.Reportes
         {
             Usuario profesional = (Usuario)Session["Usuario"];
             int idProfesional = profesional.idUsuario;
-            //validamos que la fecha inicio sea anterior a la fecha fin
 
+            //validamos que la fecha inicio sea anterior a la fecha fin
             DateTime fecha1 = DateTime.Parse(dtpFecha1.Value);//26/01 00:00
             DateTime fecha2 = DateTime.Parse(dtpFecha2.Value);//26/01 00:00
 

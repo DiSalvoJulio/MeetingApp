@@ -31,13 +31,10 @@ namespace MeetingApp.Reportes
         public void CargarGrillaTurnos()
         {
             Usuario profesional = (Usuario)Session["Usuario"];
-            int idProfesional = profesional.idUsuario;
+            int idProfesional = profesional.idUsuario;            
 
-            int mes = int.Parse(cmbMes.SelectedValue);
-            ViewState["mes"] = mes;
-            
             //creamos el viewstate para usar esa fecha seleccionada
-            List<ObtenerTurnosPorMesDTO> turnosPorMes = _reporteBLL.ObtenerTurnosPorMes(idProfesional, mes);
+            List<ObtenerTurnosPorMesDTO> turnosPorMes = _reporteBLL.ObtenerTurnosPorMes(idProfesional, DateTime.Parse(ViewState["fecha1"].ToString()), DateTime.Parse(ViewState["fecha2"].ToString()));
                 
             gvTurnos.DataSource = turnosPorMes;
             gvTurnos.DataBind();
@@ -48,15 +45,22 @@ namespace MeetingApp.Reportes
             Usuario profesional = (Usuario)Session["Usuario"];
             int idProfesional = profesional.idUsuario;
 
-            if (cmbMes.SelectedValue == "0")
+            //validamos que la fecha inicio sea anterior a la fecha fin
+            DateTime fecha1 = DateTime.Parse(dtpFecha1.Value);//26/01 00:00
+            DateTime fecha2 = DateTime.Parse(dtpFecha2.Value);//26/01 00:00
+
+            if (fecha1.Date > fecha2.Date)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe seleccionar un Mes')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('La fecha (Desde) debe ser anterior a la fecha (Hasta)')", true);
+                dtpFecha1.Focus();
                 return;
             }
-            int mes = int.Parse(cmbMes.SelectedValue);
-            ViewState["mes"] = mes;
+
+            ViewState["fecha1"] = fecha1;
+            ViewState["fecha2"] = fecha2;
+
             //este viewstate es el creado en el metodo
-            List<ObtenerTurnosPorMesDTO> turnosPorMes = _reporteBLL.ObtenerTurnosPorMes(idProfesional, mes);
+            List<ObtenerTurnosPorMesDTO> turnosPorMes = _reporteBLL.ObtenerTurnosPorMes(idProfesional, DateTime.Parse(ViewState["fecha1"].ToString()), DateTime.Parse(ViewState["fecha2"].ToString()));
                 
             if (turnosPorMes.Count > 0)
             {
@@ -66,7 +70,7 @@ namespace MeetingApp.Reportes
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('No se encontró un paciente que tenga mas de un turno en el (Mes) seleccionado')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('No se encontró un paciente que tenga mas de un turno entre las fechas seleccionadas')", true);
                 btnLimpiar.Enabled = true;
             }
         }
@@ -75,7 +79,8 @@ namespace MeetingApp.Reportes
         {
             gvTurnos.DataSource = null;
             gvTurnos.DataBind();
-            cmbMes.SelectedValue = "0";
+            dtpFecha1.Value = "";
+            dtpFecha2.Value = "";
             btnImprimir.Disabled = true;
         }
 

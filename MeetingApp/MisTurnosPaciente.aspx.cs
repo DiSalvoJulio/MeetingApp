@@ -25,13 +25,12 @@ namespace MeetingApp
                     Response.Redirect("InicioSesion.aspx");
                 }
                 Usuario paciente = (Usuario)Session["Usuario"];
-                Session["idPaciente"] = paciente.idUsuario;
-
-                
+                Session["idPaciente"] = paciente.idUsuario;                
                 
                 CargarGrillaTurnos();
                 CargarGrillaTurnosHistoricos();
             }
+            
         }
 
         protected void btnProximos_Click(object sender, EventArgs e)
