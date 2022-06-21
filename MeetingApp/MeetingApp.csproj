@@ -236,6 +236,7 @@
     <Content Include="Reportes\Reporte2.aspx" />
     <Content Include="Reportes\Reporte3.aspx" />
     <Content Include="Reportes\Reporte4.aspx" />
+    <Content Include="Reportes\Reporte5.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -558,6 +559,13 @@
     </Compile>
     <Compile Include="Reportes\Reporte4.aspx.designer.cs">
       <DependentUpon>Reporte4.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Reporte5.aspx.cs">
+      <DependentUpon>Reporte5.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\Reporte5.aspx.designer.cs">
+      <DependentUpon>Reporte5.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

@@ -353,5 +353,44 @@ namespace DAL
         }
 
 
+        //turnos atendidos
+        public bool ActualizarAtencionTurno(int idTurno, bool atencion)
+        {
+            try
+            {
+                string procedure = "sp_ActualizarAtencionTurno";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = procedure;
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@idTurno", idTurno);
+                comando.Parameters.AddWithValue("@atencion", atencion);
+
+                using (SqlDataReader dr = comando.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception("Error en actualizar atencion turno " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+
+        }
+
+
     }
 }

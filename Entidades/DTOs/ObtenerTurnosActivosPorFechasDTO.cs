@@ -8,6 +8,7 @@ namespace Entidades.DTOs
 {
     public class ObtenerTurnosActivosPorFechasDTO
     {
+        public int? idTurno { get; set; }
         public string fecha { get; set; }
         public string hora { get; set; }
         public string paciente { get; set; }

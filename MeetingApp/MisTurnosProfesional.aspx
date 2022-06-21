@@ -3,10 +3,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderContent" runat="server">
     <style>
         .scrolling-table-container {
-            height: 378px;
+            height: 300px;
             overflow-y: auto;
             overflow-x: hidden;
-        }
+        }        
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -136,10 +136,8 @@
         <%--CIERRE DIV POR DNI--%>
 
 
-
+        <%--TURNOS POR FECHAS--%>
         <div class="divPorFecha" id="divPorFecha" runat="server" visible="false">
-
-
             <div class="row">
                 <div class="form-group col-md-4">
                     <%--FECHA--%>
@@ -158,8 +156,6 @@
                 </div>
             </div>
             <hr />
-
-
             <!--Tabla turnos por fecha-->
             <section>
                 <div id="print">
@@ -170,12 +166,26 @@
                                     <HeaderStyle BackColor="#3E64FF" ForeColor="White" />
                                     <RowStyle BackColor="#D6DBDF" ForeColor="#333333" />
                                     <Columns>
+                                        <asp:BoundField DataField="idTurno" HeaderText="id" HeaderStyle-CssClass="d-none" ItemStyle-CssClass="d-none"/>
                                         <asp:BoundField DataField="fechaTurno" HeaderText="Fecha" />
                                         <asp:BoundField DataField="horaTurno" HeaderText="Hora" />
                                         <asp:BoundField DataField="descripcion" HeaderText="Descripcion" />
                                         <asp:BoundField DataField="paciente" HeaderText="Paciente" />
                                         <asp:BoundField DataField="obraSocial" HeaderText="Obra Social" />
-                                        <asp:BoundField DataField="estado" HeaderText="Estado" />
+                                        <asp:BoundField DataField="estado" HeaderText="Estado" HeaderStyle-CssClass="d-none" ItemStyle-CssClass="d-none"/>
+                                        <asp:BoundField DataField="atencion" HeaderText="Estado" />
+                                        <asp:TemplateField>                                  
+                                            <HeaderTemplate>
+                                                <p>Todos
+                                                <asp:CheckBox ID="chkTodos" runat="server" AutoPostBack="true" OnCheckedChanged="chkTodos_CheckedChanged"/></p>
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+                                                <p>
+                                                <%--Atencion--%>
+                                                <asp:CheckBox ID="chkAtencion" runat="server" OnCheckedChanged="chkAtencion_CheckedChanged"/>
+                                                </p>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                         <%--<asp:TemplateField HeaderText="Acciones">
                                     <ItemTemplate>
                                         <asp:Button runat="server" ID="btnImprimir" CommandName="Imprimir" CommandArgument='<%# Eval("idTurno") %>' Text="Imprimir turno" CssClass="btn btn-info" />
@@ -187,9 +197,13 @@
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
-            </section>
-
+            </section>     
             
+
+            <div class="row mr-2" style="justify-content: end;">
+                    <%--CONFIRMAR CAMBIOS--%>
+                    <asp:Button ID="btnConfirmarAtencion" runat="server" Text="Actualizar atencion" CssClass="btn btn-outline-primary" OnClick="btnConfirmarAtencion_Click" />
+                </div>
 
         </div>
         <%--CIERRE DIV POR FECHA--%>

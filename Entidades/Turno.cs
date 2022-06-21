@@ -19,5 +19,6 @@ namespace Entidades
         public int idEspecialidad { get; set; }
         public string fechaTurno { get; set; }
         public int idObraSocial { get; set; }
+        public bool atencion { get; set; }
     }
 }

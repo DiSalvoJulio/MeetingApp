@@ -52,6 +52,7 @@ namespace MeetingApp
                 tabReporte2.Visible = false;
                 tabReporte3.Visible = false;
                 tabReporte4.Visible = false;
+                tabReporte5.Visible = false;
             }
             else if (user.idRol == 2)//paciente
             {
@@ -77,6 +78,7 @@ namespace MeetingApp
                 tabReporte2.Visible = false;
                 tabReporte3.Visible = false;
                 tabReporte4.Visible = false;
+                tabReporte5.Visible = false;
             }
             else //profesional
             {
@@ -91,7 +93,7 @@ namespace MeetingApp
                 tabReporte2.Visible = true;
                 tabReporte3.Visible = true;
                 tabReporte4.Visible = true;
-
+                tabReporte5.Visible = true;
 
                 tabPaciente.Visible = false;
                 tabProfesional.Visible = false;

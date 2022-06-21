@@ -222,6 +222,15 @@ namespace MeetingApp
         protected global::System.Web.UI.HtmlControls.HtmlAnchor tabReporte4;
 
         /// <summary>
+        /// Control tabReporte5.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor tabReporte5;
+
+        /// <summary>
         /// Control tabPreguntas.
         /// </summary>
         /// <remarks>

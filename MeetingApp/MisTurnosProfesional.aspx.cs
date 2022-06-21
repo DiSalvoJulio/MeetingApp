@@ -31,6 +31,8 @@ namespace MeetingApp
 
                 btnImprimir.Disabled = true;
 
+                btnConfirmarAtencion.Visible = false;
+
                 //CargarGrillaTurnos();                    
                 //txtEspecialidad.Text = MostrarEspecialidad();
                 //txtProfesional.Text = profesional.apellido + ' ' + profesional.nombre;
@@ -42,7 +44,7 @@ namespace MeetingApp
         //metodo para buscar el paciente
         public bool BuscarPaciente()
         {
-            if (txtDniBuscar.Text=="")
+            if (txtDniBuscar.Text == "")
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar un D.N.I')", true);
                 return false;
@@ -56,8 +58,8 @@ namespace MeetingApp
             {
                 Session["idUsuario"] = paciente.idUsuario;//usuario almacenado en session
                 Session["User"] = paciente;
-                
-                CargarGrillaTurnos(idProfesional,dni);
+
+                CargarGrillaTurnos(idProfesional, dni);
                 Session["dni"] = dni;
                 return true;
             }
@@ -114,17 +116,17 @@ namespace MeetingApp
             txtDniBuscar.Enabled = true;
             btnBuscarPaciente.Enabled = true;
             //btnLimpiarDatos.Enabled = false;
-            
+
         }
 
         //metodo para cargar grilla de turnos
         public void CargarGrillaTurnos(int idProfesional, string dni)
-        {           
+        {
             List<ObtenerTurnosProfesionalDTO> turnos = _profesionalBLL.ObtenerTurnosProfesionalPorPaciente(idProfesional, dni);
-            
+
             gvTurnos.DataSource = turnos;
             //aca va el if del Estado
-            
+
             gvTurnos.DataBind();
         }
 
@@ -177,7 +179,7 @@ namespace MeetingApp
             {
                 panelCancelarTurno.Visible = false;
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Se canceló el turno!', 'success')", true);
-                CargarGrillaTurnos(idProfesional,dni);
+                CargarGrillaTurnos(idProfesional, dni);
             }
             else
             {
@@ -210,14 +212,14 @@ namespace MeetingApp
             //ViewState["fecha"] = fecha;
             List<ObtenerTurnosProfesionalDTO> turnos = _profesionalBLL.ObtenerTurnosPorFecha(idProfesional, fecha);
 
-            gvTurnosPorFecha.DataSource = turnos;            
-
+            gvTurnosPorFecha.DataSource = turnos;
+            //gvTurnosPorFecha.DataKeys = turnos
             gvTurnosPorFecha.DataBind();
         }
 
         protected void btnBuscarTurnosPorFecha_Click(object sender, EventArgs e)
         {
-            if (dtpFecha.Value=="")
+            if (dtpFecha.Value == "")
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('La fecha no puede estar vacia')", true);
                 return;
@@ -229,12 +231,13 @@ namespace MeetingApp
 
             List<ObtenerTurnosProfesionalDTO> turnosPorFecha = _profesionalBLL.ObtenerTurnosPorFecha(idProfesional, DateTime.Parse(ViewState["fecha"].ToString()));
 
-            if (turnosPorFecha.Count>0)
+            if (turnosPorFecha.Count > 0)
             {
                 CargarGrillaTurnosPorFecha(idProfesional, fecha);
                 dtpFecha.Disabled = true;
                 btnBuscarTurnosPorFecha.Enabled = false;
                 btnImprimir.Disabled = false;
+                btnConfirmarAtencion.Visible = true;
             }
             else
             {
@@ -322,8 +325,110 @@ namespace MeetingApp
             btnBuscarTurnosPorFecha.Enabled = true;
             gvTurnosPorFecha.DataSource = null;
             gvTurnosPorFecha.DataBind();
+            btnConfirmarAtencion.Visible = false;
         }
 
+
+        //chekbox de atencion para marcar cada casilla de la grilla
+        protected void chkAtencion_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox chkestado = (CheckBox)sender;
+            GridViewRow fila = (GridViewRow)chkestado.NamingContainer;
+        }
+
+        //marcado de todos y que se seleccionen todas las casillas a la vez
+        protected void chkTodos_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox chktodos = (CheckBox)gvTurnosPorFecha.HeaderRow.FindControl("chkTodos");//id del front
+            foreach (GridViewRow fila in gvTurnosPorFecha.Rows)
+            {
+                CheckBox row = (CheckBox)fila.FindControl("chkAtencion");//id del front
+
+                if (chktodos.Checked == true)
+                {
+                    row.Checked = true;
+                }
+                else
+                {
+                    row.Checked = false;
+                }
+            }
+
+
+        }
+
+        //boton para confirmar turnos atendidos
+        protected void btnConfirmarAtencion_Click(object sender, EventArgs e)
+        {
+            bool existeChecked = false;
+            for (int i = 0; i < gvTurnosPorFecha.Rows.Count; i++)
+            {
+                CheckBox atencion = (CheckBox)gvTurnosPorFecha.Rows[i].Cells[8].FindControl("chkAtencion");
+                if (atencion.Checked)
+                {
+                    existeChecked = true;
+                }
+
+            }
+            if (!existeChecked)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'No selecciono ningun turno para modificar su estado', 'warning')", true);
+                return;
+
+            }
+
+
+
+            DateTime fecha = (DateTime)ViewState["fecha"];
+            Usuario profesional = (Usuario)Session["Usuario"];
+            int idProfesional = profesional.idUsuario;
+
+            if (AtencionTurnos())
+            {
+                //panelCancelarTurno.Visible = false;
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Se actualizo la atencion', 'success')", true);
+                CargarGrillaTurnosPorFecha(idProfesional, fecha);
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo actualizar la atencion', 'error')", true);
+                panelCancelarTurno.Visible = false;
+            }
+        }
+
+
+        public bool AtencionTurnos()
+        {
+            try
+            {
+                bool atendido = false;
+                for (int i = 0; i < gvTurnosPorFecha.Rows.Count; i++)
+                {
+                    CheckBox atencion = (CheckBox)gvTurnosPorFecha.Rows[i].Cells[8].FindControl("chkAtencion");
+                    if (atencion.Checked)
+                    {
+                        if (gvTurnosPorFecha.Rows[i].Cells[7].Text != "Atendido")
+                        {
+                            atendido = true;
+                        }
+                        else
+                        {
+                            atendido = false;
+                        }
+                        int id = Convert.ToInt32(gvTurnosPorFecha.Rows[i].Cells[0].Text);
+                        _turnoBLL.ActualizarAtencionTurno(id, atendido);
+                    }
+
+
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en actualizar atencion " + ex.Message);
+            }
+        }
 
 
     }

@@ -50,6 +50,11 @@ namespace BLL
             return _turnoDAL.CancelarTurno(idTurno);
         }
 
+        
+        public bool ActualizarAtencionTurno(int idTurno, bool atencion)
+        {
+            return _turnoDAL.ActualizarAtencionTurno(idTurno, atencion);
+        }
 
 
     }

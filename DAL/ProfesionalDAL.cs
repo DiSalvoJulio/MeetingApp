@@ -341,6 +341,15 @@ namespace DAL
                         turno.paciente = dr["Paciente"].ToString();
                         turno.obraSocial = dr["ObraSocial"].ToString();
                         turno.estado = dr["Estado"].ToString() == "True" ? turno.estado = "Activo" : turno.estado = "Cancelado";
+                        if (turno!=null)
+                        {
+                            var cosa = dr["Atencion"].ToString();
+                            turno.atencion = dr["Atencion"].ToString() == "1" ? turno.atencion = "Atendido" : turno.atencion = "No atendido";
+                        }
+                        else
+                        {
+                            turno.atencion = "Sin dato";
+                        }
 
                         listaTurnosDto.Add(turno);
                     }
