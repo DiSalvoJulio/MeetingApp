@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PreguntasFrecuentes.aspx.cs" Inherits="MeetingApp.PreguntasFrecuentes" %>
+﻿<%@ Page Title="Preguntas frecuentes" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PreguntasFrecuentes.aspx.cs" Inherits="MeetingApp.PreguntasFrecuentes" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderContent" runat="server">
     <style>

@@ -45,7 +45,7 @@
                 <div class="form-group col-md-6 mt-3">
                     <%--DNI--%>
                     <asp:Label ID="dni" runat="server" Text="D.N.I."></asp:Label>
-                    <asp:TextBox ID="txtDni" name="txtDni" runat="server" placeholder="D.N.I." CssClass="form-control" OnkeyDown="Letras()" MaxLength="40"></asp:TextBox>
+                    <asp:TextBox ID="txtDni" name="txtDni" type="number" runat="server" placeholder="D.N.I." CssClass="form-control" OnkeyDown="Letras()" MaxLength="40"></asp:TextBox>
                 </div>
                 <div class="form-group col-md-6 mt-3">
                     <%--FECHA NACIMIENTO--%>

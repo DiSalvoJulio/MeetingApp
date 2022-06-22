@@ -128,18 +128,16 @@
     <Content Include="DatosProfesional.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
-    <Content Include="Gestiones\Default.aspx" />
-    <Content Include="Gestiones\Default.css" />
-    <Content Include="Gestiones\Especialidades.aspx" />
-    <Content Include="Gestiones\Especialidades.css" />
-    <Content Include="Gestiones\Horarios.aspx" />
-    <Content Include="Gestiones\Horarios.css" />
-    <Content Include="Gestiones\ObrasSociales.aspx" />
-    <Content Include="Gestiones\ObrasSociales.css" />
-    <Content Include="Gestiones\Paciente.aspx" />
-    <Content Include="Gestiones\Paciente.css" />
-    <Content Include="Gestiones\Profesional.aspx" />
-    <Content Include="Gestiones\Profesional.css" />
+    <Content Include="Especialidades.aspx" />
+    <Content Include="Especialidades.css" />
+    <Content Include="Horarios.aspx" />
+    <Content Include="Horarios.css" />
+    <Content Include="ObrasSociales.aspx" />
+    <Content Include="ObrasSociales.css" />
+    <Content Include="Paciente.aspx" />
+    <Content Include="Paciente.css" />
+    <Content Include="Profesional.aspx" />
+    <Content Include="Profesional.css" />
     <Content Include="Global.asax" />
     <Content Include="css\.DS_Store" />
     <Content Include="css\bootstrap\.DS_Store" />
@@ -239,11 +237,11 @@
     <Content Include="PreguntasFrecuentes.aspx" />
     <Content Include="RecuperarContrasenia.aspx" />
     <Content Include="RecuperarContrasenia.css" />
-    <Content Include="Reportes\Reporte1.aspx" />
-    <Content Include="Reportes\Reporte2.aspx" />
-    <Content Include="Reportes\Reporte3.aspx" />
-    <Content Include="Reportes\Reporte4.aspx" />
-    <Content Include="Reportes\Reporte5.aspx" />
+    <Content Include="Reporte1.aspx" />
+    <Content Include="Reporte2.aspx" />
+    <Content Include="Reporte3.aspx" />
+    <Content Include="Reporte4.aspx" />
+    <Content Include="Reporte5.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -423,46 +421,39 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Gestiones\Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Gestiones\Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Gestiones\Especialidades.aspx.cs">
+    <Compile Include="Especialidades.aspx.cs">
       <DependentUpon>Especialidades.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Gestiones\Especialidades.aspx.designer.cs">
+    <Compile Include="Especialidades.aspx.designer.cs">
       <DependentUpon>Especialidades.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Gestiones\Horarios.aspx.cs">
+    <Compile Include="Horarios.aspx.cs">
       <DependentUpon>Horarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Gestiones\Horarios.aspx.designer.cs">
+    <Compile Include="Horarios.aspx.designer.cs">
       <DependentUpon>Horarios.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Gestiones\ObrasSociales.aspx.cs">
+    <Compile Include="ObrasSociales.aspx.cs">
       <DependentUpon>ObrasSociales.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Gestiones\ObrasSociales.aspx.designer.cs">
+    <Compile Include="ObrasSociales.aspx.designer.cs">
       <DependentUpon>ObrasSociales.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Gestiones\Paciente.aspx.cs">
+    <Compile Include="Paciente.aspx.cs">
       <DependentUpon>Paciente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Gestiones\Paciente.aspx.designer.cs">
+    <Compile Include="Paciente.aspx.designer.cs">
       <DependentUpon>Paciente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Gestiones\Profesional.aspx.cs">
+    <Compile Include="Profesional.aspx.cs">
       <DependentUpon>Profesional.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Gestiones\Profesional.aspx.designer.cs">
+    <Compile Include="Profesional.aspx.designer.cs">
       <DependentUpon>Profesional.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -539,39 +530,39 @@
     <Compile Include="Registrar.aspx.designer.cs">
       <DependentUpon>Registrar.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Reportes\Reporte1.aspx.cs">
+    <Compile Include="Reporte1.aspx.cs">
       <DependentUpon>Reporte1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Reportes\Reporte1.aspx.designer.cs">
+    <Compile Include="Reporte1.aspx.designer.cs">
       <DependentUpon>Reporte1.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Reportes\Reporte2.aspx.cs">
+    <Compile Include="Reporte2.aspx.cs">
       <DependentUpon>Reporte2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Reportes\Reporte2.aspx.designer.cs">
+    <Compile Include="Reporte2.aspx.designer.cs">
       <DependentUpon>Reporte2.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Reportes\Reporte3.aspx.cs">
+    <Compile Include="Reporte3.aspx.cs">
       <DependentUpon>Reporte3.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Reportes\Reporte3.aspx.designer.cs">
+    <Compile Include="Reporte3.aspx.designer.cs">
       <DependentUpon>Reporte3.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Reportes\Reporte4.aspx.cs">
+    <Compile Include="Reporte4.aspx.cs">
       <DependentUpon>Reporte4.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Reportes\Reporte4.aspx.designer.cs">
+    <Compile Include="Reporte4.aspx.designer.cs">
       <DependentUpon>Reporte4.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Reportes\Reporte5.aspx.cs">
+    <Compile Include="Reporte5.aspx.cs">
       <DependentUpon>Reporte5.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Reportes\Reporte5.aspx.designer.cs">
+    <Compile Include="Reporte5.aspx.designer.cs">
       <DependentUpon>Reporte5.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">

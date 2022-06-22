@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="HomeAdmin.aspx.cs" Inherits="MeetingApp.HomeAdmin" %>
+﻿<%@ Page Title="Home" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="HomeAdmin.aspx.cs" Inherits="MeetingApp.HomeAdmin" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderContent" runat="server">
     <style>
         body{

@@ -1,16 +1,35 @@
-﻿<%@ Page Title="DatosProfesional" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DatosProfesional.aspx.cs" Inherits="MeetingApp.DatosProfesional" %>
+﻿<%@ Page Title="Paciente" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Paciente.aspx.cs" Inherits="MeetingApp.Paciente" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container">
+    <link href="Paciente.css" rel="stylesheet" />
+
     <%-- SECCION 1--%>
-    <section class="content-header">
-        <h1 style="color: red; text-align: center">Mis Datos</h1>
-    </section>
-    <%-- SECCION 2--%>
-        <hr class="color: red;" />
-        <div class="form-row">
+    <div class="container">
+        <section class="content-header">
+            <h1 style="color: red; text-align: center">Paciente</h1>
+        </section>
+        <hr />
+        <div class="row">
+            <div class="form-group col-md-6">
+                <%--DNI--%>
+                <asp:Label ID="Label4" runat="server" Text="Ingrese el D.N.I. del paciente"></asp:Label>
+                <asp:TextBox ID="txtDniBuscar" name="txtDniBuscar" runat="server" placeholder="D.N.I." CssClass="form-control" MinLength="7" MaxLength="10" required="true"></asp:TextBox>
+            </div>
+            <div class="form-group col-md-6 mt-4">
+                <%--APELLIDO--%>
+                <asp:Button ID="btnBuscarPaciente" runat="server" Text="Buscar paciente" OnClick="btnBuscarPaciente_Click" CssClass="btn btn-primary" />
+                <%--<asp:Label ID="Label5" runat="server" Text="Apellido y Nombre"></asp:Label>--%>
+                <%--<asp:TextBox ID="TextBox2" name="txtApellido" runat="server" placeholder="Apellido y Nombre" CssClass="form-control" OnkeyDown="Letras()" MaxLength="40"></asp:TextBox>
+            </div>--%>
+            </div>
+        </div> 
+        <%--cierre row--%>
+        <hr />
+
+        <%-- SECCION 2--%>
+        <div class="row mt-5">
             <div class="form-group col-md-6">
                 <%--APELLIDO--%>
                 <asp:Label ID="lblApellido" runat="server" Text="Apellido/s"></asp:Label>
@@ -51,33 +70,25 @@
                 <asp:Label ID="direccion" runat="server" Text="Direccion - Nro"></asp:Label>
                 <asp:TextBox ID="txtDireccion" name="txtDireccion" runat="server" placeholder="Direccion - Nro" CssClass="form-control" OnkeyDown="" MaxLength="50"></asp:TextBox>
             </div>
-            <%--<asp:UpdatePanel runat="server">
-                <ContentTemplate> --%>  
             <div class="form-group col-md-4">
-                <%--ESPECIALIDAD--%>
-                <asp:Label ID="Label3" runat="server" Text="Especialidad"></asp:Label>
-                <br />
-                <asp:DropDownList ID="cmbEspecialidad" runat="server" CssClass="btn btn-outline-info dropdown-toggle col-12" onClientClick="verDrop()" AutoPostBack="true">               
-                </asp:DropDownList>                
-                <%--<asp:Label ID="Label3" runat="server" Text="Especialidad"></asp:Label>
-                <asp:TextBox ID="txtEspecialidad" name="txtEspecialidad" runat="server" placeholder="Especialidad" CssClass="form-control" OnkeyDown="Letras()" MaxLength="40"></asp:TextBox>--%>
+                <%--OCUPACION--%>
+                <asp:Label ID="Label3" runat="server" Text="Ocupacion"></asp:Label>
+                <asp:TextBox ID="txtOcupacion" name="txtOcupacion" runat="server" placeholder="Ocupacion" CssClass="form-control" OnkeyDown="Letras()" MaxLength="40"></asp:TextBox>
             </div>
-               <%-- </ContentTemplate>
-            </asp:UpdatePanel>--%>
             <div class="form-group col-md-4">
-                <%--MATRICULA--%>
-                <asp:Label ID="Label2" runat="server" Text="Matricula"></asp:Label>
-                <asp:TextBox ID="txtMatricula" name="txtMatricula" runat="server" placeholder="Matricula" CssClass="form-control" MaxLength="40"></asp:TextBox>
+                <%--REFERENCIA--%>
+                <asp:Label ID="Label2" runat="server" Text="Referencia de como llego al profesional"></asp:Label>
+                <asp:TextBox ID="txtReferencia" name="txtReferencia" runat="server" placeholder="Referencia" CssClass="form-control" OnkeyDown="Letras()" MaxLength="40"></asp:TextBox>
             </div>
             <div class="form-group col-md-4">
                 <%--FECHA INGRESO--%>
-                <asp:Label ID="Ingreso" runat="server" Text="Fecha de Ingreso"></asp:Label>
-                <asp:TextBox ID="txtIngreso" name="txtIngreso" runat="server" placeholder="Fecha de Ingreso" CssClass="form-control" OnkeyDown="Letras()" MaxLength="40" oninput="maxlengthNumber(this);"></asp:TextBox>
+                <asp:Label ID="Ingreso" runat="server" Text="Fecha de ingreso"></asp:Label>
+                <asp:TextBox ID="txtIngreso" name="txtIngreso" runat="server" placeholder="Fecha de ingreso" CssClass="form-control" OnkeyDown="Letras()" MaxLength="40" oninput="maxlengthNumber(this);"></asp:TextBox>
             </div>
         </div>
         <%--cierre del row--%>
 
-        <div class="form-row" style="justify-content: flex-end;">
+        <div class="row" style="justify-content: flex-end;">
             <div class="form-group mt-2">
                 <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" CssClass="btn btn-danger" />
                 <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" CssClass="btn btn-success" />

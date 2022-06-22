@@ -145,19 +145,19 @@
                         <a href="TurnoProfesional.aspx" runat="server" id="tabTurnoProfesional"><span class="fa fa-calendar-check-o"></span>Asignar Turno</a>
                     </li>
                     <li class="">
-                        <a href="Gestiones/Especialidades.aspx" runat="server" id="tabEspecialidades"><span class="fa fa-user-md"></span>Especialidades</a>
+                        <a href="Especialidades.aspx" runat="server" id="tabEspecialidades"><span class="fa fa-user-md"></span>Especialidades</a>
                     </li>
                     <li>
-                        <a href="Gestiones/ObrasSociales.aspx" runat="server" id="tabObrasSociales"><span class="fa fa-medkit"></span>Obras Sociales</a>
+                        <a href="ObrasSociales.aspx" runat="server" id="tabObrasSociales"><span class="fa fa-medkit"></span>Obras Sociales</a>
                     </li>
                     <li>
-                        <a href="Gestiones/Paciente.aspx" runat="server" id="tabPaciente"><span class="fa fa-user"></span>Paciente</a>
+                        <a href="Paciente.aspx" runat="server" id="tabPaciente"><span class="fa fa-user"></span>Paciente</a>
                     </li>
                     <li>
-                        <a href="Gestiones/Profesional.aspx" runat="server" id="tabProfesional"><span class="fa fa-user-plus"></span>Profesional</a>
+                        <a href="Profesional.aspx" runat="server" id="tabProfesional"><span class="fa fa-user-plus"></span>Profesional</a>
                     </li>
                     <li>
-                        <a href="Gestiones/Horarios.aspx" runat="server" id="tabHorario"><span class="fa fa-clock-o"></span>Horarios</a>
+                        <a href="Horarios.aspx" runat="server" id="tabHorario"><span class="fa fa-clock-o"></span>Horarios</a>
                     </li>
                     <li>
                         <a href="MisTurnosPaciente.aspx" runat="server" id="tabMisTurnosPaciente"><span class="fa fa-sticky-note"></span>Mis turnos</a>
@@ -172,20 +172,20 @@
                         <a href="DatosProfesional.aspx" runat="server" id="tabDatosProfesional"><span class="fa fa-user"></span>Mis datos</a>
                     </li>
                     <li>
-                        <a href="Reportes/Reporte1.aspx" runat="server" id="tabReporte1"><span class="fa fa-bar-chart"></span>Turnos activos</a>
+                        <a href="Reporte1.aspx" runat="server" id="tabReporte1"><span class="fa fa-bar-chart"></span>Turnos activos</a>
                     </li>
 
                     <li>
-                        <a href="Reportes/Reporte2.aspx" runat="server" id="tabReporte2"><span class="fa fa-bar-chart"></span>Formas de pago</a>
+                        <a href="Reporte2.aspx" runat="server" id="tabReporte2"><span class="fa fa-bar-chart"></span>Formas de pago</a>
                     </li>
                     <li>
-                        <a href="Reportes/Reporte3.aspx" runat="server" id="tabReporte3"><span class="fa fa-bar-chart"></span>Turnos cancelados</a>
+                        <a href="Reporte3.aspx" runat="server" id="tabReporte3"><span class="fa fa-bar-chart"></span>Turnos cancelados</a>
                     </li>
                     <li>
-                        <a href="Reportes/Reporte4.aspx" runat="server" id="tabReporte4"><span class="fa fa-bar-chart"></span>Turnos por mes</a>
+                        <a href="Reporte4.aspx" runat="server" id="tabReporte4"><span class="fa fa-bar-chart"></span>Turnos por mes</a>
                     </li>
                     <li>
-                        <a href="Reportes/Reporte5.aspx" runat="server" id="tabReporte5"><span class="fa fa-bar-chart"></span>Obras sociales</a>
+                        <a href="Reporte5.aspx" runat="server" id="tabReporte5"><span class="fa fa-bar-chart"></span>Obras sociales</a>
                     </li>
                     <%--REPORTES--%>
                     <%--   <li class="active"> 

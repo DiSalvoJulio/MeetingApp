@@ -36,7 +36,7 @@
                     <b>Términos y condiciones de Uso del Sitio</b><br />
                     Todos los visitantes a este sitio deberán informarse sobre los Términos y Condiciones que aparecen a continuación. En caso de no estar de acuerdo con los mismos sugerimos no acceder a este sitio, o a cualquier página del mismo. Por el solo hecho de ingresar o hacer uso de este sitio usted (en adelante el "usuario") acepta y se adhiere de forma inmediata a todos y cada uno de los siguientes Términos y Condiciones:
                     <br />
-                    <b>Meeting App</b> 
+                    <b>Meeting App</b>
                     <br />
                     Es una empresa que ofrece un servicio para nuestros usuarios y/o visitantes de nuestros sitios web. El servicio ofrecido es diseñado y desarrollado por la empresa: Meeting App, con domicilio en Fructuoso Rivera 34, Ciudad de Córdoba capital, provincia de Córdoba. Meeting App es una sociedad cuya actividad principal consiste en brindar servicios de administración de turnos que se amolda según al área y necesidades del cliente. A fin de facilitar la comunicación y dar respuestas más rápidas y eficientes para la protección de los derechos de usuarios y consumidores.
                     <br />
