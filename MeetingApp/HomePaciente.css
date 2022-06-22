@@ -1,0 +1,32 @@
+﻿body {
+    background-color: #96b5d4;
+    /*font-family: sans-serif;*/
+}
+
+.card {
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.2); /*sombra a la card*/
+    transition: all 400ms ease; /*transicion suave*/
+    cursor: default; /*se pone una flecha en toda la card*/
+}
+
+    .card:hover {
+        box-shadow: 5px 5px 20px rgba(0,0,0,1); /*sombra a la card*/
+        transform: translateY(-3%); /*movimiento hacia arriba*/
+    }
+
+    .card .card-body {
+        text-align: center; /*alinea el contenido de la card*/
+    }
+
+        .card .card-body a {
+            padding: 5px;
+            color: #2fb4cc;
+            border: 1px solid #2fb4cc;
+            border-radius: 4px;
+            transition: all 400ms ease;
+        }
+
+            .card .card-body a:hover {
+                background: #2fb4cc;
+                color: #fff;
+            }

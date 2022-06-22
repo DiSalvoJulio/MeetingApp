@@ -185,7 +185,7 @@
                         <a href="Reportes/Reporte4.aspx" runat="server" id="tabReporte4"><span class="fa fa-bar-chart"></span>Turnos por mes</a>
                     </li>
                     <li>
-                        <a href="Reportes/Reporte5.aspx" runat="server" id="tabReporte5"><span class="fa fa-bar-chart"></span>Obras sociales por mes</a>
+                        <a href="Reportes/Reporte5.aspx" runat="server" id="tabReporte5"><span class="fa fa-bar-chart"></span>Obras sociales</a>
                     </li>
                     <%--REPORTES--%>
                     <%--   <li class="active"> 
