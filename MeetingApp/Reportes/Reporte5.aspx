@@ -8,22 +8,32 @@
         <h3 class="mb-5">Listado de pacientes atendidos por obra social - (fecha minima y maxima)</h3>
         <div class="form-row">
             <%--FECHA 1 --%>
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-2">
                 <input type="date" runat="server" class="form-control" name="dtpFecha1" id="dtpFecha1" required>
                 Desde
             </div>
             <%--FECHA 2 --%>
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-2">
                 <input type="date" runat="server" class="form-control" name="dtpFecha2" id="dtpFecha2" required>Hasta
             </div>
-            <div>
-                <%--BOTON CONSULTAR--%>
-               <%-- <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-primary col-auto mt-1 ml-5 mr-5" OnClick="" />--%>
+            <div class="form-group col-md-3">
+                <%--OBRAS SOCIALES--%>
+                <%--<asp:Label ID="Label3" runat="server" Text="Obra social"></asp:Label>--%>             
+                <asp:DropDownList ID="cmbObraSocial" runat="server" CssClass="btn btn-outline-primary dropdown-toggle col-8" onClientClick="verDrop()" AutoPostBack="false">
+                    <asp:ListItem Text="Seleccionar..."></asp:ListItem>
+                </asp:DropDownList>  
             </div>
-            <div>
+            <div class="form-group col-md-2">
+                <%--BOTON CONSULTAR--%>
+                <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-primary col-auto" OnClick="btnConsultar_Click" />
+            </div>
+            <div class="form-group col-md-1">
                 <%--BOTON LIMPIAR--%>
-                <%--<asp:Button ID="btnLimpiar" runat="server" Text="Limpiar" CssClass="btn btn-outline-success col-auto mt-1 ml-5" OnClick="" />--%>
-                <button id="btnImprimir" disabled="disabled" class="btn btn-info ml-3" runat="server" onclick="return pdf()">Imprimir</button>
+                <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar" CssClass="btn btn-outline-success" OnClick="btnLimpiar_Click" /> 
+            </div>
+            <div class="form-group col-md-1">
+                <%--BOTON IMPRIMIR--%>                
+                <button id="btnImprimir" disabled="disabled" class="btn btn-info" runat="server" onclick="return pdf()">Imprimir</button>
             </div>
         </div>
 
@@ -36,10 +46,11 @@
                     <HeaderStyle BackColor="#3E64FF" ForeColor="White" />
                     <RowStyle BackColor="#D6DBDF" ForeColor="#333333" />
                     <Columns>
-                        <%--<asp:BoundField DataField="fecha" HeaderText="Fecha" />
-                    <asp:BoundField DataField="hora" HeaderText="Hora" />--%>
-                        <asp:BoundField DataField="paciente" HeaderText="Paciente" />
-                        <asp:BoundField DataField="cantidadTurnos" HeaderText="Cantidad de turnos" />
+                        <asp:BoundField DataField="fecha" HeaderText="Fecha" />
+                    <asp:BoundField DataField="hora" HeaderText="Hora" />                   
+                    <asp:BoundField DataField="paciente" HeaderText="Paciente" />
+                    <asp:BoundField DataField="obraSocial" HeaderText="Obra Social" />
+                    <asp:BoundField DataField="atencion" HeaderText="Estado" />
 
                         <%--<asp:TemplateField HeaderText="Acciones">
                         <ItemTemplate>

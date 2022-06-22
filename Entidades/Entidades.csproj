@@ -45,6 +45,7 @@
     <Compile Include="Dia.cs" />
     <Compile Include="DTOs\HorarioProfesionalDTO.cs" />
     <Compile Include="DTOs\HorariosDTO.cs" />
+    <Compile Include="DTOs\ObtenerAtendidosPorObraSocialDTO.cs" />
     <Compile Include="DTOs\ObtenerFormasDePagosDTO.cs" />
     <Compile Include="DTOs\ObtenerHorarioDTO.cs" />
     <Compile Include="DTOs\ObtenerHorarioProfesionalDiaDTO.cs" />

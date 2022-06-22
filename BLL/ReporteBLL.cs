@@ -37,7 +37,11 @@ namespace BLL
             return _reporteDAL.ObtenerTurnosPorMes(idProfesional, fecha1, fecha2);
         }
 
-
+        //REPORTE 5
+        public List<ObtenerAtendidosPorObraSocialDTO> ObtenerTurnosAtendidosPorObraSocial(int idProfesional, DateTime fecha1, DateTime fecha2, int obraSocial)
+        {
+            return _reporteDAL.ObtenerTurnosAtendidosPorObraSocial(idProfesional, fecha1, fecha2, obraSocial);
+        }
 
 
     }
