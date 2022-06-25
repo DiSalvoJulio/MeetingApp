@@ -32,14 +32,28 @@ namespace MeetingApp
                 btnImprimir.Disabled = true;
 
                 btnConfirmarAtencion.Visible = false;
-
-                //CargarGrillaTurnos();                    
-                //txtEspecialidad.Text = MostrarEspecialidad();
-                //txtProfesional.Text = profesional.apellido + ' ' + profesional.nombre;
-                //CargarComboFormasDePagos();                
+                              
             }
             btnImprimir.Disabled = true;
         }
+
+        //boton para volver a ver los 3 botones
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            divPorDNI.Visible = false;
+            divPorFecha.Visible = false;
+            divCancelarPorFecha.Visible = false;
+            btnDivPorDni.Visible = true;
+            btnDivCancelarPorFecha.Visible = true;
+            //btnCancelarPorFecha.Visible = true;
+            btnDivPorFecha.Visible = true;
+            txtDniBuscar.Text = "";
+            dtpFecha.Value = "";
+            dtpCancelarPorFecha.Value = "";
+        }
+
+
+        #region PORDNI        
 
         //metodo para buscar el paciente
         public bool BuscarPaciente()
@@ -59,7 +73,7 @@ namespace MeetingApp
                 Session["idUsuario"] = paciente.idUsuario;//usuario almacenado en session
                 Session["User"] = paciente;
 
-                CargarGrillaTurnos(idProfesional, dni);               
+                CargarGrillaTurnos(idProfesional, dni);
                 Session["dni"] = dni;
                 return true;
             }
@@ -136,9 +150,9 @@ namespace MeetingApp
             gvTurnos.DataBind();
         }
 
-        
+
         protected void gvTurnos_RowCommand(object sender, GridViewCommandEventArgs e)
-        {            
+        {
             //tomar el id turno para cancelarlo
             int idTurno = Convert.ToInt32(e.CommandArgument);
             ViewState["idTurno"] = idTurno;
@@ -156,7 +170,7 @@ namespace MeetingApp
                 lblHora.Text = turnos.horaTurno;
                 lblDescripcion.Text = turnos.descripcion;
                 lblPaciente.Text = turnos.paciente;
-                lblObraSocial.Text = turnos.obraSocial;                
+                lblObraSocial.Text = turnos.obraSocial;
 
             }
         }
@@ -211,6 +225,169 @@ namespace MeetingApp
 
         }
 
+        protected void btnDivPorDni_Click(object sender, EventArgs e)
+        {
+            //se llama por el ID del div
+            divPorDNI.Visible = true;
+            btnDivPorDni.Visible = false;
+            btnDivPorFecha.Visible = false;
+            btnDivCancelarPorFecha.Visible = false;
+        }
+
+        #endregion PORDNI
+
+        #region CANCELARPORFECHA
+
+        //metodo para cargar grilla de turnos
+        public void CargarGrillaCancelarPorFecha(int idProfesional, DateTime fecha)
+        {
+            //ViewState["fecha"] = fecha;
+            List<ObtenerTurnosProfesionalDTO> turnos = _profesionalBLL.ObtenerTurnosPorFecha(idProfesional, fecha);
+
+            gvCancelarPorFecha.DataSource = turnos;
+            //gvTurnosPorFecha.DataKeys = turnos
+            gvCancelarPorFecha.DataBind();
+        }
+
+        protected void btnDivCancelarPorFecha_Click(object sender, EventArgs e)
+        {
+            //se llama por el ID del div
+            divCancelarPorFecha.Visible = true;
+            btnDivPorDni.Visible = false;
+            btnDivPorFecha.Visible = false;
+            btnDivCancelarPorFecha.Visible = false;
+            btnCancelarPorFecha.Visible = true;
+        }
+
+        //cerrar modal con cruz
+        public void CerrarModalCancelarPorFecha(object sender, EventArgs e)
+        {
+            //ID DEL PANEL DE LA MODAL
+            panelCancelarPorFecha.Visible = false;
+        }
+
+
+        //boton de busqueda por fecha
+        protected void btnCancelarPorFecha_Click(object sender, EventArgs e)
+        {
+            if (dtpCancelarPorFecha.Value == "")
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('La fecha no puede estar vacia')", true);
+                return;
+            }
+            Usuario profesional = (Usuario)Session["Usuario"];
+            int idProfesional = profesional.idUsuario;
+            DateTime fecha = DateTime.Parse(dtpCancelarPorFecha.Value);
+            ViewState["fecha"] = fecha;
+
+            List<ObtenerTurnosProfesionalDTO> turnosPorFecha = _profesionalBLL.ObtenerTurnosPorFecha(idProfesional, DateTime.Parse(ViewState["fecha"].ToString()));
+
+            if (turnosPorFecha.Count > 0)
+            {
+                CargarGrillaCancelarPorFecha(idProfesional, fecha);
+                dtpCancelarPorFecha.Disabled = true;
+                btnCancelarPorFecha.Enabled = false;
+                //btnImprimir.Disabled = false;
+                //btnConfirmarAtencion.Visible = true;
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('No se encontró turno/s en esta fecha')", true);
+            }
+        }
+
+        //limpiar datos del paciente
+        private void LimpiarDatosCancelar()
+        {
+            dtpCancelarPorFecha.Value = "";
+            gvCancelarPorFecha.DataSource = null;
+            gvCancelarPorFecha.DataBind();            
+        }
+
+        protected void btnLimpiarCancelarPorFecha_Click(object sender, EventArgs e)
+        {
+            LimpiarDatosCancelar();
+            dtpCancelarPorFecha.Value = "";
+            dtpCancelarPorFecha.Disabled = false;
+            btnCancelarPorFecha.Enabled = true;
+            gvCancelarPorFecha.DataSource = null;
+            gvCancelarPorFecha.DataBind();
+            
+        }
+
+        protected void gvCancelarPorFecha_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            //tomar el id turno para cancelarlo
+            int idTurno = Convert.ToInt32(e.CommandArgument);
+            ViewState["idTurno"] = idTurno;
+
+            if (e.CommandName.Equals("Cancelar"))
+            {
+                //boton cancelar turno en la grilla (apertura de modal)
+                panelCancelarPorFecha.Visible = true;
+
+                //solo cargamos campos de la modal
+                ObtenerTurnoIdProfesionalDTO turnos = _profesionalBLL.ObtenerTurnoIdProfesional(int.Parse(ViewState["idTurno"].ToString()));
+
+                lblDiaCancelar.Text = turnos.dia;
+                lblFechaCancelar.Text = turnos.fechaTurno.ToString().Substring(0, 10);
+                lblHoraCancelar.Text = turnos.horaTurno;
+                lblDescrCancelar.Text = turnos.descripcion;
+                lblPacienteCancelar.Text = turnos.paciente;
+                lblObraSocCancelar.Text = turnos.obraSocial;
+
+            }
+        }
+
+        //salir de la modal
+        protected void btnVolverCancelar_Click(object sender, EventArgs e)
+        {
+            panelCancelarPorFecha.Visible = false;
+        }
+
+        //metodo para cancelar el turno
+        public bool CancelarTurnoPorFecha()
+        {
+            try
+            {
+                int idTurno = (int)ViewState["idTurno"];
+                ObtenerTurnoIdDTO turno = _turnoBLL.ObtenerTurnoId(idTurno);
+                _turnoBLL.CancelarTurno(idTurno);
+                return true;
+
+                //MAIL
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en CancelarTurno " + ex.Message);
+            }
+
+        }
+
+        //boton que cancela el turno
+        protected void btnConfirmarCancelarPorFecha_Click(object sender, EventArgs e)
+        {
+            Usuario profesional = (Usuario)Session["Usuario"];
+            int idProfesional = profesional.idUsuario;
+            DateTime fecha = DateTime.Parse(dtpCancelarPorFecha.Value);
+            ViewState["fecha"] = fecha;
+            //se cancela el turno
+            if (CancelarTurnoPorFecha())
+            {
+                panelCancelarPorFecha.Visible = false;
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Se canceló el turno!', 'success')", true);
+                CargarGrillaCancelarPorFecha(idProfesional, fecha);
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo cancelar el turno', 'error')", true);
+                panelCancelarPorFecha.Visible = false;
+            }
+        }
+
+        #endregion CANCELARPORFECHA
+
+        #region ATENDIDOS        
 
         //metodo para cargar grilla de turnos
         public void CargarGrillaTurnosPorFecha(int idProfesional, DateTime fecha)
@@ -250,27 +427,6 @@ namespace MeetingApp
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('No se encontró turno/s en esta fecha')", true);
             }
 
-            //Usuario paciente = _pacienteBLL.BuscarPacienteDni(dni);
-            //try
-            //{
-            //    //if (BuscarPaciente())
-            //    //{
-            //        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'turnos!', 'success')", true);
-            //        //txtDniBuscar.Enabled = false;
-            //        //btnBuscarPaciente.Enabled = false;
-            //        //btnLimpiarDatos.Enabled = true;
-            //        CargarGrillaTurnosPorFecha(idProfesional, fecha);
-            //    //}
-            //    //else
-            //    //{
-            //        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo encontrar', 'error')", true);
-            //        dtpFecha.Focus();
-            //    //}
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new Exception("Error en Buscar Paciente " + ex.Message);
-            //}
         }
 
         protected void gvTurnosPorFecha_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -282,27 +438,9 @@ namespace MeetingApp
             {
                 //BOTON CANCELAR TURNO EN LA GRILLA
                 //panelCancelarTurno.Visible = true;
-
                 //solo cargamos campos de la modal
-
                 ObtenerTurnoIdDTO turnos = _turnoBLL.ObtenerTurnoId(int.Parse(ViewState["idTurno"].ToString()));
-
-                //lblDia.Text = turnos.dia;
-                //lblFecha.Text = turnos.fechaTurno.ToString().Substring(0, 10);
-                //lblHora.Text = turnos.horaTurno;
-                //lblDescripcion.Text = turnos.descripcion;
-                //lblEspecialidad.Text = turnos.especialidad;
-                //lblProfesional.Text = turnos.profesional;
-
             }
-        }
-
-        protected void btnDivPorDni_Click(object sender, EventArgs e)
-        {
-            //se llama por el ID del div
-            divPorDNI.Visible = true;
-            btnDivPorDni.Visible = false;
-            btnDivPorFecha.Visible = false;
         }
 
         protected void btnDivPorFecha_Click(object sender, EventArgs e)
@@ -311,16 +449,8 @@ namespace MeetingApp
             divPorFecha.Visible = true;
             btnDivPorDni.Visible = false;
             btnDivPorFecha.Visible = false;
-        }
-
-        protected void btnVolver_Click(object sender, EventArgs e)
-        {
-            divPorDNI.Visible = false;
-            divPorFecha.Visible = false;
-            btnDivPorDni.Visible = true;
-            btnDivPorFecha.Visible = true;
-            txtDniBuscar.Text = "";
-            dtpFecha.Value = "";
+            btnDivCancelarPorFecha.Visible = false;
+            btnCancelarPorFecha.Visible = false;
         }
 
         //boton que limpia lo de buscar por fecha
@@ -333,7 +463,6 @@ namespace MeetingApp
             gvTurnosPorFecha.DataBind();
             btnConfirmarAtencion.Visible = false;
         }
-
 
         //chekbox de atencion para marcar cada casilla de la grilla
         protected void chkAtencion_CheckedChanged(object sender, EventArgs e)
@@ -435,6 +564,12 @@ namespace MeetingApp
                 throw new Exception("Error en actualizar atencion " + ex.Message);
             }
         }
+
+
+
+        #endregion ATENDIDOS
+
+
 
 
     }
