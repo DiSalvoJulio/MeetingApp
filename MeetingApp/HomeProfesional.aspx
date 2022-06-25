@@ -35,7 +35,7 @@
                     
                     <div class="card-body">
                         <%--<h5 class="card-title">Mis turnos</h5>--%>
-                        <a class="h5" href="MisTurnosProfesionale.aspx">Turnos asignados</a>
+                        <a class="h5" href="MisTurnosProfesional.aspx">Turnos asignados</a>
                        <%-- <p class="card-text">This is a short card.</p>--%>
                     </div>
                 </div>

@@ -59,7 +59,7 @@ namespace MeetingApp
                 Session["idUsuario"] = paciente.idUsuario;//usuario almacenado en session
                 Session["User"] = paciente;
 
-                CargarGrillaTurnos(idProfesional, dni);
+                CargarGrillaTurnos(idProfesional, dni);               
                 Session["dni"] = dni;
                 return true;
             }
@@ -124,33 +124,39 @@ namespace MeetingApp
         {
             List<ObtenerTurnosProfesionalDTO> turnos = _profesionalBLL.ObtenerTurnosProfesionalPorPaciente(idProfesional, dni);
 
+            //si no hay turnos activos se muestra el mensaje
+            if (turnos.Count == 0)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('No hay turnos activos para este paciente')", true);
+            }
+
             gvTurnos.DataSource = turnos;
             //aca va el if del Estado
 
             gvTurnos.DataBind();
         }
 
-        //tomar el id turno para cancelarlo
+        
         protected void gvTurnos_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
+        {            
+            //tomar el id turno para cancelarlo
             int idTurno = Convert.ToInt32(e.CommandArgument);
             ViewState["idTurno"] = idTurno;
 
             if (e.CommandName.Equals("Cancelar"))
             {
-                //BOTON CANCELAR TURNO EN LA GRILLA
+                //boton cancelar turno en la grilla (apertura de modal)
                 panelCancelarTurno.Visible = true;
 
                 //solo cargamos campos de la modal
-
-                ObtenerTurnoIdDTO turnos = _turnoBLL.ObtenerTurnoId(int.Parse(ViewState["idTurno"].ToString()));
+                ObtenerTurnoIdProfesionalDTO turnos = _profesionalBLL.ObtenerTurnoIdProfesional(int.Parse(ViewState["idTurno"].ToString()));
 
                 lblDia.Text = turnos.dia;
                 lblFecha.Text = turnos.fechaTurno.ToString().Substring(0, 10);
                 lblHora.Text = turnos.horaTurno;
                 lblDescripcion.Text = turnos.descripcion;
-                lblEspecialidad.Text = turnos.especialidad;
-                lblProfesional.Text = turnos.profesional;
+                lblPaciente.Text = turnos.paciente;
+                lblObraSocial.Text = turnos.obraSocial;                
 
             }
         }

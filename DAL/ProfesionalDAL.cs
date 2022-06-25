@@ -264,6 +264,70 @@ namespace DAL
             }
         }
 
+
+        //obtener un turno por id
+        public ObtenerTurnoIdProfesionalDTO ObtenerTurnoIdProfesional(int idTurno)
+        {
+            try
+            {
+                string procedure = "sp_ObtenerTurnoIdProfesionalDTO";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = procedure;
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@idTurno", idTurno);
+                comando.CommandType = CommandType.StoredProcedure;
+
+                using (SqlDataReader dr = comando.ExecuteReader())
+                {
+                    ObtenerTurnoIdProfesionalDTO obtenerTurno = new ObtenerTurnoIdProfesionalDTO();
+                    while (dr.Read())
+                    {                        
+                        if (!dr.IsDBNull(0))
+                        {
+                            obtenerTurno.idTurno = dr.GetInt32(0);
+                        }
+                        if (!dr.IsDBNull(1))
+                        {
+                            obtenerTurno.dia = dr.GetString(1);
+                        }
+                        if (!dr.IsDBNull(2))
+                        {
+                            obtenerTurno.fechaTurno = dr.GetDateTime(2);
+                        }
+                        if (!dr.IsDBNull(3))
+                        {
+                            obtenerTurno.horaTurno = dr.GetString(3);
+                        }
+                        if (!dr.IsDBNull(4))
+                        {
+                            obtenerTurno.descripcion = dr.GetString(4);
+                        }
+                        if (!dr.IsDBNull(5))
+                        {
+                            obtenerTurno.paciente = dr.GetString(5);
+                        }
+                        if (!dr.IsDBNull(6))
+                        {
+                            obtenerTurno.obraSocial = dr.GetString(6);
+                        }
+                        //if (!dr.IsDBNull(7))
+                        //{
+                        //    obtenerTurno.estado = dr.GetString(7);
+                        //}
+                    }
+                    return obtenerTurno;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en Obtener Turno ID DAL " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
         //obtener lista de turnos por paciente
         public List<ObtenerTurnosProfesionalDTO> ObtenerTurnosProfesionalPorPaciente(int idProfesional, string dni)
         {

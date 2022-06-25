@@ -35,6 +35,11 @@ namespace BLL
             return _profesionalDAL.ObtenerProfesionalId(id);
         }
 
+        public ObtenerTurnoIdProfesionalDTO ObtenerTurnoIdProfesional(int idTurno)
+        {
+            return _profesionalDAL.ObtenerTurnoIdProfesional(idTurno);
+        }
+
         public List<ObtenerTurnosProfesionalDTO> ObtenerTurnosProfesionalPorPaciente(int idProfesional, string dni)
         {
             return _profesionalDAL.ObtenerTurnosProfesionalPorPaciente(idProfesional,dni);

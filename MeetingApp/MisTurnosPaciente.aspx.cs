@@ -60,6 +60,12 @@ namespace MeetingApp
             Usuario paciente = (Usuario)Session["Usuario"];
             int idPaciente = paciente.idUsuario;
             List<ObtenerTurnosPacienteDTO> turnos = _pacienteBLL.ObtenerTurnosPaciente(idPaciente);
+
+            if (turnos.Count == 0)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('No hay turnos activos')", true);
+            }
+
             gvTurnos.DataSource = turnos;
            
             gvTurnos.DataBind();

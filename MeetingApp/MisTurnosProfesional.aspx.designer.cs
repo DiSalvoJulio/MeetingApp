@@ -141,22 +141,22 @@ namespace MeetingApp
         protected global::System.Web.UI.WebControls.Label lblDescripcion;
 
         /// <summary>
-        /// Control lblEspecialidad.
+        /// Control lblPaciente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEspecialidad;
+        protected global::System.Web.UI.WebControls.Label lblPaciente;
 
         /// <summary>
-        /// Control lblProfesional.
+        /// Control lblObraSocial.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProfesional;
+        protected global::System.Web.UI.WebControls.Label lblObraSocial;
 
         /// <summary>
         /// Control btnCancelar.

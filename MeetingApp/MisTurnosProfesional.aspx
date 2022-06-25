@@ -6,7 +6,7 @@
             height: 300px;
             overflow-y: auto;
             overflow-x: hidden;
-        }        
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -49,8 +49,8 @@
             <hr />
             <!--Tabla turnos-->
             <section>
-                <asp:UpdatePanel runat="server">
-                    <ContentTemplate>
+                <%--<asp:UpdatePanel runat="server">
+                    <ContentTemplate>--%>
                         <div class="scrolling-table-container">
                             <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" CssClass="table text-center table-hover" OnRowCommand="gvTurnos_RowCommand" Style="overflow-y: scroll; height: 15em">
                                 <HeaderStyle BackColor="#3E64FF" ForeColor="White" />
@@ -70,8 +70,8 @@
                                 </Columns>
                             </asp:GridView>
                         </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
+                    <%--</ContentTemplate>
+                </asp:UpdatePanel>--%>
             </section>
 
             <!-- MODAL CANCELAR TURNO-->
@@ -86,37 +86,37 @@
                                     onserverclick="CerrarModalCancelar">
                                     x</button>
                             </div>
-                            <div class="modal-body col-md-8">
+                            <div class="modal-body col-auto">
                                 <%--CODIGO CUERPO MODAL--%>
                                 <div class="mb-3 row">
-                                    <%-- DIA--%>
-                                    <h4 class="col-sm-1 mr-2">Dia:</h4>
-                                    <asp:Label ID="lblDia" Text="" CssClass="h5 col-sm-2 mt-1 ml-2" runat="server"></asp:Label>
+                                    <%--DIA--%>
+                                    <h4 class="col-auto">Dia:</h4>
+                                    <asp:Label ID="lblDia" Text="" CssClass="h5 col-auto mt-1 ml-1" Style="color: blue;" runat="server"></asp:Label>
                                 </div>
                                 <%--FECHA--%>
                                 <div class="mb-3 row">
-                                    <h4 class="col-sm-1 mr-5">Fecha:</h4>
-                                    <asp:Label runat="server" ID="lblFecha" Text="" CssClass="h5 col-sm-2 mt-1 ml-2"></asp:Label>
+                                    <h4 class="col-auto">Fecha:</h4>
+                                    <asp:Label runat="server" ID="lblFecha" Text="" CssClass="h5 col-auto mt-1 ml-1" Style="color: blue;"></asp:Label>
                                 </div>
                                 <%--HORA--%>
                                 <div class="row mb-3">
-                                    <h4 class="col-sm-1 mr-4">Hora:</h4>
-                                    <asp:Label ID="lblHora" Text="" CssClass="h5 col-sm-2 mt-1 ml-4" runat="server"></asp:Label>
+                                    <h4 class="col-auto">Hora:</h4>
+                                    <asp:Label ID="lblHora" Text="" CssClass="h5 col-auto mt-1 ml-1" Style="color: blue;" runat="server"></asp:Label>
                                 </div>
                                 <%--DESCRIPCION--%>
                                 <div class="row mb-3">
-                                    <h4 class="col-sm-3 mr-5">Descripcion:</h4>
-                                    <asp:Label ID="lblDescripcion" runat="server" Text="" CssClass="h5 col-auto mt-1 ml-4"></asp:Label>
+                                    <h4 class="col-auto">Descripcion:</h4>
+                                    <asp:Label ID="lblDescripcion" runat="server" Text="" CssClass="h5 col-auto mt-1 ml-1" Style="color: blue;"></asp:Label>
                                 </div>
-                                <%--ESPECIALIDAD--%>
+                                <%--PACIENTE--%>
                                 <div class="row mb-3">
-                                    <h4 class="col-sm-3 mr-5">Especialidad:</h4>
-                                    <asp:Label ID="lblEspecialidad" Text="" CssClass="h5 col-sm-2 mt-1 ml-4" runat="server"></asp:Label>
+                                    <h4 class="col-auto">Paciente:</h4>
+                                    <asp:Label ID="lblPaciente" Text="" CssClass="h5 col-auto mt-1 ml-1" Style="color: blue;" runat="server"></asp:Label>
                                 </div>
-                                <%--PROFESIONAL--%>
+                                <%--OBRA SOCIAL--%>
                                 <div class="row mb-3">
-                                    <h4 class="col-sm-2 mr-5">Profesional:</h4>
-                                    <asp:Label ID="lblProfesional" Text="" CssClass="h5 col-auto mt-1 ml-4" runat="server"></asp:Label>
+                                    <h4 class="col-auto">Obra Social:</h4>
+                                    <asp:Label ID="lblObraSocial" Text="" CssClass="h5 col-auto mt-1 ml-1" Style="color: blue;" runat="server"></asp:Label>
                                 </div>
 
                                 <%--CIERRE CUERPO MODAL--%>
@@ -166,23 +166,25 @@
                                     <HeaderStyle BackColor="#3E64FF" ForeColor="White" />
                                     <RowStyle BackColor="#D6DBDF" ForeColor="#333333" />
                                     <Columns>
-                                        <asp:BoundField DataField="idTurno" HeaderText="id" HeaderStyle-CssClass="d-none" ItemStyle-CssClass="d-none"/>
+                                        <asp:BoundField DataField="idTurno" HeaderText="id" HeaderStyle-CssClass="d-none" ItemStyle-CssClass="d-none" />
                                         <asp:BoundField DataField="fechaTurno" HeaderText="Fecha" />
                                         <asp:BoundField DataField="horaTurno" HeaderText="Hora" />
                                         <asp:BoundField DataField="descripcion" HeaderText="Descripcion" />
                                         <asp:BoundField DataField="paciente" HeaderText="Paciente" />
                                         <asp:BoundField DataField="obraSocial" HeaderText="Obra Social" />
-                                        <asp:BoundField DataField="estado" HeaderText="Estado" HeaderStyle-CssClass="d-none" ItemStyle-CssClass="d-none"/>
+                                        <asp:BoundField DataField="estado" HeaderText="Estado" HeaderStyle-CssClass="d-none" ItemStyle-CssClass="d-none" />
                                         <asp:BoundField DataField="atencion" HeaderText="Estado" />
-                                        <asp:TemplateField>                                  
+                                        <asp:TemplateField>
                                             <HeaderTemplate>
-                                                <p>Todos
-                                                <asp:CheckBox ID="chkTodos" runat="server" AutoPostBack="true" OnCheckedChanged="chkTodos_CheckedChanged"/></p>
+                                                <p>
+                                                    Todos
+                                                <asp:CheckBox ID="chkTodos" runat="server" AutoPostBack="true" OnCheckedChanged="chkTodos_CheckedChanged" />
+                                                </p>
                                             </HeaderTemplate>
                                             <ItemTemplate>
                                                 <p>
-                                                <%--Atencion--%>
-                                                <asp:CheckBox ID="chkAtencion" runat="server" OnCheckedChanged="chkAtencion_CheckedChanged"/>
+                                                    <%--Atencion--%>
+                                                    <asp:CheckBox ID="chkAtencion" runat="server" OnCheckedChanged="chkAtencion_CheckedChanged" />
                                                 </p>
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -197,13 +199,13 @@
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
-            </section>     
-            
+            </section>
+
 
             <div class="row mr-2" style="justify-content: end;">
-                    <%--CONFIRMAR CAMBIOS--%>
-                    <asp:Button ID="btnConfirmarAtencion" runat="server" Text="Actualizar atencion" CssClass="btn btn-outline-primary" OnClick="btnConfirmarAtencion_Click" />
-                </div>
+                <%--CONFIRMAR CAMBIOS--%>
+                <asp:Button ID="btnConfirmarAtencion" runat="server" Text="Actualizar atencion" CssClass="btn btn-outline-primary" OnClick="btnConfirmarAtencion_Click" />
+            </div>
 
         </div>
         <%--CIERRE DIV POR FECHA--%>

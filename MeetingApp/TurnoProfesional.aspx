@@ -111,7 +111,7 @@
                                 onserverclick="CerrarModalTurno">
                                 x</button>
                         </div>
-                        <div class="modal-body col-md-8">
+                        <div class="modal-body col-auto">
                             <%--CODIGO CUERPO MODAL--%>
                             <%--<div class="mb-3 row">
                                 DIA
@@ -120,33 +120,33 @@
                             </div>--%>
                            <%--FECHA--%>                            
                                 <div class="mb-3 row">
-                                    <h4 class="col-sm-1 mr-5">Fecha:</h4>
-                                    <asp:Label runat="server" ID="lblFecha" Text="" CssClass="h5 col-auto mt-1 ml-2"></asp:Label>
+                                    <h4 class="col-auto">Fecha:</h4>
+                                    <asp:Label runat="server" ID="lblFecha" Text="" CssClass="h5 col-auto mt-1 ml-1" style="color:blue;"></asp:Label>
                                 </div>
                             <%--HORA--%>
                                 <div class="row mb-3">
-                                    <h4 class="col-sm-1 mr-4">Hora:</h4>
-                                    <asp:Label ID="lblHora" Text="" CssClass="h5 col-auto mt-1 ml-4" runat="server"></asp:Label>
+                                    <h4 class="col-auto">Hora:</h4>
+                                    <asp:Label ID="lblHora" Text="" CssClass="h5 col-auto mt-1 ml-1" style="color:blue;" runat="server"></asp:Label>
                                 </div>
                             <%--DESCRIPCION--%>
                                 <div class="row mb-3">
-                                    <h4 class="col-sm-3 mr-5">Descripcion:</h4>
-                                    <asp:Label ID="lblDescripcion" runat="server" Text="" CssClass="h5 col-auto mt-1 ml-2"></asp:Label>
+                                    <h4 class="col-auto">Descripcion:</h4>
+                                    <asp:Label ID="lblDescripcion" runat="server" Text="" CssClass="h5 col-auto mt-1 ml-1" style="color:blue;"></asp:Label>
                                 </div>
                             <%--PACIENTE--%>
                                 <div class="row mb-3">
-                                    <h4 class="col-sm-3 mr-2">Paciente:</h4>
-                                    <asp:Label ID="lblPaciente" Text="" CssClass="h5 col-auto mt-1 ml-2" runat="server"></asp:Label>
+                                    <h4 class="col-auto">Paciente:</h4>
+                                    <asp:Label ID="lblPaciente" Text="" CssClass="h5 col-auto mt-1 ml-1" style="color:blue;" runat="server"></asp:Label>
                                 </div>
                             <%--OBRA SOCIAL--%>
                             <div class="row mb-3">
                                 <h4 class="col-auto">Obra Social:</h4>
-                                    <asp:Label ID="lblObraSocial" Text="" CssClass="h5 col-auto mt-1" runat="server"></asp:Label>
+                                    <asp:Label ID="lblObraSocial" Text="" CssClass="h5 col-auto mt-1 ml-1" style="color:blue;" runat="server"></asp:Label>
                                 </div> 
                             <%--FORMA PAGO--%>
                             <div class="row mb-3">
                                 <h4 class="col-auto">Forma de Pago:</h4>
-                                    <asp:Label ID="lblFormaPago" Text="" CssClass="h5 col-auto mt-1" runat="server"></asp:Label>
+                                    <asp:Label ID="lblFormaPago" Text="" CssClass="h5 col-auto mt-1 ml-1" style="color:blue;" runat="server"></asp:Label>
                                 </div>
                             <%--CIERRE CUERPO MODAL--%>
                         </div>                        

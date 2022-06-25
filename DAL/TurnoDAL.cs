@@ -392,5 +392,112 @@ namespace DAL
         }
 
 
+        //private List<String> cual(DateTime desde ,DateTime hasta,string hora)
+        //{
+        //    List<String> horarios = new List<string>();
+
+
+        //    while (desde<hasta) {
+
+        //        if (hora != desde.ToString("hh:mm"))
+        //        {
+
+        //            horarios.Add(desde.ToString("hh:mm"));
+        //        }
+        //        desde.AddHours(1);
+            
+        //    }
+
+        //    return horarios;
+
+        //}
+
+        //class horariosDisp
+        //{
+        //    public DateTime fecha { get; set; }
+        //    public string hora { get; set; }
+        //    public int idpro { get; set; }
+
+        //    public string nombre { get; set; }
+        //    public string apellido { get; set; }
+
+        //    public DateTime desde { get; set; }
+        //    public DateTime hasta { get; set; }
+
+        //}
+
+        //class horarios
+        //{
+        //    public DateTime fecha { get; set; }
+        //    public List<String> hora { get; set; }
+            
+
+        //    public string nombre { get; set; }
+        //    public string apellido { get; set; }
+
+          
+
+        //}
+
+        //private void a()
+        //{
+        //    List<horariosDisp> hd = new List<horariosDisp>();
+        //    horariosDisp h = new horariosDisp();
+
+        //    h.fecha = DateTime.Now;
+        //    h.hora = "10:00";
+        //    h.idpro = 1;
+        //    h.nombre = "a";
+        //    h.apellido = "b";
+        //    h.desde = DateTime.Parse("09:00");
+        //    h.hasta = DateTime.Parse("13:00");
+
+        //    hd.Add(h);
+
+        //    List<horarios> h2 = new List<horarios>();
+        //    foreach(var a in hd)
+        //    {
+        //        List<String> horas = new List<String>();
+
+        //        while (a.desde < a.hasta)
+        //        {
+
+        //            if (a.hora != a.desde.ToString("hh:mm"))
+        //            {
+
+        //                horas.Add(a.desde.ToString("hh:mm"));
+        //            }
+        //            a.desde.AddHours(1);
+
+        //        }
+
+        //        h2.Add(new horarios{
+                
+        //            fecha=a.fecha,
+        //            hora=horas,
+        //            nombre=a.nombre,
+        //            apellido=a.apellido
+
+        //        });
+
+
+        //    }
+
+        //    List<string> ho = new List<string>();
+
+            
+
+           // string hor = "23:59";
+           //foreach(var a in  )
+           // {
+           //     if(DateTime.Parse(a.hora))
+                
+
+           // }
+
+
+        //}
+
+
     }
 }
