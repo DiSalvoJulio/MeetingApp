@@ -48,17 +48,17 @@
 
                     <div class="wrap-input100 validate-input" data-validate="Email requerido: ejemplo@abc.com">
                         <%--<input class="input100" type="text" ID="txtUsuario" name="email" runat="server"/>--%>
-                        <asp:TextBox ID="txtUsuario" runat="server" CssClass="input100" pattern="[A-Za-z0-9]{4,20}" title="El Nombre de Usuario solo puede contener numeros y letras. Un minimo de 8 caracteres y un maximo de 20"/>
+                        <asp:TextBox ID="txtUsuario" runat="server" placeholder="Email o D.N.I." CssClass="input100" pattern="[A-Za-z0-9]{4,20}" title="El Nombre de Usuario solo puede contener numeros y letras. Un minimo de 8 caracteres y un maximo de 20"/>
                         <span class="focus-input100"></span>
-                        <span class="label-input100">Email o D.N.I.</span>
+                        <%--<span class="label-input100">Email o D.N.I.</span>--%>
                     </div>
 
 
                     <div class="wrap-input100 validate-input" data-validate="Contraseña requerida">
                        <%-- <input class="input100" type="password" id="txtPass" name="pass" runat="server"/>--%>
-                        <asp:TextBox ID="txtPass" runat="server" CssClass="input100" Type="password" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]){8,12}" title="La contraseña debe contener al menos una letra mayuscula, minuscula y  un valor numerico. Un minimo de 8 caracteres y un maximo de 12."/>
+                        <asp:TextBox ID="txtPass" runat="server" placeholder="Contraseña" CssClass="input100" Type="password" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]){8,12}" title="La contraseña debe contener al menos una letra mayuscula, minuscula y  un valor numerico. Un minimo de 8 caracteres y un maximo de 12."/>
                         <span class="focus-input100"></span>
-                        <span class="label-input100">Contraseña</span>
+                        <%--<span class="label-input100">Contraseña</span>--%>
                     </div>
 
                     <div class="flex-sb-m w-full p-t-3 p-b-32">

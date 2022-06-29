@@ -16,7 +16,8 @@ namespace Entidades.DTOs
         public string especialidad { get; set; }
         public string obraSocial { get; set; }
         public string estado { get; set; }
-        
+        public string atencion { get; set; }
+
 
     }
 }

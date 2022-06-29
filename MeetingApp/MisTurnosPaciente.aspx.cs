@@ -27,7 +27,7 @@ namespace MeetingApp
                 Usuario paciente = (Usuario)Session["Usuario"];
                 Session["idPaciente"] = paciente.idUsuario;                
                 
-                CargarGrillaTurnos();
+                //CargarGrillaTurnos();
                 CargarGrillaTurnosHistoricos();
             }
             
@@ -37,6 +37,7 @@ namespace MeetingApp
         {
             divProximos.Visible = true;
             btnHistoricos.Visible = false;
+            CargarGrillaTurnos();
         }
         protected void btnHistoricos_Click(object sender, EventArgs e)
         {
@@ -138,8 +139,6 @@ namespace MeetingApp
                 return true;
 
                 //VER SI MANDAR MAIL AL PROFESIONAL Y AL PACIENTE POR CANCELAR EL TURNO
-
-
 
             }
             catch (Exception ex)

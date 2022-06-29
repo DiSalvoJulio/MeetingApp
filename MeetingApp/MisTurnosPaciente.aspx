@@ -140,6 +140,7 @@
                     <asp:BoundField DataField="especialidad" HeaderText="Especialidad" />
                     <asp:BoundField DataField="obraSocial" HeaderText="Obra Social" />
                     <asp:BoundField DataField="estado" HeaderText="Estado" />
+                    <asp:BoundField DataField="atencion" HeaderText="Atencion" />
                     <%--<asp:TemplateField HeaderText="Acciones">
                         <ItemTemplate>
                             <asp:Button runat="server" ID="btnCancelarTurno" CommandName="Cancelar" CommandArgument='<%# Eval("idTurno") %>' Text="Cancelar turno" CssClass="btn btn-danger" />                            

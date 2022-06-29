@@ -276,7 +276,34 @@ namespace DAL
                         turno.especialidad = dr["Especialidad"].ToString();
                         turno.obraSocial = dr["ObraSocial"].ToString();
                         turno.estado = dr["Estado"].ToString() == "True" ? turno.estado = "Activo" : turno.estado = "Cancelado";
-                        listaTurnosDto.Add(turno);
+                        turno.atencion = dr["Atencion"].ToString(); //== "True" ? turno.atencion = "Atendido" : turno.atencion = "No Atendido";
+                        if (turno.atencion.Equals(null))
+                        {
+                            turno.atencion = "Sin dato";
+                        }
+                        if (turno.atencion == "1")
+                        {
+                            turno.atencion = "Atendido";
+                        }
+                        if (turno.atencion == "0")
+                        {
+                            turno.atencion = "No atendido";
+                        }
+                            //if (dr["Estado"].ToString() == "NULL")
+                            //{
+                            //    turno.atencion = "Sin dato";
+                            //}
+                            //if (dr["Estado"].ToString() == "True")
+                            //{
+                            //    turno.atencion = "Atendido";
+                            //}
+                            //if (dr["Estado"].ToString() == "False")
+                            //{
+                            //    turno.atencion = "No atendido";
+                            //}
+
+
+                            listaTurnosDto.Add(turno);
                     }
                     return listaTurnosDto;
                 }
