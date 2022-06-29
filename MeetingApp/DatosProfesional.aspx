@@ -24,12 +24,12 @@
             <div class="form-group col-md-6">
                 <%--DNI--%>
                 <asp:Label ID="dni" runat="server" Text="D.N.I."></asp:Label>
-                <asp:TextBox ID="txtDni" name="txtDni" runat="server" placeholder="D.N.I." CssClass="form-control" OnkeyDown="Letras()" MaxLength="40"></asp:TextBox>
+                <asp:TextBox ID="txtDni" name="txtDni" runat="server" placeholder="D.N.I." CssClass="form-control" OnkeyDown="Numeros()" MaxLength="10"></asp:TextBox>
             </div>
             <div class="form-group col-md-6">
                 <%--FECHA NACIMIENTO--%>
                 <asp:Label ID="fechaNac" runat="server" Text="Fecha de nacimiento"></asp:Label>
-                <asp:TextBox ID="txtFecNac" name="txtFecNac" runat="server" placeholder="Fecha de nacimiento" Type="date" CssClass="form-control" OnkeyDown="Letras()" MaxLength="10"></asp:TextBox>
+                <asp:TextBox ID="txtFecNac" name="txtFecNac" runat="server" placeholder="Fecha de nacimiento" Type="date" CssClass="form-control" MaxLength="10"></asp:TextBox>
             </div>
             <div class="form-group col-md-6">
                 <%--EMAIL--%>
@@ -39,17 +39,17 @@
             <div class="form-group col-md-6">
                 <%--EDAD--%>
                 <asp:Label ID="Label1" runat="server" Text="Edad"></asp:Label>
-                <asp:TextBox ID="txtEdad" name="txtEdad" runat="server" placeholder="Edad" CssClass="form-control" OnkeyDown="" MaxLength="40"></asp:TextBox>
+                <asp:TextBox ID="txtEdad" name="txtEdad" runat="server" placeholder="Edad" CssClass="form-control"  MaxLength="3"></asp:TextBox>
             </div>
             <div class="form-group col-md-6">
                 <%--TELEFONO O CELULAR--%>
                 <asp:Label ID="telefono" runat="server" Text="Telefono o Celular"></asp:Label>
-                <asp:TextBox ID="txtTelefono" name="txtTelefono" runat="server" placeholder="Telefono o celular" CssClass="form-control" OnkeyDown="" MaxLength="15"></asp:TextBox>
+                <asp:TextBox ID="txtTelefono" name="txtTelefono" runat="server" placeholder="Telefono o celular" CssClass="form-control" OnkeyDown="Numeros()" MaxLength="15"></asp:TextBox>
             </div>
             <div class="form-group col-md-6">
                 <%--DIRECCION--%>
                 <asp:Label ID="direccion" runat="server" Text="Direccion - Nro"></asp:Label>
-                <asp:TextBox ID="txtDireccion" name="txtDireccion" runat="server" placeholder="Direccion - Nro" CssClass="form-control" OnkeyDown="" MaxLength="50"></asp:TextBox>
+                <asp:TextBox ID="txtDireccion" name="txtDireccion" runat="server" placeholder="Direccion - Nro" CssClass="form-control" MaxLength="50"></asp:TextBox>
             </div>
             <%--<asp:UpdatePanel runat="server">
                 <ContentTemplate> --%>  
@@ -67,12 +67,12 @@
             <div class="form-group col-md-4">
                 <%--MATRICULA--%>
                 <asp:Label ID="Label2" runat="server" Text="Matricula"></asp:Label>
-                <asp:TextBox ID="txtMatricula" name="txtMatricula" runat="server" placeholder="Matricula" CssClass="form-control" MaxLength="40"></asp:TextBox>
+                <asp:TextBox ID="txtMatricula" name="txtMatricula" runat="server" placeholder="Matricula" CssClass="form-control" MaxLength="20"></asp:TextBox>
             </div>
             <div class="form-group col-md-4">
                 <%--FECHA INGRESO--%>
                 <asp:Label ID="Ingreso" runat="server" Text="Fecha de Ingreso"></asp:Label>
-                <asp:TextBox ID="txtIngreso" name="txtIngreso" runat="server" placeholder="Fecha de Ingreso" CssClass="form-control" OnkeyDown="Letras()" MaxLength="40" oninput="maxlengthNumber(this);"></asp:TextBox>
+                <asp:TextBox ID="txtIngreso" name="txtIngreso" runat="server" placeholder="Fecha de Ingreso" CssClass="form-control" MaxLength="10" oninput="maxlengthNumber(this);"></asp:TextBox>
             </div>
         </div>
         <%--cierre del row--%>

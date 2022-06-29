@@ -17,7 +17,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    <script src="js/JavaScript.js"></script>
+    <%--<script src="js/JavaScript.js"></script>--%>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 
@@ -236,13 +236,19 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
 
-    <script>
+    <script type="text/javascript">
         //habilita todas las modales
-        function mostrarModal(x) {
-            $(x).modal('show');
-        }
+        //function mostrarModal(x) {
+        //    $(x).modal('show');
+        //}
 
-        //FUNCIONES CON JAVASCRIPT
+        //VALIDAR SOLO LETRAS
+        function Letras() {
+            if ((event.keyCode != 32 && event.keyCode != 8 && event.keyCode != 46 && event.keyCode != 37 && event.keyCode != 39) && (event.keyCode < 65) || (event.keyCode > 90) && (event.keyCode >= 96 || event.keyCode <= 105)) {
+                event.returnValue = false;
+            }
+        }
+        //VALIDAR SOLO NUMEROS
         function Numeros() {
             if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105) || event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || event.keyCode == 190)
                 event.returnValue = true;
@@ -258,46 +264,12 @@
         //    });
         //});
 
-        function Letras() {
-            if ((event.keyCode != 32 && event.keyCode != 8) && (event.keyCode < 65) || (event.keyCode > 90) && (event.keyCode < 97) || (event.keyCode > 122))
-                event.returnValue = false;
-        }
         function maxlengthNumber(obj) {
             console.log(obj.value);
             if (obj.value.length > obj.maxLength) {
                 obj.value = obj.value.slice(0, obj.maxLength);
             }
-        }
-        function validateDecimal(valor) {
-            var RE = /^\d*(\.\d{1})?\d{0,1}$/;
-            if (RE.test(valor)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        //FUNCION PARA ALERT CON JAVASCRIPT
-        Swal.fire({ // reemplazamos el alert comun por la libreria sweetAlert2
-            title: 'Exito!',
-            text: 'Quiere vaciar su carrito de compras? ',
-            icon: 'warning',
-            confirmButtonText: 'Si',
-            type: "warning",
-            showCancelButton: true
-        }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-                /*localStorage.removeItem("pinturas");*/
-                //document.getElementById("lblTotalAPagar").innerText="";
-                window.setTimeout(location.reload(), 2000);
-
-
-            } else if (result.isDenied) {
-                Swal.fire('Changes are not saved', '', 'info')
-            }
-        })
-
+        } 
 
     </script>
 </body>

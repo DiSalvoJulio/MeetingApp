@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="DatosPaciente" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DatosPaciente.aspx.cs" Inherits="MeetingApp.DatosPaciente" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderContent" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">   
+ 
     <div class="container">
     <%-- SECCION 1--%>
     <section class="content-header">
@@ -43,7 +44,7 @@
             <div class="form-group col-md-6">
                 <%--TELEFONO O CELULAR--%>
                 <asp:Label ID="telefono" runat="server" Text="Telefono o Celular"></asp:Label>
-                <asp:TextBox ID="txtTelefono" name="txtTelefono" runat="server" placeholder="Telefono o celular" CssClass="form-control" OnkeyDown="" MaxLength="15"></asp:TextBox>
+                <asp:TextBox ID="txtTelefono" name="txtTelefono" runat="server" placeholder="Telefono o celular" CssClass="form-control" OnkeyDown="Numeros()" MaxLength="15"></asp:TextBox>
             </div>
             <div class="form-group col-md-6">
                 <%--DIRECCION--%>
@@ -81,9 +82,11 @@
             <div class="form-group mt-2">
                 <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" CssClass="btn btn-danger" />
                 <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" CssClass="btn btn-success" />
-                <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click" CssClass="btn btn-primary" />
+                <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click" CssClass="btn btn-primary" OnClientClick="test()" />
             </div>
         </div>
     </div>
-    <%--SECCION 3 GRILLA--%>
+    <%--SECCION 3 GRILLA--%>   
+
+    
 </asp:Content>
