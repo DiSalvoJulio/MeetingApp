@@ -341,6 +341,11 @@ namespace MeetingApp
                 }//cierre else
 
             }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Debe seleccionar una fecha', 'warning')", true);
+                return;
+            }
         }
 
         public string horaSeleccionada()

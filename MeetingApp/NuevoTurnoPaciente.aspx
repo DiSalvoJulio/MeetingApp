@@ -16,7 +16,7 @@
                         <asp:DropDownList ID="cmbEspecialidad" runat="server" CssClass="btn btn-primary form-control" AutoPostBack="true" OnSelectedIndexChanged="cmbEspecialidad_SelectedIndexChanged">
                         </asp:DropDownList>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-4"> <%--col-md-4--%>
                         <%--PROFESIONALES--%>
                         <asp:Label ID="La2" runat="server" Text="Seleccione un profesional" CssClass=""></asp:Label>
                         <asp:DropDownList ID="cmbProfesional" runat="server" CssClass="btn btn-primary form-control" AutoPostBack="true">
@@ -36,7 +36,7 @@
                 <asp:Label ID="Label4" runat="server" Text="Calendario"></asp:Label>
                 <input runat="server" type="date" class="form-control" id="txtCalendario">
             </div>
-            <div class="form-group col-md-2">
+            <div class="form-group col-md-2 mr-5">
                 <%--MOSTRAR HORARIOS--%>
                 <asp:Label ID="Label5" runat="server" Text="Mostrar"></asp:Label>
                 <asp:Button Text="Mostrar horarios" ID="btnMostrarHorarios" class="btn btn-info" runat="server" OnClick="btnMostrarHorarios_Click" />
@@ -46,7 +46,7 @@
             <%--<div class="row">--%>
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
-                    <div class="form-group col-md-6" id="divHorariosDisponibles" runat="server">
+                    <div class="form-group col-md-4" id="divHorariosDisponibles" runat="server">
                         <%--HORARIOS--%>
                         <asp:Label ID="Label2" runat="server" Text="Horario"></asp:Label>
                         <asp:DropDownList ID="cmbHorarioDisponible" runat="server" CssClass="btn btn-primary" AutoPostBack="false">
@@ -82,9 +82,9 @@
 
         <div class="row mt-2">
             <div class="form-group col-md-8">
-                <%--<h5 class="mr-3 mt-1 col-auto">Motivo del turno</h5>--%>
+                <%--MOTIVO DEL TURNO--%>
                 <asp:Label ID="Label3" runat="server" Text="Motivo del turno" CssClass="mr-3"></asp:Label>
-                <asp:TextBox runat="server" TextMode="MultiLine" CssClass="form-control col-auto" ID="txtMotivo"></asp:TextBox>
+                <asp:TextBox runat="server" TextMode="MultiLine" OnkeyDown="Letras()" CssClass="form-control col-auto" ID="txtMotivo"></asp:TextBox>
             </div>
         </div>
 

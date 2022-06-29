@@ -188,6 +188,12 @@ namespace MeetingApp
         //mostrar horarios
         protected void btnMostrarHorarios_Click(object sender, EventArgs e)
         {
+            Usuario paciente = (Usuario)Session["User"];
+            if (paciente==null)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'No ingreso D.N.I del paciente', 'warning')", true);
+                return;
+            }        
 
             if (txtCalendario.Value.Length != 0)
             {
@@ -303,6 +309,11 @@ namespace MeetingApp
 
                 }//cierre else
 
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Alerta!', 'Debe seleccionar una fecha', 'warning')", true);
+                return;
             }
         }
 
@@ -468,8 +479,8 @@ namespace MeetingApp
             if (listaHorarioProf[0].turno == "Tarde")
             {
                 //tarde
-                TimeSpan inicioT = TimeSpan.Parse(listaHorarioProf[1].desde);
-                TimeSpan finT = TimeSpan.Parse(listaHorarioProf[1].hasta);
+                TimeSpan inicioT = TimeSpan.Parse(listaHorarioProf[0].desde); //se cambio el 0 antes estaba el 1
+                TimeSpan finT = TimeSpan.Parse(listaHorarioProf[0].hasta);
                 int k = 1;
                 while (inicioT < finT)
                 {
@@ -503,8 +514,8 @@ namespace MeetingApp
             if (listaHorarioProf[0].turno == "Mañana")
             {
                 //mañana        
-                TimeSpan inicioM = TimeSpan.Parse(listaHorarioProf[1].desde);
-                TimeSpan finM = TimeSpan.Parse(listaHorarioProf[1].hasta);
+                TimeSpan inicioM = TimeSpan.Parse(listaHorarioProf[0].desde); //ver que cambie el 0 antes estaba el 1
+                TimeSpan finM = TimeSpan.Parse(listaHorarioProf[0].hasta);
 
                 int k = 1;
 

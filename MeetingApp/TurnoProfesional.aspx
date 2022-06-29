@@ -6,7 +6,7 @@
     <div class="container">
         <h1 style="text-align: center">Nuevo Turno</h1>
         <hr />
-        <div class="row"> <%--ESTA BIEEEEEEEEEEEEEEEN--%>
+        <div class="row">          
             <div class="form-group col-md-4">
                 <%--DNI--%>
                 <asp:Label ID="Label4" runat="server" Text="Ingrese el D.N.I. del paciente"></asp:Label>
@@ -53,53 +53,53 @@
             <%--CALENDARIO--%>
             <div class="form-group col-md-4">
                 <asp:Label ID="Label3" runat="server" Text="Calendario"></asp:Label>
-            <input runat="server" type="date" class="form-control" id="txtCalendario">
-                </div>
-            <div class="form-group col-md-2">
+                <input runat="server" type="date" class="form-control" id="txtCalendario">
+            </div>
+            <div class="form-group col-md-2 mr-5">
                 <%--MOSTRAR HORARIOS--%>
                 <asp:Label ID="Label5" runat="server" Text="Mostrar"></asp:Label>
-            <asp:Button Text="Mostrar horarios" ID="btnMostrarHorarios" class="btn btn-info" runat="server" onclick="btnMostrarHorarios_Click"/>
-                </div>
+                <asp:Button Text="Mostrar horarios" ID="btnMostrarHorarios" class="btn btn-info" runat="server" OnClick="btnMostrarHorarios_Click" />
+            </div>
 
             <asp:UpdatePanel runat="server">
-            <ContentTemplate>
-            <div class="form-group col-md-5">
-                <%--HORARIOS--%>
-                <asp:Label ID="Label6" runat="server" Text="Horario"></asp:Label>
-            <asp:DropDownList ID="cmbHorarioDisponible" runat="server" CssClass="btn btn-primary" AutoPostBack="false">
-                <asp:ListItem Text="Horarios..."></asp:ListItem>
-            </asp:DropDownList>  
-                </div>
+                <ContentTemplate>
+                    <div class="form-group col-md-2">
+                        <%--HORARIOS--%>
+                        <asp:Label ID="Label6" runat="server" Text="Horario"></asp:Label>
+                        <asp:DropDownList ID="cmbHorarioDisponible" runat="server" CssClass="btn btn-primary" AutoPostBack="false">
+                            <asp:ListItem Text="Horarios..."></asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
                 </ContentTemplate>
-            <Triggers>
-                <asp:AsyncPostBackTrigger ControlID="btnMostrarHorarios" EventName="Click" />
-            </Triggers>
-        </asp:UpdatePanel>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="btnMostrarHorarios" EventName="Click" />
+                </Triggers>
+            </asp:UpdatePanel>
         </div>
 
 
         <%--FORMA DE PAGO--%>
         <div class="row mt-2">
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-4">
                 <asp:Label ID="Label7" runat="server" Text="Forma de pago"></asp:Label>
-            <asp:DropDownList ID="cmbFormaPago" runat="server" CssClass="btn btn-primary" AutoPostBack="false">  
-                <asp:ListItem Text="Forma de pago..."></asp:ListItem>
-            </asp:DropDownList>
-                </div>
-            <div class="form-group">
-            <%--<h5 class="mt-1 col-sm-3">Motivo del turno</h5>--%>
+                <asp:DropDownList ID="cmbFormaPago" runat="server" CssClass="btn btn-primary form-control" AutoPostBack="false">
+                    <asp:ListItem Text="Forma de pago..."></asp:ListItem>
+                </asp:DropDownList>
+            </div>
+            <div class="form-group col-md-6">
+                <%--MOTIVO DEL TURNO--%>
                 <asp:Label ID="Label8" runat="server" Text="Motivo del turno"></asp:Label>
-            <asp:TextBox runat="server" TextMode="MultiLine" Width="180%" ID="txtMotivo"></asp:TextBox>
-                </div>
+                <asp:TextBox runat="server" OnkeyDown="Letras()" TextMode="MultiLine" CssClass="form-control col-auto" ID="txtMotivo"></asp:TextBox>
+            </div>
         </div>
 
         <div class="form-row" style="justify-content: start;">
-        <asp:Button Text="Reservar turno" ID="btnReservarTurno" class="btn btn-danger mt-3 mb-3" runat="server" onclick="btnReservarTurno_Click"/>
+            <asp:Button Text="Reservar turno" ID="btnReservarTurno" class="btn btn-danger mt-3 mb-3" runat="server" OnClick="btnReservarTurno_Click" />
         </div>
 
 
 
-         <%--MODAL PARA CONFIRMAR EL TURNO--%>
+        <%--MODAL PARA CONFIRMAR EL TURNO--%>
         <asp:Panel runat="server" ID="panelConfirmarTurno" Visible="false">
             <div class="modal fade show" tabindex="-1" aria-hidden="true" style="display: block;">
                 <div class="modal-dialog modal-lg">
@@ -118,42 +118,42 @@
                                 <h4 class="col-sm-1 mr-2">Dia:</h4>
                                 <asp:Label ID="lblDia" Text="" CssClass="h5 col-auto mt-1 ml-2" runat="server"></asp:Label>
                             </div>--%>
-                           <%--FECHA--%>                            
-                                <div class="mb-3 row">
-                                    <h4 class="col-auto">Fecha:</h4>
-                                    <asp:Label runat="server" ID="lblFecha" Text="" CssClass="h5 col-auto mt-1 ml-1" style="color:blue;"></asp:Label>
-                                </div>
+                            <%--FECHA--%>
+                            <div class="mb-3 row">
+                                <h4 class="col-auto">Fecha:</h4>
+                                <asp:Label runat="server" ID="lblFecha" Text="" CssClass="h5 col-auto mt-1 ml-1" Style="color: blue;"></asp:Label>
+                            </div>
                             <%--HORA--%>
-                                <div class="row mb-3">
-                                    <h4 class="col-auto">Hora:</h4>
-                                    <asp:Label ID="lblHora" Text="" CssClass="h5 col-auto mt-1 ml-1" style="color:blue;" runat="server"></asp:Label>
-                                </div>
+                            <div class="row mb-3">
+                                <h4 class="col-auto">Hora:</h4>
+                                <asp:Label ID="lblHora" Text="" CssClass="h5 col-auto mt-1 ml-1" Style="color: blue;" runat="server"></asp:Label>
+                            </div>
                             <%--DESCRIPCION--%>
-                                <div class="row mb-3">
-                                    <h4 class="col-auto">Descripcion:</h4>
-                                    <asp:Label ID="lblDescripcion" runat="server" Text="" CssClass="h5 col-auto mt-1 ml-1" style="color:blue;"></asp:Label>
-                                </div>
+                            <div class="row mb-3">
+                                <h4 class="col-auto">Descripcion:</h4>
+                                <asp:Label ID="lblDescripcion" runat="server" Text="" CssClass="h5 col-auto mt-1 ml-1" Style="color: blue;"></asp:Label>
+                            </div>
                             <%--PACIENTE--%>
-                                <div class="row mb-3">
-                                    <h4 class="col-auto">Paciente:</h4>
-                                    <asp:Label ID="lblPaciente" Text="" CssClass="h5 col-auto mt-1 ml-1" style="color:blue;" runat="server"></asp:Label>
-                                </div>
+                            <div class="row mb-3">
+                                <h4 class="col-auto">Paciente:</h4>
+                                <asp:Label ID="lblPaciente" Text="" CssClass="h5 col-auto mt-1 ml-1" Style="color: blue;" runat="server"></asp:Label>
+                            </div>
                             <%--OBRA SOCIAL--%>
                             <div class="row mb-3">
                                 <h4 class="col-auto">Obra Social:</h4>
-                                    <asp:Label ID="lblObraSocial" Text="" CssClass="h5 col-auto mt-1 ml-1" style="color:blue;" runat="server"></asp:Label>
-                                </div> 
+                                <asp:Label ID="lblObraSocial" Text="" CssClass="h5 col-auto mt-1 ml-1" Style="color: blue;" runat="server"></asp:Label>
+                            </div>
                             <%--FORMA PAGO--%>
                             <div class="row mb-3">
                                 <h4 class="col-auto">Forma de Pago:</h4>
-                                    <asp:Label ID="lblFormaPago" Text="" CssClass="h5 col-auto mt-1 ml-1" style="color:blue;" runat="server"></asp:Label>
-                                </div>
+                                <asp:Label ID="lblFormaPago" Text="" CssClass="h5 col-auto mt-1 ml-1" Style="color: blue;" runat="server"></asp:Label>
+                            </div>
                             <%--CIERRE CUERPO MODAL--%>
-                        </div>                        
+                        </div>
                         <!--Fin Body Modal-->
                         <div class="modal-footer">
-                            <asp:Button ID="btnCancelar" Text="Cancelar" runat="server" type="button" class="btn btn-danger" onclick="btnCancelar_Click"/>
-                            <asp:Button ID="btnConfirmarTurno" Text="Confirmar" runat="server" type="button" class="btn btn-primary" onclick="btnConfirmarTurno_Click"/>
+                            <asp:Button ID="btnCancelar" Text="Cancelar" runat="server" type="button" class="btn btn-danger" OnClick="btnCancelar_Click" />
+                            <asp:Button ID="btnConfirmarTurno" Text="Confirmar" runat="server" type="button" class="btn btn-primary" OnClick="btnConfirmarTurno_Click" />
                         </div>
                     </div>
                 </div>
@@ -166,7 +166,7 @@
 
 
 
-         <%-- VALIDA QUE NO SE PUEDA SELECCIONAR FECHA ANTERIOR--%>
+        <%-- VALIDA QUE NO SE PUEDA SELECCIONAR FECHA ANTERIOR--%>
         <script>            
             let date = new Date();
             date.setDate(date.getDate() + 1);//agrega 1 dia para no seleccionar el dia de hoy en calendario
@@ -178,7 +178,7 @@
             min.value = fechaPartida[0]
             console.log(inputDate)
             inputDate.setAttributeNode(min)
-        </script>  
+        </script>
 
 
         <%--fin container--%>
