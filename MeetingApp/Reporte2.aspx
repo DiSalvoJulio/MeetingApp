@@ -5,9 +5,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
-        <h3 style="color: red; text-align: center">Reporte 2</h3>
+        <h1 style="text-align: center">Formas de pago</h1>
         <hr />
-        <h5 class="mb-5">Listado de formas de pago mas utilizadas por mes</h5>
+        <h3 class="mb-5">Listado de formas de pago mas utilizadas por mes</h3>
         <td>
             <asp:Label ID="Label1" runat="server" Text="Seleccionar mes" CssClass="mr-3"></asp:Label>
         </td>

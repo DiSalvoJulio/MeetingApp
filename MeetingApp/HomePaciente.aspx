@@ -16,7 +16,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
-        <h1 style="color: red; text-align: center">HOME</h1>
+        <h1 style="text-align: center">Home</h1>
         <hr />
         <div class="row row-cols-1 row-cols-md-3">
             <div class="col mb-4">

@@ -24,8 +24,11 @@
     <asp:ContentPlaceHolder runat="server" ID="HeaderContent">
     </asp:ContentPlaceHolder>
 
+    <link rel="stylesheet" type="text/css" href="Login/css/util.css"/>
+    <link rel="stylesheet" type="text/css" href="Login/css/main.css"/>
+
 </head>
-<body>
+<body style="background-color:rgb(222, 231, 236);">
     <style>
         #divFonts {
             text-align: center;
@@ -84,11 +87,11 @@
                     </li>
                 </ul>
             </div>--%>
-            <ul class="navbar-nav order-1 order-lg-last ml-auto">
+            <ul class="navbar-nav order-1 order-lg-last ml-auto" style="color:white;">
                 <li class="nav-item dropdown" id="txtUsuarioooo" runat="server">
                     <a class="" href="#" id="lblUsuario" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-user-circle-o mr-1"></i>
+                        <i class="fa fa-user-circle-o mr-1" style="color:white;"></i>
                         <span class="d-inline"></span>
                     </a>
                     <asp:Label runat="server" ID="lblUsuarioooo" CssClass="mr-3"></asp:Label>
@@ -213,11 +216,11 @@
                     </li>
                     <li>
                         <%--<asp:Button runat="server"  ID="Button1" CssClass="fa fa-power-off" Text="Salir" OnClick="btnCerrarSesion_Click"/>--%>                        
-                        <asp:LinkButton ID="Button1" runat="server" OnClick="btnCerrarSesion_Click"><span class="fa fa-power-off"></span>Salir</asp:LinkButton>
+                        <asp:LinkButton ID="Button1" runat="server" OnClick="btnCerrarSesion_Click" CssClass=""><span class="fa fa-power-off mt-5"></span>Salir</asp:LinkButton>
                     </li>
                 </ul>
 
-                <div class="footer">
+                <div class="footer" style="background-color:rgb(222, 231, 236);">
                     <%--<p>
                         Practica Supervisada<i class="icon-heart" aria-hidden="false"></i> por <a href="#" target="">MeetingApp</a>
                     </p>--%>

@@ -13,7 +13,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
-        <h1 style="color: red; text-align: center">Mis Turnos</h1>
+        <h1 style="text-align: center">Mis turnos</h1>
         <hr />
 
         <div class="row" style="justify-content: center;">

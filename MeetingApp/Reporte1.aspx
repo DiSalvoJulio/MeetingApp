@@ -13,7 +13,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
-        <h1 style="color: red; text-align: center">Reporte 1</h1>
+        <h1 style="text-align: center">Turnos activos</h1>
         <hr />
         <h3>Listado de turnos activos con filtros de fecha mínima y fecha máxima</h3>
         <h4 class="mt-5">Seleccionar Fechas</h4>

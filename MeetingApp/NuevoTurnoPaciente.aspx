@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
-        <h1 style="color: red; text-align: center">Nuevo turno</h1>
+        <h1 style="text-align: center">Nuevo turno</h1>
         <hr />
 
         <asp:UpdatePanel runat="server">
@@ -89,8 +89,8 @@
         </div>
 
 
-        <div class="row" style="justify-content: center;">
-            <asp:Button Text="Reservar turno" ID="btnReservarTurno" class="btn btn-danger mt-5" runat="server" OnClick="btnReservarTurno_Click" />
+        <div class="row" style="justify-content: start;">
+            <asp:Button Text="Reservar turno" ID="btnReservarTurno" class="btn btn-danger mt-5 ml-3" runat="server" OnClick="btnReservarTurno_Click" />
         </div>
 
         <%--MODAL PARA CONFIRMAR EL TURNO--%>

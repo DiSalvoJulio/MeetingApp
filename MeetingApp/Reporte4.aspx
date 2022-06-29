@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
-        <h1 style="color: red; text-align: center">Reporte 4</h1>
+        <h1 style="text-align: center">Turnos mensuales</h1>
         <hr />
         <h3 class="mb-5">Listado de pacientes que solicitaron mas de un turno por mes - (fecha minima y maxima)</h3>
         <div class="form-row">

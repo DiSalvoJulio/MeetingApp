@@ -10,7 +10,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
-        <h3 style="color: red; text-align: center">Preguntas frecuentes</h3>
+        <h1 style="text-align: center">Preguntas frecuentes</h1>
         <hr />
 
         <%--ACORDION--%>

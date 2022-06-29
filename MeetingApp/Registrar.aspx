@@ -15,6 +15,8 @@
     <%--<script src="js/JavaScript.js"></script>--%>
     <link href="Registrar.css" rel="stylesheet" />
     <title>Registrar</title>
+    <link rel="stylesheet" type="text/css" href="Login/css/util.css"/>
+    <link rel="stylesheet" type="text/css" href="Login/css/main.css"/>
 </head>
 <body class="content">
 
@@ -27,7 +29,7 @@
         </asp:ScriptManager>
         <%-- SECCION 1--%>
         <section class="content-header mt-2">
-            <h1 style="color: red; text-align: center">Registrarme</h1>
+            <h1 style="text-align: center" class="login100-form-title">Registrarme</h1>
         </section>
         <%-- SECCION 2--%>
         <div class="container">
@@ -108,10 +110,10 @@
                     <label class="custom-control-label" for="chkProfesional">Soy Profesional.</label>
                 </div>--%>
 
-                <div class="form col-md-12 mt-4">
-                    <div class="form-check p-0">
-                        <asp:CheckBox ID="chkProfesional" runat="server" OnCheckedChanged="chkProfesional_CheckedChanged" AutoPostBack="true" CssClass="form" />
-                        <label class="form-check-label" for="chkProfesional">Soy Profesional.</label>
+                <div class="form col-12 mt-1">
+                    <div class="row">
+                        <asp:CheckBox ID="chkProfesional" runat="server" OnCheckedChanged="chkProfesional_CheckedChanged" AutoPostBack="true" CssClass="form mx-3" />
+                        <label for="chkProfesional">Soy Profesional.</label>
                     </div>
 
                     <%--<asp:RadioButton ID="Profesional" runat="server" Checked="false" Text="Si" GroupName="rol" />--%>
@@ -135,7 +137,12 @@
                 </div>
                 <%--</div>--%>
             </div>
-            <div class="modal-header mt-4" style="padding: 1rem 0rem !important; border: none;">
+            <%--SECCION TERMINOS Y CONDICIONES--%>
+            <div class="termi row mt-4">
+                <input runat="server" style="opacity: 1;" id="chkTerminos" class="mb-4" type="checkbox" data-required="1" name="chkTerminos" />
+                <p style="color: black; padding-left: 20px; margin-bottom: 20px;">Aceptar los <a style="color: blue;" href="TerminosYCondiciones.aspx">Términos y Condiciones</a></p>
+            </div>
+            <div class="modal-header mt-1" style="padding: 1rem 0rem !important; border: none;">
                 <a href="InicioSesion.aspx" class="btn btn-info">Volver a Inicio sesión</a>
                 <div>
                     <%--<asp:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" CssClass="btn btn-danger" />--%>
@@ -143,10 +150,6 @@
                 </div>
             </div>
 
-            <%--SECCION TERMINOS Y CONDICIONES--%>
-            <div class="termi row mt-4">
-                <input runat="server" style="opacity: 1;" id="chkTerminos" class="mb-4" type="checkbox" data-required="1" name="chkTerminos" /><p style="color: black; padding-left: 20px; margin-bottom: 20px;">Aceptar los <a style="color: blue;" href="TerminosYCondiciones.aspx">Términos y Condiciones</a></p>
-            </div>
 
             <%--<div class="form col-md-12 mt-3" style="justify-content:center;">
             <div class="form-check">
