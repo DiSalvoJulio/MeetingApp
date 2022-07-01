@@ -7,7 +7,7 @@
      <%-- SECCION 1--%>
     <div class="container">
     <section class="content-header">
-        <h1 style="color: red; text-align: center">Profesional</h1>
+        <h1 style="text-align: center">Profesional</h1>
     </section>
         <hr />
         <div class="row">

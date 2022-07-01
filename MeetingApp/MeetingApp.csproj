@@ -132,6 +132,7 @@
     <Content Include="Especialidades.css" />
     <Content Include="Horarios.aspx" />
     <Content Include="Horarios.css" />
+    <Content Include="Login\images\bg-01.jpg" />
     <Content Include="ObrasSociales.aspx" />
     <Content Include="ObrasSociales.css" />
     <Content Include="Paciente.aspx" />
@@ -279,7 +280,7 @@
     <Content Include="Login\fonts\Linearicons-Free-v1.0.0\icon-font.min.css" />
     <Content Include="Login\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.svg" />
     <Content Include="Login\fonts\montserrat\OFL.txt" />
-    <Content Include="Login\images\bg-01.jpg" />
+    <Content Include="Login\images\bg-02.jpg" />
     <Content Include="Login\images\icons\favicon.ico" />
     <Content Include="Login\js\main.js" />
     <Content Include="Registrar.aspx" />

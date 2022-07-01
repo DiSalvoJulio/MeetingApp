@@ -16,8 +16,22 @@ namespace MeetingApp
                 //cerrar sesion en todos las paginas
                 if (Session["Usuario"]==null)
                 {
+                    Session["Usuario"] = null;
+                    Session.Clear();
+                    Session.Abandon();
+                    Session.RemoveAll();
                     Response.Redirect("InicioSesion.aspx");
                 }
+            }
+
+            //cerrar sesion en todos las paginas
+            if (Session["Usuario"] == null)
+            {
+                Session["Usuario"] = null;
+                Session.Clear();
+                Session.Abandon();
+                Session.RemoveAll();
+                Response.Redirect("InicioSesion.aspx");
             }
         }
 

@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <link href="Horarios.css" rel="stylesheet" />
     <div class="container">
-        <h1 style="color: red; text-align: center">Horarios</h1>
+        <h1 style="text-align: center">Horarios</h1>
         <hr />
         <h5>Seleccione un profesional al cual se le asignara el horario de atencion</h5>
         <asp:Label ID="Label1" runat="server" Text="Profesional" CssClass="mr-3"></asp:Label>

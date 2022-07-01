@@ -300,7 +300,7 @@
                                         <asp:BoundField DataField="atencion" HeaderText="Estado" />
                                         <asp:TemplateField>
                                             <HeaderTemplate>
-                                                <p>
+                                                <p style="color:white;">
                                                     Todos
                                                 <asp:CheckBox ID="chkTodos" runat="server" AutoPostBack="true" OnCheckedChanged="chkTodos_CheckedChanged" />
                                                 </p>
@@ -381,5 +381,21 @@
 
             return true;
         }
+
+
+        <%-- VALIDA QUE NO SE PUEDA SELECCIONAR FECHA ANTERIOR--%>
+        
+            let date = new Date();
+            date.setDate(date.getDate() + 1);//agrega 1 dia para no seleccionar el dia de hoy en calendario
+            const fecha = date.toISOString().split(":");
+            const fechaPartida = fecha[0].split("T");
+            const inputDate = document.getElementById("<%: dtpCancelarPorFecha.ClientID %>");
+
+            let min = document.createAttribute("min")
+            min.value = fechaPartida[0]
+            console.log(inputDate)
+            inputDate.setAttributeNode(min)
+   
+
     </script>
 </asp:Content>

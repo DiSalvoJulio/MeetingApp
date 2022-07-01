@@ -14,7 +14,13 @@ namespace MeetingApp
         RegistrarBLL _registrarBLL = new RegistrarBLL();        
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Session.Remove("Login");            
+            if (Session["Login"] != null || Session["Usuario"] != null)
+            {
+                Session.Clear();
+                Session.Abandon();
+                Session.RemoveAll();
+            }
+           
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)

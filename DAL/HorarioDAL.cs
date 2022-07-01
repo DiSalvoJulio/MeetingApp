@@ -70,23 +70,27 @@ namespace DAL
                         }
                         if (!dr.IsDBNull(1))
                         {
-                            obtenerHorarios.dia = dr.GetString(1);
+                            obtenerHorarios.idDia = dr.GetInt32(1);
                         }
                         if (!dr.IsDBNull(2))
                         {
-                            obtenerHorarios.turno = dr.GetString(2);
+                            obtenerHorarios.dia = dr.GetString(2);
                         }
                         if (!dr.IsDBNull(3))
                         {
-                            obtenerHorarios.inicio = dr.GetString(3);
+                            obtenerHorarios.turno = dr.GetString(3);
                         }
                         if (!dr.IsDBNull(4))
                         {
-                            obtenerHorarios.fin = dr.GetString(4);
+                            obtenerHorarios.inicio = dr.GetString(4);
                         }
                         if (!dr.IsDBNull(5))
                         {
-                            obtenerHorarios.profesional = dr.GetString(5);
+                            obtenerHorarios.fin = dr.GetString(5);
+                        }
+                        if (!dr.IsDBNull(6))
+                        {
+                            obtenerHorarios.profesional = dr.GetString(6);
                         }
                         ListaObtenerHorarios.Add(obtenerHorarios);
                     }

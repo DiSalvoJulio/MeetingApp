@@ -35,6 +35,12 @@ namespace MeetingApp
                 txtObraSocial.Text = MostrarObraSocial();
                 //divProfesionales.Visible = false;
             }
+
+            //cerrar sesion en todos las paginas
+            if (Session["Usuario"] == null)
+            {
+                Response.Redirect("InicioSesion.aspx");
+            }
         }
 
         //CARGAR COMBO ESPECIALIDADES

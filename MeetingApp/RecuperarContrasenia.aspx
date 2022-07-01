@@ -41,7 +41,7 @@
     
     <!--===============================================================================================-->
 </head>
-<body style="background-color: #666666;>
+<body style="background-color: #666666;">
 
     <div class="limiter">
         <div class="container-login100">

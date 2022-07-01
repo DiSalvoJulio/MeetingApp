@@ -17,7 +17,7 @@
     <div class="container">
         <%-- SECCION 1--%>
         <section class="">
-            <h1 style="color: red; text-align: center">Especialidades</h1>
+            <h1 style="text-align: center">Especialidades</h1>
         </section>
         <hr />
 

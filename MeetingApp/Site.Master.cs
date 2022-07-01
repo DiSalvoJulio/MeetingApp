@@ -13,6 +13,7 @@ namespace MeetingApp
         protected void Page_Load(object sender, EventArgs e)
         {
             //Para cerrar la session
+
             Usuario user = (Usuario)Session["Usuario"];
             Session["Login"] = user;            
 
@@ -110,9 +111,11 @@ namespace MeetingApp
         }
 
         protected void btnCerrarSesion_Click(object sender, EventArgs e)
-        {
+        {           
             Session["Usuario"] = null;
+            Session.Clear();
             Session.Abandon();
+            Session.RemoveAll();           
             Response.Redirect("~/InicioSesion.aspx");
         }
     }

@@ -17,7 +17,7 @@
     <div class="container">
         <%-- SECCION 1--%>
         <section class="content-header">
-            <h1 style="color: red; text-align: center">Obras Sociales</h1>
+            <h1 style="text-align: center">Obras Sociales</h1>
         </section>
         <hr />
 

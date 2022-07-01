@@ -48,7 +48,7 @@
 
                     <div class="wrap-input100 validate-input" data-validate="Email requerido: ejemplo@abc.com">
                         <%--<input class="input100" type="text" ID="txtUsuario" name="email" runat="server"/>--%>
-                        <asp:TextBox ID="txtUsuario" runat="server" placeholder="Email o D.N.I." CssClass="input100" required/>
+                        <asp:TextBox ID="txtUsuario" runat="server" placeholder="Email o D.N.I." CssClass="input100" required="True"/>
                         <span class="focus-input100"></span>
                         <%--<span class="label-input100">Email o D.N.I.</span>--%>
                     </div>
@@ -56,7 +56,7 @@
 
                     <div class="wrap-input100 validate-input" data-validate="Contraseña requerida">
                        <%-- <input class="input100" type="password" id="txtPass" name="pass" runat="server"/>--%>
-                        <asp:TextBox ID="txtPass" runat="server" placeholder="Contraseña" CssClass="input100" Type="password" required/>
+                        <asp:TextBox ID="txtPass" runat="server" placeholder="Contraseña" CssClass="input100" Type="password" required="True"/>
                         <span class="focus-input100"></span>
                         <%--<span class="label-input100">Contraseña</span>--%>
                     </div>
