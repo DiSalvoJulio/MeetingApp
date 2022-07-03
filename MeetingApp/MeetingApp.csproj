@@ -132,6 +132,7 @@
     <Content Include="Especialidades.css" />
     <Content Include="Horarios.aspx" />
     <Content Include="Horarios.css" />
+    <Content Include="images\AdminHome4.jpg" />
     <Content Include="Login\images\bg-01.jpg" />
     <Content Include="ObrasSociales.aspx" />
     <Content Include="ObrasSociales.css" />

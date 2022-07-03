@@ -297,7 +297,7 @@
                                         <asp:BoundField DataField="paciente" HeaderText="Paciente" />
                                         <asp:BoundField DataField="obraSocial" HeaderText="Obra Social" />
                                         <asp:BoundField DataField="estado" HeaderText="Estado" HeaderStyle-CssClass="d-none" ItemStyle-CssClass="d-none" />
-                                        <asp:BoundField DataField="atencion" HeaderText="Estado" />
+                                        <asp:BoundField DataField="atencion" HeaderText="Atención" />
                                         <asp:TemplateField>
                                             <HeaderTemplate>
                                                 <p style="color:white;">
