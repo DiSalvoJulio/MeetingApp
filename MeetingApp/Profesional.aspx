@@ -14,11 +14,12 @@
             <div class="form-group col-md-6">
                 <%--DNI--%>
                 <asp:Label ID="Label4" runat="server" Text="Ingrese el D.N.I. del Profesional"></asp:Label>
-                <asp:TextBox ID="txtDniBuscar" name="txtDniBuscar" runat="server" placeholder="D.N.I." CssClass="form-control" MinLength="7" MaxLength="10" required="true"></asp:TextBox>
+                <asp:TextBox ID="txtDniBuscar" name="txtDniBuscar" runat="server" placeholder="D.N.I." CssClass="form-control" MinLength="7" MaxLength="10" required="true" OnkeyDown="Numeros()"></asp:TextBox>
             </div>
             <div class="form-group col-md-6 mt-4">
-                <%--APELLIDO--%>
-                <asp:Button ID="btnBuscarProfesional" runat="server" Text="Buscar Profesional" OnClick="btnBuscarProfesional_Click" CssClass="btn btn-primary" />
+                <%--APELLIDO--%>                
+                <asp:Button ID="btnBuscarProfesional" runat="server" Text="Buscar Profesional" OnClick="btnBuscarProfesional_Click" CssClass="btn btn-primary mr-5" />        
+                <asp:Button ID="btnEliminarProfesional" runat="server" Text="Eliminar Profesional" OnClick="btnEliminarProfesional_Click" CssClass="btn btn-danger ml-5"/>                
                 <%--<asp:Label ID="Label5" runat="server" Text="Apellido y Nombre"></asp:Label>--%>
                 <%--<asp:TextBox ID="TextBox2" name="txtApellido" runat="server" placeholder="Apellido y Nombre" CssClass="form-control" OnkeyDown="Letras()" MaxLength="40"></asp:TextBox>
             </div>--%>
@@ -41,12 +42,12 @@
             <div class="form-group col-md-6">
                 <%--DNI--%>
                 <asp:Label ID="dni" runat="server" Text="D.N.I."></asp:Label>
-                <asp:TextBox ID="txtDni" name="txtDni" runat="server" placeholder="D.N.I." CssClass="form-control" OnkeyDown="Letras()" MaxLength="40"></asp:TextBox>
+                <asp:TextBox ID="txtDni" name="txtDni" runat="server" placeholder="D.N.I." CssClass="form-control" OnkeyDown="Numeros()" MaxLength="40"></asp:TextBox>
             </div>
             <div class="form-group col-md-6">
                 <%--FECHA NACIMIENTO--%>
                 <asp:Label ID="fechaNac" runat="server" Text="Fecha de Nacimiento"></asp:Label>
-                <asp:TextBox ID="txtFecNac" name="txtFecNac" runat="server" placeholder="Fecha de nacimiento" Type="date" CssClass="form-control" OnkeyDown="Letras()" MaxLength="10"></asp:TextBox>
+                <asp:TextBox ID="txtFecNac" name="txtFecNac" runat="server" placeholder="Fecha de nacimiento" Type="date" CssClass="form-control" MaxLength="10"></asp:TextBox>
             </div>
             <div class="form-group col-md-6">
                 <%--EMAIL--%>
@@ -56,12 +57,12 @@
             <div class="form-group col-md-6">
                 <%--EDAD--%>
                 <asp:Label ID="Label1" runat="server" Text="Edad"></asp:Label>
-                <asp:TextBox ID="txtEdad" name="txtEdad" runat="server" placeholder="Edad" CssClass="form-control" OnkeyDown="" MaxLength="40"></asp:TextBox>
+                <asp:TextBox ID="txtEdad" name="txtEdad" runat="server" placeholder="Edad" CssClass="form-control" MaxLength="40"></asp:TextBox>
             </div>
             <div class="form-group col-md-6">
                 <%--TELEFONO O CELULAR--%>
                 <asp:Label ID="telefono" runat="server" Text="Telefono o Celular"></asp:Label>
-                <asp:TextBox ID="txtTelefono" name="txtTelefono" runat="server" placeholder="Telefono o celular" CssClass="form-control" OnkeyDown="" MaxLength="15"></asp:TextBox>
+                <asp:TextBox ID="txtTelefono" name="txtTelefono" runat="server" placeholder="Telefono o celular" CssClass="form-control" OnkeyDown="Numeros()" MaxLength="15"></asp:TextBox>
             </div>
             <div class="form-group col-md-6">
                 <%--DIRECCION--%>
@@ -102,6 +103,53 @@
                 <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click" CssClass="btn btn-primary" />
             </div>
         </div>
+
+
+
+
+        <!-- MODAL ELIMINAR PROFESIONAL-->
+        <asp:Panel runat="server" ID="panelEliminarProfesional" Visible="false">
+            <div class="modal fade show" tabindex="-1" aria-hidden="true" style="display: block;">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content w-75" style="margin-left: 12.5%">
+                        <div class="modal-header">
+                            <h3 class="modal-title" style="margin-left: auto">¿Esta seguro de eliminar el profesional?</h3>
+                            <hr id="hrContent">
+                            <button runat="server" class="close" data-bs-dismiss="modal" aria-label="Close"
+                                onserverclick="CerrarModalEliminar">
+                                x</button>
+                        </div>
+                        <div class="modal-body col-auto">
+                            <%--CODIGO CUERPO MODAL--%>
+                            <div class="mb-3 row">
+                               <%--APELLIDO--%>
+                                <h4 class="col-auto">Apellido:</h4>
+                                <asp:Label ID="lblApellidoEliminar" Text="" CssClass="h5 col-auto mt-1 ml-1" style="color:blue;" runat="server"></asp:Label>
+                            </div>
+                            <div class="mb-3 row">
+                               <%--NOMBRE--%>
+                                <h4 class="col-auto">Nombre:</h4>
+                                <asp:Label ID="lblNombreEliminar" Text="" CssClass="h5 col-auto mt-1 ml-1" style="color:blue;" runat="server"></asp:Label>
+                            </div>
+                           <%--DNI--%>                            
+                                <div class="mb-3 row">
+                                    <h4 class="col-auto">DNI:</h4>
+                                    <asp:Label runat="server" ID="lblDniEliminar" Text="" CssClass="h5 col-auto mt-1 ml-1" style="color:blue;"></asp:Label>
+                                </div>                            
+                            <%--CIERRE CUERPO MODAL--%>
+                        </div>
+                        <!--Fin Body Modal-->
+                        <div class="modal-footer">
+                            <asp:Button ID="btnVolverModal" Text="Volver" runat="server" type="button" class="btn btn-info" OnClick="btnVolverModal_Click" />
+                            <asp:Button ID="btnConfirmarEliminarModal" Text="Confirmar" runat="server" type="button" class="btn btn-primary" OnClick="btnConfirmarEliminarModal_Click" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-backdrop fade show"></div>
+        </asp:Panel>
+
+        <%--fin container--%>
     </div>
     <%--SECCION 3 GRILLA--%>
 </asp:Content>

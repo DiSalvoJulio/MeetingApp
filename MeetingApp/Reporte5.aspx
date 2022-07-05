@@ -5,7 +5,7 @@
     <div class="container">
         <h1 style="text-align: center">Obras sociales</h1>
         <hr />
-        <h3 class="mb-5">Listado de pacientes atendidos por obra social - (fecha minima y maxima)</h3>
+        <h3 class="mb-5">Listado de pacientes atendidos por obra social (fecha minima y maxima)</h3>
         <div class="form-row">
             <%--FECHA 1 --%>
             <div class="form-group col-md-2">

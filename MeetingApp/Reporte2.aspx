@@ -7,7 +7,7 @@
     <div class="container">
         <h1 style="text-align: center">Formas de pago</h1>
         <hr />
-        <h3 class="mb-5">Listado de formas de pago mas utilizadas por mes</h3>
+        <h3 class="mb-5">Listado de formas de pago mas utilizadas por mes - año en curso</h3>
         <td>
             <asp:Label ID="Label1" runat="server" Text="Seleccionar mes" CssClass="mr-3"></asp:Label>
         </td>

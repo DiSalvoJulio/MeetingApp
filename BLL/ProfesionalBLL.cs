@@ -52,6 +52,11 @@ namespace BLL
         }
 
 
+        public void EliminarProfesional(Usuario usuario)
+        {
+            _profesionalDAL.EliminarProfesional(usuario);
+        }
+
 
     }
 }

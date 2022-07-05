@@ -5,7 +5,7 @@
     <div class="container">
         <h1 style="text-align: center">Turnos cancelados</h1>
         <hr />
-        <h3>Listado de turnos cancelados con filtros de fecha mínima y fecha máxima</h3>
+        <h3>Listado de turnos cancelados con filtros (fecha mínima y fecha máxima)</h3>
         <h4 class="mt-5">Seleccionar Fechas</h4>
         <div class="form-row">
             <%--  FECHA--%>

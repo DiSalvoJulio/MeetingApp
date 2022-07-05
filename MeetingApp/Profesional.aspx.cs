@@ -24,6 +24,7 @@ namespace MeetingApp
                     Response.Redirect("InicioSesion.aspx");
                 }
                 DesahabilitarCampos();
+                btnEliminarProfesional.Enabled = false;
                 btnAceptar.Enabled = false;
                 btnCancelar.Enabled = false;
                 btnModificar.Enabled = false;
@@ -39,7 +40,7 @@ namespace MeetingApp
             bool profesional = false;
             if (user == null)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo encontrar un Profesional', 'error')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo encontrar un profesional', 'error')", true);
                 profesional = false;
                 return profesional;
             }        
@@ -47,7 +48,7 @@ namespace MeetingApp
             Session["idUsuario"] = user.idUsuario;//usuario almacenado en session guardado en id
             Session["User"] = user;//en este usuario cargo todos los datos 
             CargarComboEspecialidades();          
-            CargarCamposProfesional(user);
+            CargarCamposProfesional(user);            
             profesional = true;         
             return profesional;
 
@@ -108,14 +109,16 @@ namespace MeetingApp
             {
                 if (BuscarProfesionalDni())
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Se encontro un Profesional!', 'success')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Se encontró un profesional!', 'success')", true);
                     btnModificar.Enabled = true;
+                    btnEliminarProfesional.Enabled = true;
                 }
                 else
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo encontrar un Profesional', 'error')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo encontrar un profesional', 'error')", true);
                     LimpiarCampos();
                     btnModificar.Enabled = false;
+                    btnEliminarProfesional.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -143,6 +146,7 @@ namespace MeetingApp
             btnModificar.Enabled = false;
             txtDniBuscar.Enabled = false;
             btnBuscarProfesional.Enabled = false;
+            btnEliminarProfesional.Enabled = false;
         }
 
         public bool ActualizarDatosProfesional()
@@ -177,7 +181,7 @@ namespace MeetingApp
             {
                 if (ActualizarDatosProfesional())
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Datos Actualizados!', 'success')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Datos actualizados!', 'success')", true);
                     btnCancelar.Enabled = false;
                     btnAceptar.Enabled = false;
                     btnModificar.Enabled = true;
@@ -262,19 +266,19 @@ namespace MeetingApp
         {
             if (txtApellido.Text.Equals(""))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar Apellido')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar apellido')", true);
                 txtApellido.Focus();
                 return true;
             }
             if (txtNombre.Text.Equals(""))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar Nombre')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar nombre')", true);
                 txtNombre.Focus();
                 return true;
             }
             if (txtFecNac.Text.Equals(""))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar Fecha Nacimiento')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar fecha nacimiento')", true);
                 txtFecNac.Focus();
                 return true;
             }
@@ -298,25 +302,25 @@ namespace MeetingApp
             //}
             if (txtDireccion.Text.Equals(""))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar direccion')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar dirección')", true);
                 txtDireccion.Focus();
                 return true;
             }
             if (txtTelefono.Text.Equals(""))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar Telefono')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar telefono')", true);
                 txtTelefono.Focus();
                 return true;
             }
             if (cmbEspecialidad.SelectedIndex == -1)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe seleccionar una Especialidad')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe seleccionar una especialidad')", true);
                 cmbEspecialidad.Focus();
                 return true;
             }
             if (txtMatricula.Text.Equals(""))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar Matricula')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Debe completar matricula')", true);
                 txtMatricula.Focus();
                 return true;
             }
@@ -325,6 +329,65 @@ namespace MeetingApp
                 return false;
             }
         }
+
+
+        //boton para abrir la modal de eliminar el profesional
+        protected void btnEliminarProfesional_Click(object sender, EventArgs e)
+        {
+            panelEliminarProfesional.Visible = true;
+            Usuario user = (Usuario)Session["User"];
+            lblApellidoEliminar.Text = user.apellido;
+            lblNombreEliminar.Text = user.nombre;
+            lblDniEliminar.Text = user.dni;
+        }
+
+        //cerrar modal con la cruz
+        public void CerrarModalEliminar(object sender, EventArgs e)
+        {
+            //ID DEL PANEL DE LA MODAL
+            panelEliminarProfesional.Visible = false;
+        }
+
+
+        //boton volver de la modal
+        protected void btnVolverModal_Click(object sender, EventArgs e)
+        {
+            panelEliminarProfesional.Visible = false;
+        }
+
+        //ELIMINAR Profesional
+        public void EliminarProfesional()
+        {
+            Usuario user = (Usuario)Session["User"];         
+            _profesionalBLL.EliminarProfesional(user);
+        }
+
+        //boton para confirmar la eliminacion del profesional
+        protected void btnConfirmarEliminarModal_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                EliminarProfesional();
+                panelEliminarProfesional.Visible = false;
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Exito!', 'Se eliminó el profesional!', 'success')", true);
+                LimpiarCampos();
+                DesahabilitarCampos();
+                btnEliminarProfesional.Enabled = false;
+                txtDniBuscar.Enabled = true;
+                btnModificar.Enabled = false;
+            }
+            catch (Exception)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Error!', 'No se pudo eliminar el profesional', 'error')", true);
+                DesahabilitarCampos();
+                btnEliminarProfesional.Enabled = false;
+                txtDniBuscar.Enabled = true;
+                btnModificar.Enabled = false;
+
+
+            }
+        }
+
 
     }
 }

@@ -381,7 +381,7 @@ namespace DAL
         {
             try
             {
-                string procedure = "sp_ObtenerTurnosPorFechaDTO";
+                string procedure = "sp_ObtenerTurnosPorFechaProfesionalDTO"; //sp_ObtenerTurnosPorFechaDto estaba antes
                 comando.Connection = Conexion.AbrirConexion();
                 comando.CommandText = procedure;
                 comando.Parameters.Clear();
@@ -424,6 +424,31 @@ namespace DAL
             catch (SqlException ex)
             {
                 throw new Exception("Error en cargar TurnoProfesionalPacienteDto DAL " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
+
+
+        //Eliminar un profesional        
+        public void EliminarProfesional(Usuario usuario)
+        {
+            try
+            {
+                string procedure = "sp_EliminarProfesional";
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = procedure;
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@idUsuario", usuario.idUsuario);
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en eliminar profesional " + ex.Message);
             }
             finally
             {
