@@ -96,15 +96,15 @@ namespace MeetingApp
         //REGISTRAR
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
+            if (!ValidarMayoriaEdad())
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Cuidado!', 'Para registrarse debe ser mayor de 18 años, verifique la fecha de nacimiento', 'warning')", true);
+                return;
+            }
             if (!ValidarCamposPorRol())
             {
                 return;
-            }
-
-            //if (!ValidarSiUsuarioExiste())
-            //{
-            //    return;
-            //}
+            }           
 
             //validar si el usuario ya existe
             if (ExisteUsuario(txtEmail.Text, txtDni.Text))
@@ -112,7 +112,6 @@ namespace MeetingApp
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Usuario Existente! El Email ya esta registrado.')", true);
                 return;
             }
-
 
             try
             {
@@ -340,6 +339,27 @@ namespace MeetingApp
             txtMatricula.Enabled = false;
             chkTerminos.Checked = false;
         }
+
+
+        //validar fecha de nacimiento, usuario mayor de 18 años
+        public bool ValidarMayoriaEdad()
+        {
+            bool esMayor = true;
+            DateTime fecha = DateTime.Parse(txtFecNac.Text);
+            //fechaNacimiento = fecha.Date;
+
+            if (fecha.AddYears(18)>DateTime.Now)
+            {
+                esMayor = false;
+            }
+            else
+            {
+                esMayor = true;
+            }
+            return esMayor;
+        }
+
+
 
 
     }
