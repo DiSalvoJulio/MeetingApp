@@ -45,6 +45,11 @@ namespace BLL
             return _profesionalDAL.ObtenerTurnosProfesionalPorPaciente(idProfesional,dni);
         }
 
+        public List<ObtenerTurnosProfesionalDTO> ObtenerTurnosCancelarPorFecha(int idProfesional, DateTime fecha)
+        {
+            return _profesionalDAL.ObtenerTurnosCancelarPorFecha(idProfesional, fecha);
+        }
+
 
         public List<ObtenerTurnosProfesionalDTO> ObtenerTurnosPorFecha(int idProfesional, DateTime fecha)
         {

@@ -374,9 +374,62 @@ namespace DAL
             }
         }
 
+        //obtener lista de turnos por fecha CANCELAR ACTIVOS POR FECHA
+        public List<ObtenerTurnosProfesionalDTO> ObtenerTurnosCancelarPorFecha(int idProfesional, DateTime fecha)
+        {
+            try
+            {
+                string procedure = "sp_ObtenerTurnosActivosPorFechaProfesionalDTO"; //sp_ObtenerTurnosPorFechaDto estaba antes
+                comando.Connection = Conexion.AbrirConexion();
+                comando.CommandText = procedure;
+                comando.Parameters.Clear();
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@idProfesional", idProfesional);
+                comando.Parameters.AddWithValue("@fecha", fecha);
+                comando.ExecuteNonQuery();
 
+                List<ObtenerTurnosProfesionalDTO> listaTurnosDto = new List<ObtenerTurnosProfesionalDTO>();
 
-        //obtener lista de turnos por fecha
+                using (SqlDataReader dr = comando.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        ObtenerTurnosProfesionalDTO turno = new ObtenerTurnosProfesionalDTO();
+                        turno.idTurno = Convert.ToInt32(dr["idTurno"]);
+                        //turno.fechaTurno = Convert.ToDateTime(dr["Fecha"]);
+                        turno.fechaTurno = dr["Fecha"].ToString().Substring(0, 10);//ver como cambiar el mostrado de la fecha
+                        turno.horaTurno = dr["Hora"].ToString();
+                        turno.descripcion = dr["Descripcion"].ToString();
+                        turno.paciente = dr["Paciente"].ToString();
+                        turno.obraSocial = dr["ObraSocial"].ToString();
+                        turno.estado = dr["Estado"].ToString() == "True" ? turno.estado = "Activo" : turno.estado = "Cancelado";
+                        if (turno != null)
+                        {
+                            var cosa = dr["Atencion"].ToString();
+                            turno.atencion = dr["Atencion"].ToString() == "1" ? turno.atencion = "Atendido" : turno.atencion = "No atendido";
+                        }
+                        else
+                        {
+                            turno.atencion = "Sin dato";
+                        }
+
+                        listaTurnosDto.Add(turno);
+                    }
+                    return listaTurnosDto;
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Error en cargar TurnoProfesionalPacienteDto DAL " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
+        //obtener lista de turnos por fecha MARCAR ATENDIDOS
         public List<ObtenerTurnosProfesionalDTO> ObtenerTurnosPorFecha(int idProfesional, DateTime fecha)
         {
             try

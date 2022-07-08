@@ -70,7 +70,7 @@
                         </div>--%>
 
                         <div style="justify-content:flex-end;">
-                            <a href="RecuperarContrasenia.aspx" class="txt1">Olvide mi contraseña?
+                            <a href="RecuperarContrasenia.aspx" class="txt1">Olvidé mi contraseña?
                             </a>
                         </div>
                     </div>

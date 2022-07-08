@@ -242,8 +242,7 @@ namespace MeetingApp
         public void CargarGrillaCancelarPorFecha(int idProfesional, DateTime fecha)
         {
             //ViewState["fecha"] = fecha;
-            List<ObtenerTurnosProfesionalDTO> turnos = _profesionalBLL.ObtenerTurnosPorFecha(idProfesional, fecha);
-
+            List<ObtenerTurnosProfesionalDTO> turnos = _profesionalBLL.ObtenerTurnosCancelarPorFecha(idProfesional, fecha);
             gvCancelarPorFecha.DataSource = turnos;
             //gvTurnosPorFecha.DataKeys = turnos
             gvCancelarPorFecha.DataBind();
@@ -280,7 +279,7 @@ namespace MeetingApp
             DateTime fecha = DateTime.Parse(dtpCancelarPorFecha.Value);
             ViewState["fecha"] = fecha;
 
-            List<ObtenerTurnosProfesionalDTO> turnosPorFecha = _profesionalBLL.ObtenerTurnosPorFecha(idProfesional, DateTime.Parse(ViewState["fecha"].ToString()));
+            List<ObtenerTurnosProfesionalDTO> turnosPorFecha = _profesionalBLL.ObtenerTurnosCancelarPorFecha(idProfesional, DateTime.Parse(ViewState["fecha"].ToString()));
 
             if (turnosPorFecha.Count > 0)
             {

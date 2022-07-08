@@ -96,15 +96,15 @@ namespace MeetingApp
         //REGISTRAR
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
+            if (!ValidarCamposPorRol())
+            {
+                return;
+            }           
             if (!ValidarMayoriaEdad())
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Cuidado!', 'Para registrarse debe ser mayor de 18 años, verifique la fecha de nacimiento', 'warning')", true);
                 return;
             }
-            if (!ValidarCamposPorRol())
-            {
-                return;
-            }           
 
             //validar si el usuario ya existe
             if (ExisteUsuario(txtEmail.Text, txtDni.Text))
